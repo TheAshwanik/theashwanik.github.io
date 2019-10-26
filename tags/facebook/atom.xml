@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:Facebook | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/facebook/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Embed Facebook Post on any html page]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page/"/>
+    <updated>2013-08-02T22:41:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page</id>
+    <content type="html"><![CDATA[<p>Facebook has released a new feature. It&rsquo;s called “embedded posts”. <br/>
+But officially, only Big Publishers can embed posts currently into their pages.</p>
+
+<p>We can also, embed the <strong>Public</strong> FB posts with a small script and trick.</p>
+
+<p>1.Go to any facebook post and hover over the date when post was created. Right-Click and copy the Link. <!--more--> <br/>
+2.Replace the URL_HERE with the link you just copied.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Sample to embed FB post in HTML page index.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span></span><span class="ni">&amp;lt;</span>!DOCTYPE html&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns:fb</span><span class="o">=</span><span class="s">&quot;http://ogp.me/ns/fb#&quot;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+</span><span class='line'><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>   <span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+</span><span class='line'>  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span class='line'>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span class='line'>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+</span><span class='line'>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;&lt;</span><span class="nt">code</span><span class="p">&gt;</span>    <span class="ni">&amp;lt;</span>div id=&quot;fb-root&quot;<span class="ni">&amp;gt;&amp;lt;</span>/div<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>script<span class="ni">&amp;gt;</span>
+</span><span class='line'>    (function(d, s, id) {
+</span><span class='line'>    var js, fjs = d.getElementsByTagName(s)[0];
+</span><span class='line'>    if (d.getElementById(id))
+</span><span class='line'>    return;
+</span><span class='line'>    js = d.createElement(s);
+</span><span class='line'>    js.id = id;
+</span><span class='line'>    js.src = &quot;http://connect.facebook.net/en_US/all.js#xfbml=1&quot;;
+</span><span class='line'>    fjs.parentNode.insertBefore(js, fjs);
+</span><span class='line'>    }(document, &#39;script&#39;, &#39;facebook-jssdk&#39;));
+</span><span class='line'>    <span class="ni">&amp;lt;</span>/script<span class="ni">&amp;gt;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>fb:post href=&quot;URl_HERE&quot;<span class="ni">&amp;gt;&amp;lt;</span>/fb:post<span class="ni">&amp;gt;&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>p style=&quot;text-align: justify;&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'> <span class="ni">&amp;lt;</span>/body<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="nt">code</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Here is an example:</h4>
+
+<div id="fb-root">
+</div>
+
+
+<p>
+<script>
+(function(d, s, id) 
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id))
+    return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<br />
+        
+<fb:post href="https://www.facebook.com/TheAshwanikBlog/posts/182463588593799">
+</fb:post>
+</p>
+
+
+<p>Enjoy and Embed your FB post where ever you like.</p>
+
+<p>Courtesy: Amit Agarwal&rsquo;s <a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=0hh8lKDnFWI">Video</a></p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

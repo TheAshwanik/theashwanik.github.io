@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:animated cloud | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/animated-cloud/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flash based Tag Cloud plugin for Octopress site]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-01-19/flash-based-tag-cloud-plugin-for-octopress-site/"/>
+    <updated>2013-01-19T11:13:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-01-19/flash-based-tag-cloud-plugin-for-octopress-site</id>
+    <content type="html"><![CDATA[<p>I recently wanted to use a Animated Flash based Tag Cloud on my Blog site.
+Then I came across with a plugin from Joseph Chang (octopress-cumulus), but unfortunately it generated only category clouds.</p>
+
+<p>So I updated the plugin to create a flash based animated cloud for tags also.<!--more--> <br/>
+Note: you will have to use any other plugin to generate the tags first.</p>
+
+<p>Here is the plugin code:
+<div><script src='https://gist.github.com/4578668.js?file=category_cloud.rb'></script>
+<noscript><pre><code>module Jekyll
+
+  class CategoryCumulusCloud &lt; Liquid::Tag
+
+    def initialize(tag_name, markup, tokens)
+      .
+      .
+      .
+      super
+    end
+
+    def render(context)
+      lists = {}
+      max, min = 1, 1
+      config = context.registers[:site].config
+      
+      if @tag_name == &#39;tag_cloud&#39;
+        cloud_dir = config[&#39;tag_dir&#39;]
+        cloud = context.registers[:site].tags
+      else
+        cloud_dir = config[&#39;category_dir&#39;]
+        cloud = context.registers[:site].categories
+      end
+      
+      cloud_dir = config[&#39;url&#39;] + config[&#39;root&#39;] + cloud_dir + &#39;/&#39;
+      #categories = context.registers[:site].categories
+      cloud.keys.sort_by{ |str| str.downcase }.each do |item|
+        count = cloud[item].count
+        lists[item] = count
+        max = count if count &gt; max
+      end
+      .
+      .
+      .
+      .
+      lists.each do | item, counter |
+        url = cloud_dir + item.gsub(/_|\P{Word}/u, &#39;-&#39;).gsub(/-{2,}/u, &#39;-&#39;).downcase
+        style = &quot;font-size: #{10 + (40 * Float(counter)/max)}%&quot;
+
+        tagcloud &lt;&lt; &quot;&lt;a href=&#39;#{url}&#39; style=&#39;#{style}&#39;&gt;#{item}&quot;
+        tagcloud &lt;&lt; &quot;&lt;/a&gt; &quot;
+
+      end
+
+      .
+      .
+      .
+      .
+    end
+  end
+end
+
+Liquid::Template.register_tag(&#39;category_cloud&#39;, Jekyll::CategoryCumulusCloud)
+Liquid::Template.register_tag(&#39;tag_cloud&#39;, Jekyll::CategoryCumulusCloud)
+</code></pre></noscript></div>
+</p>
+
+<p>You can also find the updated plugin here.<br/>
+<a href="https://github.com/TheAshwanik/octopress-cumulus.git">Github - TheAshwanik/octopress-cumulus</a>
+or here <a href="https://github.com/bizkit/octopress-cumulus.git">Github - bizkit/octopress-cumulus</a></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:diaspora | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/diaspora/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Few Tweaks in Diaspora installation]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-01-26/few-tweaks-in-diaspora-installation/"/>
+    <updated>2013-01-26T19:41:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-01-26/few-tweaks-in-diaspora-installation</id>
+    <content type="html"><![CDATA[<p>Recently I wanted to checkout the <a href="https://joindiaspora.com/">Diaspora</a> project, and to my despair I faced lot of problems
+installing it in Windows OS.<br/>
+I could not install it on Windows, and I did'nt want to invest lot of time , as it was not important and I was trying
+this only for killing my time.  However, I installed it on a VM (Ubuntu) and faced a few problems.</p>
+
+<!--more-->
+
+
+<p>This post is about keeping a note of what I faced and use it in future (if needed).</p>
+
+<h4>1. Issue with installing <strong>rmagick</strong>:</h4>
+
+<p><small>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rmagick installation issue </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR:  Error installing rmagick:
+</span><span class='line'>    ERROR: Failed to build gem native extension.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/usr/local/bin/ruby extconf.rb
+</span><span class='line'>checking for Ruby version >= 1.8.5&hellip; yes
+</span><span class='line'>checking for gcc&hellip; yes
+</span><span class='line'>checking for Magick-config&hellip; no
+</span><span class='line'>Can&rsquo;t install RMagick 2.13.1. Can&rsquo;t find Magick-config in /usr/local/bin:/bin:
+</span><span class='line'>/sbin:/usr/bin:/usr/sbin:/usr/libexec
+</span><span class='line'>.
+</span><span class='line'>.
+</span><span class='line'>.
+</span><span class='line'>Gem files will remain installed in /usr/local/lib/ruby/gems/1.8/gems/rmagick-2.13.1 for inspection.
+</span><span class='line'>Results logged to /usr/local/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
+</span><span class='line'>Building native extensions.  This could take a while&hellip;.</span></code></pre></td></tr></table></div></figure></notextile></div>
+</small></p>
+
+<p>I found a solution <a href="https://gist.github.com/4012713">here</a>  but it did not work for me.</p>
+
+<p>To solve the rmagick issue, run the following commands:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Run the following commands to fix issues with rmagick </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libmagickcore-dev libmagickwand-dev&lt;br/>
+</span><span class='line'>sudo gem install rmagick</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br/>
+<br/></p>
+
+<h4>2. Issue with installing <strong>typhoeus</strong>:</h4>
+
+<p><small>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rmagick installation issue </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you get this:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Installing typhoeus (0.3.3) with native extensions
+</span><span class='line'>/usr/local/lib/site_ruby/1.8/rubygems/installer.rb:483:in `build_extensions':
+</span><span class='line'>ERROR: Failed to build gem native extension. (Gem::Installer::ExtensionBuildError)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>/usr/bin/ruby1.8 extconf.rb
+</span><span class='line'>checking for curl/curl.h in /opt/local/include,/opt/local/include/curl,/usr/include/curl,
+</span><span class='line'>/usr/include,/usr/include/curl,/usr/local/include/curl&hellip; no
+</span><span class='line'>need libcurl&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div>
+</small></p>
+
+<p>You can fix it by installing the libcurl3-dev package:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>commands to fix issues with typhoeus </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libcurl3-dev
+</span><span class='line'>sudo apt-get install typhoeus</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br/>
+<br/></p>
+
+<p>I did not want to use mysql2 adapter for diaspora
+so I had to install postgreSQL (Since sqlite had problems with some length of index names)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>installing postgresql in linux </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install postgresql-9.1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>If you find issue in some gem which depends on curl, then you must install curl first.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>installing curl </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install curl</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>That&rsquo;s all folks.  <br/>
+<strong>au revoir</strong></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:ipaddress | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/ipaddress/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[IP Address GeoCoding and Plotting on map]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/"/>
+    <updated>2016-01-23T16:19:37+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map</id>
+    <content type="html"><![CDATA[<p>Sometimes back I had setup ssh on raspberry pi and allowed to login from internet, obviously using the public key encyption.
+After few days I noticed that lot of people/systems were trying to login and failing from various different IPs.
+So I block them using Fail2ban. I am Not gonna talk about Fail2ban, as its completely vast topic on its own.</p>
+
+<!--more-->
+
+
+<p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2ban</a> : It provides a way to automatically protect virtual servers from malicious behavior.
+The program works by scanning through log files and reacting to offending actions such as repeated failed login attempts.</p>
+
+<p>Once blocked I wanted to see from where I was getting attacked the most. So I plotted them on map using some free apis.
+Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/pathToFail2ban/action.d/iptables-multiport.conf&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[Definition]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionstart&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed once at the start of Fail2Ban.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
+</span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed when banning an IP. Take care that the&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>command is executed with Fail2Ban user rights.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Tags:    &lt;ip>  IP address&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;failures>  number of failures&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;time>  unix timestamp of the ban time&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#
+</span><span class='line'>actionban = iptables -I fail2ban-&lt;name> 1 -s &lt;ip> -j DROP
+</span><span class='line'>            echo &lt;ip> >> /etc/fail2ban/ip.blacklist.persistban.&lt;name>
+</span><span class='line'>            echo &lt;ip> >> /pathToMysite/blocked_ipaddresses.txt</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I used <a href="http://lab.abhinayrathore.com/ipmapper/">ipmapper</a> which uses google maps api for geocoding.</p>
+
+<p>Here is my html code to plot those blocked IPs.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;html>
+</span><span class='line'>&lt;head>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">&lt;/script>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script type="text/javascript" src="ipmapper.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;meta name="viewport" content="initial-scale=1.0, user-scalable=no" /&gt;
+</span><span class='line'>&lt;style&gt;
+</span><span class='line'>  html, body, #map {
+</span><span class='line'>    height: 100%;
+</span><span class='line'>    margin: 0px;
+</span><span class='line'>    padding: 0px;
+</span><span class='line'>  }
+</span><span class='line'>&lt;/style&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>$(function(){
+</span><span class='line'>    try{
+</span><span class='line'>            var useragent = navigator.userAgent;
+</span><span class='line'>            var mapdiv = document.getElementById("map");
+</span><span class='line'>            console.log(useragent.indexOf('iPhone'));
+</span><span class='line'>            if (useragent.indexOf('iPhone') == -1 || useragent.indexOf('Android') == -1 ) {
+</span><span class='line'>                    mapdiv.style.width = '100%';
+</span><span class='line'>                    mapdiv.style.height = '100%';
+</span><span class='line'>            } else {
+</span><span class='line'>                    mapdiv.style.width = '600px';
+</span><span class='line'>                    mapdiv.style.height = '800px';
+</span><span class='line'>            }
+</span><span class='line'>
+</span><span class='line'>            IPMapper.initializeMap("map");
+</span><span class='line'>
+</span><span class='line'>            var file = "../data/blocked_ipaddresses.txt";
+</span><span class='line'>            var ipArray = new Array();
+</span><span class='line'>            $.get(file, function(data){
+</span><span class='line'>                    ipArray = data.split('\n');
+</span><span class='line'>                    //console.log("Raw array length is -" + ipArray.length);
+</span><span class='line'>                    IPMapper.addIPArray(ipArray);
+</span><span class='line'>            });
+</span><span class='line'>
+</span><span class='line'>    } catch(e){
+</span><span class='line'>        //handle error
+</span><span class='line'>    }
+</span><span class='line'>});
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/head>
+</span><span class='line'>&lt;body>
+</span><span class='line'>    &lt;div id="map" style="height: 800px;">&lt;/div>
+</span><span class='line'>&lt;/body>
+</span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here is the output plotted on the map&hellip; :)</p>
+
+<p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
+
+<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+
+<p>Chow&hellip;</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

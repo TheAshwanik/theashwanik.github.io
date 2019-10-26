@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:ipv6 | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/ipv6/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Connecting to MySQL Server Using an IPV6 Address]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2012-10-10/mysql-with-ipv6/"/>
+    <updated>2012-10-10T15:45:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2012-10-10/mysql-with-ipv6</id>
+    <content type="html"><![CDATA[<p>If you are one of those who does not know that there is a new way to connect to MySQL database with an IPV6 IP address,
+then keep reading.
+We will see how to connect to a mysql database on a server with an IPv6 address.</p>
+
+<p>I struggled for this, so I wanted to document it.
+Source: <a href="http://en.wikipedia.org/wiki/IPv6">Wiki IPv6</a></p>
+
+<!--more-->
+
+
+<h4>Address Format</h4>
+
+<p>IPv6 addresses have two logical parts: a 64-bit network prefix, and a 64-bit host address part.</p>
+
+<p>(The host address is often automatically generated from the interface MAC address.)
+An IPv6 address is represented by 8 groups of 16-bit hexadecimal values separated by colons (:) shown as follows:</p>
+
+<p>A typical example of an IPv6 address is:</p>
+
+<pre><code>2001:0db8:85a3:0000:0000:8a2e:0370:7334.
+</code></pre>
+
+<p>The hexadecimal digits are case-insensitive.</p>
+
+<h4>Method to connect to MYSQL using an IPv4 address (traditional way)</h4>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>urlString = “jdbc:mysql://10.144.1.216:3306/dbName”;
+</span><span class='line'>Class.forName(driver);
+</span><span class='line'>DriverManager.setLoginTimeout(getConnectionTimeOut());
+</span><span class='line'>dbConnection = DriverManager.getConnection(urlString,user,password);</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h4>Method to connect to MYSQL using an IPv6 address (New way)</h4>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>urlString = “jdbc:mysql://address=(protocol=tcp)(host=fe80::5ed6:baff:fe14:a23e)(port=3306)/db”;
+</span><span class='line'>Class.forName(driver);
+</span><span class='line'>DriverManager.setLoginTimeout(getConnectionTimeOut());
+</span><span class='line'>dbConnection = DriverManager.getConnection(urlString,user,password);</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This new approach is no where documented over the internet, and a bug has been filed by Mark Mathews
+to include this as documentation in next release of  MYSQL JDBC connector.
+Thanks to Mark for Pointing this out to us.</p>
+
+<p>Check bugs at:    <br/>
+1. <a href="http://bugs.mysql.com/bug.php?id=59451">http://bugs.mysql.com/bug.php?id=59451</a>   <br/>
+2. <a href="http://bugs.mysql.com/bug.php?id=8836">http://bugs.mysql.com/bug.php?id=8836</a></p>
+
+<p>For those who wants to know more about Ipv6:      <br/>
+1. <a href="http://ipv6.com">ipv6.com</a>    <br/>
+2. <a href="http://ipv6.com/articles/general/IPv6-Beginners_Look.htm">IPv6-Beginners_Look.htm</a>    <br/>
+3. <a href="http://ipv6.com/articles/general/Top-10-Features-that-make-IPv6-greater-than-IPv4.htm">Top-10-Features-that-make-IPv6-greater-than-IPv4.htm</a></p>
+]]></content>
+  </entry>
+  
+</feed>

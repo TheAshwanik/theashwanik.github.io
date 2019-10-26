@@ -1,0 +1,1024 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" xmlns:fb="http://ogp.me/ns/fb#"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en" xmlns:fb="http://ogp.me/ns/fb#"><!--<![endif]-->
+	
+<head>
+  <meta charset="utf-8">
+  <title>Connect and access sharepoint webservice from java - Ashwani Kumar</title>
+  <meta name="author" content="Ashwani Kumar">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+  <meta name="description" content=" Java Program to demonstrate how to connect and access sharepoint webservices. Upload/Download, Check-In/Check-Out files from Sharepoint. ">
+  <meta name="keywords" content="Java, sharepoint, java to sharepoint, connect sharepoint from java, access sharepoint from java, sharepoint webservice, webservice sharepoint">
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Ashwani Kumar" type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="Ashwani Kumar" />
+  <meta name="og:title" content="Connect and access sharepoint webservice from java" />
+  <meta name="og:description" content=" Java Program to demonstrate how to connect and access sharepoint webservices. Upload/Download, Check-In/Check-Out files from Sharepoint. " />
+  <meta name="og:url" content="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/"/>
+  <meta name="url" content="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">
+  
+  <meta name="subject" content="Technical"/>
+  <meta name="category" content="Technical"/>
+  
+  <meta name="distribution" content="global">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Reenie+Beanie">
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+<link href="/stylesheets/custom/font-awesome.css" media="screen, projection" rel="stylesheet" type="text/css">
+<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Rock+Salt">
+<link rel="stylesheet" type="text/css" href="/stylesheets/xmltree.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/Pullquote.css">
+
+<script type="text/javascript" src="/javascripts/libs/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/javascripts/xmltree.js"></script>
+<script type="text/javascript" src="/javascripts/jquey.highlight.js"></script>
+<!--<script src="/javascripts/timeofday.js" type="text/javascript"></script>-->
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-37485375-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <nav role="navigation"><div class="navbar" id="scrollhere">
+  <div class="navbar-inner">
+    <a class="brand" href="/">Ashwani Kumar</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+      
+      
+        <li><a href="http://www.ashwani.co.in" target="_blank" rel="prof_website" title="View my resume">Resume</a></li>
+      
+      
+    </ul>
+    
+    
+    
+    <ul><form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blog.ashwani.co.in" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+        <ul class="pull-right" style ="margin-top: 5px;">
+        	<div id='popme'> <audio controls id='audio'><source src='http://radio.108.pl:8006/meditation.ogg'><source src='http://listen.radionomy.com/radio-mozart'><source src='http://audio.radiognu.org/radiognu.ogg'></audio> </div>
+        </ul>
+      </fieldset>
+    </form>
+    </ul>
+    
+    
+	<script>
+	$(document).ready(function() {
+		
+		document.getElementById('audio').volume = 0.05
+
+		var mycontent='Try Me...'
+		
+		$('#popme').popover({ html: true, content:mycontent, placement: 'bottom'})
+		
+		$('#popme').popover('show')
+
+		$('html').click(function(e) {
+	     	$('#popme').popover('destroy');
+		});
+		
+	} );
+	
+	</script>    
+	
+	<!--<embed name="music_playlist"
+		src="http://listen.radionomy.com/abc-lounge.m3u"
+		width="20"
+		height="20"
+		loop="false"
+		hidden="false"
+		autostart="true">
+	</embed>-->
+                
+  </div>
+</div>
+</nav>
+  <div class="wrapper_single">
+    <div class="container-fluid">
+      <div class="row-fluid">
+      <article class="span8 offset1" role="article">
+        <div class="article-format">
+
+  <header>
+    
+      <h3 class="entry-title">Connect and Access Sharepoint Webservice From Java</h3>
+    
+    
+      <p class="meta" style="font-size:12px">
+        
+
+  
+    <span class="byline author vcard">by <span class="fn">Ashwani Kumar</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+
+<time datetime="2013-07-28T09:31:00+01:00" pubdate data-updated="true"></time> - 
+        
+
+posted in
+<span class="categories">
+  
+    Technical
+  
+  | 
+</span>
+
+
+        
+
+Tagged as
+<span class="tags">
+  
+    javasharepoint
+  
+
+</span>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are numerous articles over the internet about different approaches to access sharepoint from variety of languages like .Net,
+java, Javascript, Ruby etc. But these articles are in Bits and Pieces. No where they have completely running code which someone can use
+OTS. <br/>
+There is a open source wrapper library (java-sharepoint-library) <!--more--> to access these webservices, but its extremely buggy, I do not know, if that project is being maintained
+anymore. Here is the link, <a href="https://code.google.com/p/java-sharepoint-library/downloads/list">java-sharepoint-library</a> , knock yourself out.</p>
+
+<p>And here it is, my version of simple program, which authenticates , connects, accesses, Check-Out and Checks-In, Downloads/Uploads a given
+document.</p>
+
+<p>Credits to various generous people out there who has helped lot of people with thier bits.</p>
+
+<p><br/></p>
+
+<p>Let&rsquo;s Start</p>
+
+<h4>Step 1. Download the wsdl files from the sharepoint.</h4>
+
+<p>Download all WSDLs from your sharepoint. the URL should look like the one in example.</p>
+
+<p>Alerts.wsdl, dspsts.wsdl, lists.wsdl, publishedlinksservice.wsdl, sites.wsdl, versions.wsdl  <br/>
+admin.wsdl, dws.wsdl, meetings.wsdl, permissions.wsdl, socialdataservice.wsdl, views.wsdl   <br/>
+authentication.wsdl, forms.wsdl, people.wsdl, sharepointemailws.wsdl, spsearch.wsdl, webpartpages.wsdl   <br/>
+copy.wsdl, imaging.wsdl, search.wsdl, sitedata.wsdl, usergroup.wsdl, webs.wsdl</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>For example:  [Download all WSDLs]
+</span><span class='line'>curl https://mysharepointsite.com/_vti_bin/Lists.asmx?WSDL > lists.wsdl
+</span><span class='line'>curl https://mysharepointsite.com/_vti_bin/Versions.asmx?WSDL > versions.wsdl</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>Step 2. Generate Java Stubs for these wsdls</h4>
+
+<p>In order to use Sharepoints Web Services with Java, you will need to generate its stub classes with its WSDLs.
+Use the JDK wsimport.exe for this.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>For example:  Generate Java Stubs for these wsdls
+</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension lists.wsdl
+</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension versions.wsdl
+</span><span class='line'>
+</span><span class='line'>Do this for all the WSDLs you downloaded. and Import those classes in your project.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<h4>Step 3. Place the WSDLs in your resources</h4>
+
+<p>For some reason the wsimport.exe hardcodes the path to the wsdl files from your local disk.
+To avoid this you will have to place the wsdl files in your project and give resources as your buildpath.<br/>
+1. Make a directory &ldquo;Resources&rdquo; in your project, copy WSDL directory in it. <br/>
+2. In Eclipse, Goto Project -> Properties -> Java Build Path -> Sources Tab, and add the Resources folder there. <br/>
+Now all your files under resources directory will be loaded at runtime.</p>
+
+<p>Or you can follow the second approach given in <a href="http://tugdualgrall.blogspot.co.uk/2009/02/jax-ws-how-to-configure-service-end_17.html">TUG&rsquo;S BLOG</a></p>
+
+<h4>Step 4. Now write the actual program to connect</h4>
+
+<p>Credits goes to <a href="http://davidsit.wordpress.com/">David</a>, but there were tweaks which I had to google and finally
+come up with this working version</p>
+
+<h5>Step 4.1 Authenticate</h5>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Authenticate the client and get the stub for lists ws] (SPClient.java)
+</span><span class='line'>  public static ListsSoap getSPListSoapStub(String username, String password, String url) throws Exception {
+</span><span class='line'>      ListsSoap port = null;
+</span><span class='line'>      if (username != null && password != null) {
+</span><span class='line'>          try {
+</span><span class='line'>              // This is to avoid the error where it tries to find wsdl file, 
+</span><span class='line'>              // due to hardcoded path of wsdl in your stub generated by wsimport.exe
+</span><span class='line'>              //
+</span><span class='line'>              // Somehow class.getResource() did not work for me, 
+</span><span class='line'>              // so I am using class.getClassLoader.getResource()
+</span><span class='line'>              //
+</span><span class='line'>              URL wsdlURL = new URL(getInstance().getClass().getClassLoader().getResource("wsdl/lists.wsdl").toExternalForm());
+</span><span class='line'>              Lists service = new Lists(wsdlURL);
+</span><span class='line'>              port = service.getListsSoap();
+</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(BindingProvider.USERNAME_PROPERTY, username);
+</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
+</span><span class='line'>              
+</span><span class='line'>              //To avoid, error with endpoint not supported, you need to give end point url here.
+</span><span class='line'>              //
+</span><span class='line'>              URL convertedurl = convertToURLEscapingIllegalCharacters(url+"/_vti_bin/Lists.asmx");
+</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(
+</span><span class='line'>                      BindingProvider.ENDPOINT_ADDRESS_PROPERTY, convertedurl.toString());
+</span><span class='line'>           
+</span><span class='line'>          } catch (Exception e) {
+</span><span class='line'>              e.printStackTrace();
+</span><span class='line'>              throw new Exception("Error: " + e.toString());
+</span><span class='line'>          }
+</span><span class='line'>      } else {
+</span><span class='line'>          throw new Exception("Couldn't authenticate: Invalid connection details given.");
+</span><span class='line'>      }
+</span><span class='line'>      return port;
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Convert the URL characters, to avoid errors in endpoint url. Coz the code above does not identify spaces in URL  <br/>
+For eg: if you would have URL like <a href="http://mysharepoint.com/Book">http://mysharepoint.com/Book</a> names , then you will get unsupported URL exception  <br/>
+So you need to set endpoint URL as <a href="http://mysharepoint.com/Book%20names">http://mysharepoint.com/Book%20names</a></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Convert the URL characters] (SPClient.java)
+</span><span class='line'>  public static URL convertToURLEscapingIllegalCharacters(String string){
+</span><span class='line'>      try {
+</span><span class='line'>          String decodedURL = URLDecoder.decode(string, "UTF-8");
+</span><span class='line'>          URL url = new URL(decodedURL);
+</span><span class='line'>          URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef()); 
+</span><span class='line'>          return uri.toURL(); 
+</span><span class='line'>      } catch (Exception ex) {
+</span><span class='line'>          ex.printStackTrace();
+</span><span class='line'>          return null;
+</span><span class='line'>      }
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><br />
+<br /></p>
+
+<h5>Step 4.2  Display sharepoint list</h5>
+
+<p>You can display the list by giving the list name. Here I assume a list named &ldquo;Documents&rdquo; to be retrieved.
+Otherwise you can use an ID also, which can be accessed.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Display sharepoint root list] (SPClient.java)
+</span><span class='line'>  /**
+</span><span class='line'>   * Connects to a SharePoint Lists Web Service through the given open port,
+</span><span class='line'>   * and reads all the elements of the given list. Only the given column names
+</span><span class='line'>   * are displayed.
+</span><span class='line'>   */ 
+</span><span class='line'>  public static void displaySharePointList() throws Exception {
+</span><span class='line'>          try {
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>              // you can also give id of "Documents" node
+</span><span class='line'>              //{44131435-EAFB-4244-AA39-F431F55ADA9B}
+</span><span class='line'>              //
+</span><span class='line'>              String listName = "Documents";
+</span><span class='line'>              String rowLimit = "150";
+</span><span class='line'>              
+</span><span class='line'>              //Columns names to extract
+</span><span class='line'>              //
+</span><span class='line'>              ArrayList&lt;String> listColumnNames = new ArrayList&lt;String>();
+</span><span class='line'>              listColumnNames.add("LinkFilename");
+</span><span class='line'>              listColumnNames.add("FileRef");
+</span><span class='line'>
+</span><span class='line'>              
+</span><span class='line'>              //Here are additional parameters that may be set
+</span><span class='line'>              String viewName = "";
+</span><span class='line'>              GetListItems.ViewFields viewFields = null;
+</span><span class='line'>              GetListItems.Query query = null;
+</span><span class='line'>              GetListItems.QueryOptions queryOptions = null;
+</span><span class='line'>              String webID = "";
+</span><span class='line'>               
+</span><span class='line'>              //Calling the List Web Service
+</span><span class='line'>              GetListItemsResponse.GetListItemsResult result = listsoapstub.getListItems(listName, viewName, query, viewFields, rowLimit, queryOptions, webID);
+</span><span class='line'>              Object listResult = result.getContent().get(0);
+</span><span class='line'>              if ((listResult != null) && (listResult instanceof Element)) {
+</span><span class='line'>                  Element node = (Element) listResult;
+</span><span class='line'>
+</span><span class='line'>                  //Dumps the retrieved info in the console
+</span><span class='line'>                  Document document = node.getOwnerDocument();
+</span><span class='line'>                  LOGGER.info("SharePoint Online Lists Web Service Response:" + SPClient.xmlToString(document));
+</span><span class='line'>
+</span><span class='line'>                  //selects a list of nodes which have z:row elements
+</span><span class='line'>                  NodeList list = node.getElementsByTagName("z:row");
+</span><span class='line'>                  LOGGER.info("=> " + list.getLength() + " results from SharePoint Online");
+</span><span class='line'>
+</span><span class='line'>                  //Displaying every result received from SharePoint, with its ID
+</span><span class='line'>                  for (int i = 0; i &lt; list.getLength(); i++) {
+</span><span class='line'>
+</span><span class='line'>                      //Gets the attributes of the current row/element
+</span><span class='line'>                      NamedNodeMap attributes = list.item(i).getAttributes();
+</span><span class='line'>                      LOGGER.info("******** Item ID: " + attributes.getNamedItem("ows_ID").getNodeValue()+" ********");
+</span><span class='line'>
+</span><span class='line'>                      //Displays all the attributes of the list item that correspond to the column names given
+</span><span class='line'>                      // Note the column names prepended with "ows_" coz internal name format is that.
+</span><span class='line'>                      //
+</span><span class='line'>                      for (String columnName : listColumnNames) {
+</span><span class='line'>                          String internalColumnName = "ows_" + columnName;
+</span><span class='line'>                          if (attributes.getNamedItem(internalColumnName) != null) {
+</span><span class='line'>                              LOGGER.info(columnName + ": " + attributes.getNamedItem(internalColumnName).getNodeValue());
+</span><span class='line'>                          } else {
+</span><span class='line'>                              throw new Exception("Couldn't find the '" + columnName + "' column in the '" + listName + "' list in SharePoint.\n");
+</span><span class='line'>                          }
+</span><span class='line'>                      }
+</span><span class='line'>                  }
+</span><span class='line'>              } else {
+</span><span class='line'>                  throw new Exception(listName + " list response from SharePoint is either null or corrupt\n");
+</span><span class='line'>              }
+</span><span class='line'>          } catch (Exception ex) {
+</span><span class='line'>              ex.printStackTrace();
+</span><span class='line'>              throw new Exception("Exception. See stacktrace.\n" + ex.toString() + "\n");
+</span><span class='line'>          }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><br />
+<br /></p>
+
+<h5>Step 4.3 Setup the default authentication</h5>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Setup the Default authentication] (SimpleAuthenticator.java)
+</span><span class='line'>import java.net.Authenticator;
+</span><span class='line'>import java.net.PasswordAuthentication;
+</span><span class='line'>
+</span><span class='line'>public class SimpleAuthenticator extends Authenticator {
+</span><span class='line'>
+</span><span class='line'>  private final String username;
+</span><span class='line'>  private final char[] password;
+</span><span class='line'>
+</span><span class='line'>  public SimpleAuthenticator(final String username, final String password) {
+</span><span class='line'>    super();
+</span><span class='line'>    this.username = new String(username);
+</span><span class='line'>    this.password = password.toCharArray(); 
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>  @Override
+</span><span class='line'>  public PasswordAuthentication getPasswordAuthentication() {
+</span><span class='line'>    return (new PasswordAuthentication (username, password));
+</span><span class='line'>  }
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>//Use class in main
+</span><span class='line'>//
+</span><span class='line'>SimpleAuthenticator authenticator = new SimpleAuthenticator(username, password);
+</span><span class='line'>Authenticator.setDefault(authenticator);</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Another approach given at <a href="http://derekjmiller62.wordpress.com/category/java-sharepoint-integration/">derekjmiller blog</a>
+but i Did not use it.</p>
+
+<h5>Step 4.4 Putting it all together</h5>
+
+<p>Here I show, how to display sharepoint list. If you need to know other functions, have a look at this gist.<br/>
+<a href="https://gist.github.com/TheAshwanik/983fde4be42022ac1f29">SharePointClient</a></p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[SharePointClient] [https://gist.github.com/TheAshwanik/983fde4be42022ac1f29] (SharePointClient.java) 
+</span><span class='line'>public class SPClient {
+</span><span class='line'>  
+</span><span class='line'>  private static String username = "your sharepoint username";
+</span><span class='line'>  private static String password = "your sharepoinnt password";
+</span><span class='line'>  private static String BasesharepointUrl = "https://mysharepoint.com/Book Names";
+</span><span class='line'>  private static ListsSoap listsoapstub;
+</span><span class='line'>  private static VersionsSoap versionssoapstub;
+</span><span class='line'>  private static CopySoap copysoapstub;
+</span><span class='line'>  
+</span><span class='line'>  private static SharePointClient getInstance(){
+</span><span class='line'>      return(new SharePointClient());
+</span><span class='line'>  }
+</span><span class='line'>  public static void main(String[] args) {
+</span><span class='line'>      try {
+</span><span class='line'>          
+</span><span class='line'>          NtlmAuthenticator authenticator = new NtlmAuthenticator(username, password);
+</span><span class='line'>          Authenticator.setDefault(authenticator);
+</span><span class='line'>          
+</span><span class='line'>          //Authenticating and Opening the SOAP port of the Copy Web Service
+</span><span class='line'>          listsoapstub = SharePointClient.getSPListSoapStub(username, password, BasesharepointUrl);
+</span><span class='line'>      
+</span><span class='line'>          // Displays the lists items in the console
+</span><span class='line'>          SharePointClient.displaySharePointList();
+</span><span class='line'>      
+</span><span class='line'>      } catch (Exception ex) {
+</span><span class='line'>          ex.printStackTrace();
+</span><span class='line'>          System.err.println(ex);
+</span><span class='line'>      }
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p></p>
+
+<p>That&rsquo;s it for now friends.  Hope you guys will not struggle for this info.</p>
+
+<p>Cheers :)</p>
+
+<p><a href="https://gist.github.com/TheAshwanik/6098259">Resources</a></p>
+
+<p><br/></p>
+</div>
+
+
+  <footer>
+    <p class="meta"  style="font-size:12px">
+      
+
+  
+    <span class="byline author vcard">by <span class="fn">Ashwani Kumar</span></span>
+  
+
+
+      
+
+
+
+
+
+
+
+
+
+<time datetime="2013-07-28T09:31:00+01:00" pubdate data-updated="true"></time>
+      
+
+posted in
+<span class="categories">
+  
+    Technical
+  
+  | 
+</span>
+
+
+      
+
+Tagged as
+<span class="tags">
+  
+    javasharepoint
+  
+
+</span>
+    </p>
+    
+      <a class="pull-left" href="/blog/2013-07-20/search-string-faster-with-ruby/" title="Previous Post: Search string faster with Ruby">&laquo; Search string faster with Ruby</a>
+    
+    
+      <a class="pull-right" href="/blog/2013-07-29/access-sharepoint-webservices-from-java-behind-proxy/" title="Next Post: access sharepoint webservices from java behind proxy">access sharepoint webservices from java behind proxy &raquo;</a>
+    
+  </footer>
+
+</div>
+
+        
+        
+<div class="misc-content">
+
+    
+    
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+	 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_IN/all.js#xfbml=1&appId=373369529416479";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+    
+	<br />
+	<div class="mysocial">
+		<ul class="mysocial-list-linear">
+		    
+		           
+		    	<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="" data-lang="en">Tweet</a></div></li>
+			
+			
+			
+				 <li><fb:like href="https://www.facebook.com/TheAshwanikBlog" send="true" width="350" show_faces="true" font="verdana" colorscheme="light"></fb:like></li>
+			
+		</ul>
+	</div>
+	<br />
+	<br />
+	<br />
+</div>
+
+        
+		
+          
+          <div style="padding: 2em;">
+          <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+          </div>
+      	      	
+      </article>
+      <article class="span3 article-format" role="article">
+			<!--Body content-->
+			
+<span>
+	<img style="margin:0px;" src="http://www.gravatar.com/avatar/6ab243027eafbd8c5a15633945c45d35" alt="Gravatar of Ashwani Kumar " title="Gravatar of Ashwani Kumar" />
+</span>
+
+			<br />
+			<div>
+<h4>Recent posts</h4>
+<ul class="recent_posts">
+  
+    <li>
+      <a href="/blog/2019-10-25/haproxy-for-load-balancing/">HAProxy for load balancing</a>
+    </li>
+  
+    <li>
+      <a href="/blog/2018-02-25/check-connectivity-to-servers-without-login/">Check Connectivity to servers without login</a>
+    </li>
+  
+    <li>
+      <a href="/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/">IP Address GeoCoding and Plotting on map</a>
+    </li>
+  
+    <li>
+      <a href="/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/">Setting up octopress blog once you lost the working env</a>
+    </li>
+  
+    <li>
+      <a href="/blog/2015-03-10/mqtt-all-you-need-to-get-started/">MQTT, All you need to get started</a>
+    </li>
+  
+</ul>
+</div>
+
+			<br />
+			<section>
+  <h4>Subscribe</h4>
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+	<form action="http://ashwani.us7.list-manage.com/subscribe/post?u=060ebf66b0ed41ea7018607ff&amp;id=24f2832472" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div class="mc-field-group">
+  <label for="mce-EMAIL">
+    Enter your email to receive new content in your email.
+  </label>
+  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="you@email.com">
+      </div>
+      <div id="mce-responses" class="clear">
+		  <div class="response" id="mce-error-response" style="display:none"></div>
+		  <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>
+      <div class="clear">
+  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </div>
+    </form>
+  </div>
+  <!--End mc_embed_signup-->
+</section>
+			<br />
+			
+<div class="misc-content">
+
+	<br />
+	<div class="mysocial">
+		<h4>Your Feedback encourages me</h4>
+		<ul class="mysocial-list-linear">
+			
+		    
+			
+		           
+		    	<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="" data-lang="en">Tweet</a></div></li>
+			
+			
+			
+				 <li><div><fb:like href="https://www.facebook.com/TheAshwanikBlog" send="true" layout="button_count" width="450" show_faces="true" font="verdana" colorscheme="light"></fb:like></div></li>
+			
+			
+			
+				<li><div class="github-feedback"><a class="btn btn-mini btn-info" href="https://github.com/TheAshwaniK/Feedback/issues/new" title="Leave Ashwani feedback using GitHub" target="_blank"><i class="icon-comment icon-white"></i> Leave me feedback</a></div></li>
+			
+			
+			<br/>
+			
+			
+				<li><div class="github-feedback"><script data-gittip-username="TheAshwanik" data-gittip-widget="button" src="//gttp.co/v1.js"></script></div></li>
+			
+			
+			
+			<br/><br /><br/>
+			
+		</ul>
+	</div>
+	<br />
+</div>
+
+			<br />
+			<section>
+	<br/>
+	<h4>Learning and Developments</h4>
+	<a href="http://mbsy.co/7FRZ9" target="_blank"><img src="https://ambassador-api.s3.amazonaws.com/uploads/marketing/5615/2014_06_26_21_51_27.jpg" alt="One Month Rails" style="padding: 5px;border:1px solid #021a40;background-color:#252521;"/></a>
+</section>
+			<br />
+      <section>
+	<br/>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- Educational -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-7785151837466843"
+	     data-ad-slot="8192525818"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+</section>
+      <br />
+			<!-- <section>
+  <br />
+  <h4><a href="/blog/tags.html">Tags</a></h4>
+    <span id="tag-cloud"><embed type='application/x-shockwave-flash' src='/javascripts/tagcloud.swf'width='100%' height='250' bgcolor='#f2f2f2' id='tagcloudflash' name='tagcloudflash' quality='high' allowscriptaccess='always'flashvars="tcolor=0x333333&amp;tcolor2=0x333333&amp;hicolor=0x000000&amp;tspeed=100&amp;distr=true&amp;mode=tags&amp;tagcloud=%3Ctags%3E%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fanimated-cloud%27+style%3D%27font-size%3A+30.0%25%27%3Eanimated+cloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Faws%27+style%3D%27font-size%3A+30.0%25%27%3EAWS%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fchat%27+style%3D%27font-size%3A+30.0%25%27%3EChat%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fcleanup%27+style%3D%27font-size%3A+30.0%25%27%3Ecleanup%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fcoffee%27+style%3D%27font-size%3A+30.0%25%27%3ECoffee%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fcommands%27+style%3D%27font-size%3A+50.0%25%27%3ECommands%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fconnectivity%27+style%3D%27font-size%3A+30.0%25%27%3Econnectivity%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fdiaspora%27+style%3D%27font-size%3A+30.0%25%27%3Ediaspora%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ffacebook%27+style%3D%27font-size%3A+30.0%25%27%3EFacebook%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ffeedback%27+style%3D%27font-size%3A+30.0%25%27%3EFeedback%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fflash%27+style%3D%27font-size%3A+30.0%25%27%3EFlash%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fgeocoding%27+style%3D%27font-size%3A+30.0%25%27%3Egeocoding%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fgithub%27+style%3D%27font-size%3A+30.0%25%27%3EGithub%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fgod%27+style%3D%27font-size%3A+30.0%25%27%3EGOD%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fgoogle%27+style%3D%27font-size%3A+30.0%25%27%3EGoogle%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fgrep%27+style%3D%27font-size%3A+30.0%25%27%3Egrep%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fhaproxy%27+style%3D%27font-size%3A+30.0%25%27%3EHAProxy%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fiot%27+style%3D%27font-size%3A+30.0%25%27%3EIOT%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fip-block%27+style%3D%27font-size%3A+30.0%25%27%3EIP-block%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fipaddress%27+style%3D%27font-size%3A+30.0%25%27%3Eipaddress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fipv6%27+style%3D%27font-size%3A+30.0%25%27%3Eipv6%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fjava%27+style%3D%27font-size%3A+50.0%25%27%3Ejava%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fjquery%27+style%3D%27font-size%3A+30.0%25%27%3EJQuery%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fload-balancing%27+style%3D%27font-size%3A+30.0%25%27%3ELoad+balancing%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fmessaging%27+style%3D%27font-size%3A+30.0%25%27%3EMessaging%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fmq%27+style%3D%27font-size%3A+30.0%25%27%3EMQ%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fmqtt%27+style%3D%27font-size%3A+30.0%25%27%3EMQTT%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fmysql%27+style%3D%27font-size%3A+30.0%25%27%3Emysql%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fnokogiri%27+style%3D%27font-size%3A+30.0%25%27%3Enokogiri%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Foctopress%27+style%3D%27font-size%3A+30.0%25%27%3EOctopress%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Foctopress-plugin%27+style%3D%27font-size%3A+50.0%25%27%3EOctopress+Plugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Foctopress-migration%27+style%3D%27font-size%3A+30.0%25%27%3Eoctopress-migration%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Foctopress-plugin%27+style%3D%27font-size%3A+30.0%25%27%3Eoctopress-plugin%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fopenssl%27+style%3D%27font-size%3A+30.0%25%27%3Eopenssl%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fport-forwarding%27+style%3D%27font-size%3A+30.0%25%27%3EPort+Forwarding%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Frepo%27+style%3D%27font-size%3A+30.0%25%27%3ERepo%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Frepo%27+style%3D%27font-size%3A+30.0%25%27%3Erepo%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Freviews%27+style%3D%27font-size%3A+30.0%25%27%3Ereviews%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fruby%27+style%3D%27font-size%3A+50.0%25%27%3Eruby%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fs3%27+style%3D%27font-size%3A+30.0%25%27%3ES3%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fsearch%27+style%3D%27font-size%3A+30.0%25%27%3ESearch%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fsecurity%27+style%3D%27font-size%3A+30.0%25%27%3Esecurity%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fsharepoint%27+style%3D%27font-size%3A+50.0%25%27%3Esharepoint%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fshell%27+style%3D%27font-size%3A+50.0%25%27%3EShell%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fshell-script%27+style%3D%27font-size%3A+30.0%25%27%3Eshell+script%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fsoapui%27+style%3D%27font-size%3A+30.0%25%27%3ESoapui%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fssh%27+style%3D%27font-size%3A+30.0%25%27%3ESSH%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fssh%27+style%3D%27font-size%3A+30.0%25%27%3Essh%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ftag%27+style%3D%27font-size%3A+30.0%25%27%3ETag%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ftag-cloud%27+style%3D%27font-size%3A+30.0%25%27%3ETag+cloud%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ftelnet%27+style%3D%27font-size%3A+30.0%25%27%3Etelnet%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Ftunneling%27+style%3D%27font-size%3A+30.0%25%27%3ETunneling%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fwebattacks%27+style%3D%27font-size%3A+30.0%25%27%3Ewebattacks%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fwindows%27+style%3D%27font-size%3A+30.0%25%27%3Ewindows%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fwindowsxp%27+style%3D%27font-size%3A+30.0%25%27%3Ewindowsxp%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fxming%27+style%3D%27font-size%3A+30.0%25%27%3EXming%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fxml%27+style%3D%27font-size%3A+30.0%25%27%3EXML%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fxml-tree%27+style%3D%27font-size%3A+30.0%25%27%3EXML+Tree%3C%2Fa%3E+%3Ca+href%3D%27http%3A%2F%2Fblog.ashwani.co.in%2Ftags%2Fxserver%27+style%3D%27font-size%3A+30.0%25%27%3EXServer%3C%2Fa%3E+%3C%2Ftags%3E"></span>
+</section> -->
+
+	  </article>
+      </div>
+
+    </div>
+  </div>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>Recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2019-10-25/haproxy-for-load-balancing/">HAProxy for load balancing</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2018-02-25/check-connectivity-to-servers-without-login/">Check Connectivity to servers without login</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/">IP Address GeoCoding and Plotting on map</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/">Setting up octopress blog once you lost the working env</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2015-03-10/mqtt-all-you-need-to-get-started/">MQTT, All you need to get started</a>
+        </li>
+      
+    </ul>
+    <h4> Check out the Archives <a href="/blog/archives" style="text-decoration:underline">here</a></h4>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+
+  </div>
+  <div class="span2">
+    <section>
+  <h2>Catch me</h2>
+
+<a href="https://github.com/TheAshwaniK/" target="_blank" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+<a href="http://www.linkedin.com/in/ashwaniaryan" target="_blank" rel="tooltip" title="Linkedin"><img class="social_icon" title="Linkedin" alt="Linkedin icon" src="/images/glyphicons_377_linked_in.png"></a>
+
+
+
+
+
+
+
+
+
+<h4>Contact at</h4>
+<a href="mailto:aryan.ashwani@gmail.com">aryan.ashwani@gmail.com</a>
+
+
+
+<h4>My Career Path</h4>
+<a href="http://www.ashwani.co.in" target="_blank">www.ashwani.co.in</a>
+
+</section>
+  </div>
+  <div class="span2">
+    <section>
+  <h2>Subscribe</h2>
+  <!-- Begin MailChimp Signup Form -->
+  <div id="mc_embed_signup">
+	<form action="http://ashwani.us7.list-manage.com/subscribe/post?u=060ebf66b0ed41ea7018607ff&amp;id=24f2832472" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      <div class="mc-field-group">
+  <label for="mce-EMAIL">
+    Enter your email to receive new content in your email.
+  </label>
+  <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="you@email.com">
+      </div>
+      <div id="mce-responses" class="clear">
+  <div class="response" id="mce-error-response" style="display:none"></div>
+  <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>
+      <div class="clear">
+  <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      </div>
+    </form>
+  </div>
+  <!--End mc_embed_signup-->
+</section>
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">Ashwani Kumar</a>
+  - Copyright &copy; 2019 - Ashwani Kumar
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by Adrian Artiles.</span>
+  
+</p>
+  </div>
+</footer>
+
+  <script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'theashwanik';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/';
+        var disqus_url = 'http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+<script src="/javascripts/html5shiv.js" type="text/javascript"></script>
+<!--<script src="/javascripts/timeofday.js" type="text/javascript"></script>-->
+
+
+</body>
+</html>

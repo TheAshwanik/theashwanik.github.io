@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:ruby | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/ruby/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Instant Nokogiri - Book Review]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review/"/>
+    <updated>2013-11-10T12:39:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review</id>
+    <content type="html"><![CDATA[<p>Hello Guys, Recently I was requested to review a book by <a href="http://hunterpowers.com/">Hunter Powers</a>.
+The book is titled as &ldquo;<a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">Instant Nokogiri</a>&lsquo;.</p>
+
+<p>So here are my unbiased thought on the same:</p>
+
+<p><a href="http://nokogiri.org/">Nokogiri</a> - is an HTML, XML, SAX, &amp; Reader <!--more--> parser with the ability to search documents via XPath or CSS3 selectors… and much more</p>
+
+<p><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">
+<img class="left_aligned_image  <a" src="href="https://dl.dropboxusercontent.com/u/118338831/Nokogiri.JPG">https://dl.dropboxusercontent.com/u/118338831/Nokogiri.JPG</a>" width="350" height="350" title="&ldquo;Instant Nokogiri&rdquo; &ldquo;Instant Nokogiri image&rdquo;" >
+</a></p>
+
+<p><strong>This book is in its simplest and easiest form, explains the basics of Nokogiri in a layman&rsquo;s language.<br/>
+A definite read for all those who love simplicity and awesomeness of ruby language.</strong></p>
+
+<p><strong>Book is in interest of those new-comers who would like to learn scraping data from &lsquo;websites/other sources&rsquo; which does not provide a developer API.</strong></p>
+
+<p>It does not have any fancy graphics, no vague examples etc. It just dives into the real subject , which is what a beginner (or expert for that matter)
+would require to get started or master Nokogiri.</p>
+
+<p>With very subtle examples of data scraping and clear understanding, the author makes a newbee feel like they already
+know how Nokogiri works.</p>
+
+<p>The section &ldquo;Top 13 features you need to know about&rdquo; clearly explains some of the not known features of Nokogiri.
+My favorite parts are about &ldquo;Spoofing browser agents&rdquo;  and &ldquo;Mechanize&rdquo;.</p>
+
+<p>All in all this is perfect book for beginners. But if you are an expert ruby developer and use nokogiri extensively,
+this book may not be for you.</p>
+
+<p><strong><u>For a first time user, I definitely recommend this book.</u></strong></p>
+
+<p>You can get a copy from these places:</p>
+
+<ol>
+<li><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">packtpub</a></li>
+<li><a href="http://www.amazon.co.uk/gp/product/B00ESX180G">Amazon.co.uk</a></li>
+</ol>
+
+
+<p><br/><br/></p>
+
+<h3>Some Nokogiri Info:</h3>
+
+<h4>Install</h4>
+
+<pre><code>sudo gem install nokogiri 
+</code></pre>
+
+<h4>Contribute</h4>
+
+<pre><code>http://github.com/sparklemotion/nokogiri
+</code></pre>
+
+<p><br/>
+<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Search string faster with Ruby]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby/"/>
+    <updated>2013-07-20T15:59:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby</id>
+    <content type="html"><![CDATA[<p>Is grep Slow?   Sure it is. Read on..
+Just a few days back there was an electrical outage and lot of applications were dead. <br/>
+In one case, lot of customer orders could   <!--more--> not be processed.
+Hence, there rose a need of manual intervention and extraction of orders (XML) from a logfile and re-feeding them to another system.
+The task was simple, I had order numbers in orders.txt  and I had to write a shell script to grep for a particular
+xml containing each of these orders, extract XML and create a file for each order.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Shell script to loop and find an order in another file</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>cat extract.sh&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>i=0
+</span><span class='line'>echo &ldquo;Extraction Script Started at:&rdquo; &lt;code>date&lt;/code>
+</span><span class='line'>while read order_id; do
+</span><span class='line'>    filename=$order_id"_tmp.xml"
+</span><span class='line'>    finalfilename=$order_id".xml"
+</span><span class='line'>    grep &ldquo;.&lt;em>$order_id.&rdquo; &lt;/em>.log > $filename &amp;&amp; echo &ldquo;written xml for $order_id in $filename&rdquo; || echo $order_id >> Orders_not_found.txt
+</span><span class='line'>    cat $filename | sed -e &rsquo;s|text-to-remove|new-text|g' | sed -e &rsquo;s|***||g' > $finalfilename
+</span><span class='line'>    rm $filename
+</span><span class='line'>    ((i++))
+</span><span class='line'>done &lt; orders.txt
+</span><span class='line'>echo &ldquo;Extraction Script Ended at:&rdquo; &lt;code>date&lt;/code></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>But the problem was that the log file in which I was searching was too huge. It was 5GBs in total.
+Hence the grep was taking minimum 4-5 Minutes to search one order and create an xml file for that.
+Clearly this was not a solution, as I had to find thousand orders in those log files and it was very critical for end customer.</p>
+
+<p>If my calulation was right, I had to spend:  <br/>
+4 Mins = 1 Xml  <br/>
+60 Mins = 1 Hr = 15 Xml  <br/>
+at this rate I would have spent atleast 3-4 days CPU time , to get all those 1000 XMLs.
+(Not to mention the pain of getting screwed and frustration). Meaning which, we all would have been screwed
+over and over again for 3-4 days by the customer.</p>
+
+<p><b>Enter Ruby:</b>
+One liner saved us.  <br/>
+I used this ruby command, to first find the relevant generic string then create order xml files using a normal shell
+script as above. I thought I would keep this fir future reference.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -pe &lsquo;next unless $_ =~ /&lt;RegExp for stringtomatch>.&lt;em>Number.&lt;/em>/&rsquo; &lt; 5GB-file.log >> 6Mb-file-reduced.log</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Wondereful, Ruby took just few minutes to grep the regular exp string into a 5GB log file, and now I had to search orders
+into this smaller reduced size intermediate file.</p>
+
+<p>Thus, this saved us 3 days and did wonders in just half an hour.</p>
+
+<p>Voila !!!</p>
+
+<p>Credit for the one liner goes to <a href="http://axonflux.com/handy-ruby-one-liners-by-david-thomas">Garry Tan</a>, where I found this wonderful ruby command.</p>
+]]></content>
+  </entry>
+  
+</feed>

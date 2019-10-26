@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url><loc>http://blog.ashwani.co.in/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>1.00</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/categories/technical/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/grep/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/ruby/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/shell-script/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/jquery/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-07-18/stylize-your-xml-with-jquery-xml-tree-plugin/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/xml-tree/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/xml/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-01-30/upload-files-to-s3-and-refer-with-a-tag/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/aws/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/s3/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/page/2/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/octopress-plugin/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-01-26/few-tweaks-in-diaspora-installation/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-01-19/flash-based-tag-cloud-plugin-for-octopress-site/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/diaspora/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/diaspora-installation/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/flash/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/archives/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/tag/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/tag-cloud/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/animated-cloud/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-01-15/simple-port-forwarding-script/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/port-forwarding/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/ssh/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/tunneling/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2013-01-10/soapui-mockservicerunner-on-linux-without-x-config/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/soapui/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/xserver/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/xming/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2012-10-10/mysql-with-ipv6/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/ipv6/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/mysql/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/page/3/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/2012-09-06/chat-with-god/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/blog/categories/general/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/chat/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/coffee/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<url><loc>http://blog.ashwani.co.in/tags/god/</loc><lastmod>2013-07-20T17:31:36+00:00</lastmod><changefreq>weekly</changefreq><priority>0.69</priority></url>
+<!-- Generated by www.web-site-map.com -->
+</urlset>

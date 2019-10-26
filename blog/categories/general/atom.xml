@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: General | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/blog/categories/general/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Instant Nokogiri - Book Review]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review/"/>
+    <updated>2013-11-10T12:39:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review</id>
+    <content type="html"><![CDATA[<p>Hello Guys, Recently I was requested to review a book by <a href="http://hunterpowers.com/">Hunter Powers</a>.
+The book is titled as &ldquo;<a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">Instant Nokogiri</a>&lsquo;.</p>
+
+<p>So here are my unbiased thought on the same:</p>
+
+<p><a href="http://nokogiri.org/">Nokogiri</a> - is an HTML, XML, SAX, &amp; Reader <!--more--> parser with the ability to search documents via XPath or CSS3 selectors… and much more</p>
+
+<p><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">
+<img class="left_aligned_image  <a" src="href="https://dl.dropboxusercontent.com/u/118338831/Nokogiri.JPG">https://dl.dropboxusercontent.com/u/118338831/Nokogiri.JPG</a>" width="350" height="350" title="&ldquo;Instant Nokogiri&rdquo; &ldquo;Instant Nokogiri image&rdquo;" >
+</a></p>
+
+<p><strong>This book is in its simplest and easiest form, explains the basics of Nokogiri in a layman&rsquo;s language.<br/>
+A definite read for all those who love simplicity and awesomeness of ruby language.</strong></p>
+
+<p><strong>Book is in interest of those new-comers who would like to learn scraping data from &lsquo;websites/other sources&rsquo; which does not provide a developer API.</strong></p>
+
+<p>It does not have any fancy graphics, no vague examples etc. It just dives into the real subject , which is what a beginner (or expert for that matter)
+would require to get started or master Nokogiri.</p>
+
+<p>With very subtle examples of data scraping and clear understanding, the author makes a newbee feel like they already
+know how Nokogiri works.</p>
+
+<p>The section &ldquo;Top 13 features you need to know about&rdquo; clearly explains some of the not known features of Nokogiri.
+My favorite parts are about &ldquo;Spoofing browser agents&rdquo;  and &ldquo;Mechanize&rdquo;.</p>
+
+<p>All in all this is perfect book for beginners. But if you are an expert ruby developer and use nokogiri extensively,
+this book may not be for you.</p>
+
+<p><strong><u>For a first time user, I definitely recommend this book.</u></strong></p>
+
+<p>You can get a copy from these places:</p>
+
+<ol>
+<li><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">packtpub</a></li>
+<li><a href="http://www.amazon.co.uk/gp/product/B00ESX180G">Amazon.co.uk</a></li>
+</ol>
+
+
+<p><br/><br/></p>
+
+<h3>Some Nokogiri Info:</h3>
+
+<h4>Install</h4>
+
+<pre><code>sudo gem install nokogiri 
+</code></pre>
+
+<h4>Contribute</h4>
+
+<pre><code>http://github.com/sparklemotion/nokogiri
+</code></pre>
+
+<p><br/>
+<br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reclaim that important diskspace with New Windows Update Cleanup]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-10-14/reclaim-that-important-diskspace-with-new-windows-update-cleanup/"/>
+    <updated>2013-10-14T08:35:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-10-14/reclaim-that-important-diskspace-with-new-windows-update-cleanup</id>
+    <content type="html"><![CDATA[<p>Yippee !</p>
+
+<p>Finally Microsoft has released a very important update package.</p>
+
+<p>Remember, how we used to despise the windows updates and security patches eating up our diskspace. And many a times, we even used to skip
+the update with the feeling of satisfaction (just saved a lot of diskspace) <!--more--> and dissatisfaction (what if it included a critical patch).</p>
+
+<p>Well, Not anymore! We don&rsquo;t have to be in dilemma anymore. Since, Microsoft has released a very important update this time, with which we can cleanup the
+otherwise outdated windows update files.</p>
+
+<p>This release is for Windows 7 SP1 machines, KB <a href="http://support.microsoft.com/kb/2852386">2852386</a> adds the ability to cleanup all the obsolete updates in the WinSxS folder.</p>
+
+<p><blockquote><p>Windows Updates can be terrible space hogs. Windows saves every security update and hotfix—even if<br/>they are superseded by new updates—in the WinSxS directory. You cannot just manually delete everything in that folder,because some files are needed just in case a system file gets corrupted or you need to roll back a Windows Update. - Life Hacker</p></blockquote></p>
+
+<p>A new  recommended update was released. It can be found <a href="http://support.microsoft.com/kb/2852386">Here</a>.</p>
+
+<p><b>Note: that this is categorized as an “important” update.
+This means it’s not a critical security update which means it may not be automatically installed or deployed depending on your
+Windows Update settings, WSUS settings, or other 3rd party patch management software settings.</b></p>
+
+<p>Via - <a href="http://blogs.technet.com/b/askpfeplat/archive/2013/10/07/breaking-news-reduce-the-size-of-the-winsxs-directory-and-free-up-disk-space-with-a-new-update-for-windows-7-sp1-clients.aspx">Breaking News! Reduce the size of the WinSxS Directory and Free up Disk Space with a New Update for Windows 7 SP1 Clients</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chat with God]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2012-09-06/chat-with-god/"/>
+    <updated>2012-09-06T11:24:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2012-09-06/chat-with-god</id>
+    <content type="html"><![CDATA[<p>Yeah Guys, I had a Chat with GOD, over a cup of coffee.At last my most sought after dream came true.I was sitting in 
+front of the preeminent,which made me feel invulnerable,gratified and made my heart content.But then I was a 
+quintessential human,always asking for more,I had a list of unanswered and perplexed questions,which vexes me 
+since they happened to me.
+</p>
+
+
+
+
+<!--more-->
+
+
+<p>I asked him, why when I was left with only two marble balls, I lost them to my friend &ldquo;Chotu”?</p>
+
+<p>Why dint he let me in college always, at least there I was not bothered about the deadlines?</p>
+
+<p>Why he can&rsquo;t give me everything?</p>
+
+<p>Why the little girl begging on the road can&rsquo;t go to school instead?</p>
+
+<p>What is that makes him incapable of maintaining the equilibrium among people?</p>
+
+<p>I asked him, whether he also &ldquo;Google&rdquo; to know about the Sins and Good deeds of a person, or he just picks someone
+randomly and punishes or praises him?</p>
+
+<p>Does he wear spectacles ?</p>
+
+<p>Whether he maintains everyone’s database of good deeds, sins, behavior, morality, virtue etc.
+Like we keep data in oracle 11G these days?</p>
+
+<p>Could he ask Microsoft to fix all the bugs in MS office 2007, I need to present a project report the next morning
+and I have MS2007 installed in my personal PC. And in office you know that NSS Guys turn up after two days.</p>
+
+<p>Does he also have fun like us, like we go to office, check mails, have coffee,
+pay pending Bills, watch the cricket score, read news etc, etc… Then before leaving we finish work also.</p>
+
+<p>When I asked him, do you know anything about KABIRA ?</p>
+
+<p>He dint show much interest. Well, I could not tell him also, what KABIRA is?</p>
+
+<p>GOD listened to me very sedately,For once I was scared that I may transgress my limits.
+But then my fear vanished into thin air, when he gave me a smile of the Earth.
+As if he was amused by my questions and wanted to hide his excitement to answer my questions.</p>
+
+<p>At last he lost his patience and decided to talk to me.He said, Do you remember one day,
+how a poor person along the roadside in a makeshift house, brilliantly arranged the shredded sheet to cover up the roof,
+when the sudden rain poured in.I said yes.He asked what I felt that day.
+{Actually I thanked GOD that day. That I was not in that condition and told myself that when this poor person can be
+content in this misery, why I can’t be happy with what all I have.}</p>
+
+<p>Before I could come back and answer, GOD said &ldquo;you have everything that you need for living happily,
+and whenever someone needs anything I always consider.</p>
+
+<p>He said &ldquo;Don&rsquo;t feel bad if I answer you late, but be happy that you don’t have much to ask for.
+Live the moment, feel the rain drops, praise the cup of coffee, go out and watch the moon, feel the fresh snow
+melting in ur mouth( whenever you can of course), turn on the music u like, These all things I have made for all of you.
+Reach out to your loved ones, make new friends.&rdquo;</p>
+
+<p>While sipping the brilliantly made coffee, we were havin fun chattin with each other.
+Suddenly GOD asked me something, Guess what…</p>
+
+<p>Don&rsquo;t you wanna go office today ??</p>
+
+<p>Wake up son. It’s a beautiful day waiting for you.</p>
+]]></content>
+  </entry>
+  
+</feed>

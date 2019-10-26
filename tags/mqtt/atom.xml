@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:MQTT | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/mqtt/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MQTT, All you need to get started]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started/"/>
+    <updated>2015-03-10T08:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started</id>
+    <content type="html"><![CDATA[<p>So there are numerous post out there for MQTT implementation. I recently did a POC at work, and I wanted to keep a list of things I need to know if I wanted to return or do more with MQTT.
+Hence this post.</p>
+
+<h3><a href="http://mqtt.org/">MQTT</a></h3>
+
+<p>MQTT is a machine-to-machine (M2M)/&ldquo;Internet of Things&rdquo; connectivity protocol. It was designed as an extremely</p>
+
+<!--more-->  
+
+
+<p>lightweight publish/subscribe messaging transport. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.</p>
+
+<h4>Demo Architecture</h4>
+
+<p><img src="https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" /></p>
+
+<h2>Installing software</h2>
+
+<h4>Installing Node.JS</h4>
+
+<hr />
+
+<p>Please follow the <a href="http://joshondesign.com/2013/10/23/noderpi">instructions</a> to install nodejs.
+After that, install some modules using the Node Package Manager:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for node modules </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g mqtt url request</span></code></pre></td></tr></table></div></figure></notextile></div>
+If you want to debug or auto-reload of the script, also install nodemon:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for nodemon </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g nodemon</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br/><br/>
+<br/></p>
+
+<h4>Installing MQTT Broker - Mosquitto (or Checkout <a href="http://www.hivemq.com/how-to-get-started-with-mqtt/">HiveMQ</a>)</h4>
+
+<hr />
+
+<p>Source: <a href="http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/">http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/</a>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key">http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key&lt;/a>   &lt;br/>
+</span><span class='line'>sudo apt-key add mosquitto-repo.gpg.key &lt;br/>
+</span><span class='line'>rm mosquitto-repo.gpg.key
+</span><span class='line'>cd /etc/apt/sources.list.d/ &lt;br/>
+</span><span class='line'>sudo curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.list">http://repo.mosquitto.org/debian/mosquitto-repo.list&lt;/a>
+</span><span class='line'>sudo apt-get update</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now go ahead and install Mosquitto proper. There are three packages:</p>
+
+<p>-Mosquitto is the MQTT broker (i.e. server)   <br/>
+-mosquitto-clients are the command-line clients, which I recommend you install  <br/>
+-python-mosquitto are the Python bindings, which I also think you should install all three packages together require about 665Kb of space, which we can easily afford even on the tiny Pi.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto and client installations </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Mosquitto/&rsquo;s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t &ldquo;#&rdquo; -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
+will dump all new messages to the broker. Remember the quotes around the topic, especially with the &ldquo;#&rdquo; wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lsquo;mosquitto_pub -t &ldquo;mosquittodemo/test&rdquo; -m &ldquo;Hi&rdquo;&rsquo; &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>then you should see the mosquitto_sub session list the message.</p>
+
+<p><br />
+<br /></p>
+
+<h4>Installing MQTT Client - MQTTWarn</h4>
+
+<hr />
+
+<p>This program subscribes to any number of MQTT topics (which may include wildcards) and publishes received payloads to one or more notification services, including support for notifying more than one distinct service for the same message.</p>
+
+<p>For example, you may wish to notify via e-mail and to Pushover of an alarm published as text to the MQTT topic <code>home/monitoring/+</code>.</p>
+
+<p>Full Info <a href="http://jpmens.net/2014/02/17/introducing-mqttwarn-a-pluggable-mqtt-notifier/">here</a></p>
+
+<h4>Requirements</h4>
+
+<p>You&rsquo;ll need at least the following components:</p>
+
+<p>-Python 2.x (tested with 2.6 and 2.7)  <br/>
+-An MQTT broker (e.g. Mosquitto)   <br/>
+-The Paho Python module: pip install paho-mqtt</p>
+
+<h4>Installation</h4>
+
+<p>-Clone <a href="https://github.com/jpmens/mqttwarn.git">this</a> repository into a fresh directory.  <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Clone the repo </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone &lt;a href="https://github.com/jpmens/mqttwarn.git">https://github.com/jpmens/mqttwarn.git&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div><br/>
+-Copy mqttwarn.ini.sample to mqttwarn.ini and edit to your taste   <br/>
+-Install the prerequisite Python modules for the services you want to use   <br/>
+-Launch mqttwarn.py</p>
+
+<p><br /></p>
+
+<h3>MQTT Android Client</h3>
+
+<hr />
+
+<h4>Android Service</h4>
+
+<p>The Paho Android Service is an interface to the Paho Java MQTT client library that provides a long running service for handling sending and receiving messages on behalf of Android client applications when the applications main Activity may not be running.</p>
+
+<p>The Paho Android Service provides an asynchronous API</p>
+
+<h4>Source:</h4>
+
+<p><a href="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/">http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/</a></p>
+
+<p>Check out Paho project <a href="https://eclipse.org/paho/clients/android/">here</a></p>
+
+<p>All you need to get started is:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for creating client and publishing a message </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient(&ldquo;tcp://ipAddressofBroker:1883&rdquo;, &ldquo;pahomqttpublish1&rdquo;);  &lt;br/>
+</span><span class='line'>client.connect();  &lt;br/>
+</span><span class='line'>MqttMessage message = new MqttMessage();   &lt;br/>
+</span><span class='line'>message.setPayload(&ldquo;A single message&rdquo;.getBytes());  &lt;br/>
+</span><span class='line'>client.publish(&ldquo;home/monitoring/+&rdquo;, message);  &lt;br/>
+</span><span class='line'>client.disconnect();  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br /></p>
+
+<h4>Test Broker Setup</h4>
+
+<hr />
+
+<p>To test your Broker setup you can install <a href="https://play.google.com/store/apps/details?id=at.tripwire.mqtt.client">MyMQTT</a> from google play.</p>
+
+<p>In few days I am gonna write myself a post about Google Cloud Notification service (GCM). The easiet notification service for Android notifications.</p>
+
+<p><br/>
+That&rsquo;s all folks.  Have Fun.</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:windowsxp | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/windowsxp/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Long Live WindowsXp/Run XP in a Virtual Box for free]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp/"/>
+    <updated>2014-03-07T23:25:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp</id>
+    <content type="html"><![CDATA[<p>The long loved , super user friendly Operating System&rsquo;s Life is going to see the last light in few days. <br/>
+Windows XP, the cornerstone of most PC users for the past 10+ years, is being officially phased out.</p>
+
+<!--more-->
+
+
+
+
+<iframe class="restricted" scrolling="no" src="http://support.microsoft.com/lifecycle/?LN=en-ie&c2=1173#tableContainer" width=105% height="370" frameborder="1"></iframe>
+
+
+<p>We all loved Windows XP. Although you can still run XP on your PCs , laptops but at your own risks.
+Microsoft has publicly stated that no new patches will be released for the OS after April 2014 (outside of very critical security flaws found.)</p>
+
+<p>If in case you love Windows-7 more , but wanna use Windows-XP as well , then read on..</p>
+
+<h4>Running Windows XP in a Virtual Box for free</h4>
+
+<h5>Follow the steps:</h5>
+
+<ol>
+<li>Download <a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">Windows XP Mode</a> (WindowsXPMode_en-us.exe | MD5: bf3726d684d3acb98185665123c9efcf)</li>
+<li>Extract xpm from WindowsXPMode_en-us.exe with a file archiver 7-Zip etc.</li>
+<li>Add .rar extension to xpm</li>
+<li>Extract VirtualXPVHD from xpm.rar</li>
+<li>Add .vdi extension to VirtualXPVHD</li>
+<li>Create new machine in VirtualBox, specifying VirtualXPVHD.vdi as the hard disk</li>
+<li>Once initial setup is complete, uninstall Virtual PC Integration Components from Add/Remove Control Panel</li>
+<li>Install Guest Additions (Devices > Install Guest Additions&hellip;)</li>
+</ol>
+
+
+<p>Once you start the Virtual Box, you will be asked to activate windows-xp. But wait, I do not have activation code, I thought this process was for free.
+Hold on, don&rsquo;t jump your horses..Follow the next steps.</p>
+
+<ol>
+<li>Shut down virtual machine</li>
+<li>Download pcbios.bin (MD5: 12ccdc652b30c6d1e307c6f7deff5d24) from <a href="http://www.vmlite.com/index.php?option=com_kunena&amp;Itemid=158&amp;func=view&amp;catid=9&amp;id=6706&amp;limit=6&amp;limitstart=12#8420">VMLite</a> and copy to a directory on host computer (e.g., C:\vm)</li>
+<li>Run the command: &ldquo;C:\Program Files\Oracle\VirtualBox\VBoxMange.exe&rdquo; setextradata vm-name &ldquo;VBoxInternal/Devices/pcbios/0/Config/BiosRom&rdquo; &ldquo;c:\vm\pcbios.bin&rdquo;</li>
+</ol>
+
+
+<p><br/></p>
+
+<h4>Notes:</h4>
+
+<p class="mynotice">While a virtual machine created in this manner should run under any OS X, Linux, or Windows host, running under anything but Windows 7 Professional, Enterprise, 
+or Ultimate would apparently violate the Windows XP Mode EULA:
+You may install, use, access, display and run one copy of the Software in a single virtual machine on a single computer, such as a workstation, terminal or other device ("Workstation Computer"), 
+that contains a licensed copy of Windows 7 Professional, Enterprise or Ultimate edition. Virtualization software is required to use the Software on the Workstation Computer ... 
+If you are using the Software with a properly licensed copy of Windows 7 Professional, Enterprise or Ultimate, activation of the Software is not required.
+</p>
+
+
+<p>More Info on this can be found <a href="http://social.technet.microsoft.com/Forums/windows/en-US/8b1bfa74-15e0-4ce2-8612-f6eaf2cf25ab/is-it-ok-to-use-xp-mode-vhd-in-virtualbox-without-a-license-using-vmlite-xp-mode-plugin?forum=w7itprovirt">here</a></p>
+
+<h5>Sources:</h5>
+
+<p><a href="http://www.technibble.com/windows-xp-support-ends-in-april-2014-what-technicians-need-to-know/">www.technibble.com</a>  <br/>
+<a href="http://tinyapps.org/blog/windows/201210210700_xp_mode_virtualbox.html">tinyapps</a></p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

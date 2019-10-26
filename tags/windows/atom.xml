@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:windows | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/windows/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Reclaim that important diskspace with New Windows Update Cleanup]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-10-14/reclaim-that-important-diskspace-with-new-windows-update-cleanup/"/>
+    <updated>2013-10-14T08:35:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-10-14/reclaim-that-important-diskspace-with-new-windows-update-cleanup</id>
+    <content type="html"><![CDATA[<p>Yippee !</p>
+
+<p>Finally Microsoft has released a very important update package.</p>
+
+<p>Remember, how we used to despise the windows updates and security patches eating up our diskspace. And many a times, we even used to skip
+the update with the feeling of satisfaction (just saved a lot of diskspace) <!--more--> and dissatisfaction (what if it included a critical patch).</p>
+
+<p>Well, Not anymore! We don&rsquo;t have to be in dilemma anymore. Since, Microsoft has released a very important update this time, with which we can cleanup the
+otherwise outdated windows update files.</p>
+
+<p>This release is for Windows 7 SP1 machines, KB <a href="http://support.microsoft.com/kb/2852386">2852386</a> adds the ability to cleanup all the obsolete updates in the WinSxS folder.</p>
+
+<p><blockquote><p>Windows Updates can be terrible space hogs. Windows saves every security update and hotfix—even if<br/>they are superseded by new updates—in the WinSxS directory. You cannot just manually delete everything in that folder,because some files are needed just in case a system file gets corrupted or you need to roll back a Windows Update. - Life Hacker</p></blockquote></p>
+
+<p>A new  recommended update was released. It can be found <a href="http://support.microsoft.com/kb/2852386">Here</a>.</p>
+
+<p><b>Note: that this is categorized as an “important” update.
+This means it’s not a critical security update which means it may not be automatically installed or deployed depending on your
+Windows Update settings, WSUS settings, or other 3rd party patch management software settings.</b></p>
+
+<p>Via - <a href="http://blogs.technet.com/b/askpfeplat/archive/2013/10/07/breaking-news-reduce-the-size-of-the-winsxs-directory-and-free-up-disk-space-with-a-new-update-for-windows-7-sp1-clients.aspx">Breaking News! Reduce the size of the WinSxS Directory and Free up Disk Space with a New Update for Windows 7 SP1 Clients</a></p>
+]]></content>
+  </entry>
+  
+</feed>

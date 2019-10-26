@@ -1,0 +1,14 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+  Owner: Ashwani Kumar
+  Site: http://www.ashwani.co.in , http://blog.ashwani.co.in
+  Twitter: @TheAshwaniK
+  GooglePlus: Ashwani Kumar
+
+/* SITE */
+  Standards: HTML5, CSS3, Jekyll, Octopress
+  Components: jQuery
+  Software: Aptana Studio 3, Sublime, Git 

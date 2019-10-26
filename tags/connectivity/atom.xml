@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:connectivity | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/connectivity/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Check Connectivity to servers without login]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2018-02-25/check-connectivity-to-servers-without-login/"/>
+    <updated>2018-02-25T21:57:31+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-02-25/check-connectivity-to-servers-without-login</id>
+    <content type="html"><![CDATA[<h2>Check Connectivity to servers without login</h2>
+
+<p>Hi There,</p>
+
+<p>There are times when you would want to check connectivity to your servers without actually login or SSH. You can use telnet on port 22.
+But here are few other ways:</p>
+
+<!-- more -->
+
+
+<h3>Linux/Unix - Choose one of the below</h3>
+
+<pre><code>
+#! /bin/bash
+
+rm good no_auth other
+while read ip host ; do
+    status=$(ssh -o BatchMode=yes -o ConnectTimeout=5 $ip echo ok 2&gt;&amp;1)
+    if [[ $status == ok ]] ; then
+        echo $ip $host &gt;&gt; good
+    elif [[ $status == "Permission denied"* ]] ; then
+        echo $ip $host $status &gt;&gt; no_auth
+    else
+        echo $ip $host $status &gt;&gt; other
+    fi
+done &lt; $1 
+</code></pre>
+
+<pre><code class="">
+#! /bin/bash
+while read ip host ; do
+        echo quit | telnet $ip 22 2&gt;/dev/null | grep Connected &gt;&gt; resultsOfTelnetTests.txt
+
+        # OR
+        # $ ssh -q -o "BatchMode=yes" skinner "echo 2&gt;&amp;1" &amp;&amp; echo $host SSH_OK || echo $host SSH_NOK
+
+        # OR
+        # $ ssh -o BatchMode=yes -o ConnectTimeout=5 skinner echo ok 2&gt;&amp;1
+done &lt; $1
+</code></pre>
+
+<h3>Windows</h3>
+
+<pre><code>Script
+=====
+
+foreach($line in Get-Content .\serverList1.txt) {
+      try{
+            test-connection $line -Count 1 -Delay 2 -TTL 255 -BufferSize 256 -ThrottleLimit 32 | Select Address,IPv4Address,ResponseTime,BufferSize
+      }catch [Exception] {
+            echo .$line Not reachable.
+      }
+}
+
+
+Serverlist1.txt contains the hostnames, one hostname in one line.
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

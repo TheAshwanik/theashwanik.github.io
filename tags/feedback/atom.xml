@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:Feedback | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/feedback/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Free Feedback Form using Github]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-09-30/free-feedback-form-using-github/"/>
+    <updated>2013-09-30T06:24:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-09-30/free-feedback-form-using-github</id>
+    <content type="html"><![CDATA[<p>Hi Friends,<br/>
+I could not write anything for last few weeks, had been busy with usual chores and a weekend project with my brother(about which you will come to know, when we bring it to a better shape).</p>
+
+<p>But I am back , and would try to be consistent.</p>
+
+<p>Promise.</p>
+
+<!--more-->
+
+
+<p>This post is to let you know a little trick that I am gonna start following, many of you may already be following it.</p>
+
+<p>Ever wanted to have your users contact you for random issues, or just let them contact you for their queries,
+and you have to create a contact_us or feedback page.  Well I would like to share with you , what I had found,
+a neat little trick which uses github repo as a feedback page.</p>
+
+<p>Go ahead have a look, click on the button and leave me a feedback or queries or questions, I would try to answer them as quickly as I can.</p>
+
+<p><a class="btn btn-mini btn-info" href="https://github.com/TheAshwaniK/Feedback/issues/new" title="Leave Ashwani feedback using GitHub" target="_blank"><i class="icon-comment icon-white"></i> Leave me feedback</a></p>
+
+<p>Or click this url:
+<a href="https://github.com/TheAshwaniK/Feedback/issues/new">https://github.com/TheAshwaniK/Feedback/issues/new</a></p>
+
+<p>Why Github Repo?? <br/>
+So I can keep track of what I have been doing, and addressing your concerns as well.</p>
+
+<p>That&rsquo;s it folks.
+Catch you soon.</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:octopress-plugin | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/octopress-plugin/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-10-26T04:50:16+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up octopress blog once you lost the working env]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/"/>
+    <updated>2016-01-17T04:31:28+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env</id>
+    <content type="html"><![CDATA[<p>Hi Guys,</p>
+
+<p>So recently I wanted to revisit my blog after a long long break, and I realized that my working blogging environment broke and I wanted to setup again to be able to blog from both my personal laptop and any other laptop. But to my dismay, it was not that stright forward. Luckily, I had the source folder of my blog with me. It was quite a feat, Hence I thought of documenting it through this post.</p>
+
+<!--more--> 
+
+
+<h3>How Octopress works</h3>
+
+<p>Octopress repositories have two branches, source and master. The <code>source</code> branch contains the files that are used to generate the blog and the <code>master</code> contains the blog itself.</p>
+
+<p>When the local folders are initially configured according to the <a href="http://octopress.org/docs/setup/">Octopress Setup Guide</a>, the master branch is stored in a subfolder named ‘_deploy’. Since the folder name begins with an underscore, it is ignored when you git push origin source. Instead, the master branch (which contains your blog posts) gets updated when you rake deploy.</p>
+
+<h3>Clone your blog to the new machine</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
+</span><span class='line'>$ cd Local_octopress
+</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy
+</span><span class='line'>$ gem install bundler
+</span><span class='line'>$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ bundle install&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake setup_github_pages&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>It will prompt you for your repository URL.
+</span><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Pushing changes from two different machines</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers.
+</span><span class='line'>From the first machine do the following whenever you’ve made changes:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake generate
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git push origin source  # update the remote source branch
+</span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Then on the other machine, you need to pull those changes.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ cd octopress
+</span><span class='line'>$ git pull origin source  # update the local source branch
+</span><span class='line'>$ cd ./_deploy
+</span><span class='line'>$ git pull origin master  # update the local master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Octopress 2.0</h3>
+
+<p>If you were returning to blogging after so long, chances are that there were many things <a href="https://github.com/imathis/octopress/blob/master/CHANGELOG.markdown">changed</a>.</p>
+
+<ol>
+<li>Rubypants is removed.</li>
+<li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Category Generator gives you archive pages for each category</li>
+<li>Sitemap.xml Generator for search engines</li>
+</ol>
+
+
+<p>etc. etc.</p>
+
+<p>I got so many errors once I checked out a new version of Octopress. It was not supporting many of my old plugins, So I got rid of some, and I updated some.</p>
+
+<h3>Errors</h3>
+
+<p>One error I got was in date.rb of <a href="http://feedjira.com/">feedjira(formerly feedzira)</a> plugin.
+The error message said:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jekyll 2.1.1 undefined method `deep_merge'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>so I replaced deep_merge</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
+</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        self.data.deep_merge({
+</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            # Monkey patch
+</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>    end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>with the following:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
+</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      new_datas = {
+</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        # Monkey patch
+</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
+</span><span class='line'>end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Notice the use of deep_merge_hashes above.</p>
+
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+
+<p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$$ cd _deploy
+</span><span class='line'>$$ git push origin master -f   # hope this solves the problem, move to next command
+</span><span class='line'>$$ cd ..
+</span><span class='line'>$$ bundle exec rake gen_deploy</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Another error was in installing curl on windows. So I had to refer <a href="https://github.com/taf2/curb/issues/37">this</a>
+And install curb manually.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
+</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
+</span><span class='line'>This could take a while&hellip;
+</span><span class='line'>Successfully installed curb-0.7.18
+</span><span class='line'>Installing ri documentation for curb-0.7.18
+</span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Reference Commands:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake preview
+</span><span class='line'>bundle exec rake generate&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>git add .
+</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>There were other errors which I somehow resolved.</p>
+
+<p>Hope this helps someone.  I might need this again, So I am keeping a refrence.</p>
+
+<p>Thats all folks. Chow.</p>
+
+<p>Credits to:
+1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
+2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
+3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
+]]></content>
+  </entry>
+  
+</feed>
