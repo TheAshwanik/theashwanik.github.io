@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:vieditor | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/vieditor/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-11-02T12:40:22+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Commenting or Uncomment a block of text in Vi]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2018-03-09/commenting-or-uncomment-a-block-of-text-in-vi/"/>
+    <updated>2018-03-09T10:43:07+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-03-09/commenting-or-uncomment-a-block-of-text-in-vi</id>
+    <content type="html"><![CDATA[<p>Sometimes we do want to comment or uncomment a block of lines together in VI editor.
+I struggle sometimes, so here are some tips.</p>
+
+<!--more-->
+
+
+<h3>For Uncommenting a block of text is almost the same:</h3>
+
+<pre><code>Put your cursor on the first # character, press `CtrlV (or CtrlQ for gVim)`, and go down until the last commented line and press x, that will delete all the # characters vertically.
+</code></pre>
+
+<h3>For Commenting a block of text is almost the same:</h3>
+
+<pre><code>* First, go to the first line you want to comment, press `Ctrl + v`. This will put the editor in the VISUAL BLOCK mode.
+* Then using the arrow key and select until the last line and Now press `Shift + I` , which will put the editor in INSERT mode.
+* Then press '#' character. This will add a hash to the first line.
+* Then press Esc (give it a second), and it will insert a '#' character on all other selected lines.
+
+For the stripped-down version of vim shipped with debian/ubuntu by default, type : s/^/# in the third step instead.
+</code></pre>
+
+<p>Reference: <a href="http://stackoverflow.com/a/1676690/1915916">Stackoverflow</a></p>
+]]></content>
+  </entry>
+  
+</feed>

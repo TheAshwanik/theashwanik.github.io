@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:connectivity | Ashwani Kumar]]></title>
   <link href="http://blog.ashwani.co.in/tags/connectivity/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-10-26T04:50:16+01:00</updated>
+  <updated>2019-11-02T12:40:22+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -16,13 +16,9 @@
   <entry>
     <title type="html"><![CDATA[Check Connectivity to servers without login]]></title>
     <link href="http://blog.ashwani.co.in/blog/2018-02-25/check-connectivity-to-servers-without-login/"/>
-    <updated>2018-02-25T21:57:31+00:00</updated>
+    <updated>2018-02-25T22:57:31+00:00</updated>
     <id>http://blog.ashwani.co.in/blog/2018-02-25/check-connectivity-to-servers-without-login</id>
-    <content type="html"><![CDATA[<h2>Check Connectivity to servers without login</h2>
-
-<p>Hi There,</p>
-
-<p>There are times when you would want to check connectivity to your servers without actually login or SSH. You can use telnet on port 22.
+    <content type="html"><![CDATA[<p>There are times when you would want to check connectivity to your servers without actually login or SSH. You can use telnet on port 22.
 But here are few other ways:</p>
 
 <!-- more -->

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:Shell | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:shell | Ashwani Kumar]]></title>
   <link href="http://blog.ashwani.co.in/tags/shell/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-10-26T04:50:16+01:00</updated>
+  <updated>2019-11-02T12:40:22+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -14,127 +14,76 @@
 
   
   <entry>
-    <title type="html"><![CDATA[BroPages a readable supplement to man pages]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2014-01-28/bropages-a-readable-supplement-to-man-pages/"/>
-    <updated>2014-01-28T08:31:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2014-01-28/bropages-a-readable-supplement-to-man-pages</id>
-    <content type="html"><![CDATA[<p>A little while ago , I shared an amazing tool with all of you , <a href="http://blog.ashwani.co.in/blog/2013-12-03/shell-commands-explained-like-never-before/">Explain Shell</a>.</p>
+    <title type="html"><![CDATA[Search string faster with Ruby]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby/"/>
+    <updated>2013-07-20T15:59:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby</id>
+    <content type="html"><![CDATA[<p>Is grep Slow?   Sure it is. Read on..
+Just a few days back there was an electrical outage and lot of applications were dead. <br/>
+In one case, lot of customer orders could   <!--more--> not be processed.
+Hence, there rose a need of manual intervention and extraction of orders (XML) from a logfile and re-feeding them to another system.
+The task was simple, I had order numbers in orders.txt  and I had to write a shell script to grep for a particular
+xml containing each of these orders, extract XML and create a file for each order.</p>
 
-<p>Today I came across another good resource for the *nix programmers. And it&rsquo;s called , <a href="http://bropages.org/">bro pages</a>.
-Just like man pages,but with readable examples to the commands.</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Shell script to loop and find an order in another file</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>cat extract.sh&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>i=0
+</span><span class='line'>echo &ldquo;Extraction Script Started at:&rdquo; &lt;code>date&lt;/code>
+</span><span class='line'>while read order_id; do
+</span><span class='line'>    filename=$order_id"_tmp.xml"
+</span><span class='line'>    finalfilename=$order_id".xml"
+</span><span class='line'>    grep &ldquo;.&lt;em>$order_id.&rdquo; &lt;/em>.log > $filename &amp;&amp; echo &ldquo;written xml for $order_id in $filename&rdquo; || echo $order_id >> Orders_not_found.txt
+</span><span class='line'>    cat $filename | sed -e &rsquo;s|text-to-remove|new-text|g' | sed -e &rsquo;s|***||g' > $finalfilename
+</span><span class='line'>    rm $filename
+</span><span class='line'>    ((i++))
+</span><span class='line'>done &lt; orders.txt
+</span><span class='line'>echo &ldquo;Extraction Script Ended at:&rdquo; &lt;code>date&lt;/code></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<!--more-->
+<p>But the problem was that the log file in which I was searching was too huge. It was 5GBs in total.
+Hence the grep was taking minimum 4-5 Minutes to search one order and create an xml file for that.
+Clearly this was not a solution, as I had to find thousand orders in those log files and it was very critical for end customer.</p>
 
+<p>If my calulation was right, I had to spend:  <br/>
+4 Mins = 1 Xml  <br/>
+60 Mins = 1 Hr = 15 Xml  <br/>
+at this rate I would have spent atleast 3-4 days CPU time , to get all those 1000 XMLs.
+(Not to mention the pain of getting screwed and frustration). Meaning which, we all would have been screwed
+over and over again for 3-4 days by the customer.</p>
 
-<p>Have a look at the following example command from your terminal, after you install bro pages.</p>
+<p><b>Enter Ruby:</b>
+One liner saved us.  <br/>
+I used this ruby command, to first find the relevant generic string then create order xml files using a normal shell
+script as above. I thought I would keep this fir future reference.</p>
 
-<pre>
-        Command#> bro tar
-        # Create a tar archive
-        tar -cf archive.tar file1 file2 ... fileN
-        
-        # Create a tar gzipp'd archive
-        tar -zcf archive.tar.gz file1 file2 ... fileN
-        
-        # Create multi-part tar archives from a directory
-        tar cf - /path/to/directory|split -b<max_size_of_part>M - archive.tar
-        
-        # Extract all files from a tar archive
-        tar -xf archive.tar
-        
-        # Extract all files from a tar gzipped archive
-        tar -zxf archive.tar.gz
-        
-        # Extract one file from a tar archive
-        tar -xf archive.tar the_one_file
-        
-        # Lists all files in a tar archive
-        tar -tf archive.tar
-</pre>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -pe &lsquo;next unless $_ =~ /&lt;RegExp for stringtomatch>.&lt;em>Number.&lt;/em>/&rsquo; &lt; 5GB-file.log >> 6Mb-file-reduced.log</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<p>Wondereful, Ruby took just few minutes to grep the regular exp string into a 5GB log file, and now I had to search orders
+into this smaller reduced size intermediate file.</p>
 
-<p>You can find more examples <a href="http://bropages.org/browse">here</a>.</p>
+<p>Thus, this saved us 3 days and did wonders in just half an hour.</p>
 
-<p>Or better why don&rsquo;t you install it and give a try.
-Installation is super easy with just one command:
-    &ldquo;gem install bropages&rdquo;</p>
+<p>Voila !!!</p>
 
-<p>You need Ruby 1.8.7+ installed on your machine though for this to work.</p>
-
-<p>You can add your own examples of commands to bro pages by using:
-    bro add curl</p>
-
-<p>You can vote up and down for the commands examples by using:
-    bro thanks      to upvote (2)
-    bro &hellip;no       to downvote (0)
-This way, people will see the most rates command examples first with highest votes.</p>
-
-<p>I personally feel, this is a good idea. You should also check it out.</p>
-
-<p>That all folks.</p>
-
-<p>Thanks for reading this far.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Shell Commands explained like never before]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-12-03/shell-commands-explained-like-never-before/"/>
-    <updated>2013-12-03T21:27:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-12-03/shell-commands-explained-like-never-before</id>
-    <content type="html"><![CDATA[<p>Idan Kamara has came up with a very intriguing and useful tool <a href="http://explainshell.com/">Explain Shell</a>. He has created a cool web app which explains any Shell Command visually.
-You give a shell command and it will tell you what the each option does.  This makes understanding the complex looking commands very easier.</p>
-
-<!--more-->
-
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/118338831/ExplainShell-1.JPG">https://dl.dropboxusercontent.com/u/118338831/ExplainShell-1.JPG</a>" width="800" height="600" title="&ldquo;Explain Shell&rdquo; &ldquo;Explain Shell Image&rdquo;" ></p>
-
-<p><br /></p>
-
-<hr />
-
-
-<p>It becomes a bit tedious for a very long complex command like <a href="http://explainshell.com/explain?cmd=ps+x+-o++%22%25r+%25c+%22+|+grep+%22webLauncher.sh%22+|+awk+-F%27+%27+%27{print+%241}%27+|+xargs+-I+%25+%2Fbin%2Fkill+-TERM+--+-%25">this</a> though.
-But I would overlook that given the awesomeness of this tool and the fact that you can click on the commands to get the MAN pages helps.</p>
-
-<p>For e.g. If you click on tar as in the following screenshot, you will get the MAN pages of tar.
-<img class="<a" src="href="https://dl.dropboxusercontent.com/u/118338831/ExplainShell-2.JPG">https://dl.dropboxusercontent.com/u/118338831/ExplainShell-2.JPG</a>" width="800" height="600" title="&ldquo;Explain Shell&rdquo; &ldquo;Explain Shell tar command Image&rdquo;" ></p>
-
-<hr />
-
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/118338831/ExplainShell-3.JPG">https://dl.dropboxusercontent.com/u/118338831/ExplainShell-3.JPG</a>" width="800" height="600" title="&ldquo;Explain Shell&rdquo; &ldquo;Explain Shell Man Page Image&rdquo;" ></p>
-
-<hr />
-
-
-<p><strong>Positives</strong></p>
-
-<hr />
-
-
-<ol>
-<li>Its Open-source. Find the source code <a href="https://github.com/idank/explainshell">here</a></li>
-<li>It has simple beautiful interface.</li>
-<li>You can log issues <a href="https://github.com/idank/explainshell/issues">here</a></li>
-</ol>
-
-
-<hr />
-
-
-<p><strong>Negatives</strong></p>
-
-<hr />
-
-
-<p>I don&rsquo;t Mind any.  :)</p>
-
-<p>I hope this would help many of us.  Kudos and my best wishes to the developer. <br/>
-<br />
--Ashwani Kumar Via <a href="https://news.ycombinator.com/item?id=6834791">HackerNews</a><br/>
-<br /></p>
+<p>Credit for the one liner goes to <a href="http://axonflux.com/handy-ruby-one-liners-by-david-thomas">Garry Tan</a>, where I found this wonderful ruby command.</p>
 ]]></content>
   </entry>
   

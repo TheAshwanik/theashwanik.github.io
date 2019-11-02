@@ -1,0 +1,1132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:, | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/-/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-11-02T12:40:22+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[IP Address GeoCoding and Plotting on map]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/"/>
+    <updated>2016-01-23T21:49:37+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map</id>
+    <content type="html"><![CDATA[<p>Sometimes back I had setup ssh on raspberry pi and allowed to login from internet, obviously using the public key encyption.
+After few days I noticed that lot of people/systems were trying to login and failing from various different IPs.
+So I block them using Fail2ban. I am Not gonna talk about Fail2ban, as its completely vast topic on its own.</p>
+
+<!--more-->
+
+
+<p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2ban</a> : It provides a way to automatically protect virtual servers from malicious behavior.
+The program works by scanning through log files and reacting to offending actions such as repeated failed login attempts.</p>
+
+<p>Once blocked I wanted to see from where I was getting attacked the most. So I plotted them on map using some free apis.
+Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/pathToFail2ban/action.d/iptables-multiport.conf&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[Definition]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionstart&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed once at the start of Fail2Ban.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
+</span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed when banning an IP. Take care that the&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>command is executed with Fail2Ban user rights.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Tags:    &lt;ip>  IP address&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;failures>  number of failures&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;time>  unix timestamp of the ban time&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#
+</span><span class='line'>actionban = iptables -I fail2ban-&lt;name> 1 -s &lt;ip> -j DROP
+</span><span class='line'>            echo &lt;ip> >> /etc/fail2ban/ip.blacklist.persistban.&lt;name>
+</span><span class='line'>            echo &lt;ip> >> /pathToMysite/blocked_ipaddresses.txt</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I used <a href="http://lab.abhinayrathore.com/ipmapper/">ipmapper</a> which uses google maps api for geocoding.</p>
+
+<p>Here is my html code to plot those blocked IPs.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;html>
+</span><span class='line'>&lt;head>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">&lt;/script>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script type="text/javascript" src="ipmapper.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;meta name="viewport" content="initial-scale=1.0, user-scalable=no" /&gt;
+</span><span class='line'>&lt;style&gt;
+</span><span class='line'>  html, body, #map {
+</span><span class='line'>    height: 100%;
+</span><span class='line'>    margin: 0px;
+</span><span class='line'>    padding: 0px;
+</span><span class='line'>  }
+</span><span class='line'>&lt;/style&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>$(function(){
+</span><span class='line'>    try{
+</span><span class='line'>            var useragent = navigator.userAgent;
+</span><span class='line'>            var mapdiv = document.getElementById("map");
+</span><span class='line'>            console.log(useragent.indexOf('iPhone'));
+</span><span class='line'>            if (useragent.indexOf('iPhone') == -1 || useragent.indexOf('Android') == -1 ) {
+</span><span class='line'>                    mapdiv.style.width = '100%';
+</span><span class='line'>                    mapdiv.style.height = '100%';
+</span><span class='line'>            } else {
+</span><span class='line'>                    mapdiv.style.width = '600px';
+</span><span class='line'>                    mapdiv.style.height = '800px';
+</span><span class='line'>            }
+</span><span class='line'>
+</span><span class='line'>            IPMapper.initializeMap("map");
+</span><span class='line'>
+</span><span class='line'>            var file = "../data/blocked_ipaddresses.txt";
+</span><span class='line'>            var ipArray = new Array();
+</span><span class='line'>            $.get(file, function(data){
+</span><span class='line'>                    ipArray = data.split('\n');
+</span><span class='line'>                    //console.log("Raw array length is -" + ipArray.length);
+</span><span class='line'>                    IPMapper.addIPArray(ipArray);
+</span><span class='line'>            });
+</span><span class='line'>
+</span><span class='line'>    } catch(e){
+</span><span class='line'>        //handle error
+</span><span class='line'>    }
+</span><span class='line'>});
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/head>
+</span><span class='line'>&lt;body>
+</span><span class='line'>    &lt;div id="map" style="height: 800px;">&lt;/div>
+</span><span class='line'>&lt;/body>
+</span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here is the output plotted on the map&hellip; :)</p>
+
+<p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
+
+<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+
+<p>Chow&hellip;</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IP Address GeoCoding and Plotting on map]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/"/>
+    <updated>2016-01-23T21:49:37+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map</id>
+    <content type="html"><![CDATA[<p>Sometimes back I had setup ssh on raspberry pi and allowed to login from internet, obviously using the public key encyption.
+After few days I noticed that lot of people/systems were trying to login and failing from various different IPs.
+So I block them using Fail2ban. I am Not gonna talk about Fail2ban, as its completely vast topic on its own.</p>
+
+<!--more-->
+
+
+<p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2ban</a> : It provides a way to automatically protect virtual servers from malicious behavior.
+The program works by scanning through log files and reacting to offending actions such as repeated failed login attempts.</p>
+
+<p>Once blocked I wanted to see from where I was getting attacked the most. So I plotted them on map using some free apis.
+Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/pathToFail2ban/action.d/iptables-multiport.conf&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>[Definition]&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionstart&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed once at the start of Fail2Ban.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
+</span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Notes.:  command executed when banning an IP. Take care that the&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>command is executed with Fail2Ban user rights.&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Tags:    &lt;ip>  IP address&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;failures>  number of failures&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>&lt;time>  unix timestamp of the ban time&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Values:  CMD&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>#
+</span><span class='line'>actionban = iptables -I fail2ban-&lt;name> 1 -s &lt;ip> -j DROP
+</span><span class='line'>            echo &lt;ip> >> /etc/fail2ban/ip.blacklist.persistban.&lt;name>
+</span><span class='line'>            echo &lt;ip> >> /pathToMysite/blocked_ipaddresses.txt</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I used <a href="http://lab.abhinayrathore.com/ipmapper/">ipmapper</a> which uses google maps api for geocoding.</p>
+
+<p>Here is my html code to plot those blocked IPs.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;html>
+</span><span class='line'>&lt;head>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">&lt;/script>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>&lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;script type="text/javascript" src="ipmapper.js"&gt;&lt;/script&gt;
+</span><span class='line'>&lt;meta name="viewport" content="initial-scale=1.0, user-scalable=no" /&gt;
+</span><span class='line'>&lt;style&gt;
+</span><span class='line'>  html, body, #map {
+</span><span class='line'>    height: 100%;
+</span><span class='line'>    margin: 0px;
+</span><span class='line'>    padding: 0px;
+</span><span class='line'>  }
+</span><span class='line'>&lt;/style&gt;
+</span><span class='line'>&lt;script type="text/javascript"&gt;
+</span><span class='line'>$(function(){
+</span><span class='line'>    try{
+</span><span class='line'>            var useragent = navigator.userAgent;
+</span><span class='line'>            var mapdiv = document.getElementById("map");
+</span><span class='line'>            console.log(useragent.indexOf('iPhone'));
+</span><span class='line'>            if (useragent.indexOf('iPhone') == -1 || useragent.indexOf('Android') == -1 ) {
+</span><span class='line'>                    mapdiv.style.width = '100%';
+</span><span class='line'>                    mapdiv.style.height = '100%';
+</span><span class='line'>            } else {
+</span><span class='line'>                    mapdiv.style.width = '600px';
+</span><span class='line'>                    mapdiv.style.height = '800px';
+</span><span class='line'>            }
+</span><span class='line'>
+</span><span class='line'>            IPMapper.initializeMap("map");
+</span><span class='line'>
+</span><span class='line'>            var file = "../data/blocked_ipaddresses.txt";
+</span><span class='line'>            var ipArray = new Array();
+</span><span class='line'>            $.get(file, function(data){
+</span><span class='line'>                    ipArray = data.split('\n');
+</span><span class='line'>                    //console.log("Raw array length is -" + ipArray.length);
+</span><span class='line'>                    IPMapper.addIPArray(ipArray);
+</span><span class='line'>            });
+</span><span class='line'>
+</span><span class='line'>    } catch(e){
+</span><span class='line'>        //handle error
+</span><span class='line'>    }
+</span><span class='line'>});
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;/head>
+</span><span class='line'>&lt;body>
+</span><span class='line'>    &lt;div id="map" style="height: 800px;">&lt;/div>
+</span><span class='line'>&lt;/body>
+</span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Here is the output plotted on the map&hellip; :)</p>
+
+<p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
+
+<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+
+<p>Chow&hellip;</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up octopress blog once you lost the working env]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/"/>
+    <updated>2016-01-17T10:01:28+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env</id>
+    <content type="html"><![CDATA[<p>Hi Guys,</p>
+
+<p>So recently I wanted to revisit my blog after a long long break, and I realized that my working blogging environment broke and I wanted to setup again to be able to blog from both my personal laptop and any other laptop. But to my dismay, it was not that stright forward. Luckily, I had the source folder of my blog with me. It was quite a feat, Hence I thought of documenting it through this post.</p>
+
+<!--more--> 
+
+
+<h3>How Octopress works</h3>
+
+<p>Octopress repositories have two branches, source and master. The <code>source</code> branch contains the files that are used to generate the blog and the <code>master</code> contains the blog itself.</p>
+
+<p>When the local folders are initially configured according to the <a href="http://octopress.org/docs/setup/">Octopress Setup Guide</a>, the master branch is stored in a subfolder named ‘_deploy’. Since the folder name begins with an underscore, it is ignored when you git push origin source. Instead, the master branch (which contains your blog posts) gets updated when you rake deploy.</p>
+
+<h3>Clone your blog to the new machine</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
+</span><span class='line'>$ cd Local_octopress
+</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy
+</span><span class='line'>$ gem install bundler
+</span><span class='line'>$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ bundle install&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake setup_github_pages&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>It will prompt you for your repository URL.
+</span><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Pushing changes from two different machines</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers.
+</span><span class='line'>From the first machine do the following whenever you’ve made changes:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake generate
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git push origin source  # update the remote source branch
+</span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Then on the other machine, you need to pull those changes.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ cd octopress
+</span><span class='line'>$ git pull origin source  # update the local source branch
+</span><span class='line'>$ cd ./_deploy
+</span><span class='line'>$ git pull origin master  # update the local master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Octopress 2.0</h3>
+
+<p>If you were returning to blogging after so long, chances are that there were many things <a href="https://github.com/imathis/octopress/blob/master/CHANGELOG.markdown">changed</a>.</p>
+
+<ol>
+<li>Rubypants is removed.</li>
+<li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Category Generator gives you archive pages for each category</li>
+<li>Sitemap.xml Generator for search engines</li>
+</ol>
+
+
+<p>etc. etc.</p>
+
+<p>I got so many errors once I checked out a new version of Octopress. It was not supporting many of my old plugins, So I got rid of some, and I updated some.</p>
+
+<h3>Errors</h3>
+
+<p>One error I got was in date.rb of <a href="http://feedjira.com/">feedjira(formerly feedzira)</a> plugin.
+The error message said:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jekyll 2.1.1 undefined method `deep_merge'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>so I replaced deep_merge</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
+</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        self.data.deep_merge({
+</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            # Monkey patch
+</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>    end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>with the following:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
+</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      new_datas = {
+</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        # Monkey patch
+</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
+</span><span class='line'>end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Notice the use of deep_merge_hashes above.</p>
+
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+
+<p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$$ cd _deploy
+</span><span class='line'>$$ git push origin master -f   # hope this solves the problem, move to next command
+</span><span class='line'>$$ cd ..
+</span><span class='line'>$$ bundle exec rake gen_deploy</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Another error was in installing curl on windows. So I had to refer <a href="https://github.com/taf2/curb/issues/37">this</a>
+And install curb manually.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
+</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
+</span><span class='line'>This could take a while&hellip;
+</span><span class='line'>Successfully installed curb-0.7.18
+</span><span class='line'>Installing ri documentation for curb-0.7.18
+</span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Reference Commands:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake preview
+</span><span class='line'>bundle exec rake generate&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>git add .
+</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>There were other errors which I somehow resolved.</p>
+
+<p>Hope this helps someone.  I might need this again, So I am keeping a refrence.</p>
+
+<p>Thats all folks. Chow.</p>
+
+<p>Credits to:
+1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
+2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
+3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up octopress blog once you lost the working env]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/"/>
+    <updated>2016-01-17T10:01:28+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env</id>
+    <content type="html"><![CDATA[<p>Hi Guys,</p>
+
+<p>So recently I wanted to revisit my blog after a long long break, and I realized that my working blogging environment broke and I wanted to setup again to be able to blog from both my personal laptop and any other laptop. But to my dismay, it was not that stright forward. Luckily, I had the source folder of my blog with me. It was quite a feat, Hence I thought of documenting it through this post.</p>
+
+<!--more--> 
+
+
+<h3>How Octopress works</h3>
+
+<p>Octopress repositories have two branches, source and master. The <code>source</code> branch contains the files that are used to generate the blog and the <code>master</code> contains the blog itself.</p>
+
+<p>When the local folders are initially configured according to the <a href="http://octopress.org/docs/setup/">Octopress Setup Guide</a>, the master branch is stored in a subfolder named ‘_deploy’. Since the folder name begins with an underscore, it is ignored when you git push origin source. Instead, the master branch (which contains your blog posts) gets updated when you rake deploy.</p>
+
+<h3>Clone your blog to the new machine</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
+</span><span class='line'>$ cd Local_octopress
+</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy
+</span><span class='line'>$ gem install bundler
+</span><span class='line'>$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ bundle install&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake setup_github_pages&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>It will prompt you for your repository URL.
+</span><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Pushing changes from two different machines</h3>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers.
+</span><span class='line'>From the first machine do the following whenever you’ve made changes:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake generate
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git push origin source  # update the remote source branch
+</span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Then on the other machine, you need to pull those changes.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ cd octopress
+</span><span class='line'>$ git pull origin source  # update the local source branch
+</span><span class='line'>$ cd ./_deploy
+</span><span class='line'>$ git pull origin master  # update the local master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Octopress 2.0</h3>
+
+<p>If you were returning to blogging after so long, chances are that there were many things <a href="https://github.com/imathis/octopress/blob/master/CHANGELOG.markdown">changed</a>.</p>
+
+<ol>
+<li>Rubypants is removed.</li>
+<li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Category Generator gives you archive pages for each category</li>
+<li>Sitemap.xml Generator for search engines</li>
+</ol>
+
+
+<p>etc. etc.</p>
+
+<p>I got so many errors once I checked out a new version of Octopress. It was not supporting many of my old plugins, So I got rid of some, and I updated some.</p>
+
+<h3>Errors</h3>
+
+<p>One error I got was in date.rb of <a href="http://feedjira.com/">feedjira(formerly feedzira)</a> plugin.
+The error message said:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jekyll 2.1.1 undefined method `deep_merge'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>so I replaced deep_merge</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
+</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        self.data.deep_merge({
+</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            # Monkey patch
+</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>    end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>with the following:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
+</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      new_datas = {
+</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
+</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
+</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        # Monkey patch
+</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
+</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
+</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
+</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
+</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
+</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
+</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
+</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
+</span><span class='line'>end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Notice the use of deep_merge_hashes above.</p>
+
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+
+<p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$$ cd _deploy
+</span><span class='line'>$$ git push origin master -f   # hope this solves the problem, move to next command
+</span><span class='line'>$$ cd ..
+</span><span class='line'>$$ bundle exec rake gen_deploy</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Another error was in installing curl on windows. So I had to refer <a href="https://github.com/taf2/curb/issues/37">this</a>
+And install curb manually.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
+</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
+</span><span class='line'>This could take a while&hellip;
+</span><span class='line'>Successfully installed curb-0.7.18
+</span><span class='line'>Installing ri documentation for curb-0.7.18
+</span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Reference Commands:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake preview
+</span><span class='line'>bundle exec rake generate&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>git add .
+</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>There were other errors which I somehow resolved.</p>
+
+<p>Hope this helps someone.  I might need this again, So I am keeping a refrence.</p>
+
+<p>Thats all folks. Chow.</p>
+
+<p>Credits to:
+1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
+2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
+3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MQTT, All you need to get started]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started/"/>
+    <updated>2015-03-10T08:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started</id>
+    <content type="html"><![CDATA[<p>So there are numerous post out there for MQTT implementation. I recently did a POC at work, and I wanted to keep a list of things I need to know if I wanted to return or do more with MQTT.
+Hence this post.</p>
+
+<h3><a href="http://mqtt.org/">MQTT</a></h3>
+
+<p>MQTT is a machine-to-machine (M2M)/&ldquo;Internet of Things&rdquo; connectivity protocol. It was designed as an extremely</p>
+
+<!--more-->  
+
+
+<p>lightweight publish/subscribe messaging transport. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.</p>
+
+<h4>Demo Architecture</h4>
+
+<p><img src="https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" /></p>
+
+<h2>Installing software</h2>
+
+<h4>Installing Node.JS</h4>
+
+<hr />
+
+<p>Please follow the <a href="http://joshondesign.com/2013/10/23/noderpi">instructions</a> to install nodejs.
+After that, install some modules using the Node Package Manager:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for node modules </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g mqtt url request</span></code></pre></td></tr></table></div></figure></notextile></div>
+If you want to debug or auto-reload of the script, also install nodemon:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for nodemon </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g nodemon</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br/><br/>
+<br/></p>
+
+<h4>Installing MQTT Broker - Mosquitto (or Checkout <a href="http://www.hivemq.com/how-to-get-started-with-mqtt/">HiveMQ</a>)</h4>
+
+<hr />
+
+<p>Source: <a href="http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/">http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/</a>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key">http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key&lt;/a>   &lt;br/>
+</span><span class='line'>sudo apt-key add mosquitto-repo.gpg.key &lt;br/>
+</span><span class='line'>rm mosquitto-repo.gpg.key
+</span><span class='line'>cd /etc/apt/sources.list.d/ &lt;br/>
+</span><span class='line'>sudo curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.list">http://repo.mosquitto.org/debian/mosquitto-repo.list&lt;/a>
+</span><span class='line'>sudo apt-get update</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now go ahead and install Mosquitto proper. There are three packages:</p>
+
+<p>-Mosquitto is the MQTT broker (i.e. server)   <br/>
+-mosquitto-clients are the command-line clients, which I recommend you install  <br/>
+-python-mosquitto are the Python bindings, which I also think you should install all three packages together require about 665Kb of space, which we can easily afford even on the tiny Pi.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto and client installations </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Mosquitto/&rsquo;s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t &ldquo;#&rdquo; -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
+will dump all new messages to the broker. Remember the quotes around the topic, especially with the &ldquo;#&rdquo; wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lsquo;mosquitto_pub -t &ldquo;mosquittodemo/test&rdquo; -m &ldquo;Hi&rdquo;&rsquo; &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>then you should see the mosquitto_sub session list the message.</p>
+
+<p><br />
+<br /></p>
+
+<h4>Installing MQTT Client - MQTTWarn</h4>
+
+<hr />
+
+<p>This program subscribes to any number of MQTT topics (which may include wildcards) and publishes received payloads to one or more notification services, including support for notifying more than one distinct service for the same message.</p>
+
+<p>For example, you may wish to notify via e-mail and to Pushover of an alarm published as text to the MQTT topic <code>home/monitoring/+</code>.</p>
+
+<p>Full Info <a href="http://jpmens.net/2014/02/17/introducing-mqttwarn-a-pluggable-mqtt-notifier/">here</a></p>
+
+<h4>Requirements</h4>
+
+<p>You&rsquo;ll need at least the following components:</p>
+
+<p>-Python 2.x (tested with 2.6 and 2.7)  <br/>
+-An MQTT broker (e.g. Mosquitto)   <br/>
+-The Paho Python module: pip install paho-mqtt</p>
+
+<h4>Installation</h4>
+
+<p>-Clone <a href="https://github.com/jpmens/mqttwarn.git">this</a> repository into a fresh directory.  <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Clone the repo </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone &lt;a href="https://github.com/jpmens/mqttwarn.git">https://github.com/jpmens/mqttwarn.git&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div><br/>
+-Copy mqttwarn.ini.sample to mqttwarn.ini and edit to your taste   <br/>
+-Install the prerequisite Python modules for the services you want to use   <br/>
+-Launch mqttwarn.py</p>
+
+<p><br /></p>
+
+<h3>MQTT Android Client</h3>
+
+<hr />
+
+<h4>Android Service</h4>
+
+<p>The Paho Android Service is an interface to the Paho Java MQTT client library that provides a long running service for handling sending and receiving messages on behalf of Android client applications when the applications main Activity may not be running.</p>
+
+<p>The Paho Android Service provides an asynchronous API</p>
+
+<h4>Source:</h4>
+
+<p><a href="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/">http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/</a></p>
+
+<p>Check out Paho project <a href="https://eclipse.org/paho/clients/android/">here</a></p>
+
+<p>All you need to get started is:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for creating client and publishing a message </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient(&ldquo;tcp://ipAddressofBroker:1883&rdquo;, &ldquo;pahomqttpublish1&rdquo;);  &lt;br/>
+</span><span class='line'>client.connect();  &lt;br/>
+</span><span class='line'>MqttMessage message = new MqttMessage();   &lt;br/>
+</span><span class='line'>message.setPayload(&ldquo;A single message&rdquo;.getBytes());  &lt;br/>
+</span><span class='line'>client.publish(&ldquo;home/monitoring/+&rdquo;, message);  &lt;br/>
+</span><span class='line'>client.disconnect();  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br /></p>
+
+<h4>Test Broker Setup</h4>
+
+<hr />
+
+<p>To test your Broker setup you can install <a href="https://play.google.com/store/apps/details?id=at.tripwire.mqtt.client">MyMQTT</a> from google play.</p>
+
+<p>In few days I am gonna write myself a post about Google Cloud Notification service (GCM). The easiet notification service for Android notifications.</p>
+
+<p><br/>
+That&rsquo;s all folks.  Have Fun.</p>
+
+<p><br/></p>
+]]></content>
+  </entry>
+  
+</feed>

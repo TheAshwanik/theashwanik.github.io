@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:XML, | Ashwani Kumar]]></title>
+  <link href="http://blog.ashwani.co.in/tags/xml-/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-11-02T12:40:22+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Stylize your XML with Jquery XML Tree Plugin]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-07-18/stylize-your-xml-with-jquery-xml-tree-plugin/"/>
+    <updated>2013-07-18T07:46:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-07-18/stylize-your-xml-with-jquery-xml-tree-plugin</id>
+    <content type="html"><![CDATA[<p>Recently I came across a beautiful JQuery XML Tree plugin by <a href="http://www.mitya.co.uk/scripts/XML-Tree---visualise-and-traverse-your-XML-186">Mitya</a></p>
+
+<p>All Credits goes to Mitya for writing the XMLTree plugin.</p>
+
+<p>The script creates the wonderful tree from a specified XML file or from manually-fed XML.
+Overall this works just fine,<!--more--> When you specify an XML file as input.
+Frankly? The script has few bugs:<br/>
+1. Mutliple tree on same page does not work.<br/>
+2. XML string cannot be fed manually.</p>
+
+<p>It has nice set of callback functions which can be invoked while to play with your XML Tree.</p>
+
+<p>I give a small idea here but head over to &lsquo;Usage and params&rsquo; section of Mitya&rsquo;s website for more detailed explanation.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializing the XML tree </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;div id="tree"> &lt;/div>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p>new XMLTree({
+</span><span class='line'>     fpath: &lsquo;../somedir/xml.xml&rsquo;,
+</span><span class='line'>     container: &lsquo;#tree&rsquo;
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>By default the XML will be renedered unexpanded. But You can Render the tree Fully expanded by
+giving the startExpanded option as &lsquo;true&rsquo;</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializing the XML tree fully expanded </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;div id="tree"> &lt;/div>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p>new XMLTree({
+</span><span class='line'>     fpath: &lsquo;../somedir/xml.xml&rsquo;,
+</span><span class='line'>     container: &lsquo;#tree&rsquo;,
+</span><span class='line'>     startExpanded:true
+</span><span class='line'>});</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><br />
+<br /></p>
+
+<p>But what if your XML is too large and you want to search any particular node or text and open only certain node and not the rest.
+Well I did it as follows:</p>
+
+<p>I had a search box in my page and on each key press event I am finding that particular element in the tree and expanding.
+Well thats not as simple as it sounds.</p>
+
+<p>Here is the snippet.
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializing the XML tree </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>.html file&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>&lt;span style="float:right">&lt;br/>
+</span><span class='line'>&lt;b>Looking for something specific ? &nbsp;&nbsp;&lt;/b>
+</span><span class='line'>&lt;input type="text" id="search_input" tabindex="-1" >
+</span><span class='line'>&lt;/span>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>Custom.js&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$(document).ready(function() {&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>//LoadXML(&lsquo;XMLHolder&rsquo;,&lsquo;/assets/server.xml&rsquo;);
+</span><span class='line'>if ($(&lsquo;#tree&rsquo;).length > 0)
+</span><span class='line'>{
+</span><span class='line'>    var filepath = &lsquo;/path to xml&rsquo;&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>$(function() { 
+</span><span class='line'>    new XMLTree({fpath: filepath, container: '#tree', startExpanded: true,
+</span><span class='line'>    }); 
+</span><span class='line'>
+</span><span class='line'>    //alert ($('ul[class="xmltree startExpanded"]').length)
+</span><span class='line'>    $('ul[class="xmltree startExpanded"]').prop('id','xmltree');
+</span><span class='line'>});
+</span><span class='line'>
+</span><span class='line'>jQuery.expr[':'].Contains = function(a,i,m){
+</span><span class='line'>    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())&gt;=0;
+</span><span class='line'>};
+</span><span class='line'>
+</span><span class='line'>//scroll to first child when filtering
+</span><span class='line'>var container = $('body');
+</span><span class='line'>
+</span><span class='line'>$('#search_input').focus().keyup(function(e){
+</span><span class='line'>    var filter = $(this).val();
+</span><span class='line'>    if (filter) {
+</span><span class='line'>      $('#xmltree').find("li:not(:Contains(" + filter + "))").parent().hide();
+</span><span class='line'>      $('#xmltree').find("li:Contains(" + filter + ")").parent().show();
+</span><span class='line'>      $("#xmltree").find("li:Contains(" + filter + ")").children().show();
+</span><span class='line'>      $('#xmltree').highlight(filter);
+</span><span class='line'>
+</span><span class='line'>      //scroll to first child when filtering
+</span><span class='line'>      var container = $('body');
+</span><span class='line'>      var scrollTo = $('#xmltree').children().find("li:Contains(" + filter + ")").first();
+</span><span class='line'>
+</span><span class='line'>      console.log(scrollTo);
+</span><span class='line'>      container.scrollTop(
+</span><span class='line'>            scrollTo.offset().top - container.offset().top + container.scrollTop()
+</span><span class='line'>        );
+</span><span class='line'>      //scroll to first child when filtering- ends
+</span><span class='line'>    }
+</span><span class='line'>    else {
+</span><span class='line'>      container.offset().top = 0;
+</span><span class='line'>      $('#xmltree').find("li").children().slideDown();
+</span><span class='line'>      $('#xmltree').unhighlight();
+</span><span class='line'>    }
+</span><span class='line'>  });
+</span><span class='line'>
+</span><span class='line'>  $('#search_input').focus().keydown(function(e){
+</span><span class='line'>      $('#xmltree').unhighlight();
+</span><span class='line'>  });
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p> }
+</span><span class='line'>});&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Try it, type some thing in the box:
+<span><br/>
+<b>Looking for something specific ?</b>
+<input id="search_input">
+</span></p>
+
+<p>Note:
+I am using the scrollTo function too, but its not working in all the browsers for some reasons.</p>
+
+<p>Example:1  Using this <a href="http://www.w3schools.com/xml/simple.xml">xml</a> again: Render tree unexpanded(Click on + sign to navigate).</p>
+
+<div id="tree2">
+</div>
+
+
+
+
+<script>
+$(document).ready(function() {
+    
+//LoadXML('XMLHolder','/assets/server.xml');
+if ($('#tree2').length > 0)
+{
+
+    new XMLTree({fpath: '/data/simple.xml', 
+    container: '#tree2', 
+    startExpanded: true
+    }); 
+
+    //alert ($('ul[class="xmltree startExpanded"]').length)
+    $('ul[class="xmltree startExpanded"]').prop('id','xmltree');
+
+        
+    jQuery.expr[':'].Contains = function(a,i,m){
+        return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+    };
+    
+    var container = $('body');
+    var scrollTo = $('#scrollhere');
+          
+    console.log(scrollTo);
+    container.scrollTop(scrollTo.offset().top - container.offset().top + container.scrollTop());
+
+    $('#search_input').keyup(function(e){
+        var filter = $(this).val();
+        //alert ("hello")
+        if (filter) {
+          $('#xmltree').find("li:not(:Contains(" + filter + "))").parent().hide();
+          $('#xmltree').find("li:Contains(" + filter + ")").parent().show();
+          $("#xmltree").find("li:Contains(" + filter + ")").children().show();
+          $('#xmltree').highlight(filter);
+          
+        }
+        else {
+          container.offset().top = 0;
+          $('#xmltree').find("li").children().slideDown();
+          $('#xmltree').unhighlight();
+        }
+      });
+      
+      $('#search_input').keydown(function(e){
+          $('#xmltree').unhighlight();
+      });
+ }
+});
+</script>
+
+
+<p>There you have it folks.  Shoot your views in the comments, but note I document these posts for
+my reference and hope that it would help some one else too.</p>
+
+<p>So cheers..</p>
+
+<p><br />
+<br /></p>
+]]></content>
+  </entry>
+  
+</feed>
