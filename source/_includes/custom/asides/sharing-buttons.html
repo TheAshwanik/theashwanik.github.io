@@ -1,0 +1,38 @@
+{% if site.facebook_like or site.twitter_tweet_button %}
+<div class="misc-content">
+
+	<br />
+	<div class="mysocial">
+		<h4>Your Feedback encourages me</h4>
+		<ul class="mysocial-list-linear">
+			
+		    {% if site.coderwall_button %}
+		    	<li><div class="coderwall-endorse"><a href="https://coderwall.com/{{ site.coderwall_user }}"><img alt="Endorse {{ site.coderwall_user }} on Coderwall" src="http://api.coderwall.com/{{ site.coderwall_user }}/endorsecount.png" /></a></div></li>
+		    {% endif %}
+			
+		    {% if site.twitter_tweet_button %}       
+		    	<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
+			{% endif %}
+			
+			{% if site.facebook_like %}
+				 <li><div><fb:like href="https://www.facebook.com/TheAshwanikBlog" send="true" layout="button_count" width="450" show_faces="true" font="verdana" colorscheme="light"></fb:like></div></li>
+			{% endif %}
+			
+			{% if site.github_feedback %}
+				<li><div class="github-feedback"><a class="btn btn-mini btn-info" href="https://github.com/TheAshwaniK/Feedback/issues/new" title="Leave Ashwani feedback using GitHub" target="_blank"><i class="icon-comment icon-white"></i> Leave me feedback</a></div></li>
+			{% endif %}
+			
+			<br/>
+			
+			{% if site.gittip %}
+				<li><div class="github-feedback"><script data-gittip-username="TheAshwanik" data-gittip-widget="button" src="//gttp.co/v1.js"></script></div></li>
+			{% endif %}
+			
+			
+			<br/><br /><br/>
+			
+		</ul>
+	</div>
+	<br />
+</div>
+{% endif %}

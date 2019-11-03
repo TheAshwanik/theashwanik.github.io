@@ -1,0 +1,14 @@
+<<<<<<< HEAD
+I am greatly thankful to various awesom people who have done a awesome job in one way or another:
+
+
+Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome
+Foxslide, a theme for Octopress by Adrian Artiles - https://github.com/sevenadrian/foxslide
+=======
+I am greatly thankful to various awesom people who have done a awesome job in one way or another:
+
+
+Font Awesome by Dave Gandy - http://fortawesome.github.com/Font-Awesome
+Foxslide, a theme for Octopress by Adrian Artiles - https://github.com/sevenadrian/foxslide
+>>>>>>> e71afdaf7c685c487a2935b5681b5aa710a15e72
+Octopress - Copyright © 2009-2011 Brandon Mathis

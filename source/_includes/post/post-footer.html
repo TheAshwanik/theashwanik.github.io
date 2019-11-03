@@ -1,0 +1,23 @@
+{% if site.facebook_like or site.twitter_tweet_button %}
+<div class="misc-content">
+
+    {% include custom/global_sharing.html %}
+    
+	<br />
+	<div class="mysocial">
+		<ul class="mysocial-list-linear">
+		    
+		    {% if site.twitter_tweet_button %}       
+		    	<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
+			{% endif %}
+			
+			{% if site.facebook_like %}
+				 <li><fb:like href="https://www.facebook.com/TheAshwanikBlog" send="true" width="350" show_faces="true" font="verdana" colorscheme="light"></fb:like></li>
+			{% endif %}
+		</ul>
+	</div>
+	<br />
+	<br />
+	<br />
+</div>
+{% endif %}

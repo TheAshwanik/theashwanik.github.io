@@ -1,0 +1,97 @@
+---
+layout: post
+title: "HeartBleed Bug"
+description: The Heartbleed Bug is a serious vulnerability in the popular OpenSSL cryptographic software library. This weakness allows stealing the information protected, under normal conditions, by the SSL/TLS encryption used to secure the Internet. SSL/TLS provides communication security and privacy over the Internet for applications such as web, email, instant messaging (IM) and some virtual private networks (VPNs).
+date: 2014-04-11 08:13
+date_formatted: 2014-04-11 08:13
+comments: true
+categories: Technical
+tags: security, openssl
+keywords: openssl, openssl heartbleed, heartbleed, heartbleed vulnerabilty,openssl fixed, heartbleed stopped, heartbleed fixed
+---
+
+Hey Guys,
+
+Few days ago, A mother of all bugs in internet world was discovered, a new vulnerability [CVE-2014-0160](http://blog.cloudflare.com/staying-ahead-of-openssl-vulnerabilities) was announced in OpenSSL 1.0.1.    
+
+An encryption flaw called the [Heartbleed bug](http://heartbleed.com/) is already being called one of the biggest security threats the Internet has ever seen.
+
+<!--more-->
+{% img left_aligned_image  /assets/heartbleed.svg 350 350 "Heartbleed SVG" "HeartBleed SVG image" %}
+
+As Bruce Schneier, a renowned security expert, said in a [blog post](https://www.schneier.com/blog/archives/2014/04/heartbleed.html) on Wednesday: 
+
+####"Heartbleed is a catastrophic bug . . . on a scale of one to 10, it is an 11."
+
+According the [Heartbleed website](http://heartbleed.com/) dedicated for this bug:   
+
+The Heartbleed bug allows anyone on the Internet to read the memory of the systems protected by the vulnerable versions of the OpenSSL software. 
+This compromises the secret keys used to identify the service providers and to encrypt the traffic, the names and passwords of the users and the actual content. This allows attackers to eavesdrop on communications, steal data directly from the services and users and to impersonate services and users.
+
+
+<br/>
+<br/>
+<br/>
+When an attacker can reach a vulnerable service he can abuse the TLS heartbeat extension to retrieve arbitrary chunks of memory by exploiting a
+missing bounds check. This can lead to disclosure of your private keys, resident session keys and other key material as well as all volatile
+memory contents of the server process like passwords, transmitted user data (e.g. web content) as well as other potentially confidential information.
+
+An attacker can grab 64K of memory from a server. The attack leaves no trace, multiple times to grab a different random 64K of memory.    
+This means that anything in memory , like SSL private keys, user keys,passwords , anything is vulnerable.   
+And you have to assume that it is all compromised. All of it.   
+
+
+   
+<br/>
+<br/>
+{% img  http://imgs.xkcd.com/comics/heartbleed_explanation.png "xkcd Heartbleed cartoon explanation" "HeartBleed xkcd cartoon" %}
+
+<br/>
+<br/>
+After being out there in wild for almost around 2 years, The heartbleed bug was [fixed](https://www.openssl.org/news/secadv_20140407.txt) by openssl community on 7th April 2014.
+
+Users are encouraged who are running a server that uses OpenSSL to upgrade to version 1.0.1g to be protected from this vulnerability. 
+For previous versions of OpenSSL, re-compiling with the OPENSSL_NO_HEARTBEATS flag enabled will protect against this vulnerability. 
+OpenSSL 1.0.2 will be fixed in 1.0.2-beta2.   
+
+You must also assume that at least your used server keys are compromised and therefore must be replaced by newly generated ones. Simply renewing
+existing certificates is not sufficient! - Please generate NEW keys with at least 2048 bit RSA or stronger!   
+
+<br/>
+<br/>
+####Here are a few tips and resources you may find helpful:  
+
+- Ensure that you upgrade your system to a fixed OpenSSL version (1.0.1g or above).
+- You can also test your website to see if it’s vulnerable to attack – [http://filippo.io/Heartbleed/](http://filippo.io/Heartbleed/)  and  [http://possible.lv/tools/hb/](http://possible.lv/tools/hb/)     
+- Only then create new keys for your certificates.
+- Revoke all certificates, which may be affected.
+- Check what services you have used that may have been affected within the last two years.
+- Wait until you think that those environments got fixed.
+- Then (and only then) change your credentials for those services. If you do it too early, i.e. before the sites got fixed, your data may be leaked, again. So be careful when you do this.
+- Mashable have compiled [list](http://mashable.com/2014/04/09/heartbleed-bug-websites-affected/) of which websites and organizations are vulnerable – from banks to social media sites.   
+
+<br/>
+An (incomplete) list of commonly used software which include or link to OpenSSL can be found [here](https://www.openssl.org/related/apps.html).
+
+<br/>    
+####Sources:
+
+[heartbleed.com](http://heartbleed.com/)   
+[Test for vulverabilty](http://filippo.io/Heartbleed/) and  [Test for vulverabilty - 2](http://possible.lv/tools/hb/)   
+[What you need to know - FAQ](http://www.cnet.com/uk/news/heartbleed-bug-what-you-need-to-know-faq/) 
+[attack-of-week-openssl-heartbleed](http://blog.cryptographyengineering.com/2014/04/attack-of-week-openssl-heartbleed.html)    
+[diagnosis-of-the-openssl-heartbleed-bug](http://blog.existentialize.com/diagnosis-of-the-openssl-heartbleed-bug.html)    
+[A simple explanation at security.stackexchange.com, on how-exactly-does-the-openssl-tls-heartbeat-heartbleed-exploit-work](http://security.stackexchange.com/questions/55116/how-exactly-does-the-openssl-tls-heartbeat-heartbleed-exploit-work)    
+[half-a-million-widely-trusted-websites-vulnerable-to-heartbleed-bug](http://news.netcraft.com/archives/2014/04/08/half-a-million-widely-trusted-websites-vulnerable-to-heartbleed-bug.html)    
+[critical-crypto-bug-exposes-yahoo-mail-passwords-russian-roulette-style](http://arstechnica.com/security/2014/04/critical-crypto-bug-exposes-yahoo-mail-passwords-russian-roulette-style/)    
+[A renowned security expert, schneier Blog](https://www.schneier.com/blog/archives/2014/04/heartbleed.html)   
+[Neel Mehta donates Heartbleed bounty to Freedom of the Press Foundation](https://hackerone.com/reports/6626)    
+[Hacker News Thread](https://news.ycombinator.com/item?id=7548991)    
+[Sites which have patched the Bug](http://www.cnet.com/uk/news/which-sites-have-patched-the-heartbleed-bug)
+
+
+
+<br/>
+
+
+

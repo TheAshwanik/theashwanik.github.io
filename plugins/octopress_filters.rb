@@ -82,7 +82,7 @@ module OctopressLiquidFilters
   # Replaces relative urls with full urls
   def expand_urls(input, url='')
     url ||= '/'
-    input.gsub /(\s+(href|src|poster)\s*=\s*["|']{1})(\/[^\/>]{1}[^\"'>]*)/ do
+    input.to_s.gsub /(\s+(href|src|poster)\s*=\s*["|']{1})(\/[^\/>]{1}[^\"'>]*)/ do
       $1+url+$3
     end
   end
@@ -133,6 +133,24 @@ module OctopressLiquidFilters
   def titlecase(input)
     input.titlecase
   end
+  
+   def filter_posts(input, key, value = true)
+                  result = []
+                  input.flatten.each do |post|
+                          if post.is_a?(Jekyll::Post)
+                                  if post.data[key] == value
+                                          result << post
+                                  end
+                          elsif post.is_a?(Hash) || post.is_a?(Array)
+                                  result = result + filter_posts(result)
+                          end
+                  end
+                  result
+    end
+        
+    def filter_featured(input)
+        filter_posts(input, 'featured')
+    end
 
 end
 Liquid::Template.register_filter OctopressLiquidFilters

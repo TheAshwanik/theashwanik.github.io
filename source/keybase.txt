@@ -1,0 +1,80 @@
+==================================================================
+https://keybase.io/theashwanik
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://blog.ashwani.co.in
+  * I am theashwanik (https://keybase.io/theashwanik) on keybase.
+  * I have a public key with fingerprint 3198 DA9F 8F04 656E 78D5  4F83 F9CC 9DB2 F3DA FB82
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01017d757d32bd68472228966369dc94d0529c246ef0b35f2666fe7f0f14353d68120a",
+            "fingerprint": "3198da9f8f04656e78d54f83f9cc9db2f3dafb82",
+            "host": "keybase.io",
+            "key_id": "f9cc9db2f3dafb82",
+            "kid": "01017d757d32bd68472228966369dc94d0529c246ef0b35f2666fe7f0f14353d68120a",
+            "uid": "321d3566962b412f33044d6765f55c19",
+            "username": "theashwanik"
+        },
+        "revoke": {
+            "sig_ids": [
+                "534bbc500b5d3c4552ec24fb669b7f281e511c76b8d601ea3a5aa540c2ff2c530f"
+            ]
+        },
+        "service": {
+            "hostname": "blog.ashwani.co.in",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1452965009,
+    "expire_in": 157680000,
+    "prev": "719fd1cad92328d9b00a0880862fcd9913ab86d615a9aa59b1e9f990085aa09c",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.49
+Comment: https://keybase.io/crypto
+
+yMOMAnicrZJtUFRVGMeX0EbWALGyBKPhlqi0rvftnHvP6qQl6OQkRFM5Tdp2X85h
+b6x7l927KIg6OZIC0xgF5EvuSIM60QuIjFjmgAaKrjMOFUNZvgujKTlGaohgZxn6
+1sfOlzPnnP/zf37Pc572+FibPWbw1M6mgTNDG2IiR4ZCtje2l1SuYVRTL2Jca5h8
+PLphr46Dljvf0BkXw3IsJ+kSkHSBV3UoixLP8zKCUIBI15Cos4BHGi9CTFhVAISH
+EBIsEZZwogAEGsHxrMI4GGL48nDAHzB8FrUVOCTrCiIyYUUIIJZkHYhEFgjSNKSr
+PBF0hagyTwM9ZjAaQeFUJYidhknv6ME9ivcf+v+ZOzRqJ/CcLgAIEeRVkaPpBFYU
+dShBQADQOBQVBnHAp6zEVG15sBL0rFJ8Rj6z1sEEcKGZj6OtDRp5lDvIuN5igCCq
+qgZYVgW6oIkA8JjiEJXmUCXCyxwGHKdJUJV1yHJYERSgKEBkNZ4QXgMCS5gV1Jsm
+LTS0UfNoo8YAVK+Z5xxDcGqm0/BRQH/AtEzN9NJ3j2X5XVE0q8gf1a/CqnvMya0a
+Pp3+FQ0oxIGgYfoYF0eVmmVErTmR9g1SbORg8Gq/EcBuI6oAEpRZuqJpcCG1lDhE
+dE5TdMQLvKwjlWUVVpZZGfJE0xHiBEWVoQ45oCBaGFI5jAhCLCvTOlmkMdHaCnwm
+4wIUU8mjlrR7PsUKBTCz9uiR5eNsMXbbw+Mfis6wzR436d/JbrYSh58OTwheK23y
+j3+8t+zPysYMe7tzo+PSrHWgcPaRxoEzdS/HZV6tX9SmlffACbMn7FMupb+GPzi9
+7fXBlto5nuu4Ppy4shFc6esMdOdMZcReT8E7lzO7lxy6k/px9bSOuw07L2c5mN07
+3q4t4a9v2T1r1YzEEwNfXGr57D6fWuA45+rYeqhH4N9fYi4YX3osZemKKZtzs4qL
+1rQO/jBt3tD2Xnv2nfPbDz86dyT7b++zK9rCGXv2l5MFJ5PSttXdiEwfTGg6sfy3
+5HVbDz4YyKx6NfFWbE51dU1FfOzQlt73nmvA6LFb6ftean8zpfS7hEjmxWQbST/Q
+pX5z+3LX3Kcyfqr0JX9O5nvjpOCVrtxP+vbkVifFR25suHf+R0f48PHZC2d2/8yG
+JgYXdFZMJidfnHmhyYnG/doMNobSMrZiRVrWPO4v8Me7vbX6rvRbfdeHc24qx9SG
+2otX2QNf7q3ZaWwsCJ2tgxXTW9KYqvtz5v/es+OX1HZrSdWkhJunz045hzqfqcmP
+9BWXtTYcz2lO6XoirWvt3mKzvL1i+fDEBPmVhacPjlzo/yrm1OJlFfML6qvCZSP3
+8r6PzC1rWZ+UunSHd/WZheHJwyMd7q+nPnJ3aWN3vzuH8V9L7Pk26+bilNufzgtt
+2r95U3PJvXVTPpxhZfe3tR79qHN9Ymqpve/JXfas55UHbEl1x6IX9tX8A1pd50Y=
+=th5d
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/theashwanik
+
+==================================================================

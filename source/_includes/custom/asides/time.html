@@ -1,0 +1,107 @@
+<section>
+<br />
+<div style='padding:10px; align:center; text-align:center; margin:0 auto; background-color:#242424'>
+<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal' id='worldmonthyear'></span>
+<br />
+<span style='text-align:center; font:46pt Calibri, Sans-Serif; color:White; margin-bottom:-20px; line-height:95%' id='worlddate'></span>
+<br />
+<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal' id='worlddayinwords'></span>
+<br />
+<span style='text-align:center; font-size:11pt; font-family:Verdana, Sans-Serif; color:Orange; line-height:25pt' id=javaclock></span>
+<table align=center cellpadding=2 cellspacing=2 
+	border=0 style='padding:10px; align:center; text-align:center; margin:0 auto; background-color:#242424'>
+	<tr>
+		<td align=left style='padding-right: 10px;text-align: left;'>
+			<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal' id='countryname'>India</span><br />
+			<span style='text-align:center; font-size:8pt; font-family:Verdana, Sans-Serif; color:Orange' id='indiaclock0'></span>
+		</td>
+		<td align=center style='border-left:2px solid silver; padding-left: 10px;padding-right: 10px ; text-align:center;'>
+			<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal'>UK</span><br />
+			<span style='text-align:center; font-size:8pt; font-family:Verdana, Sans-Serif; color:Orange' id='ukclock0'></span>
+		</td>
+		<td align=right style='border-left:2px solid silver; padding-left: 10px; ;padding-right: 10px ; text-align: center;'>
+			<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal'>US</span><br />
+			<span style='text-align:center; font-size:8pt; font-family:Verdana, Sans-Serif; color:Orange' id='usclock0'></span>
+		</td>
+		<td align=right style='border-left:2px solid silver; padding-left: 10px ; text-align: right;'>
+			<span style='text-align:center; font:8pt Verdana, Sans-Serif; color:White; font-weight:normal'>France</span><br />
+			<span style='text-align:center; font-size:8pt; font-family:Verdana, Sans-Serif; color:Orange' id='franceclock0'></span>
+		</td>
+	</tr>
+</table>
+</div>
+</section>
+<script language="javascript">
+
+	function timeString(timezone) {
+		var now=new Date();
+		if (timezone!=99) {  
+			var gmt=now.getTimezoneOffset();
+			document.getElementById("worlddate").innerHTML = now.getDate();
+			document.getElementById("worlddayinwords").innerHTML = getDayInString(now.getDay());
+			document.getElementById("worldmonthyear").innerHTML = getMonthInString(now.getMonth()) +" " + now.getFullYear();
+			
+			now.setMinutes(now.getMinutes()+timezone*60+gmt);
+			//console.log("now.getDate =" + now.getDate())
+			//console.log(JSON.stringify(now))
+		}
+		var hrs=now.getHours();
+		if (hrs>23) { hrs=hrs-24 };
+		if (hrs<0) { hrs=hrs+24 };
+		var min=now.getMinutes();
+		var sec=now.getSeconds();
+		var ap = "";
+		if (hrs<10) { hrs="0"+hrs };
+		if (min<10) { min="0"+min };
+		if (sec<10) { sec="0"+sec };
+		if (timezone==99) {  return(hrs+":"+min+":"+sec+ap)}
+		else {  return(hrs+":"+min+ap) }
+	}
+	function curTime() {
+		document.getElementById("javaclock").innerHTML=timeString(99);
+		document.getElementById("ukclock0").innerHTML = timeString(1);
+		document.getElementById("indiaclock0").innerHTML = timeString(5.5);
+		document.getElementById("usclock0").innerHTML = timeString(-4);
+		document.getElementById("franceclock0").innerHTML = timeString(2);
+
+		t=setTimeout("curTime()",1000)}curTime();
+	
+	function getDayInString(day){
+		if(day==0) {return 'Sunday'}; if(day==1) {return 'Monday'};	if(day==2) {return 'Tuesday'};
+		if(day==3) {return 'Wednesday'}; if(day==4) {return 'Thursday'}; if(day==5) {return 'Friday'};
+		if(day==6) {return 'Saturday'};
+		
+	}
+	
+	function getMonthInString(month){
+		if(month==1) {return 'January'}; if(month==2) {return 'February'};if(month==3) {return 'March'};
+		if(month==4) {return 'April'}; if(month==5) {return 'May'};	if(month==6) {return 'June'};
+		if(month==7) {return 'JuLy'}; if(month==8) {return 'August'}; if(month==9) {return 'September'};
+		if(month==10) {return 'October'}; if(month==11) {return 'November'}; if(month==12) {return 'December'};
+	}
+	
+	
+	// if (navigator.geolocation) {
+		// navigator.geolocation.getCurrentPosition(function (position) {
+        // //alert('Yes');
+        // var lat = position.coords.latitude;
+        // var lng = position.coords.longitude;
+		// $.getJSON("http://ws.geonames.org/timezoneJSON?lat="+lat+"&lng="+lng+"&callback=?", 
+			// function(result) {
+				// //console.log("hi"+ JSON.stringify(result));
+				// document.getElementById("countryname").innerHTML = result.countryName;
+			// })
+		// });
+	// }
+</script>
+					
+
+<!-- Toshow the images sunrise, sunset, etc based on time.. have a look at timeofday.js
+<script type="text/javascript">
+	timeOfDayImage();
+</script>
+<noscript>
+	<img src=time5.gif" width="200" height="80" alt="time of day image - requires Javascript" />
+</noscript> -->
+
+<!-- <iframe src="http://www.census.gov/popclock/embed.php?component=counter&popclk=790778" width="389" height="993" frameBorder="0" allowtransparency="true"></iframe> -->

@@ -1,13 +1,15 @@
 # ----------------------- #
 #      Main Configs       #
 # ----------------------- #
-
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
-simple_search: https://www.google.com/search
-description:
+url: http://blog.ashwani.co.in
+name: Ashwani's Tech World - Giving back to community
+title: Ashwani's Tech World - Giving back to community
+subtitle: Sharing Knowledge - Best way to keep your brain juicy.
+author: Ashwani Kumar
+simple_search: http://google.com/search
+description: This is my personal blog I use for expressing my views, to document the issues I encountered and to help give something back to the world.
+keywords: TheAshwaniK, Ashwani Kumar Blog, Blog , Functional Blog, Technical Blog, Telecom Blog, KIS , Kabira, Kabira provisioning , KPSA, Development, provisioning
+prof_website: www.ashwani.co.in
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -15,11 +17,14 @@ description:
 # Additionally, %o will give you the ordinal representation of the day
 date_format: "ordinal"
 
+#date_format: "%Y-%m-%d"  # e.g. 2014-07-03
+#time_format: "%H:%M"     # 24 hour time
+
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: aryan.ashwani@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -27,10 +32,10 @@ email:
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
 root: /
-permalink: /blog/:year/:month/:day/:title/
+permalink: /blog/:year-:month-:day/:title/
 source: source
 destination: public
-plugins: plugins
+plugins_dir: plugins
 code_dir: downloads/code
 category_dir: blog/categories
 markdown: rdiscount
@@ -38,20 +43,30 @@ rdiscount:
   extensions:
     - autolink
     - footnotes
-    - smart
+   
+    #- smart
 highlighter: pygments # default python pygments have been replaced by pygments.rb
+#paginate: 3          # Posts per page on the blog index
+#pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/
+#paginate_path: "blog/page/:num"  # Directory base for pagination URLs eg. /posts/2/
 
-paginate: 10          # Posts per page on the blog index
-paginate_path: "posts/:num"  # Directory base for pagination URLs eg. /posts/2/
+pagination:
+  limit: 10
+  per_page: 3
+  title_suffix: " (page :num)"
+  permalink: "blog/page/:num"
+  reversed: false # Reverse the order of the documents
+
 recent_posts: 5       # Posts in the sidebar Recent Posts section
 excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 excerpt_separator: "<!--more-->"
+#excerpt_separator: ""   # Workaround for http://blog.slaks.net/2013-08-09/jekyll-tag-was-never-closed
 
 titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [custom/asides/gravatar.html, custom/asides/subscribe.html, asides/recent_posts.html, custom/asides/category_cloud.html, custom/asides/tags.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -64,14 +79,37 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: TheAshwaniK
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
+github_feedback: true
+gittip: true
+
+
+# LinkedIn repositories
+linkedin_user: ashwaniaryan
+
+#Coderwall endorse button
+coderwall_user:  TheAshwaniK
+coderwall_button: false
+
+
+# LinkedIn repositories
+linkedin_user: ashwaniaryan
 
 # Twitter
-twitter_user:
+#twitter_user: TheAshwaniK
+twitter_user: 
+twitter_tweet_count: 4
+twitter_show_replies: false
+twitter_follow_button: true
+twitter_show_follower_count: false
 twitter_tweet_button: true
+
+#Coderwall endorse button
+coderwall_user:  TheAshwaniK
+coderwall_button: false
 
 # Google +1
 google_plus_one: false
@@ -79,6 +117,7 @@ google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
+# googleplus_user: 114156830425943630021
 googleplus_user:
 googleplus_hidden: false
 
@@ -91,11 +130,31 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: theashwanik
+disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-37485375-1
 
 # Facebook Like
-facebook_like: false
+facebook_like: true
+
+# Gravatar
+gravatar_email: aryan.ashwani@gmail.com
+
+# OneMonthRailsReferrals
+OneMonthRailsReferrals: true
+
+# Tag Generator from https://github.com/robbyedwards/octopress-tag-pages
+# I dint want to change default settings
+#
+#tag_dir: The subfolder to build tag pages in (default is tags).
+#tag_title_prefix: The string used before the tag name in the page title (default is Tag:).
+tag_dir: tags
+tag_title_prefix: 'Tag:'
+
+plugins:
+  - jekyll-sitemap
+  - octopress-paginate
+  - octopress-debugger
+

@@ -1,0 +1,247 @@
+---
+layout: post
+title: "How to use Angular-Datatables"
+description: How to use Angular-Datatables
+date: 2018-07-03 10:47
+date_formatted: 2018-07-03 10:47
+comments: true
+categories: [Technical]
+tags: angular, datatables
+keywords: angular, angularjs, datatables, datatables code, data tables, angular js 2
+---
+
+
+This post is about quick demo of angularjs + datatables usage.
+I am not gonna write too much theory, So here I will give only code snippet below.
+<!--more-->
+
+	
+#### References:   
+http://l-lin.github.io/angular-datatables  
+https://datatables.net
+
+
+### Code:
+
+#### index.html
+----
+{{ codeblock }}
+<script type="text/javascript" src="/js/datatables.min.js"></script>
+<script type="text/javascript" src="/js/angular.js"></script>
+<script type="text/javascript" src="/js/angular-datatables.min.js"></script>
+<script type="text/javascript" src="/js/dataTables.tableTools.js"></script>
+<script type="text/javascript" src="/js/angular-datatables.tabletools.min.js"></script>
+<script type="text/javascript" src="/js/angular-datatables.bootstrap.js"></script>
+<script type="text/javascript" src="/js/dataTables.buttons.js"></script>
+<script type="text/javascript" src="/js/buttons.colVis.js"></script>
+<script type="text/javascript" src="/js/angular-datatables.buttons.js"></script>
+{{ endcodeblock }}
+
+----
+
+#### somejavascript.js
+{{ codeblock }}
+myModule.controller('myDatatablesIntCtrl', function($scope,
+    $rootScope, $http, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions) {
+
+    var vm = this;
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withDOM('<"row"<"col-md-8 col-sm-12"<"inline-controls"l>><"col-md-4 col-sm-12"<"pull-right"f>B>>t<"row"<"col-md-4 col-sm-12"<"inline-controls"T>><"col-md-4 col-sm-12"<"inline-controls text-center"i>><"col-md-4 col-sm-12"p>>')
+    //.withDOM('Blfrtip')
+    .withDisplayLength(25)
+    //.withScroller()
+    //.withOption('deferRender', true)
+    //.withOption('scrollY', 200)
+    //.withOption('scrollX', '100%')
+    //.withOption('responsive', true)
+    //.withColVis()
+    //.withOption('order', [[3, 'desc']])
+    // Add Bootstrap compatibility
+    .withBootstrap()
+    .withBootstrapOptions({
+            TableTools: {
+                classes: {
+                    container: 'btn-group',
+                    buttons: {
+                        normal: 'btn btn-lg btn-primary'
+                    }
+                }
+            },
+            ColVis: {
+                classes: {
+                    masterButton: 'btn btn-primary'
+                }
+            },
+            pagination: {
+                classes: {
+                    ul: 'pagination pagination-sm'
+                }
+            }
+
+        })
+    .withOption('retrieve', true)
+        
+    //.withButtons(['columnsToggle', {
+    //    extend: 'collection',
+    //    text: 'Hide columns',
+    //    buttons: ['columnsVisibility'],
+    //    visibility: false
+    //}])
+    
+    // Add Table tools compatibility
+    .withTableTools('/plugins/datatables/copy_csv_xls_pdf.swf')
+        .withTableToolsOption('sRowSelect', 'multi')
+        .withTableToolsButtons([{
+            'sExtends': 'copy',
+            'sButtonText': 'Copy To Clipboard',
+            'bSelectedOnly': true,
+            'oSelectorOpts': {
+                filter: 'applied',
+                order: 'current'
+            }
+        }, {
+            'sExtends': 'collection',
+            'sButtonText': 'Export Data',
+            'aButtons': [{
+                    'sExtends': 'xls',
+                    'sButtonText': 'XLS',
+                    'sFileName': '.xls',
+                    'bSelectedOnly': true,
+                    'oSelectorOpts': {
+                        filter: 'applied',
+                        order: 'current'
+                    }
+                    // 'fnMouseover': function ( nButton, oConfig, oFlash ) {
+                    //     alert( 'Mosue over' );
+                    // }
+                }, {
+                    'sExtends': 'pdf',
+                    'bFooter': true,
+                    'bHeader': true,
+                    // 'mColumns': [0, 1, 2, 3, 4, 5, 6, 7],
+                    'sPdfOrientation': 'landscape',
+                    'sFileName': '.pdf',
+                    'bSelectedOnly': true,
+                    'oSelectorOpts': {
+                        filter: 'applied',
+                        order: 'current'
+                    }
+                }, {
+                    'sExtends': 'csv',
+                    'sButtonText': 'CSV',
+                    'sFileName': '.csv',
+                    'bSelectedOnly': true,
+                    'oSelectorOpts': {
+                        filter: 'applied',
+                        order: 'current'
+                    }
+                }
+                // {
+                //     'sExtends': 'text',
+                //     'sButtonText': 'PNG',
+                //     'bHeader': false,
+                //     'bSelectedOnly': true,
+                //     'oSelectorOpts': {
+                //         'page': 'current'
+                //     },
+                //     'fnClick': function() {
+                //         // Convert html table to canvas element
+                //         html2canvas($(".active table"), {
+                //             onrendered: function(canvas) {
+                //                 var context = canvas.getContext("2d");
+                //                 // Save canvas to file
+                //                 canvas.toBlob(function(blob) {
+                //                     saveAs(blob, '.png');
+                //                 }); 
+                //             }
+                //         });
+                //     }
+                // }
+            ]
+
+        }]);
+
+    $scope.$on("InvokeDatatablesCtrl", function(event, args) {
+
+        console.log('Table initialisation start: ' + new Date().getTime());
+
+        var table = $('#mydatatable_id').DataTable();
+        $('#mydatatable_id')
+            .on('init.dt', function() {
+                console.log('Table initialisation complete: ' + new Date().getTime());
+                table.buttons().container().appendTo('#dt-buttons');
+            }).dataTable();
+
+
+
+        // console.log(args);
+        // console.log("Inside myDatatablesIntCtrl");
+        // $rootScope.alert = "Please wait...";
+        //              $rootScope.error = "";
+        // $.ajax({
+        //  url : args.url,
+        //  data : {},
+        //  successFunction : function(data,status,headers,config)
+        //  {
+
+        //      $scope.tabs.datatableslist = data.data;  
+
+        //  },
+        // });
+
+        // $resource(args.url).get().$promise.then(function(data)
+        //      {
+
+        //          if('code' in data && data.code == "0")
+        //          {
+        //             $rootScope.alert = data.message;
+        //             $rootScope.error = "";
+        //              if('redirect' in data && data.redirect != "")
+        //              {
+        //                  window.location = data.redirect;
+        //              }
+
+        //             $scope.tabs.viewrota.list = data.data;
+        //             //console.log($scope.tabs.viewrota.list);
+
+        //         }
+        //          else if ('error' in data && data.error != "")
+        //          {
+        //                  $rootScope.error = data.error;  
+        //          }
+
+        // });
+    });
+
+});
+{{ endcodeblock }}
+
+
+
+
+### html or ctp file 
+---- 
+{{ codeblock }}
+<div ng-show="showSummary == true" style="margin:0 auto;width:100%;overflow:auto;"  ng-controller="myDatatablesIntCtrl as mydatatable">
+
+<table id="mydatatable_id" datatable="ng" dt-options="mydatatable.dtOptions" dt-column-defs="mydatatable.dtColumnDefs" dt-instance="mydatatable.dtInstance" class="table table-striped table-bordered table-condensed">
+<thead>
+<tr>
+<th>Heading1</th>
+<th>Heading2</th>
+<th>Heading3</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="incident in list">
+<td>Column1</a></td>
+<td>Column2</td>
+<td>Column3</td>
+</tr>
+</tbody>
+</table>
+</div>
+{{ codeblock }}
+
+----     
+
