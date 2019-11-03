@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:Octopress | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:Octopress | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/octopress/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -33,14 +33,14 @@ from your ENV variables settings.</p>
 <p>An octopress plugin to upload files to AWS S3 account and Provide a tag to reference the files in your views.</p>
 
 <p>Place your files under the directory defined as your env variable S3_DIR (see enviroment variables below). When you generate your site the files will be
-uploaded to your S3 AWS account. and then you can use the tag &lsquo;AWS_S3_Image&rsquo; which allows you reference images we just hosted on Amazon S3
+uploaded to your S3 AWS account. and then you can use the tag 'AWS_S3_Image' which allows you reference images we just hosted on Amazon S3
 within your posts.  A bit of a contrived example, but it demonstrates the process of creating custom Liquid tags.</p>
 
 <p>To use it, just host some place some images in $S3_DIR (they will be made publicly accessible) and use the tag with the syntax</p>
 
 <p></p>
 
-<p>If you don&rsquo;t specify a bucket name and folder name in the view, it will look for an environment variable.</p>
+<p>If you don't specify a bucket name and folder name in the view, it will look for an environment variable.</p>
 
 <h4>Environment Variable</h4>
 
@@ -80,7 +80,7 @@ and set it as an env variable</p>
 
 <p>You will have to set up CNAME entry for your domain name , I will cover that in another post.</p>
 
-<p>Chow&hellip;  <br/>
+<p>Chow...  <br/>
 <br/></p>
 ]]></content>
   </entry>

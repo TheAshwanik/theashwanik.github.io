@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:sharepoint | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:sharepoint | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/sharepoint/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -19,7 +19,7 @@
     <updated>2013-07-29T22:09:00+01:00</updated>
     <id>http://blog.ashwani.co.in/blog/2013-07-29/access-sharepoint-webservices-from-java-behind-proxy</id>
     <content type="html"><![CDATA[<p>In my previous post I told you how to <a href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">access sharepoint webservices from java</a>
-But what if you would like to access the sharepoint from behind a proxy, let&rsquo;s say from your place of work.</p>
+But what if you would like to access the sharepoint from behind a proxy, let's say from your place of work.</p>
 
 <p>The approach for Authenticator mentioned <a href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">here</a>
 works if you only need to provide username/password <!--more--> for your sharepoint site and not for the proxy.
@@ -28,7 +28,7 @@ You can achieve this by setting up a default Authenticator as mentioned <a href=
 
 <p>But What should you do when you require the the authentication for both proxy and the sharepoint site.
 You cannot setup a single default Authenticator.  <br/>
-You would get &ldquo;ERROR 407 proxy authentication required&rdquo;, or your sharepoinnt site will deny access, based on what you setup in default autneticator.     <br/>
+You would get "ERROR 407 proxy authentication required", or your sharepoinnt site will deny access, based on what you setup in default autneticator.     <br/>
 So what must you do? Well you can use the following code, it works in my case, hope it will work for you also.</p>
 
 <p>The following approach works:  <br/>
@@ -72,11 +72,11 @@ So what must you do? Well you can use the following code, it works in my case, h
 </span><span class='line'>
 </span><span class='line'>&lt;p>public class SimpleAuthenticator  extends Authenticator
 </span><span class='line'>{
-</span><span class='line'>    private final static String proxyHost = &ldquo;proxy.co.uk&rdquo;;
-</span><span class='line'>    private final static String proxyuser = &ldquo;proxyuser&rdquo;;
-</span><span class='line'>    private final static String proxypass = &ldquo;proxypass&rdquo;;
-</span><span class='line'>    private final static String sharepointusername = &ldquo;sharepointusername&rdquo;;
-</span><span class='line'>    private final static String sharepointpassword = &ldquo;sharepointpassword&rdquo;;
+</span><span class='line'>    private final static String proxyHost = "proxy.co.uk";
+</span><span class='line'>    private final static String proxyuser = "proxyuser";
+</span><span class='line'>    private final static String proxypass = "proxypass";
+</span><span class='line'>    private final static String sharepointusername = "sharepointusername";
+</span><span class='line'>    private final static String sharepointpassword = "sharepointpassword";
 </span><span class='line'>    private String username;
 </span><span class='line'>    private final char[] password;&lt;/p>
 </span><span class='line'>
@@ -91,18 +91,18 @@ So what must you do? Well you can use the following code, it works in my case, h
 </span><span class='line'>   {
 </span><span class='line'>      String requestingHost = getRequestingHost();
 </span><span class='line'>      if (requestingHost == proxyHost){
-</span><span class='line'>          System.out.println(&ldquo;getPasswordAuthentication() request recieved from->&rdquo; + requestingHost );
+</span><span class='line'>          System.out.println("getPasswordAuthentication() request recieved from->" + requestingHost );
 </span><span class='line'>          return new PasswordAuthentication(proxyuser,proxypass.toCharArray());
 </span><span class='line'>      }
 </span><span class='line'>      else{
-</span><span class='line'>          System.out.println(&ldquo;getPasswordAuthentication() request recieved from->&rdquo; + requestingHost );
+</span><span class='line'>          System.out.println("getPasswordAuthentication() request recieved from->" + requestingHost );
 </span><span class='line'>          return new PasswordAuthentication(sharepointusername,sharepointpassword.toCharArray());
 </span><span class='line'>      }&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>   }
 </span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>In your main class , don&rsquo;t set the default Authenticator and instead use this.</p>
+<p>In your main class , don't set the default Authenticator and instead use this.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -127,7 +127,7 @@ So what must you do? Well you can use the following code, it works in my case, h
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>That&rsquo;s it.  I update the previous gist <a href="https://gist.github.com/TheAshwanik/983fde4be42022ac1f29">here</a></p>
+<p>That's it.  I update the previous gist <a href="https://gist.github.com/TheAshwanik/983fde4be42022ac1f29">here</a></p>
 
 <p><br/></p>
 ]]></content>
@@ -151,7 +151,7 @@ document.</p>
 
 <p><br/></p>
 
-<p>Let&rsquo;s Start</p>
+<p>Let's Start</p>
 
 <h4>Step 1. Download the wsdl files from the sharepoint.</h4>
 
@@ -182,8 +182,8 @@ Use the JDK wsimport.exe for this.</p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>For example:  Generate Java Stubs for these wsdls
-</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p &ldquo;com.microsoft.schemas.sharepoint.soap&rdquo; -keep -extension lists.wsdl
-</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p &ldquo;com.microsoft.schemas.sharepoint.soap&rdquo; -keep -extension versions.wsdl&lt;/p>
+</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension lists.wsdl
+</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension versions.wsdl&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>Do this for all the WSDLs you downloaded. and Import those classes in your project.&lt;/p>
 </span><span class='line'>
@@ -193,11 +193,11 @@ Use the JDK wsimport.exe for this.</p>
 
 <p>For some reason the wsimport.exe hardcodes the path to the wsdl files from your local disk.
 To avoid this you will have to place the wsdl files in your project and give resources as your buildpath.<br/>
-1. Make a directory &ldquo;Resources&rdquo; in your project, copy WSDL directory in it. <br/>
+1. Make a directory "Resources" in your project, copy WSDL directory in it. <br/>
 2. In Eclipse, Goto Project -> Properties -> Java Build Path -> Sources Tab, and add the Resources folder there. <br/>
 Now all your files under resources directory will be loaded at runtime.</p>
 
-<p>Or you can follow the second approach given in <a href="http://tugdualgrall.blogspot.co.uk/2009/02/jax-ws-how-to-configure-service-end_17.html">TUG&rsquo;S BLOG</a></p>
+<p>Or you can follow the second approach given in <a href="http://tugdualgrall.blogspot.co.uk/2009/02/jax-ws-how-to-configure-service-end_17.html">TUG'S BLOG</a></p>
 
 <h4>Step 4. Now write the actual program to connect</h4>
 
@@ -252,7 +252,7 @@ come up with this working version</p>
 </span><span class='line'>                // Somehow class.getResource() did not work for me,
 </span><span class='line'>                // so I am using class.getClassLoader.getResource()
 </span><span class='line'>                //
-</span><span class='line'>                URL wsdlURL = new URL(getInstance().getClass().getClassLoader().getResource(&ldquo;wsdl/lists.wsdl&rdquo;).toExternalForm());
+</span><span class='line'>                URL wsdlURL = new URL(getInstance().getClass().getClassLoader().getResource("wsdl/lists.wsdl").toExternalForm());
 </span><span class='line'>                Lists service = new Lists(wsdlURL);
 </span><span class='line'>                port = service.getListsSoap();
 </span><span class='line'>                ((BindingProvider) port).getRequestContext().put(BindingProvider.USERNAME_PROPERTY, username);
@@ -296,7 +296,7 @@ So you need to set endpoint URL as <a href="http://mysharepoint.com/Book%20names
 </pre></td><td class='code'><pre><code class=''><span class='line'>[Convert the URL characters] (SPClient.java)
 </span><span class='line'>    public static URL convertToURLEscapingIllegalCharacters(String string){
 </span><span class='line'>        try {
-</span><span class='line'>            String decodedURL = URLDecoder.decode(string, &ldquo;UTF-8&rdquo;);
+</span><span class='line'>            String decodedURL = URLDecoder.decode(string, "UTF-8");
 </span><span class='line'>            URL url = new URL(decodedURL);
 </span><span class='line'>            URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
 </span><span class='line'>            return uri.toURL();
@@ -311,7 +311,7 @@ So you need to set endpoint URL as <a href="http://mysharepoint.com/Book%20names
 
 <h5>Step 4.2  Display sharepoint list</h5>
 
-<p>You can display the list by giving the list name. Here I assume a list named &ldquo;Documents&rdquo; to be retrieved.
+<p>You can display the list by giving the list name. Here I assume a list named "Documents" to be retrieved.
 Otherwise you can use an ID also, which can be accessed.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -598,7 +598,7 @@ but i Did not use it.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>That&rsquo;s it for now friends.  Hope you guys will not struggle for this info.</p>
+<p>That's it for now friends.  Hope you guys will not struggle for this info.</p>
 
 <p>Cheers :)</p>
 

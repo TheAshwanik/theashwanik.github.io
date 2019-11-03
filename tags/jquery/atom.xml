@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:JQuery | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:JQuery | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/jquery/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -30,7 +30,7 @@ Frankly? The script has few bugs:<br/>
 
 <p>It has nice set of callback functions which can be invoked while to play with your XML Tree.</p>
 
-<p>I give a small idea here but head over to &lsquo;Usage and params&rsquo; section of Mitya&rsquo;s website for more detailed explanation.</p>
+<p>I give a small idea here but head over to 'Usage and params' section of Mitya's website for more detailed explanation.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializing the XML tree </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -48,12 +48,12 @@ Frankly? The script has few bugs:<br/>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>&lt;p>new XMLTree({
-</span><span class='line'>     fpath: &lsquo;../somedir/xml.xml&rsquo;,
-</span><span class='line'>     container: &lsquo;#tree&rsquo;
+</span><span class='line'>     fpath: '../somedir/xml.xml',
+</span><span class='line'>     container: '#tree'
 </span><span class='line'>});</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>By default the XML will be renedered unexpanded. But You can Render the tree Fully expanded by
-giving the startExpanded option as &lsquo;true&rsquo;</p>
+giving the startExpanded option as 'true'</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>initializing the XML tree fully expanded </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -72,8 +72,8 @@ giving the startExpanded option as &lsquo;true&rsquo;</p>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'>&lt;p>new XMLTree({
-</span><span class='line'>     fpath: &lsquo;../somedir/xml.xml&rsquo;,
-</span><span class='line'>     container: &lsquo;#tree&rsquo;,
+</span><span class='line'>     fpath: '../somedir/xml.xml',
+</span><span class='line'>     container: '#tree',
 </span><span class='line'>     startExpanded:true
 </span><span class='line'>});</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -168,10 +168,10 @@ Well thats not as simple as it sounds.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>$(document).ready(function() {&lt;/p>
 </span><span class='line'>
-</span><span class='line'>&lt;p>//LoadXML(&lsquo;XMLHolder&rsquo;,&lsquo;/assets/server.xml&rsquo;);
-</span><span class='line'>if ($(&lsquo;#tree&rsquo;).length > 0)
+</span><span class='line'>&lt;p>//LoadXML('XMLHolder','/assets/server.xml');
+</span><span class='line'>if ($('#tree').length > 0)
 </span><span class='line'>{
-</span><span class='line'>    var filepath = &lsquo;/path to xml&rsquo;&lt;/p>
+</span><span class='line'>    var filepath = '/path to xml'&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>$(function() { 
 </span><span class='line'>    new XMLTree({fpath: filepath, container: '#tree', startExpanded: true,

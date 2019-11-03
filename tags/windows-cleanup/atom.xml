@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:windows,cleanup | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:windows,cleanup | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/windows-cleanup/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -25,7 +25,7 @@
 <p>Remember, how we used to despise the windows updates and security patches eating up our diskspace. And many a times, we even used to skip
 the update with the feeling of satisfaction (just saved a lot of diskspace) <!--more--> and dissatisfaction (what if it included a critical patch).</p>
 
-<p>Well, Not anymore! We don&rsquo;t have to be in dilemma anymore. Since, Microsoft has released a very important update this time, with which we can cleanup the
+<p>Well, Not anymore! We don't have to be in dilemma anymore. Since, Microsoft has released a very important update this time, with which we can cleanup the
 otherwise outdated windows update files.</p>
 
 <p>This release is for Windows 7 SP1 machines, KB <a href="http://support.microsoft.com/kb/2852386">2852386</a> adds the ability to cleanup all the obsolete updates in the WinSxS folder.</p>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:Facebook | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:Facebook | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/facebook/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page/"/>
     <updated>2013-08-02T22:41:00+01:00</updated>
     <id>http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page</id>
-    <content type="html"><![CDATA[<p>Facebook has released a new feature. It&rsquo;s called “embedded posts”. <br/>
+    <content type="html"><![CDATA[<p>Facebook has released a new feature. It's called “embedded posts”. <br/>
 But officially, only Big Publishers can embed posts currently into their pages.</p>
 
 <p>We can also, embed the <strong>Public</strong> FB posts with a small script and trick.</p>
@@ -112,7 +112,7 @@ But officially, only Big Publishers can embed posts currently into their pages.<
 
 <p>Enjoy and Embed your FB post where ever you like.</p>
 
-<p>Courtesy: Amit Agarwal&rsquo;s <a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=0hh8lKDnFWI">Video</a></p>
+<p>Courtesy: Amit Agarwal's <a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=0hh8lKDnFWI">Video</a></p>
 
 <p><br/></p>
 ]]></content>

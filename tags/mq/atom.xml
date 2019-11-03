@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:MQ | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:MQ | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/mq/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -23,7 +23,7 @@ Hence this post.</p>
 
 <h3><a href="http://mqtt.org/">MQTT</a></h3>
 
-<p>MQTT is a machine-to-machine (M2M)/&ldquo;Internet of Things&rdquo; connectivity protocol. It was designed as an extremely</p>
+<p>MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol. It was designed as an extremely</p>
 
 <!--more-->  
 
@@ -32,7 +32,7 @@ Hence this post.</p>
 
 <h4>Demo Architecture</h4>
 
-<p><img src="https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" /></p>
+<p><img src="/assets/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link /assets/MQTT_Arch.jpg" /></p>
 
 <h2>Installing software</h2>
 
@@ -82,14 +82,14 @@ If you want to debug or auto-reload of the script, also install nodemon:
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Mosquitto/&rsquo;s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
+<p>Mosquitto/'s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t &ldquo;#&rdquo; -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
-will dump all new messages to the broker. Remember the quotes around the topic, especially with the &ldquo;#&rdquo; wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
+</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t "#" -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
+will dump all new messages to the broker. Remember the quotes around the topic, especially with the "#" wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lsquo;mosquitto_pub -t &ldquo;mosquittodemo/test&rdquo; -m &ldquo;Hi&rdquo;&rsquo; &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>'mosquitto_pub -t "mosquittodemo/test" -m "Hi"' &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>then you should see the mosquitto_sub session list the message.</p>
 
@@ -108,7 +108,7 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 
 <h4>Requirements</h4>
 
-<p>You&rsquo;ll need at least the following components:</p>
+<p>You'll need at least the following components:</p>
 
 <p>-Python 2.x (tested with 2.6 and 2.7)  <br/>
 -An MQTT broker (e.g. Mosquitto)   <br/>
@@ -151,11 +151,11 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient(&ldquo;tcp://ipAddressofBroker:1883&rdquo;, &ldquo;pahomqttpublish1&rdquo;);  &lt;br/>
+</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient("tcp://ipAddressofBroker:1883", "pahomqttpublish1");  &lt;br/>
 </span><span class='line'>client.connect();  &lt;br/>
 </span><span class='line'>MqttMessage message = new MqttMessage();   &lt;br/>
-</span><span class='line'>message.setPayload(&ldquo;A single message&rdquo;.getBytes());  &lt;br/>
-</span><span class='line'>client.publish(&ldquo;home/monitoring/+&rdquo;, message);  &lt;br/>
+</span><span class='line'>message.setPayload("A single message".getBytes());  &lt;br/>
+</span><span class='line'>client.publish("home/monitoring/+", message);  &lt;br/>
 </span><span class='line'>client.disconnect();  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><br /></p>
@@ -169,7 +169,7 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 <p>In few days I am gonna write myself a post about Google Cloud Notification service (GCM). The easiet notification service for Android notifications.</p>
 
 <p><br/>
-That&rsquo;s all folks.  Have Fun.</p>
+That's all folks.  Have Fun.</p>
 
 <p><br/></p>
 ]]></content>

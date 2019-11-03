@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:openssl | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:openssl | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/openssl/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -27,11 +27,11 @@
 <!--more-->
 
 
-<p><img class="left_aligned_image  <a" src="href="https://dl.dropboxusercontent.com/u/118338831/heartbleed.svg">https://dl.dropboxusercontent.com/u/118338831/heartbleed.svg</a>" width="350" height="350" title="&ldquo;Heartbleed SVG&rdquo; &ldquo;HeartBleed SVG image&rdquo;" ></p>
+<p><img class="left_aligned_image" src="/assets/heartbleed.svg" width="350" height="350" title="Heartbleed SVG" alt="HeartBleed SVG image"></p>
 
 <p>As Bruce Schneier, a renowned security expert, said in a <a href="https://www.schneier.com/blog/archives/2014/04/heartbleed.html">blog post</a> on Wednesday:</p>
 
-<h4>&ldquo;Heartbleed is a catastrophic bug &hellip; on a scale of one to 10, it is an 11.&rdquo;</h4>
+<h4>"Heartbleed is a catastrophic bug . . . on a scale of one to 10, it is an 11."</h4>
 
 <p>According the <a href="http://heartbleed.com/">Heartbleed website</a> dedicated for this bug:</p>
 
@@ -51,7 +51,7 @@ And you have to assume that it is all compromised. All of it.</p>
 
 <p><br/>
 <br/>
-<img class="<a" src="href="http://imgs.xkcd.com/comics/heartbleed_explanation.png">http://imgs.xkcd.com/comics/heartbleed_explanation.png</a>" title="&ldquo;xkcd Heartbleed cartoon explanation&rdquo; &ldquo;HeartBleed xkcd cartoon&rdquo;" ></p>
+<img class="<a" src="href="http://imgs.xkcd.com/comics/heartbleed_explanation.png">http://imgs.xkcd.com/comics/heartbleed_explanation.png</a>" title="xkcd Heartbleed cartoon explanation" alt="HeartBleed xkcd cartoon"></p>
 
 <p><br/>
 <br/>

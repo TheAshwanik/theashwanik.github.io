@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:rails, | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/rails-/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2019-11-03T09:30:59+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to use create ajax dropdown from database models in Rails]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2018-05-02/how-to-use-create-ajax-dropdown-from-database-models-in-rails/"/>
+    <updated>2018-05-02T20:17:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-05-02/how-to-use-create-ajax-dropdown-from-database-models-in-rails</id>
+    <content type="html"><![CDATA[<p>This post is about quick demo of Ajax based dropdown in rails.
+The dropdown fetches the data from a collection in database.</p>
+
+<!--more-->
+
+
+<h3>index.html.erb</h3>
+
+<hr />
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;div>
+</span><span class='line'>&lt;%= f.collection_select :vertical, @verticals, :vertical, :vertical, {:prompt => "Select a Vertical"}, {:class => "dropdown_vertical btn btn-default dropdown-toggle"} %>
+</span><span class='line'>
+</span><span class='line'>&lt;%= f.collection_select :subVertical, @subVerticals, :subVertical, :subVertical, {:prompt => "Select a Sub Vertical"}, {:class => "dropdown_subVertical btn btn-default dropdown-toggle"} %>
+</span><span class='line'>
+</span><span class='line'>&lt;/div>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>custom.js</h3>
+
+<hr />
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$("#search_vertical").on('change', function(){
+</span><span class='line'>var listitems = [];&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$.ajax({
+</span><span class='line'>      url: "populate_subVerticals",
+</span><span class='line'>      type: "GET",
+</span><span class='line'>      data: {vertical_name: $(this).val()},
+</span><span class='line'>      success: function(data) {
+</span><span class='line'>      $("#search_subVertical").children().remove();
+</span><span class='line'>      $("#search_subVertical").append('&lt;option value=>' + "Select a Sub Vertical" + '&lt;/option>');
+</span><span class='line'>      $.each(data,function(key, value)
+</span><span class='line'>      {
+</span><span class='line'>      listitems += '&lt;option value="' + value.subVertical + '">' + value.subVertical + '&lt;/option>';
+</span><span class='line'>      });&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  $("#search_subVertical").append(listitems);
+</span><span class='line'>
+</span><span class='line'>  }
+</span><span class='line'>})
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p>});&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>Controller</h3>
+
+<hr />
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def populate_subVerticals
+</span><span class='line'>    vertical_name = params[:vertical_name]
+</span><span class='line'>    @verticals = Vertical.where(:vertical => vertical_name).select("id","subVertical").all
+</span><span class='line'>    respond_to do |format|
+</span><span class='line'>      format.json { render json: @verticals }
+</span><span class='line'>    end
+</span><span class='line'>  end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3>routes.rb file</h3>
+
+<hr />
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>get 'populate_subVerticals', to: 'verticals#populate_subVerticals'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<hr />
+
+<p>That's it folks.</p>
+]]></content>
+  </entry>
+  
+</feed>

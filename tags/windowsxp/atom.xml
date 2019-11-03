@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:windowsxp | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:windowsxp | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/windowsxp/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp/"/>
     <updated>2014-03-07T23:25:00+00:00</updated>
     <id>http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp</id>
-    <content type="html"><![CDATA[<p>The long loved , super user friendly Operating System&rsquo;s Life is going to see the last light in few days. <br/>
+    <content type="html"><![CDATA[<p>The long loved , super user friendly Operating System's Life is going to see the last light in few days. <br/>
 Windows XP, the cornerstone of most PC users for the past 10+ years, is being officially phased out.</p>
 
 <!--more-->
@@ -46,17 +46,17 @@ Microsoft has publicly stated that no new patches will be released for the OS af
 <li>Add .vdi extension to VirtualXPVHD</li>
 <li>Create new machine in VirtualBox, specifying VirtualXPVHD.vdi as the hard disk</li>
 <li>Once initial setup is complete, uninstall Virtual PC Integration Components from Add/Remove Control Panel</li>
-<li>Install Guest Additions (Devices > Install Guest Additions&hellip;)</li>
+<li>Install Guest Additions (Devices > Install Guest Additions...)</li>
 </ol>
 
 
 <p>Once you start the Virtual Box, you will be asked to activate windows-xp. But wait, I do not have activation code, I thought this process was for free.
-Hold on, don&rsquo;t jump your horses..Follow the next steps.</p>
+Hold on, don't jump your horses..Follow the next steps.</p>
 
 <ol>
 <li>Shut down virtual machine</li>
 <li>Download pcbios.bin (MD5: 12ccdc652b30c6d1e307c6f7deff5d24) from <a href="http://www.vmlite.com/index.php?option=com_kunena&amp;Itemid=158&amp;func=view&amp;catid=9&amp;id=6706&amp;limit=6&amp;limitstart=12#8420">VMLite</a> and copy to a directory on host computer (e.g., C:\vm)</li>
-<li>Run the command: &ldquo;C:\Program Files\Oracle\VirtualBox\VBoxMange.exe&rdquo; setextradata vm-name &ldquo;VBoxInternal/Devices/pcbios/0/Config/BiosRom&rdquo; &ldquo;c:\vm\pcbios.bin&rdquo;</li>
+<li>Run the command: "C:\Program Files\Oracle\VirtualBox\VBoxMange.exe" setextradata vm-name "VBoxInternal/Devices/pcbios/0/Config/BiosRom" "c:\vm\pcbios.bin"</li>
 </ol>
 
 

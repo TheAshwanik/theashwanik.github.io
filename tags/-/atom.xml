@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:, | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -80,7 +80,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
 </span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
-</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport --dports &lt;port> -j fail2ban-&lt;name>
 </span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
@@ -211,13 +211,13 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>&lt;/body>
 </span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Here is the output plotted on the map&hellip; :)</p>
+<p>Here is the output plotted on the map... :)</p>
 
 <p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
 
-<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+<p>hmm.. lot of friendly visits from China and Russia... :)</p>
 
-<p>Chow&hellip;</p>
+<p>Chow...</p>
 
 <p><br/></p>
 ]]></content>
@@ -290,7 +290,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
 </span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
-</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport --dports &lt;port> -j fail2ban-&lt;name>
 </span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
@@ -421,13 +421,13 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>&lt;/body>
 </span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Here is the output plotted on the map&hellip; :)</p>
+<p>Here is the output plotted on the map... :)</p>
 
 <p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
 
-<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+<p>hmm.. lot of friendly visits from China and Russia... :)</p>
 
-<p>Chow&hellip;</p>
+<p>Chow...</p>
 
 <p><br/></p>
 ]]></content>
@@ -481,7 +481,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>It will prompt you for your repository URL.
 </span><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com)
 </span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -510,7 +510,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>$ rake generate
 </span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git commit -am "Some comment here."
 </span><span class='line'>$ git push origin source  # update the remote source branch
 </span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
 </span><span class='line'>
@@ -530,7 +530,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 <ol>
 <li>Rubypants is removed.</li>
 <li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
-<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans's technique</li>
 <li>Category Generator gives you archive pages for each category</li>
 <li>Sitemap.xml Generator for search engines</li>
 </ol>
@@ -569,20 +569,20 @@ The error message said:</p>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
-</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        date_format = self.site.config['date_format']
 </span><span class='line'>        self.data.deep_merge({
-</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>            "url"               => self.url,
+</span><span class='line'>            "date"              => self.date,
 </span><span class='line'>            # Monkey patch
-</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>            "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>            "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>            "id"                => self.id,
+</span><span class='line'>            "categories"        => self.categories,
+</span><span class='line'>            "next"              => self.next,
+</span><span class='line'>            "previous"          => self.previous,
+</span><span class='line'>            "tags"              => self.tags,
+</span><span class='line'>            "content"           => self.content })
 </span><span class='line'>    end&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -611,20 +611,20 @@ The error message said:</p>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
-</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      date_format = self.site.config['date_format']
 </span><span class='line'>      new_datas = {
-</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>        "url"               => self.url,
+</span><span class='line'>        "date"              => self.date,
 </span><span class='line'>        # Monkey patch
-</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>        "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>        "id"                => self.id,
+</span><span class='line'>        "categories"        => self.categories,
+</span><span class='line'>        "next"              => self.next,
+</span><span class='line'>        "previous"          => self.previous,
+</span><span class='line'>        "tags"              => self.tags,
+</span><span class='line'>        "content"           => self.content }&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
 </span><span class='line'>end
@@ -634,7 +634,7 @@ The error message said:</p>
 
 <p>Notice the use of deep_merge_hashes above.</p>
 
-<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed "bundle exec rake gen_deploy"</p>
 
 <p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
 
@@ -657,10 +657,10 @@ And install curb manually.</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
-</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
-</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
-</span><span class='line'>This could take a while&hellip;
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit...
+</span><span class='line'>Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
+</span><span class='line'>This could take a while...
 </span><span class='line'>Successfully installed curb-0.7.18
 </span><span class='line'>Installing ri documentation for curb-0.7.18
 </span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -677,14 +677,14 @@ And install curb manually.</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
-</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake new_post["title"]
 </span><span class='line'>bundle exec rake preview
 </span><span class='line'>bundle exec rake generate&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>git add .
-</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git commit -m 'site updated'
 </span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>There were other errors which I somehow resolved.</p>
@@ -748,7 +748,7 @@ And install curb manually.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>It will prompt you for your repository URL.
 </span><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com)
 </span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -777,7 +777,7 @@ And install curb manually.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>$ rake generate
 </span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git commit -am "Some comment here."
 </span><span class='line'>$ git push origin source  # update the remote source branch
 </span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
 </span><span class='line'>
@@ -797,7 +797,7 @@ And install curb manually.</p>
 <ol>
 <li>Rubypants is removed.</li>
 <li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
-<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans's technique</li>
 <li>Category Generator gives you archive pages for each category</li>
 <li>Sitemap.xml Generator for search engines</li>
 </ol>
@@ -836,20 +836,20 @@ The error message said:</p>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
-</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        date_format = self.site.config['date_format']
 </span><span class='line'>        self.data.deep_merge({
-</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>            "url"               => self.url,
+</span><span class='line'>            "date"              => self.date,
 </span><span class='line'>            # Monkey patch
-</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>            "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>            "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>            "id"                => self.id,
+</span><span class='line'>            "categories"        => self.categories,
+</span><span class='line'>            "next"              => self.next,
+</span><span class='line'>            "previous"          => self.previous,
+</span><span class='line'>            "tags"              => self.tags,
+</span><span class='line'>            "content"           => self.content })
 </span><span class='line'>    end&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -878,20 +878,20 @@ The error message said:</p>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
-</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      date_format = self.site.config['date_format']
 </span><span class='line'>      new_datas = {
-</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>        "url"               => self.url,
+</span><span class='line'>        "date"              => self.date,
 </span><span class='line'>        # Monkey patch
-</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>        "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>        "id"                => self.id,
+</span><span class='line'>        "categories"        => self.categories,
+</span><span class='line'>        "next"              => self.next,
+</span><span class='line'>        "previous"          => self.previous,
+</span><span class='line'>        "tags"              => self.tags,
+</span><span class='line'>        "content"           => self.content }&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
 </span><span class='line'>end
@@ -901,7 +901,7 @@ The error message said:</p>
 
 <p>Notice the use of deep_merge_hashes above.</p>
 
-<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed "bundle exec rake gen_deploy"</p>
 
 <p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
 
@@ -924,10 +924,10 @@ And install curb manually.</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
-</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
-</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
-</span><span class='line'>This could take a while&hellip;
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit...
+</span><span class='line'>Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
+</span><span class='line'>This could take a while...
 </span><span class='line'>Successfully installed curb-0.7.18
 </span><span class='line'>Installing ri documentation for curb-0.7.18
 </span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -944,14 +944,14 @@ And install curb manually.</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
-</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake new_post["title"]
 </span><span class='line'>bundle exec rake preview
 </span><span class='line'>bundle exec rake generate&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>git add .
-</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git commit -m 'site updated'
 </span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>There were other errors which I somehow resolved.</p>
@@ -977,7 +977,7 @@ Hence this post.</p>
 
 <h3><a href="http://mqtt.org/">MQTT</a></h3>
 
-<p>MQTT is a machine-to-machine (M2M)/&ldquo;Internet of Things&rdquo; connectivity protocol. It was designed as an extremely</p>
+<p>MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol. It was designed as an extremely</p>
 
 <!--more-->  
 
@@ -986,7 +986,7 @@ Hence this post.</p>
 
 <h4>Demo Architecture</h4>
 
-<p><img src="https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link https://dl.dropboxusercontent.com/u/118338831/MQTT_Arch.jpg" /></p>
+<p><img src="/assets/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link /assets/MQTT_Arch.jpg" /></p>
 
 <h2>Installing software</h2>
 
@@ -1036,14 +1036,14 @@ If you want to debug or auto-reload of the script, also install nodemon:
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Mosquitto/&rsquo;s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
+<p>Mosquitto/'s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t &ldquo;#&rdquo; -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
-will dump all new messages to the broker. Remember the quotes around the topic, especially with the &ldquo;#&rdquo; wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
+</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t "#" -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
+will dump all new messages to the broker. Remember the quotes around the topic, especially with the "#" wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lsquo;mosquitto_pub -t &ldquo;mosquittodemo/test&rdquo; -m &ldquo;Hi&rdquo;&rsquo; &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</pre></td><td class='code'><pre><code class=''><span class='line'>'mosquitto_pub -t "mosquittodemo/test" -m "Hi"' &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>then you should see the mosquitto_sub session list the message.</p>
 
@@ -1062,7 +1062,7 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 
 <h4>Requirements</h4>
 
-<p>You&rsquo;ll need at least the following components:</p>
+<p>You'll need at least the following components:</p>
 
 <p>-Python 2.x (tested with 2.6 and 2.7)  <br/>
 -An MQTT broker (e.g. Mosquitto)   <br/>
@@ -1105,11 +1105,11 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient(&ldquo;tcp://ipAddressofBroker:1883&rdquo;, &ldquo;pahomqttpublish1&rdquo;);  &lt;br/>
+</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient("tcp://ipAddressofBroker:1883", "pahomqttpublish1");  &lt;br/>
 </span><span class='line'>client.connect();  &lt;br/>
 </span><span class='line'>MqttMessage message = new MqttMessage();   &lt;br/>
-</span><span class='line'>message.setPayload(&ldquo;A single message&rdquo;.getBytes());  &lt;br/>
-</span><span class='line'>client.publish(&ldquo;home/monitoring/+&rdquo;, message);  &lt;br/>
+</span><span class='line'>message.setPayload("A single message".getBytes());  &lt;br/>
+</span><span class='line'>client.publish("home/monitoring/+", message);  &lt;br/>
 </span><span class='line'>client.disconnect();  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><br /></p>
@@ -1123,7 +1123,7 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 <p>In few days I am gonna write myself a post about Google Cloud Notification service (GCM). The easiet notification service for Android notifications.</p>
 
 <p><br/>
-That&rsquo;s all folks.  Have Fun.</p>
+That's all folks.  Have Fun.</p>
 
 <p><br/></p>
 ]]></content>

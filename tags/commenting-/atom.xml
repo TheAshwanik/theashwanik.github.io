@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:commenting, | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:commenting, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/commenting-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Commenting or Uncomment a block of text in Vi]]></title>
     <link href="http://blog.ashwani.co.in/blog/2018-03-09/commenting-or-uncomment-a-block-of-text-in-vi/"/>
-    <updated>2018-03-09T10:43:07+00:00</updated>
+    <updated>2018-03-09T10:43:00+00:00</updated>
     <id>http://blog.ashwani.co.in/blog/2018-03-09/commenting-or-uncomment-a-block-of-text-in-vi</id>
     <content type="html"><![CDATA[<p>Sometimes we do want to comment or uncomment a block of lines together in VI editor.
 I struggle sometimes, so here are some tips.</p>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:Octopress, | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:Octopress, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/octopress-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -61,7 +61,7 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p>It will prompt you for your repository URL.
 </span><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, &lsquo;git@github.com:your_username/your_username.github.com)
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com)
 </span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -90,7 +90,7 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p>$ rake generate
 </span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am &ldquo;Some comment here.&rdquo;
+</span><span class='line'>$ git commit -am "Some comment here."
 </span><span class='line'>$ git push origin source  # update the remote source branch
 </span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
 </span><span class='line'>
@@ -110,7 +110,7 @@
 <ol>
 <li>Rubypants is removed.</li>
 <li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
-<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans&rsquo;s technique</li>
+<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans's technique</li>
 <li>Category Generator gives you archive pages for each category</li>
 <li>Sitemap.xml Generator for search engines</li>
 </ol>
@@ -149,20 +149,20 @@ The error message said:</p>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
-</span><span class='line'>        date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>        date_format = self.site.config['date_format']
 </span><span class='line'>        self.data.deep_merge({
-</span><span class='line'>            &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>            &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>            &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>            "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>            "url"               => self.url,
+</span><span class='line'>            "date"              => self.date,
 </span><span class='line'>            # Monkey patch
-</span><span class='line'>            &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>            &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>            &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>            &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>            &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>            &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>            &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>            &ldquo;content&rdquo;           => self.content })
+</span><span class='line'>            "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>            "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>            "id"                => self.id,
+</span><span class='line'>            "categories"        => self.categories,
+</span><span class='line'>            "next"              => self.next,
+</span><span class='line'>            "previous"          => self.previous,
+</span><span class='line'>            "tags"              => self.tags,
+</span><span class='line'>            "content"           => self.content })
 </span><span class='line'>    end&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -191,20 +191,20 @@ The error message said:</p>
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
-</span><span class='line'>      date_format = self.site.config[&lsquo;date_format&rsquo;]
+</span><span class='line'>      date_format = self.site.config['date_format']
 </span><span class='line'>      new_datas = {
-</span><span class='line'>        &ldquo;title&rdquo;             => self.data[&lsquo;title&rsquo;] || self.slug.split(&lsquo;-&rsquo;).select {|w| w.capitalize! || w }.join(&lsquo; &rsquo;),
-</span><span class='line'>        &ldquo;url&rdquo;               => self.url,
-</span><span class='line'>        &ldquo;date&rdquo;              => self.date,
+</span><span class='line'>        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>        "url"               => self.url,
+</span><span class='line'>        "date"              => self.date,
 </span><span class='line'>        # Monkey patch
-</span><span class='line'>        &ldquo;date_formatted&rdquo;    => format_date(self.date, date_format),
-</span><span class='line'>        &ldquo;updated_formatted&rdquo; => self.data.has_key?(&lsquo;updated&rsquo;) ? format_date(self.data[&lsquo;updated&rsquo;], date_format) : nil,
-</span><span class='line'>        &ldquo;id&rdquo;                => self.id,
-</span><span class='line'>        &ldquo;categories&rdquo;        => self.categories,
-</span><span class='line'>        &ldquo;next&rdquo;              => self.next,
-</span><span class='line'>        &ldquo;previous&rdquo;          => self.previous,
-</span><span class='line'>        &ldquo;tags&rdquo;              => self.tags,
-</span><span class='line'>        &ldquo;content&rdquo;           => self.content }&lt;/p>
+</span><span class='line'>        "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>        "id"                => self.id,
+</span><span class='line'>        "categories"        => self.categories,
+</span><span class='line'>        "next"              => self.next,
+</span><span class='line'>        "previous"          => self.previous,
+</span><span class='line'>        "tags"              => self.tags,
+</span><span class='line'>        "content"           => self.content }&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
 </span><span class='line'>end
@@ -214,7 +214,7 @@ The error message said:</p>
 
 <p>Notice the use of deep_merge_hashes above.</p>
 
-<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed &ldquo;bundle exec rake gen_deploy&rdquo;</p>
+<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed "bundle exec rake gen_deploy"</p>
 
 <p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
 
@@ -237,10 +237,10 @@ And install curb manually.</p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v &lsquo;0.7.18&rsquo; &ndash; &ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include
-</span><span class='line'>Temporarily enhancing PATH to include DevKit&hellip;
-</span><span class='line'>Building native extensions with: &lsquo;&ndash;with-curl-lib=C:\libcurl\bin &ndash;with-curl-include=C:\libcurl\include&rsquo;
-</span><span class='line'>This could take a while&hellip;
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit...
+</span><span class='line'>Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
+</span><span class='line'>This could take a while...
 </span><span class='line'>Successfully installed curb-0.7.18
 </span><span class='line'>Installing ri documentation for curb-0.7.18
 </span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
@@ -257,14 +257,14 @@ And install curb manually.</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
-</span><span class='line'>bundle exec rake new_post[&ldquo;title&rdquo;]
+</span><span class='line'>bundle exec rake new_post["title"]
 </span><span class='line'>bundle exec rake preview
 </span><span class='line'>bundle exec rake generate&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>git add .
-</span><span class='line'>git commit -m &lsquo;site updated&rsquo;
+</span><span class='line'>git commit -m 'site updated'
 </span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>There were other errors which I somehow resolved.</p>

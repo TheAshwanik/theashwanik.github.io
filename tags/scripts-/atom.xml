@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:scripts, | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:scripts, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/scripts-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -16,10 +16,10 @@
   <entry>
     <title type="html"><![CDATA[PowerShell script to parse multiple Robocopy log files]]></title>
     <link href="http://blog.ashwani.co.in/blog/2019-01-12/powershell-script-to-parse-multiple-robocopy-log-files/"/>
-    <updated>2019-01-12T10:56:46+00:00</updated>
+    <updated>2019-01-12T10:56:00+00:00</updated>
     <id>http://blog.ashwani.co.in/blog/2019-01-12/powershell-script-to-parse-multiple-robocopy-log-files</id>
     <content type="html"><![CDATA[<p>Recently came across a problem of parsing a robocopy logs at work.
-I found this helpful sccript, so reblogging for my future reference.</p>
+I found this helpful script, so reblogging for my future reference.</p>
 
 <p> This is a PowerShell script that can be used to parse multiple Robocopy log files.</p>
 

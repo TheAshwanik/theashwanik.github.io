@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag:IP-block | Ashwani Kumar]]></title>
+  <title><![CDATA[Tag:IP-block | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/ip-block/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-02T19:00:31+00:00</updated>
+  <updated>2019-11-03T09:30:59+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -80,7 +80,7 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>actionstart = iptables -N fail2ban-&lt;name>
 </span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
-</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport &ndash;dports &lt;port> -j fail2ban-&lt;name>
+</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport --dports &lt;port> -j fail2ban-&lt;name>
 </span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;h1>Option:  actionban&lt;/h1>
@@ -211,13 +211,13 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 </span><span class='line'>&lt;/body>
 </span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>Here is the output plotted on the map&hellip; :)</p>
+<p>Here is the output plotted on the map... :)</p>
 
 <p><img src="/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
 
-<p>hmm.. lot of friendly visits from China and Russia&hellip; :)</p>
+<p>hmm.. lot of friendly visits from China and Russia... :)</p>
 
-<p>Chow&hellip;</p>
+<p>Chow...</p>
 
 <p><br/></p>
 ]]></content>
