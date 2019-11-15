@@ -11,6 +11,7 @@ description: This is my personal blog I use for expressing my views, to document
 keywords: TheAshwaniK, Ashwani Kumar Blog, Blog , Functional Blog, Technical Blog, Telecom Blog, KIS , Kabira, Kabira provisioning , KPSA, Development, provisioning
 #prof_website: www.ashwani.co.in
 stackoverflow: https://stackoverflow.com/users/1915916/theashwanik?tab=badges
+stackoverflow_name: theashwanik
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
