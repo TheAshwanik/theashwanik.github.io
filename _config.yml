@@ -9,7 +9,8 @@ author: Ashwani Kumar
 simple_search: http://google.com/search
 description: This is my personal blog I use for expressing my views, to document the issues I encountered and to help give something back to the world.
 keywords: TheAshwaniK, Ashwani Kumar Blog, Blog , Functional Blog, Technical Blog, Telecom Blog, KIS , Kabira, Kabira provisioning , KPSA, Development, provisioning
-prof_website: www.ashwani.co.in
+#prof_website: www.ashwani.co.in
+stackoverflow: https://stackoverflow.com/users/1915916/theashwanik?tab=badges
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -158,3 +159,6 @@ plugins:
   - octopress-paginate
   - octopress-debugger
 
+
+# Posts in the sidebar Popular Posts section
+#popular_posts_count: 5

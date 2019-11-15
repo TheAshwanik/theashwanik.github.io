@@ -5,10 +5,10 @@
 [[ -s "/home/theashwanik/.rvm/scripts/rvm" ]] && source "/home/theashwanik/.rvm/scripts/rvm"  
 
 # Create static site
-rake generate
+bundle exec rake generate
 
 # Publish site to GitHub
-rake deploy
+bundle exec rake deploy
 
 # Fetch the optional commit message (as an argument)
 if [[ -z "$1" ]]; then 
