@@ -2,8 +2,8 @@
 layout: post
 title: Simple Port Forwarding script
 description: Simple script to find a free port and perform  Port Forwarding
-date: 2013-01-15 19:29
-date_formatted: 2013-01-15 19:29
+date: 2019-05-15 19:29
+date_formatted: 2019-05-15 19:29
 comments: true
 categories: Technical
 tags: SSH, Port Forwarding, Tunneling
