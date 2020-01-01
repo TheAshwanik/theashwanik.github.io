@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-15T19:19:59+00:00</updated>
+  <updated>2020-01-01T22:44:41+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -14,21 +14,368 @@
 
   
   <entry>
+    <title type="html"><![CDATA[AWS Active Directory with OpenVPN]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-12-28/aws-active-directory-with-openvpn/"/>
+    <updated>2019-12-28T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-12-28/aws-active-directory-with-openvpn</id>
+    <content type="html"><![CDATA[<p>Many wonder what the benefits of Active Directory are in the modern era. We can leverage Active Directory to control access to resources. One absolutely great feature is Group Policy Objects (GPOs). GPOs enables seamless monitoring of Windows machines with Policies like OS updates, screen lock, and more.</p>
+
+
+
+
+<p>Recently I did some probono work for one of the commpanies in UK and thought of documenting some setup required for <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html">AWS MS Active Directory <!--more--> - Aka. Directory Services</a> and <a href="https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/">OpenVPN</a></p>
+
+
+
+
+<h3>Prerequistites</h3>
+
+
+
+
+<ol>
+<li><a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_create_directory.html">Launch Active Directory</a></li>
+<li>Setup you own EC2 instance and install Open VPN, or <a href="https://aws.amazon.com/marketplace/pp/OpenVPN-Inc-OpenVPN-Access-Server/B00MI40CAE">Launch OpenVPN Access Server from AWS Market place</a></li>
+<li>You will need an EC2 instance to manage the Active Directory objects, See further how to Install the Active Directory Administration Tools on Windows Server 2016</li>
+</ol>
+
+
+
+
+<h3>Target Architecture</h3>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/assets/AWS-VPN-AD-Architeture.jpg" width="800" height="600" title="AWS-VPN-AD-Architeture" alt="AWS-VPN-AD-Architeture Image"></p>
+
+
+
+
+<!-- <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://lh3.googleusercontent.com/d/13tbYV0DdzptknM0VFIVWzDjrO3qxo76H?authuser=0"> -->
+
+
+
+
+<h3>Active Directory Management</h3>
+
+
+
+
+<p><a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_manage_users_groups.html">Manage Users and Groups in AWS Managed Microsoft AD</a>  <br/>
+<a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_manage_users_groups_create_user.html">Create User</a></p>
+
+
+
+
+<h3>Manually Join EC2 Instance to the AD</h3>
+
+
+
+
+<p>To <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/join_windows_instance.html">manually join</a> an existing Amazon EC2 Windows instance to a Simple AD or AWS Directory Service for Microsoft Active Directory directory, the instance must be launched as specified in <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/launching_instance.html">Seamlessly Join a Windows EC2 Instance</a></p>
+
+
+
+
+<p>To join a Windows instance to a Simple AD or AWS Managed Microsoft AD directory <br/>
+Connect to the instance using any Remote Desktop Protocol client. <br/>
+Open the TCP/IPv4 properties dialog box on the instance. <br/>
+Open Network Connections usisng command.    <br/>
+<code>
+%SystemRoot%\system32\control.exe ncpa.cpl
+</code>  <br/>
+Change the DNS server addresses, change the Preferred DNS server and Alternate DNS server addresses to the IP addresses of the AWS Directory Service-provided DNS servers.</p>
+
+
+
+
+<p>Open the System Properties dialog box for the instance, select the Computer Name tab, and choose Change.  <br/>
+<code>
+Use command %SystemRoot%\system32\control.exe sysdm.cpl
+</code></p>
+
+
+
+
+<p>In the Member of field, select Domain, enter the fully-qualified name of your AWS Directory Service directory, and choose OK.  <br/>
+When prompted for the name and password for the domain administrator, enter the username and password of an account that has domain join privileges.   <br/>
+For more information about delegating these privileges, see Delegate Directory Join Privileges for AWS Managed Microsoft AD.</p>
+
+
+
+
+<p>Note: <br/>
+You can enter either the fully-qualified name of your domain or the NetBios name, followed by a backslash (), and then the user name, in this case, Admin. For example, corp.example.com\Admin or corp\Admin.</p>
+
+
+
+
+<p>Restart the instance to have the changes take effect.</p>
+
+
+
+
+<h3>To allow domain users RDP access to the domain joined Windows instances, follow these steps:</h3>
+
+
+
+
+<p>You will get error "The connection was denied because the user account is not authorized for remote login."  <br/>
+To solve it follow this:  <br/>
+Connect to your Windows EC2 instance using RDP.   <br/>
+Create a user. Repeat this step if you need more than one user.   <br/>
+Create a security group.  <br/>
+Add the new users to the new security group.  <br/>
+Open Group Policy Management. Select your domain.s Forest, expand Domains, and then expand your domain name.  <br/>
+Expand your delegated OU (NetBIOS name of the directory). Open the context (right-click) menu for Computers, and then choose Create a GPO in this domain, and Link it here.  <br/>
+For Name, enter a name, and then choose Ok.   <br/>
+In the navigation pane, expand Computers. Open the context (right-click) menu for the policy, and then choose Edit.   <br/>
+In the Computer Configuration section of the navigation pane, expand Preferences, Control Panel Settings.  <br/>
+Open the context (right-click) menu for Local Users and Groups, and then choose New, Local Group.   <br/>
+For Group name, choose Remote Desktop Users (built-in), and then choose Add.    <br/>
+For Name, enter the name of the security group that you created in step 3, and then choose Ok.  <br/>
+This policy updates your environment at the next policy refresh interval. To force the policy to apply immediately, run the gpupdate /force command on the target server.</p>
+
+
+
+
+<h3>Install the Active Directory Administration Tools on Windows Server 2016</h3>
+
+
+
+
+<p>Open Server Manager from the Start screen by choosing Server Manager. <br/>
+In the Server Manager Dashboard, choose Add roles and features, <br/>
+In the Add Roles and Features Wizard choose Installation Type, select Role-based or feature-based installation, and choose Next.   <br/>
+Under Server Selection, make sure the local server is selected, and choose Features in the left navigation pane.  <br/>
+In the Features tree, open Remote Server Administration Tools, Role Administration Tools, select AD DS and AD LDS Tools, scroll down and select DNS Server Tools, and then choose Next.  <br/>
+Review the information and choose Install. When the feature installation is finished, the Active Directory tools are available on the Start screen in the Administrative Tools folder.</p>
+
+
+
+
+<h3>Manage GPO permissions</h3>
+
+
+
+
+<p><a href="https://www.lepide.com/how-to/assign-permissions-to-files-folders-through-group-policy.html">..</a></p>
+
+
+
+
+<h3>Open VPN</h3>
+
+
+
+
+<p><a href="https://openvpn.net/vpn-server-resources/how-to-authenticate-users-with-active-directory/">Authenticate VPN using LDAP</a>   <br/>
+<a href="https://openvpn.net/vpn-server-resources/openvpn-access-server-on-active-directory-via-ldap/">Authenticate VPN using LDAP - Another article</a></p>
+
+
+
+
+<h4>Further Readings:</h4>
+
+
+
+
+<p><a href="https://aws.amazon.com/blogs/security/how-to-set-up-dns-resolution-between-on-premises-networks-and-aws-using-aws-directory-service-and-microsoft-active-directory/">How to Set Up DNS Resolution Between On-Premises Networks and AWS Using AWS Directory Service and Microsoft Active Directory</a>    <br/>
+<a href="https://aws.amazon.com/blogs/security/how-to-easily-log-on-to-aws-services-by-using-your-on-premises-active-directory/">How to Easily Log On to AWS Services by Using Your On-Premises Active Directory</a></p>
+
+
+
+
+<p>Hope this will help someone.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Proxies Explained or Demystified]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-11-02/proxies-explained-or-demystified/"/>
+    <updated>2019-11-02T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-11-02/proxies-explained-or-demystified</id>
+    <content type="html"><![CDATA[<p>Proxy is Essentially, a middle man.
+When dealing with computers the concept is largely the same. A web proxy is simply a bit of software that will relay a HTTP request for you.</p>
+
+
+
+
+<p>This post is about - Proxies Made Easy or as my good friend at <a href="verygoodsecurity.com">very good security</a> say - "Proxies Demystified.."</p>
+
+
+
+
+<h3>What is a Proxy</h3>
+
+
+
+
+<p>HTTP Proxies are an essential component when using the internet day to day - load balancers, routers, content <!--more--> accelerators, content protection systems, these are all simple examples of web proxies and they all act as intermediaries to send your HTTP requests where they need to go, anonymize requests, handle routing of traffic, speed up the net, and many other uses.</p>
+
+
+
+
+<p><a href="https://www.google.com/search?q=what+is+a+proxy">Google defines</a> a proxy as</p>
+
+
+
+
+<pre><code>the authority to represent someone else
+</code></pre>
+
+
+
+
+<p>When it comes down to it, most web proxies fall into two camps:</p>
+
+
+
+
+<ol>
+<li><strong>Reverse Proxies</strong> - A reverse proxy is usually an internal-facing proxy used as a front-end to control and protect access to servers on a private network. A reverse proxy commonly also performs tasks such as load-balancing, authentication, decryption or caching.</li>
+<li><strong>Forward Proxies</strong> - A forward proxy is an Internet-facing proxy used to retrieve from a wide range of sources.
+Let.s look at these two types in more detail</li>
+</ol>
+
+
+
+
+<h3>What is a Reverse Proxy</h3>
+
+
+
+
+<p>You.re probably using a reverse proxy in order to view this content. When you make a request to the server that serves this blog post it will pass through a load balancer. This load balancer is a type of reverse proxy. Reverse proxies will sit in front of one of more servers and distribute requests to these servers. Common examples of these would be Nginx.s proxy_pass module, HAProxy, Squid, and AWS. ELB.</p>
+
+
+
+
+<p>Let.s look at an example of a reverse proxy:</p>
+
+
+
+
+<p>Reverse Proxy
+<a href="https://upload.wikimedia.org/wikipedia/commons/6/67/Reverse_proxy_h2g2bob.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Reverse_proxy_h2g2bob.svg" alt="N|Solid" /></a></p>
+
+
+
+
+<p>You can see in this graphic that the reverse proxy receives a request from a client on the internet and retrieves the requested resources from one of more servers that sit behind it. To the client there is no knowledge required of the servers (often called upstream servers) that serve the original content and they can be changed as required without any outside knowledge. The reverse proxy handles that information.</p>
+
+
+
+
+<p>As part of this handling of the request the reverse proxy will often provide additional value such as terminating SSL, performing authentication and/or authorization, accelerating (caching or compressing) content or rewriting the request and/or response.</p>
+
+
+
+
+<p>The word .reverse. in the name reverse proxy has no special meaning, it.s just used as the inverse of forward proxy which actually has a meaning as you.ll read shortly.</p>
+
+
+
+
+<h3>What is a Forward Proxy</h3>
+
+
+
+
+<p>Forward proxies are commonly used to control traffic leaving networks. When you send a request via the proxy it will .forward. your request on to the requested website, hence the name .Forward Proxy..</p>
+
+
+
+
+<p>A common job of a forward proxy is to both control access to the internet by inspecting certain attributes as the request passes through it. If you.re on a corporate network and they prohibit you from going to a social network such as facebook.com, this will often be the job of a forward proxy. The forward proxy is able to inspect the host of the request and, since on a corporate network traffic is often mandated to flow through the proxy, it will deny any requests that use the prohibited host.</p>
+
+
+
+
+<p>A similar implementation to the above will scan outbound content of the payload as it passes through the proxy. This can be used for a variety of data protection applications e.g., for data loss prevention; or scan content for malicious software.</p>
+
+
+
+
+<p>Another common use-case for a forward proxy is to anonymize where the request originally came from.</p>
+
+
+
+
+<p>Let.s look at an example of a forward proxy:</p>
+
+
+
+
+<p>Forward Proxy
+<a href="https://upload.wikimedia.org/wikipedia/commons/1/19/Forward_proxy_h2g2bob.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Forward_proxy_h2g2bob.svg" alt="N|Solid" /></a></p>
+
+
+
+
+<p>As you can see it sits in between requests from the user to the internet. As such, when the forward proxy sends a request to a host the host computer will see the IP address of the forward proxy, not of the user. This is commonly used to perform IP anonymization and is a major feature of VPNs.</p>
+
+
+
+
+<h4>Layer 7 versus layer 3</h4>
+
+
+
+
+<p>Most of the time .proxy. refers to a layer-7 application on the OSI reference model. However, another way of proxying is through layer-3 and is known as Network Address Translation (NAT). The difference between these two proxy technologies is the layer in which they operate, and the procedure to configuring the proxy clients and proxy servers.</p>
+
+
+
+
+<p>Layer-7 proxies are more suitable if you.re inspecting the content of the payload to perform routing or otherwise manipulating the payload.</p>
+
+
+
+
+<p>References  <br/>
+   <a href="https://www.youtube.com/watch?v=s25cSWkGD38">Youtube link</a>  <br/>
+   <a href="https://www.quora.com/Whats-the-difference-between-a-reverse-proxy-and-forward-proxy">Quora  - Whats-the-difference-between-a-reverse-proxy-and-forward-proxy</a>  <br/>
+   <a href="http://www.jscape.com/blog/bid/87783/Forward-Proxy-vs-Reverse-Proxy">Jscape - Forward-Proxy-vs-Reverse-Proxy</a>   <br/>
+   <a href="https://www.citrix.com/blogs/2010/10/04/reverse-vs-forward-proxy/">Citrix - reverse-vs-forward-proxy</a>  <br/>
+   <a href="https://www.google.com/search?q=forward+versus+reverse+proxy">Google - forward+versus+reverse+proxy</a>  <br/>
+   <a href="http://httpd.apache.org/docs/2.0/mod/mod_proxy.html#forwardreverse">Apache - mod_proxy.html#forwardreverse</a></p>
+
+
+
+
+<p>Disclaimer:
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#103;&#101;&#110;&#x65;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#120;&#x78;&#120;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#103;&#x65;&#110;&#x65;&#119;&#x61;&#x6c;&#122;&#x2e;&#x78;&#120;&#x78;&#x78;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#111;&#x6d;</a>   <br/>
+<a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[HAProxy for load balancing]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2019-10-25/haproxy-for-load-balancing/"/>
-    <updated>2019-10-25T00:00:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2019-10-25/haproxy-for-load-balancing</id>
-    <content type="html"><![CDATA[<p>This post is about some setup required for <a href="http://cbonte.github.io/haproxy-dconv/1.9/intro.html">HAProxy</a></p>
+    <link href="http://blog.ashwani.co.in/blog/2019-03-25/haproxy-for-load-balancing/"/>
+    <updated>2019-03-25T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-03-25/haproxy-for-load-balancing</id>
+    <content type="html"><![CDATA[<p>HAProxy, which stands for High Availability Proxy, is a popular open source software TCP/HTTP Load Balancer and proxying solution which can be run on Linux, Solaris.
+Improves the performance and reliability of a server environment by distributing the traffic across servers (e.g. web, application, database).
+It is used in many high-profile environments websites.</p>
+
+
+
+
+<p>In this guide, I will provide a general overview of what HAProxy is, basic load-balancing terminology, and examples of how it might be <!--more--> used to improve the performance and reliability of your own server environment.</p>
+
+
+
+
+<p>This post is about some setup required for <a href="http://cbonte.github.io/haproxy-dconv/1.9/intro.html">HAProxy</a></p>
 
 
 
 
 <p>HAProxy can balance requests between any application that can handle HTTP or even TCP requests.</p>
-
-
-
-
-<!--more-->
 
 
 
@@ -906,6 +1253,104 @@ There is not enough space on the disk.
 
 
 <p>Thank You..</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Search string faster with Ruby]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby/"/>
+    <updated>2018-07-20T15:59:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby</id>
+    <content type="html"><![CDATA[<p>Is grep Slow?   Sure it is. Read on..
+Just a few days back there was an electrical outage and lot of applications were dead. <br/>
+In one case, lot of customer orders could   <!--more--> not be processed.
+Hence, there rose a need of manual intervention and extraction of orders (XML) from a logfile and re-feeding them to another system.
+The task was simple, I had order numbers in orders.txt  and I had to write a shell script to grep for a particular
+xml containing each of these orders, extract XML and create a file for each order.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Shell script to loop and find an order in another file</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat extract.sh
+</span><span class='line'>--------------
+</span><span class='line'>i=0
+</span><span class='line'>echo "Extraction Script Started at:" `date`
+</span><span class='line'>while read order_id; do
+</span><span class='line'>  filename=$order_id"_tmp.xml"
+</span><span class='line'>  finalfilename=$order_id".xml"
+</span><span class='line'>  grep ".*$order_id." *.log > $filename && echo "written xml for $order_id in $filename" || echo $order_id >> Orders_not_found.txt
+</span><span class='line'>  cat $filename | sed -e 's|text-to-remove|new-text|g' | sed -e 's|\*\*\*||g' > $finalfilename
+</span><span class='line'>  rm $filename
+</span><span class='line'>  ((i++))
+</span><span class='line'>done &lt; orders.txt
+</span><span class='line'>echo "Extraction Script Ended at:" `date`</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>But the problem was that the log file in which I was searching was too huge. It was 5GBs in total.
+Hence the grep was taking minimum 4-5 Minutes to search one order and create an xml file for that.
+Clearly this was not a solution, as I had to find thousand orders in those log files and it was very critical for end customer.</p>
+
+
+
+
+<p>If my calulation was right, I had to spend:  <br/>
+4 Mins = 1 Xml  <br/>
+60 Mins = 1 Hr = 15 Xml  <br/>
+at this rate I would have spent atleast 3-4 days CPU time , to get all those 1000 XMLs.
+(Not to mention the pain of getting screwed and frustration). Meaning which, we all would have been screwed
+over and over again for 3-4 days by the customer.</p>
+
+
+
+
+<p><b>Enter Ruby:</b>
+One liner saved us.  <br/>
+I used this ruby command, to first find the relevant generic string then create order xml files using a normal shell
+script as above. I thought I would keep this fir future reference.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ruby -pe 'next unless $_ =~ /&lt;RegExp for stringtomatch>.*Number.*/' &lt; 5GB-file.log >> 6Mb-file-reduced.log</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>Wondereful, Ruby took just few minutes to grep the regular exp string into a 5GB log file, and now I had to search orders
+into this smaller reduced size intermediate file.</p>
+
+
+
+
+<p>Thus, this saved us 3 days and did wonders in just half an hour.</p>
+
+
+
+
+<p>Voila !!!</p>
+
+
+
+
+<p>Credit for the one liner goes to <a href="http://axonflux.com/handy-ruby-one-liners-by-david-thomas">Garry Tan</a>, where I found this wonderful ruby command.</p>
 
 ]]></content>
   </entry>
@@ -2068,7 +2513,7 @@ And install curb manually.</p>
 
 
 
-<p>Credits to:
+<p>Credits to: <br/>
 1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
 2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
 3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
@@ -3165,837 +3610,6 @@ If you need a printable pdf version, head over <a href="http://blog.ashwani.co.i
 <a href="http://www.hackcollege.com/blog/2011/11/23/infographic-get-more-out-of-google.html">
 <img src="http://www.hackcollege.com/wp-content/uploads/2011/11/google.gif " alt="Get  More Out Of Google" width="600" border="1" />
 </a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Embed Facebook Post on any html page]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page/"/>
-    <updated>2013-08-02T22:41:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-08-02/embed-facebook-post-on-any-html-page</id>
-    <content type="html"><![CDATA[<p>Facebook has released a new feature. It's called “embedded posts”. <br/>
-But officially, only Big Publishers can embed posts currently into their pages.</p>
-
-
-
-
-<p>We can also, embed the <strong>Public</strong> FB posts with a small script and trick.</p>
-
-
-
-
-<p>1.Go to any facebook post and hover over the date when post was created. Right-Click and copy the Link. <!--more--> <br/>
-2.Replace the URL_HERE with the link you just copied.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Sample to embed FB post in HTML page index.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="nt">html</span> <span class="na">xmlns:fb</span><span class="o">=</span><span class="s">&quot;http://ogp.me/ns/fb#&quot;</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-</span><span class='line'>  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</span><span class='line'>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-</span><span class='line'>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
-</span><span class='line'>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes&quot;</span> <span class="p">/&gt;</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fb-root&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</span><span class='line'>      <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-</span><span class='line'>      <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="kd">var</span> <span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">id</span><span class="p">))</span>
-</span><span class='line'>      <span class="k">return</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">js</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
-</span><span class='line'>      <span class="nx">js</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">js</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s2">&quot;http://connect.facebook.net/en_US/all.js#xfbml=1&quot;</span><span class="p">;</span>
-</span><span class='line'>      <span class="nx">fjs</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">js</span><span class="p">,</span> <span class="nx">fjs</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}(</span><span class="nb">document</span><span class="p">,</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="s1">&#39;facebook-jssdk&#39;</span><span class="p">));</span>
-</span><span class='line'>      <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="p">&lt;</span><span class="nt">fb:post</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;URl_HERE&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">fb:post</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span><span class='line'>      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;text-align: justify;&quot;</span><span class="p">&gt;</span>
-</span><span class='line'>   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span><span class='line'><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p></p>
-
-
-
-
-<h4>Here is an example:</h4>
-
-
-
-
-<div id="fb-root">
-</div>
-
-
-
-
-<p>
-<script>
-(function(d, s, id) 
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id))
-    return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
-<br />
-        
-<fb:post href="https://www.facebook.com/TheAshwanikBlog/posts/182463588593799">
-</fb:post>
-</p>
-
-
-
-
-<p>Enjoy and Embed your FB post where ever you like.</p>
-
-
-
-
-<p>Courtesy: Amit Agarwal's <a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=0hh8lKDnFWI">Video</a></p>
-
-
-
-
-<p><br/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[access sharepoint webservices from java behind proxy]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-07-29/access-sharepoint-webservices-from-java-behind-proxy/"/>
-    <updated>2013-07-29T22:09:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-07-29/access-sharepoint-webservices-from-java-behind-proxy</id>
-    <content type="html"><![CDATA[<p>In my previous post I told you how to <a href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">access sharepoint webservices from java</a>
-But what if you would like to access the sharepoint from behind a proxy, let's say from your place of work.</p>
-
-
-
-
-<p>The approach for Authenticator mentioned <a href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">here</a>
-works if you only need to provide username/password <!--more--> for your sharepoint site and not for the proxy.
-Or the other way around, when you need to provide username/password for proxy but your sharepoint site does not require any authentication, which is hardly true I guess.
-You can achieve this by setting up a default Authenticator as mentioned <a href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/">here</a></p>
-
-
-
-
-<p>But What should you do when you require the the authentication for both proxy and the sharepoint site.
-You cannot setup a single default Authenticator.  <br/>
-You would get "ERROR 407 proxy authentication required", or your sharepoinnt site will deny access, based on what you setup in default autneticator.     <br/>
-So what must you do? Well you can use the following code, it works in my case, hope it will work for you also.</p>
-
-
-
-
-<p>The following approach works:  <br/>
-1. If you are accessing webservices from behind the proxy.  Hence you need to specify proxyhost, proxyport, proxyuser, proxypass.  <br/>
-2. If you need a username/password for sharepoint site as well. Hence you need to specify sharepointusername, sharepointpassword for authentication.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[SimpleAuthenticator with proxy support - SimpleAuthenticator.java]
-</span><span class='line'>
-</span><span class='line'>public class SimpleAuthenticator  extends Authenticator
-</span><span class='line'>{
-</span><span class='line'>  private final static String proxyHost = "proxy.co.uk";
-</span><span class='line'>  private final static String proxyuser = "proxyuser";
-</span><span class='line'>  private final static String proxypass = "proxypass";
-</span><span class='line'>  private final static String sharepointusername = "sharepointusername";
-</span><span class='line'>  private final static String sharepointpassword = "sharepointpassword";
-</span><span class='line'>  private String username;
-</span><span class='line'>  private final char[] password;
-</span><span class='line'>   
-</span><span class='line'>   public SimpleAuthenticator(String username,String password)
-</span><span class='line'>   {
-</span><span class='line'>     super();
-</span><span class='line'>     this.username = new String(username);
-</span><span class='line'>     this.password = password.toCharArray(); 
-</span><span class='line'>   }
-</span><span class='line'>   
-</span><span class='line'>   protected PasswordAuthentication getPasswordAuthentication()
-</span><span class='line'>   {
-</span><span class='line'>    String requestingHost = getRequestingHost();
-</span><span class='line'>    if (requestingHost == proxyHost){
-</span><span class='line'>        System.out.println("getPasswordAuthentication() request recieved from->" + requestingHost );
-</span><span class='line'>        return new PasswordAuthentication(proxyuser,proxypass.toCharArray());
-</span><span class='line'>    }
-</span><span class='line'>    else{
-</span><span class='line'>        System.out.println("getPasswordAuthentication() request recieved from->" + requestingHost );
-</span><span class='line'>        return new PasswordAuthentication(sharepointusername,sharepointpassword.toCharArray());
-</span><span class='line'>    }
-</span><span class='line'>        
-</span><span class='line'>   }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>In your main class , don't set the default Authenticator and instead use this.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[SharePointClient - SharePointClient.java https://gist.github.com/TheAshwanik/983fde4be42022ac1f29]
-</span><span class='line'>
-</span><span class='line'>  Authenticator.setDefault(new SimpleAuthenticator("", ""));
-</span><span class='line'>  System.out.println("Configuring Proxy settings");
-</span><span class='line'>  System.getProperties().put("http.proxyHost",proxyHost);
-</span><span class='line'>  System.getProperties().put("http.proxyPort",proxyPort);
-</span><span class='line'>  System.getProperties().put("https.proxyHost",proxyHost);
-</span><span class='line'>  System.getProperties().put("https.proxyPort",proxyPort);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>That's it.  I update the previous gist <a href="https://gist.github.com/TheAshwanik/983fde4be42022ac1f29">here</a></p>
-
-
-
-
-<p><br/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Connect and access sharepoint webservice from java]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java/"/>
-    <updated>2013-07-28T09:31:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-07-28/connect-and-access-sharepoint-webservice-from-java</id>
-    <content type="html"><![CDATA[<p>There are numerous articles over the internet about different approaches to access sharepoint from variety of languages like .Net,
-java, Javascript, Ruby etc. But these articles are in Bits and Pieces. No where they have completely running code which someone can use
-OTS. <br/>
-There is a open source wrapper library (java-sharepoint-library) <!--more--> to access these webservices, but its extremely buggy, I do not know, if that project is being maintained
-anymore. Here is the link, <a href="https://code.google.com/p/java-sharepoint-library/downloads/list">java-sharepoint-library</a> , knock yourself out.</p>
-
-
-
-
-<p>And here it is, my version of simple program, which authenticates , connects, accesses, Check-Out and Checks-In, Downloads/Uploads a given
-document.</p>
-
-
-
-
-<p>Credits to various generous people out there who has helped lot of people with thier bits.</p>
-
-
-
-
-<p><br/></p>
-
-
-
-
-<p>Let's Start</p>
-
-
-
-
-<h4>Step 1. Download the wsdl files from the sharepoint.</h4>
-
-
-
-
-<p>Download all WSDLs from your sharepoint. the URL should look like the one in example.</p>
-
-
-
-
-<p>Alerts.wsdl, dspsts.wsdl, lists.wsdl, publishedlinksservice.wsdl, sites.wsdl, versions.wsdl  <br/>
-admin.wsdl, dws.wsdl, meetings.wsdl, permissions.wsdl, socialdataservice.wsdl, views.wsdl   <br/>
-authentication.wsdl, forms.wsdl, people.wsdl, sharepointemailws.wsdl, spsearch.wsdl, webpartpages.wsdl   <br/>
-copy.wsdl, imaging.wsdl, search.wsdl, sitedata.wsdl, usergroup.wsdl, webs.wsdl</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>For example:  [Download all WSDLs]
-</span><span class='line'>curl https://mysharepointsite.com/_vti_bin/Lists.asmx?WSDL > lists.wsdl
-</span><span class='line'>curl https://mysharepointsite.com/_vti_bin/Versions.asmx?WSDL > versions.wsdl</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<h4>Step 2. Generate Java Stubs for these wsdls</h4>
-
-
-
-
-<p>In order to use Sharepoints Web Services with Java, you will need to generate its stub classes with its WSDLs.
-Use the JDK wsimport.exe for this.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>For example:  Generate Java Stubs for these wsdls
-</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension lists.wsdl
-</span><span class='line'>“&lt;pathtoJDK>\wsimport.exe” -p "com.microsoft.schemas.sharepoint.soap" -keep -extension versions.wsdl
-</span><span class='line'>
-</span><span class='line'>Do this for all the WSDLs you downloaded. and Import those classes in your project.</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<h4>Step 3. Place the WSDLs in your resources</h4>
-
-
-
-
-<p>For some reason the wsimport.exe hardcodes the path to the wsdl files from your local disk.
-To avoid this you will have to place the wsdl files in your project and give resources as your buildpath.<br/>
-1. Make a directory "Resources" in your project, copy WSDL directory in it. <br/>
-2. In Eclipse, Goto Project -> Properties -> Java Build Path -> Sources Tab, and add the Resources folder there. <br/>
-Now all your files under resources directory will be loaded at runtime.</p>
-
-
-
-
-<p>Or you can follow the second approach given in <a href="http://tugdualgrall.blogspot.co.uk/2009/02/jax-ws-how-to-configure-service-end_17.html">TUG'S BLOG</a></p>
-
-
-
-
-<h4>Step 4. Now write the actual program to connect</h4>
-
-
-
-
-<p>Credits goes to <a href="http://davidsit.wordpress.com/">David</a>, but there were tweaks which I had to google and finally
-come up with this working version</p>
-
-
-
-
-<h5>Step 4.1 Authenticate</h5>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Authenticate the client and get the stub for lists ws] (SPClient.java)
-</span><span class='line'>  public static ListsSoap getSPListSoapStub(String username, String password, String url) throws Exception {
-</span><span class='line'>      ListsSoap port = null;
-</span><span class='line'>      if (username != null && password != null) {
-</span><span class='line'>          try {
-</span><span class='line'>              // This is to avoid the error where it tries to find wsdl file, 
-</span><span class='line'>              // due to hardcoded path of wsdl in your stub generated by wsimport.exe
-</span><span class='line'>              //
-</span><span class='line'>              // Somehow class.getResource() did not work for me, 
-</span><span class='line'>              // so I am using class.getClassLoader.getResource()
-</span><span class='line'>              //
-</span><span class='line'>              URL wsdlURL = new URL(getInstance().getClass().getClassLoader().getResource("wsdl/lists.wsdl").toExternalForm());
-</span><span class='line'>              Lists service = new Lists(wsdlURL);
-</span><span class='line'>              port = service.getListsSoap();
-</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(BindingProvider.USERNAME_PROPERTY, username);
-</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(BindingProvider.PASSWORD_PROPERTY, password);
-</span><span class='line'>              
-</span><span class='line'>              //To avoid, error with endpoint not supported, you need to give end point url here.
-</span><span class='line'>              //
-</span><span class='line'>              URL convertedurl = convertToURLEscapingIllegalCharacters(url+"/_vti_bin/Lists.asmx");
-</span><span class='line'>              ((BindingProvider) port).getRequestContext().put(
-</span><span class='line'>                      BindingProvider.ENDPOINT_ADDRESS_PROPERTY, convertedurl.toString());
-</span><span class='line'>           
-</span><span class='line'>          } catch (Exception e) {
-</span><span class='line'>              e.printStackTrace();
-</span><span class='line'>              throw new Exception("Error: " + e.toString());
-</span><span class='line'>          }
-</span><span class='line'>      } else {
-</span><span class='line'>          throw new Exception("Couldn't authenticate: Invalid connection details given.");
-</span><span class='line'>      }
-</span><span class='line'>      return port;
-</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Convert the URL characters, to avoid errors in endpoint url. Coz the code above does not identify spaces in URL  <br/>
-For eg: if you would have URL like <a href="http://mysharepoint.com/Book">http://mysharepoint.com/Book</a> names , then you will get unsupported URL exception  <br/>
-So you need to set endpoint URL as <a href="http://mysharepoint.com/Book%20names">http://mysharepoint.com/Book%20names</a></p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Convert the URL characters] (SPClient.java)
-</span><span class='line'>  public static URL convertToURLEscapingIllegalCharacters(String string){
-</span><span class='line'>      try {
-</span><span class='line'>          String decodedURL = URLDecoder.decode(string, "UTF-8");
-</span><span class='line'>          URL url = new URL(decodedURL);
-</span><span class='line'>          URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef()); 
-</span><span class='line'>          return uri.toURL(); 
-</span><span class='line'>      } catch (Exception ex) {
-</span><span class='line'>          ex.printStackTrace();
-</span><span class='line'>          return null;
-</span><span class='line'>      }
-</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p><br />
-<br /></p>
-
-
-
-
-<h5>Step 4.2  Display sharepoint list</h5>
-
-
-
-
-<p>You can display the list by giving the list name. Here I assume a list named "Documents" to be retrieved.
-Otherwise you can use an ID also, which can be accessed.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Display sharepoint root list] (SPClient.java)
-</span><span class='line'>  /**
-</span><span class='line'>   * Connects to a SharePoint Lists Web Service through the given open port,
-</span><span class='line'>   * and reads all the elements of the given list. Only the given column names
-</span><span class='line'>   * are displayed.
-</span><span class='line'>   */ 
-</span><span class='line'>  public static void displaySharePointList() throws Exception {
-</span><span class='line'>          try {
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>              // you can also give id of "Documents" node
-</span><span class='line'>              //{44131435-EAFB-4244-AA39-F431F55ADA9B}
-</span><span class='line'>              //
-</span><span class='line'>              String listName = "Documents";
-</span><span class='line'>              String rowLimit = "150";
-</span><span class='line'>              
-</span><span class='line'>              //Columns names to extract
-</span><span class='line'>              //
-</span><span class='line'>              ArrayList&lt;String> listColumnNames = new ArrayList&lt;String>();
-</span><span class='line'>              listColumnNames.add("LinkFilename");
-</span><span class='line'>              listColumnNames.add("FileRef");
-</span><span class='line'>
-</span><span class='line'>              
-</span><span class='line'>              //Here are additional parameters that may be set
-</span><span class='line'>              String viewName = "";
-</span><span class='line'>              GetListItems.ViewFields viewFields = null;
-</span><span class='line'>              GetListItems.Query query = null;
-</span><span class='line'>              GetListItems.QueryOptions queryOptions = null;
-</span><span class='line'>              String webID = "";
-</span><span class='line'>               
-</span><span class='line'>              //Calling the List Web Service
-</span><span class='line'>              GetListItemsResponse.GetListItemsResult result = listsoapstub.getListItems(listName, viewName, query, viewFields, rowLimit, queryOptions, webID);
-</span><span class='line'>              Object listResult = result.getContent().get(0);
-</span><span class='line'>              if ((listResult != null) && (listResult instanceof Element)) {
-</span><span class='line'>                  Element node = (Element) listResult;
-</span><span class='line'>
-</span><span class='line'>                  //Dumps the retrieved info in the console
-</span><span class='line'>                  Document document = node.getOwnerDocument();
-</span><span class='line'>                  LOGGER.info("SharePoint Online Lists Web Service Response:" + SPClient.xmlToString(document));
-</span><span class='line'>
-</span><span class='line'>                  //selects a list of nodes which have z:row elements
-</span><span class='line'>                  NodeList list = node.getElementsByTagName("z:row");
-</span><span class='line'>                  LOGGER.info("=> " + list.getLength() + " results from SharePoint Online");
-</span><span class='line'>
-</span><span class='line'>                  //Displaying every result received from SharePoint, with its ID
-</span><span class='line'>                  for (int i = 0; i &lt; list.getLength(); i++) {
-</span><span class='line'>
-</span><span class='line'>                      //Gets the attributes of the current row/element
-</span><span class='line'>                      NamedNodeMap attributes = list.item(i).getAttributes();
-</span><span class='line'>                      LOGGER.info("******** Item ID: " + attributes.getNamedItem("ows_ID").getNodeValue()+" ********");
-</span><span class='line'>
-</span><span class='line'>                      //Displays all the attributes of the list item that correspond to the column names given
-</span><span class='line'>                      // Note the column names prepended with "ows_" coz internal name format is that.
-</span><span class='line'>                      //
-</span><span class='line'>                      for (String columnName : listColumnNames) {
-</span><span class='line'>                          String internalColumnName = "ows_" + columnName;
-</span><span class='line'>                          if (attributes.getNamedItem(internalColumnName) != null) {
-</span><span class='line'>                              LOGGER.info(columnName + ": " + attributes.getNamedItem(internalColumnName).getNodeValue());
-</span><span class='line'>                          } else {
-</span><span class='line'>                              throw new Exception("Couldn't find the '" + columnName + "' column in the '" + listName + "' list in SharePoint.\n");
-</span><span class='line'>                          }
-</span><span class='line'>                      }
-</span><span class='line'>                  }
-</span><span class='line'>              } else {
-</span><span class='line'>                  throw new Exception(listName + " list response from SharePoint is either null or corrupt\n");
-</span><span class='line'>              }
-</span><span class='line'>          } catch (Exception ex) {
-</span><span class='line'>              ex.printStackTrace();
-</span><span class='line'>              throw new Exception("Exception. See stacktrace.\n" + ex.toString() + "\n");
-</span><span class='line'>          }
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p><br />
-<br /></p>
-
-
-
-
-<h5>Step 4.3 Setup the default authentication</h5>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Setup the Default authentication] (SimpleAuthenticator.java)
-</span><span class='line'>import java.net.Authenticator;
-</span><span class='line'>import java.net.PasswordAuthentication;
-</span><span class='line'>
-</span><span class='line'>public class SimpleAuthenticator extends Authenticator {
-</span><span class='line'>
-</span><span class='line'>  private final String username;
-</span><span class='line'>  private final char[] password;
-</span><span class='line'>
-</span><span class='line'>  public SimpleAuthenticator(final String username, final String password) {
-</span><span class='line'>    super();
-</span><span class='line'>    this.username = new String(username);
-</span><span class='line'>    this.password = password.toCharArray(); 
-</span><span class='line'>  }
-</span><span class='line'>
-</span><span class='line'>  @Override
-</span><span class='line'>  public PasswordAuthentication getPasswordAuthentication() {
-</span><span class='line'>    return (new PasswordAuthentication (username, password));
-</span><span class='line'>  }
-</span><span class='line'>}
-</span><span class='line'>
-</span><span class='line'>//Use class in main
-</span><span class='line'>//
-</span><span class='line'>SimpleAuthenticator authenticator = new SimpleAuthenticator(username, password);
-</span><span class='line'>Authenticator.setDefault(authenticator);</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Another approach given at <a href="http://derekjmiller62.wordpress.com/category/java-sharepoint-integration/">derekjmiller blog</a>
-but i Did not use it.</p>
-
-
-
-
-<h5>Step 4.4 Putting it all together</h5>
-
-
-
-
-<p>Here I show, how to display sharepoint list. If you need to know other functions, have a look at this gist.<br/>
-<a href="https://gist.github.com/TheAshwanik/983fde4be42022ac1f29">SharePointClient</a></p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[SharePointClient] [https://gist.github.com/TheAshwanik/983fde4be42022ac1f29] (SharePointClient.java) 
-</span><span class='line'>public class SPClient {
-</span><span class='line'>  
-</span><span class='line'>  private static String username = "your sharepoint username";
-</span><span class='line'>  private static String password = "your sharepoinnt password";
-</span><span class='line'>  private static String BasesharepointUrl = "https://mysharepoint.com/Book Names";
-</span><span class='line'>  private static ListsSoap listsoapstub;
-</span><span class='line'>  private static VersionsSoap versionssoapstub;
-</span><span class='line'>  private static CopySoap copysoapstub;
-</span><span class='line'>  
-</span><span class='line'>  private static SharePointClient getInstance(){
-</span><span class='line'>      return(new SharePointClient());
-</span><span class='line'>  }
-</span><span class='line'>  public static void main(String[] args) {
-</span><span class='line'>      try {
-</span><span class='line'>          
-</span><span class='line'>          NtlmAuthenticator authenticator = new NtlmAuthenticator(username, password);
-</span><span class='line'>          Authenticator.setDefault(authenticator);
-</span><span class='line'>          
-</span><span class='line'>          //Authenticating and Opening the SOAP port of the Copy Web Service
-</span><span class='line'>          listsoapstub = SharePointClient.getSPListSoapStub(username, password, BasesharepointUrl);
-</span><span class='line'>      
-</span><span class='line'>          // Displays the lists items in the console
-</span><span class='line'>          SharePointClient.displaySharePointList();
-</span><span class='line'>      
-</span><span class='line'>      } catch (Exception ex) {
-</span><span class='line'>          ex.printStackTrace();
-</span><span class='line'>          System.err.println(ex);
-</span><span class='line'>      }
-</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p></p>
-
-
-
-
-<p>That's it for now friends.  Hope you guys will not struggle for this info.</p>
-
-
-
-
-<p>Cheers :)</p>
-
-
-
-
-<p><a href="https://gist.github.com/TheAshwanik/6098259">Resources</a></p>
-
-
-
-
-<p><br/></p>
 
 ]]></content>
   </entry>

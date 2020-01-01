@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:ruby, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/ruby-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-15T19:19:59+00:00</updated>
+  <updated>2020-01-01T22:44:41+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -14,72 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Instant Nokogiri - Book Review]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review/"/>
-    <updated>2013-11-10T12:39:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review</id>
-    <content type="html"><![CDATA[<p>Hello Guys, Recently I was requested to review a book by <a href="http://hunterpowers.com/">Hunter Powers</a>.
-The book is titled as "<a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">Instant Nokogiri</a>'.</p>
-
-<p>So here are my unbiased thought on the same:</p>
-
-<p><a href="http://nokogiri.org/">Nokogiri</a> - is an HTML, XML, SAX, &amp; Reader <!--more--> parser with the ability to search documents via XPath or CSS3 selectors… and much more</p>
-
-<p><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">
-<img class="left_aligned_image" src="/assets/Nokogiri.JPG" width="350" height="350" title="Instant Nokogiri" alt="Instant Nokogiri image">
-</a></p>
-
-<p><strong>This book is in its simplest and easiest form, explains the basics of Nokogiri in a layman's language.<br/>
-A definite read for all those who love simplicity and awesomeness of ruby language.</strong></p>
-
-<p><strong>Book is in interest of those new-comers who would like to learn scraping data from 'websites/other sources' which does not provide a developer API.</strong></p>
-
-<p>It does not have any fancy graphics, no vague examples etc. It just dives into the real subject , which is what a beginner (or expert for that matter)
-would require to get started or master Nokogiri.</p>
-
-<p>With very subtle examples of data scraping and clear understanding, the author makes a newbee feel like they already
-know how Nokogiri works.</p>
-
-<p>The section "Top 13 features you need to know about" clearly explains some of the not known features of Nokogiri.
-My favorite parts are about "Spoofing browser agents"  and "Mechanize".</p>
-
-<p>All in all this is perfect book for beginners. But if you are an expert ruby developer and use nokogiri extensively,
-this book may not be for you.</p>
-
-<p><strong><u>For a first time user, I definitely recommend this book.</u></strong></p>
-
-<p>You can get a copy from these places:</p>
-
-<ol>
-<li><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">packtpub</a></li>
-<li><a href="http://www.amazon.co.uk/gp/product/B00ESX180G">Amazon.co.uk</a></li>
-</ol>
-
-
-<p><br/><br/></p>
-
-<h3>Some Nokogiri Info:</h3>
-
-<h4>Install</h4>
-
-<pre><code>sudo gem install nokogiri 
-</code></pre>
-
-<h4>Contribute</h4>
-
-<pre><code>http://github.com/sparklemotion/nokogiri
-</code></pre>
-
-<p><br/>
-<br/></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Search string faster with Ruby]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby/"/>
-    <updated>2013-07-20T15:59:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby</id>
+    <link href="http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby/"/>
+    <updated>2018-07-20T15:59:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby</id>
     <content type="html"><![CDATA[<p>Is grep Slow?   Sure it is. Read on..
 Just a few days back there was an electrical outage and lot of applications were dead. <br/>
 In one case, lot of customer orders could   <!--more--> not be processed.
@@ -146,6 +84,68 @@ into this smaller reduced size intermediate file.</p>
 <p>Voila !!!</p>
 
 <p>Credit for the one liner goes to <a href="http://axonflux.com/handy-ruby-one-liners-by-david-thomas">Garry Tan</a>, where I found this wonderful ruby command.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Instant Nokogiri - Book Review]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review/"/>
+    <updated>2013-11-10T12:39:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2013-11-10/instant-nokogiri-book-review</id>
+    <content type="html"><![CDATA[<p>Hello Guys, Recently I was requested to review a book by <a href="http://hunterpowers.com/">Hunter Powers</a>.
+The book is titled as "<a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">Instant Nokogiri</a>'.</p>
+
+<p>So here are my unbiased thought on the same:</p>
+
+<p><a href="http://nokogiri.org/">Nokogiri</a> - is an HTML, XML, SAX, &amp; Reader <!--more--> parser with the ability to search documents via XPath or CSS3 selectors… and much more</p>
+
+<p><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">
+<img class="left_aligned_image" src="/assets/Nokogiri.JPG" width="350" height="350" title="Instant Nokogiri" alt="Instant Nokogiri image">
+</a></p>
+
+<p><strong>This book is in its simplest and easiest form, explains the basics of Nokogiri in a layman's language.<br/>
+A definite read for all those who love simplicity and awesomeness of ruby language.</strong></p>
+
+<p><strong>Book is in interest of those new-comers who would like to learn scraping data from 'websites/other sources' which does not provide a developer API.</strong></p>
+
+<p>It does not have any fancy graphics, no vague examples etc. It just dives into the real subject , which is what a beginner (or expert for that matter)
+would require to get started or master Nokogiri.</p>
+
+<p>With very subtle examples of data scraping and clear understanding, the author makes a newbee feel like they already
+know how Nokogiri works.</p>
+
+<p>The section "Top 13 features you need to know about" clearly explains some of the not known features of Nokogiri.
+My favorite parts are about "Spoofing browser agents"  and "Mechanize".</p>
+
+<p>All in all this is perfect book for beginners. But if you are an expert ruby developer and use nokogiri extensively,
+this book may not be for you.</p>
+
+<p><strong><u>For a first time user, I definitely recommend this book.</u></strong></p>
+
+<p>You can get a copy from these places:</p>
+
+<ol>
+<li><a href="http://www.packtpub.com/utilize-information-available-on-internet-using-Nokogiri/book">packtpub</a></li>
+<li><a href="http://www.amazon.co.uk/gp/product/B00ESX180G">Amazon.co.uk</a></li>
+</ol>
+
+
+<p><br/><br/></p>
+
+<h3>Some Nokogiri Info:</h3>
+
+<h4>Install</h4>
+
+<pre><code>sudo gem install nokogiri 
+</code></pre>
+
+<h4>Contribute</h4>
+
+<pre><code>http://github.com/sparklemotion/nokogiri
+</code></pre>
+
+<p><br/>
+<br/></p>
 ]]></content>
   </entry>
   

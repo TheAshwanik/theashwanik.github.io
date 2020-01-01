@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:proxy | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/proxy/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2020-01-01T22:44:41+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Proxies Explained or Demystified]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-11-02/proxies-explained-or-demystified/"/>
+    <updated>2019-11-02T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-11-02/proxies-explained-or-demystified</id>
+    <content type="html"><![CDATA[<p>Proxy is Essentially, a middle man.
+When dealing with computers the concept is largely the same. A web proxy is simply a bit of software that will relay a HTTP request for you.</p>
+
+<p>This post is about - Proxies Made Easy or as my good friend at <a href="verygoodsecurity.com">very good security</a> say - "Proxies Demystified.."</p>
+
+<h3>What is a Proxy</h3>
+
+<p>HTTP Proxies are an essential component when using the internet day to day - load balancers, routers, content <!--more--> accelerators, content protection systems, these are all simple examples of web proxies and they all act as intermediaries to send your HTTP requests where they need to go, anonymize requests, handle routing of traffic, speed up the net, and many other uses.</p>
+
+<p><a href="https://www.google.com/search?q=what+is+a+proxy">Google defines</a> a proxy as</p>
+
+<pre><code>the authority to represent someone else
+</code></pre>
+
+<p>When it comes down to it, most web proxies fall into two camps:</p>
+
+<ol>
+<li><strong>Reverse Proxies</strong> - A reverse proxy is usually an internal-facing proxy used as a front-end to control and protect access to servers on a private network. A reverse proxy commonly also performs tasks such as load-balancing, authentication, decryption or caching.</li>
+<li><strong>Forward Proxies</strong> - A forward proxy is an Internet-facing proxy used to retrieve from a wide range of sources.
+Let.s look at these two types in more detail</li>
+</ol>
+
+
+<h3>What is a Reverse Proxy</h3>
+
+<p>You.re probably using a reverse proxy in order to view this content. When you make a request to the server that serves this blog post it will pass through a load balancer. This load balancer is a type of reverse proxy. Reverse proxies will sit in front of one of more servers and distribute requests to these servers. Common examples of these would be Nginx.s proxy_pass module, HAProxy, Squid, and AWS. ELB.</p>
+
+<p>Let.s look at an example of a reverse proxy:</p>
+
+<p>Reverse Proxy
+<a href="https://upload.wikimedia.org/wikipedia/commons/6/67/Reverse_proxy_h2g2bob.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Reverse_proxy_h2g2bob.svg" alt="N|Solid" /></a></p>
+
+<p>You can see in this graphic that the reverse proxy receives a request from a client on the internet and retrieves the requested resources from one of more servers that sit behind it. To the client there is no knowledge required of the servers (often called upstream servers) that serve the original content and they can be changed as required without any outside knowledge. The reverse proxy handles that information.</p>
+
+<p>As part of this handling of the request the reverse proxy will often provide additional value such as terminating SSL, performing authentication and/or authorization, accelerating (caching or compressing) content or rewriting the request and/or response.</p>
+
+<p>The word .reverse. in the name reverse proxy has no special meaning, it.s just used as the inverse of forward proxy which actually has a meaning as you.ll read shortly.</p>
+
+<h3>What is a Forward Proxy</h3>
+
+<p>Forward proxies are commonly used to control traffic leaving networks. When you send a request via the proxy it will .forward. your request on to the requested website, hence the name .Forward Proxy..</p>
+
+<p>A common job of a forward proxy is to both control access to the internet by inspecting certain attributes as the request passes through it. If you.re on a corporate network and they prohibit you from going to a social network such as facebook.com, this will often be the job of a forward proxy. The forward proxy is able to inspect the host of the request and, since on a corporate network traffic is often mandated to flow through the proxy, it will deny any requests that use the prohibited host.</p>
+
+<p>A similar implementation to the above will scan outbound content of the payload as it passes through the proxy. This can be used for a variety of data protection applications e.g., for data loss prevention; or scan content for malicious software.</p>
+
+<p>Another common use-case for a forward proxy is to anonymize where the request originally came from.</p>
+
+<p>Let.s look at an example of a forward proxy:</p>
+
+<p>Forward Proxy
+<a href="https://upload.wikimedia.org/wikipedia/commons/1/19/Forward_proxy_h2g2bob.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Forward_proxy_h2g2bob.svg" alt="N|Solid" /></a></p>
+
+<p>As you can see it sits in between requests from the user to the internet. As such, when the forward proxy sends a request to a host the host computer will see the IP address of the forward proxy, not of the user. This is commonly used to perform IP anonymization and is a major feature of VPNs.</p>
+
+<h4>Layer 7 versus layer 3</h4>
+
+<p>Most of the time .proxy. refers to a layer-7 application on the OSI reference model. However, another way of proxying is through layer-3 and is known as Network Address Translation (NAT). The difference between these two proxy technologies is the layer in which they operate, and the procedure to configuring the proxy clients and proxy servers.</p>
+
+<p>Layer-7 proxies are more suitable if you.re inspecting the content of the payload to perform routing or otherwise manipulating the payload.</p>
+
+<p>References  <br/>
+   <a href="https://www.youtube.com/watch?v=s25cSWkGD38">Youtube link</a>  <br/>
+   <a href="https://www.quora.com/Whats-the-difference-between-a-reverse-proxy-and-forward-proxy">Quora  - Whats-the-difference-between-a-reverse-proxy-and-forward-proxy</a>  <br/>
+   <a href="http://www.jscape.com/blog/bid/87783/Forward-Proxy-vs-Reverse-Proxy">Jscape - Forward-Proxy-vs-Reverse-Proxy</a>   <br/>
+   <a href="https://www.citrix.com/blogs/2010/10/04/reverse-vs-forward-proxy/">Citrix - reverse-vs-forward-proxy</a>  <br/>
+   <a href="https://www.google.com/search?q=forward+versus+reverse+proxy">Google - forward+versus+reverse+proxy</a>  <br/>
+   <a href="http://httpd.apache.org/docs/2.0/mod/mod_proxy.html#forwardreverse">Apache - mod_proxy.html#forwardreverse</a></p>
+
+<p>Disclaimer:
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#103;&#x65;&#x6e;&#x65;&#119;&#97;&#x6c;&#122;&#x2e;&#120;&#120;&#120;&#x78;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#103;&#x65;&#x6e;&#x65;&#x77;&#97;&#108;&#x7a;&#46;&#x78;&#120;&#x78;&#x78;&#x40;&#x67;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a>   <br/>
+<a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
+]]></content>
+  </entry>
+  
+</feed>

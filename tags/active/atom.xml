@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:Active | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/active/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2020-01-01T22:44:41+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AWS Active Directory with OpenVPN]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-12-28/aws-active-directory-with-openvpn/"/>
+    <updated>2019-12-28T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-12-28/aws-active-directory-with-openvpn</id>
+    <content type="html"><![CDATA[<p>Many wonder what the benefits of Active Directory are in the modern era. We can leverage Active Directory to control access to resources. One absolutely great feature is Group Policy Objects (GPOs). GPOs enables seamless monitoring of Windows machines with Policies like OS updates, screen lock, and more.</p>
+
+<p>Recently I did some probono work for one of the commpanies in UK and thought of documenting some setup required for <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html">AWS MS Active Directory <!--more--> - Aka. Directory Services</a> and <a href="https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/">OpenVPN</a></p>
+
+<h3>Prerequistites</h3>
+
+<ol>
+<li><a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_create_directory.html">Launch Active Directory</a></li>
+<li>Setup you own EC2 instance and install Open VPN, or <a href="https://aws.amazon.com/marketplace/pp/OpenVPN-Inc-OpenVPN-Access-Server/B00MI40CAE">Launch OpenVPN Access Server from AWS Market place</a></li>
+<li>You will need an EC2 instance to manage the Active Directory objects, See further how to Install the Active Directory Administration Tools on Windows Server 2016</li>
+</ol>
+
+
+<h3>Target Architecture</h3>
+
+<p><img src="/assets/AWS-VPN-AD-Architeture.jpg" width="800" height="600" title="AWS-VPN-AD-Architeture" alt="AWS-VPN-AD-Architeture Image"></p>
+
+<!-- <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://lh3.googleusercontent.com/d/13tbYV0DdzptknM0VFIVWzDjrO3qxo76H?authuser=0"> -->
+
+
+<h3>Active Directory Management</h3>
+
+<p><a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_manage_users_groups.html">Manage Users and Groups in AWS Managed Microsoft AD</a>  <br/>
+<a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_manage_users_groups_create_user.html">Create User</a></p>
+
+<h3>Manually Join EC2 Instance to the AD</h3>
+
+<p>To <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/join_windows_instance.html">manually join</a> an existing Amazon EC2 Windows instance to a Simple AD or AWS Directory Service for Microsoft Active Directory directory, the instance must be launched as specified in <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/launching_instance.html">Seamlessly Join a Windows EC2 Instance</a></p>
+
+<p>To join a Windows instance to a Simple AD or AWS Managed Microsoft AD directory <br/>
+Connect to the instance using any Remote Desktop Protocol client. <br/>
+Open the TCP/IPv4 properties dialog box on the instance. <br/>
+Open Network Connections usisng command.    <br/>
+<code>
+%SystemRoot%\system32\control.exe ncpa.cpl
+</code>  <br/>
+Change the DNS server addresses, change the Preferred DNS server and Alternate DNS server addresses to the IP addresses of the AWS Directory Service-provided DNS servers.</p>
+
+<p>Open the System Properties dialog box for the instance, select the Computer Name tab, and choose Change.  <br/>
+<code>
+Use command %SystemRoot%\system32\control.exe sysdm.cpl
+</code></p>
+
+<p>In the Member of field, select Domain, enter the fully-qualified name of your AWS Directory Service directory, and choose OK.  <br/>
+When prompted for the name and password for the domain administrator, enter the username and password of an account that has domain join privileges.   <br/>
+For more information about delegating these privileges, see Delegate Directory Join Privileges for AWS Managed Microsoft AD.</p>
+
+<p>Note: <br/>
+You can enter either the fully-qualified name of your domain or the NetBios name, followed by a backslash (), and then the user name, in this case, Admin. For example, corp.example.com\Admin or corp\Admin.</p>
+
+<p>Restart the instance to have the changes take effect.</p>
+
+<h3>To allow domain users RDP access to the domain joined Windows instances, follow these steps:</h3>
+
+<p>You will get error "The connection was denied because the user account is not authorized for remote login."  <br/>
+To solve it follow this:  <br/>
+Connect to your Windows EC2 instance using RDP.   <br/>
+Create a user. Repeat this step if you need more than one user.   <br/>
+Create a security group.  <br/>
+Add the new users to the new security group.  <br/>
+Open Group Policy Management. Select your domain.s Forest, expand Domains, and then expand your domain name.  <br/>
+Expand your delegated OU (NetBIOS name of the directory). Open the context (right-click) menu for Computers, and then choose Create a GPO in this domain, and Link it here.  <br/>
+For Name, enter a name, and then choose Ok.   <br/>
+In the navigation pane, expand Computers. Open the context (right-click) menu for the policy, and then choose Edit.   <br/>
+In the Computer Configuration section of the navigation pane, expand Preferences, Control Panel Settings.  <br/>
+Open the context (right-click) menu for Local Users and Groups, and then choose New, Local Group.   <br/>
+For Group name, choose Remote Desktop Users (built-in), and then choose Add.    <br/>
+For Name, enter the name of the security group that you created in step 3, and then choose Ok.  <br/>
+This policy updates your environment at the next policy refresh interval. To force the policy to apply immediately, run the gpupdate /force command on the target server.</p>
+
+<h3>Install the Active Directory Administration Tools on Windows Server 2016</h3>
+
+<p>Open Server Manager from the Start screen by choosing Server Manager. <br/>
+In the Server Manager Dashboard, choose Add roles and features, <br/>
+In the Add Roles and Features Wizard choose Installation Type, select Role-based or feature-based installation, and choose Next.   <br/>
+Under Server Selection, make sure the local server is selected, and choose Features in the left navigation pane.  <br/>
+In the Features tree, open Remote Server Administration Tools, Role Administration Tools, select AD DS and AD LDS Tools, scroll down and select DNS Server Tools, and then choose Next.  <br/>
+Review the information and choose Install. When the feature installation is finished, the Active Directory tools are available on the Start screen in the Administrative Tools folder.</p>
+
+<h3>Manage GPO permissions</h3>
+
+<p><a href="https://www.lepide.com/how-to/assign-permissions-to-files-folders-through-group-policy.html">..</a></p>
+
+<h3>Open VPN</h3>
+
+<p><a href="https://openvpn.net/vpn-server-resources/how-to-authenticate-users-with-active-directory/">Authenticate VPN using LDAP</a>   <br/>
+<a href="https://openvpn.net/vpn-server-resources/openvpn-access-server-on-active-directory-via-ldap/">Authenticate VPN using LDAP - Another article</a></p>
+
+<h4>Further Readings:</h4>
+
+<p><a href="https://aws.amazon.com/blogs/security/how-to-set-up-dns-resolution-between-on-premises-networks-and-aws-using-aws-directory-service-and-microsoft-active-directory/">How to Set Up DNS Resolution Between On-Premises Networks and AWS Using AWS Directory Service and Microsoft Active Directory</a>    <br/>
+<a href="https://aws.amazon.com/blogs/security/how-to-easily-log-on-to-aws-services-by-using-your-on-premises-active-directory/">How to Easily Log On to AWS Services by Using Your On-Premises Active Directory</a></p>
+
+<p>Hope this will help someone.</p>
+]]></content>
+  </entry>
+  
+</feed>

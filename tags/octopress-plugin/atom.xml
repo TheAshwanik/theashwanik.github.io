@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:octopress-plugin | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/octopress-plugin/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-15T19:19:59+00:00</updated>
+  <updated>2020-01-01T22:44:41+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -273,7 +273,7 @@ And install curb manually.</p>
 
 <p>Thats all folks. Chow.</p>
 
-<p>Credits to:
+<p>Credits to: <br/>
 1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
 2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
 3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>

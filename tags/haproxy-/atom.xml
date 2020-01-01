@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:HAProxy, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/haproxy-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-15T19:19:59+00:00</updated>
+  <updated>2020-01-01T22:44:41+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -15,15 +15,18 @@
   
   <entry>
     <title type="html"><![CDATA[HAProxy for load balancing]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2019-10-25/haproxy-for-load-balancing/"/>
-    <updated>2019-10-25T00:00:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2019-10-25/haproxy-for-load-balancing</id>
-    <content type="html"><![CDATA[<p>This post is about some setup required for <a href="http://cbonte.github.io/haproxy-dconv/1.9/intro.html">HAProxy</a></p>
+    <link href="http://blog.ashwani.co.in/blog/2019-03-25/haproxy-for-load-balancing/"/>
+    <updated>2019-03-25T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-03-25/haproxy-for-load-balancing</id>
+    <content type="html"><![CDATA[<p>HAProxy, which stands for High Availability Proxy, is a popular open source software TCP/HTTP Load Balancer and proxying solution which can be run on Linux, Solaris.
+Improves the performance and reliability of a server environment by distributing the traffic across servers (e.g. web, application, database).
+It is used in many high-profile environments websites.</p>
+
+<p>In this guide, I will provide a general overview of what HAProxy is, basic load-balancing terminology, and examples of how it might be <!--more--> used to improve the performance and reliability of your own server environment.</p>
+
+<p>This post is about some setup required for <a href="http://cbonte.github.io/haproxy-dconv/1.9/intro.html">HAProxy</a></p>
 
 <p>HAProxy can balance requests between any application that can handle HTTP or even TCP requests.</p>
-
-<!--more-->
-
 
 <h3>Install HAProxy on Pi</h3>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:shell | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/shell/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2019-11-15T19:19:59+00:00</updated>
+  <updated>2020-01-01T22:44:41+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Search string faster with Ruby]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby/"/>
-    <updated>2013-07-20T15:59:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-07-20/search-string-faster-with-ruby</id>
+    <link href="http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby/"/>
+    <updated>2018-07-20T15:59:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-07-20/search-string-faster-with-ruby</id>
     <content type="html"><![CDATA[<p>Is grep Slow?   Sure it is. Read on..
 Just a few days back there was an electrical outage and lot of applications were dead. <br/>
 In one case, lot of customer orders could   <!--more--> not be processed.
