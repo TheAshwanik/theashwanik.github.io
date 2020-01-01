@@ -2,8 +2,8 @@
 layout: post
 title: "Search string faster with Ruby"
 description: "Search for a string in large files with ruby at ease, as against to grep which takes lot of time to do the same job."
-date: 2013-07-20 15:59
-date_formatted: 2013-07-20 15:59
+date: 2018-07-20 15:59
+date_formatted: 2018-07-20 15:59
 comments: true
 categories: Technical
 keywords: Slow grep, Ruby, Search with Ruby, Search String, Grep String in file, ruby one liner, ruby command to search string, search string using ruby, search string with ruby command

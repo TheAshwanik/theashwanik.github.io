@@ -2,18 +2,23 @@
 layout: post
 title: HAProxy for load balancing
 description: How to setup HAProxy for load balancing
-date_formatted: 2019-10-25 19:47
-date: 2019-10-25
+date_formatted: 2019-03-25 19:47
+date: 2019-03-25
 comments: true
 categories: [Technical]
 tags: HAProxy, Load balancing
 keywords: HAProxy, Load balancing,LetsEncrypt, certificates, TCP/HTTP Load Balancer, High Performance TCP/HTTP Load Balancer 
 ---
 
+HAProxy, which stands for High Availability Proxy, is a popular open source software TCP/HTTP Load Balancer and proxying solution which can be run on Linux, Solaris. 
+Improves the performance and reliability of a server environment by distributing the traffic across servers (e.g. web, application, database). 
+It is used in many high-profile environments websites.   
+
+In this guide, I will provide a general overview of what HAProxy is, basic load-balancing terminology, and examples of how it might be <!--more--> used to improve the performance and reliability of your own server environment.
+
 This post is about some setup required for [HAProxy](http://cbonte.github.io/haproxy-dconv/1.9/intro.html)
 
 HAProxy can balance requests between any application that can handle HTTP or even TCP requests.
-<!--more-->
 
 ### Install HAProxy on Pi
 Credit goes to [load-balancing-with-haproxy](https://serversforhackers.com/c/load-balancing-with-haproxy)

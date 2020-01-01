@@ -187,7 +187,7 @@ Hope this helps someone.  I might need this again, So I am keeping a refrence.
 Thats all folks. Chow.
 
 
-Credits to:
+Credits to:   
 1.	[Trouble-with-cloning-octopress-blog-on-other-laptops](http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue)     
 2.	[Clone Your Octopress to Blog From Two Places.](http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/)     
 3.	[Blogging-with-octopress-from-2-computers/](http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/)     
