@@ -2,8 +2,8 @@
 layout: post
 title: "AWS Active Directory with OpenVPN"
 description: How to setup AWS Active Directory with OpenVPN
-date_formatted: 2019-12-28 23:06
-date: 2019-12-28
+date_formatted: 2018-12-28 23:06
+date: 2018-12-28
 comments: true
 categories: [Technical]
 tags: AWS, Active Directory, OpenVpn
@@ -12,7 +12,7 @@ keywords: AWS Active Directory, AWS Directory Services, AWS AD, OpenVPN, VPN, Ba
 
 Many wonder what the benefits of Active Directory are in the modern era. We can leverage Active Directory to control access to resources. One absolutely great feature is Group Policy Objects (GPOs). GPOs enables seamless monitoring of Windows machines with Policies like OS updates, screen lock, and more.
 
-Recently I did some probono work for one of the commpanies in UK and thought of documenting some setup required for [AWS MS Active Directory <!--more--> - Aka. Directory Services](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html) and [OpenVPN](https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/)
+Once I did some probono work for one of the companies in UK and thought of documenting some setup required for [AWS MS Active Directory <!--more--> - Aka. Directory Services](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html) and [OpenVPN](https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/)
 
 ### Prerequistites
 1.  [Launch Active Directory](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_create_directory.html)   
