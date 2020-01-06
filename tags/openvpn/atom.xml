@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:OpenVpn | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/openvpn/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-01-03T20:23:28+00:00</updated>
+  <updated>2020-01-06T23:47:52+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.ashwani.co.in/blog/2018-12-28/aws-active-directory-with-openvpn</id>
     <content type="html"><![CDATA[<p>Many wonder what the benefits of Active Directory are in the modern era. We can leverage Active Directory to control access to resources. One absolutely great feature is Group Policy Objects (GPOs). GPOs enables seamless monitoring of Windows machines with Policies like OS updates, screen lock, and more.</p>
 
-<p>Once I did some probono work for one of the companies in UK and thought of documenting some setup required for <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html">AWS MS Active Directory <!--more--> - Aka. Directory Services</a> and <a href="https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/">OpenVPN</a></p>
+<p>I wanted to document some setup required for <a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html">AWS MS Active Directory <!--more--> - Aka. Directory Services</a> and <a href="https://openvpn.net/vpn-server-resources/amazon-web-services-ec2-byol-appliance-quick-start-guide/">OpenVPN</a></p>
 
 <h3>Prerequistites</h3>
 
