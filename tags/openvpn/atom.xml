@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:OpenVpn | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/openvpn/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-01-06T23:47:52+00:00</updated>
+  <updated>2020-01-18T21:03:19+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -112,6 +112,502 @@ Review the information and choose Install. When the feature installation is fini
 <a href="https://aws.amazon.com/blogs/security/how-to-easily-log-on-to-aws-services-by-using-your-on-premises-active-directory/">How to Easily Log On to AWS Services by Using Your On-Premises Active Directory</a></p>
 
 <p>Hope this will help someone.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OpenVPN on Raspberry Pi]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2017-03-14/openvpn-on-raspberry-pi/"/>
+    <updated>2017-03-14T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2017-03-14/openvpn-on-raspberry-pi</id>
+    <content type="html"><![CDATA[<h2>Everyone loves something Free.</h2>
+
+<p>Open and Free wireless is everywhere, but should you be connecting to it. <strong>The answer is NO</strong>.
+You shouldn.t be connecting to it, dont connect to your social networks, don't check your bank account on it unless you want somebody else to be able to sneak on it.</p>
+
+<p>The solution? A virtual private network, or VPN.
+A VPN extends your own private network into public places, so even if you.re using Starbucks. Wi-Fi connection, your Internet browsing stays encrypted and secure.<!--more-->
+The easiest and cheapest solution to keep your data safe is to just refrain from public Wi-Fi completely. But then some times we don't have a choice and we do require to connnect to insecure network. But we can save ourselves with an inexpensive to build own VPN server at home, and run it off of a tiny, inexpensive Raspberry Pi.</p>
+
+<p>A VPN - or virtual private network - helps you browse the internet more anonymously by routing your traffic and encrypting it through a server that is not your point of origin.</p>
+
+<p>Create a directory for VPN stuff. Ignore if you dont want to..
+Install the openvpn package</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mkdir VPN &amp;&amp; cd VPN
+</span><span class='line'>$ sudo apt-get install openvpn</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Generating keys</h2>
+
+<p>Your VPN needs keys generated to make sure that only authorised devices can connect to it.
+OpenVPN comes with Easy_RSA, a simple package for using the RSA encryption method to generate your unique keys.</p>
+
+<p>Switch to root.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo -s</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You will now see your command prompt sits at 'root@XXXXX:'  <br/>
+root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/update-resolv-conf</p>
+
+<p>Next, create the keys needed by both server and client <br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>mkdir /etc/openvpn/easy-rsa&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>cp -ai /usr/share/doc/openvpn/examples/easy-rsa/2.0/ /etc/openvpn/easy-rsa&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>cd /etc/openvpn/easy-rsa/2.0&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>vi vars&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>In the vars file, edit the KEY_* entries at the bottom of the file, such as KEY_COUNTRY, KEY_ORG, KEY_EMAIL, etc. Next, source the vars file and then clean the directory.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>. ./vars&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>./clean-all  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Build the certifying Authority</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# ./build-ca&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Generating a 2048 bit RSA private key&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>writing new private key to 'ca.key'&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>You are about to be asked to enter information that will be incorporated into your certificate request.
+</span><span class='line'>What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span class='line'>There are quite a few fields but you can leave some blank
+</span><span class='line'>For some fields there will be a default value,&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>If you enter '.', the field will be left blank.&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Country Name (2 letter code) [US]:IN
+</span><span class='line'>State or Province Name (full name) [CA]:KA
+</span><span class='line'>Locality Name (eg, city) [SanFrancisco]:BLR
+</span><span class='line'>Organization Name (eg, company) [Fort-Funston]:MyCompany
+</span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
+</span><span class='line'>Common Name (eg, your name or your server's hostname) [changeme]:MyserverName
+</span><span class='line'>Name [changeme]:NoName
+</span><span class='line'>Email Address [&lt;a href="&#x6d;&#97;&#105;&#108;&#116;&#x6f;&#x3a;&#109;&#x61;&#x69;&#x6c;&#x40;&#104;&#x6f;&#115;&#116;&#46;&#100;&#111;&#x6d;&#97;&#x69;&#x6e;">&#109;&#97;&#x69;&#108;&#64;&#104;&#x6f;&#115;&#x74;&#x2e;&#100;&#x6f;&#x6d;&#x61;&#105;&#110;&lt;/a>]:</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Build the Server Key</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# ./build-key-server MyserverName&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Generating a 2048 bit RSA private key&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>writing new private key to 'MyserverName.key'&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>You are about to be asked to enter information that will be incorporated into your certificate request.
+</span><span class='line'>What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span class='line'>There are quite a few fields but you can leave some blank
+</span><span class='line'>For some fields there will be a default value,&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>If you enter '.', the field will be left blank.&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Country Name (2 letter code) [US]:IN
+</span><span class='line'>State or Province Name (full name) [CA]:KA
+</span><span class='line'>Locality Name (eg, city) [SanFrancisco]:BLR
+</span><span class='line'>Organization Name (eg, company) [Fort-Funston]:MyCompany
+</span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
+</span><span class='line'>Common Name (eg, your name or your server's hostname) [MyserverName]:
+</span><span class='line'>Name [changeme]:NoName
+</span><span class='line'>Email Address [&lt;a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#109;&#97;&#x69;&#108;&#x40;&#x68;&#x6f;&#115;&#x74;&#x2e;&#x64;&#x6f;&#109;&#x61;&#105;&#110;">&#x6d;&#97;&#x69;&#108;&#x40;&#104;&#x6f;&#x73;&#x74;&#x2e;&#100;&#x6f;&#x6d;&#x61;&#x69;&#x6e;&lt;/a>]:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Please enter the following 'extra' attributes to be sent with your certificate request&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>A challenge password []:
+</span><span class='line'>An optional company name []:
+</span><span class='line'>Using configuration from /etc/openvpn/easy-rsa/2.0/openssl-1.0.0.cnf
+</span><span class='line'>Check that the request matches the signature
+</span><span class='line'>Signature ok
+</span><span class='line'>The Subject's Distinguished Name is as follows
+</span><span class='line'>countryName           :PRINTABLE:'IN'
+</span><span class='line'>stateOrProvinceName   :PRINTABLE:'KA'
+</span><span class='line'>localityName          :PRINTABLE:'BLR'
+</span><span class='line'>organizationName      :PRINTABLE:'MyCompany'
+</span><span class='line'>organizationalUnitName:PRINTABLE:'MyOrg'
+</span><span class='line'>commonName            :PRINTABLE:'MyserverName'
+</span><span class='line'>name                  :PRINTABLE:'NoName'
+</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#109;&#x61;&#x69;&#x6c;&#x40;&#104;&#111;&#115;&#x74;&#46;&#x64;&#111;&#x6d;&#x61;&#x69;&#x6e;">&#109;&#97;&#x69;&#x6c;&#x40;&#104;&#x6f;&#115;&#116;&#x2e;&#x64;&#x6f;&#x6d;&#x61;&#105;&#x6e;&lt;/a>'
+</span><span class='line'>Certificate is to be certified until Mar 21 22:44:06 2025 GMT (3650 days)&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Sign the certificate? [y/n]:y
+</span><span class='line'>1 out of 1 certificate requests certified, commit? [y/n]y
+</span><span class='line'>Write out database with 1 new entries
+</span><span class='line'>Data Base Updated</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Build keys for Clients</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@ashberrypi:/etc/openvpn/easy-rsa/2.0# ./build-key-pass officelaptop
+</span><span class='line'>Generating a 2048 bit RSA private key
+</span><span class='line'>writing new private key to 'officelaptop.key'
+</span><span class='line'>Enter PEM pass phrase:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>Verifying - Enter PEM pass phrase:&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>You are about to be asked to enter information that will be incorporated
+</span><span class='line'>into your certificate request.
+</span><span class='line'>What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span class='line'>There are quite a few fields but you can leave some blank
+</span><span class='line'>For some fields there will be a default value,&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h2>If you enter '.', the field will be left blank.&lt;/h2>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Country Name (2 letter code) [US]:IN
+</span><span class='line'>State or Province Name (full name) [CA]:KA
+</span><span class='line'>Locality Name (eg, city) [SanFrancisco]:BLR
+</span><span class='line'>Organization Name (eg, company) [Fort-Funston]:MyCompany
+</span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
+</span><span class='line'>Common Name (eg, your name or your server's hostname) [officelaptop]:
+</span><span class='line'>Name [changeme]:OfficeLappyKey
+</span><span class='line'>Email Address [&lt;a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x6d;&#x61;&#x69;&#x6c;&#64;&#104;&#111;&#x73;&#x74;&#46;&#x64;&#111;&#x6d;&#x61;&#x69;&#x6e;">&#x6d;&#x61;&#105;&#108;&#64;&#x68;&#x6f;&#x73;&#116;&#46;&#100;&#111;&#109;&#x61;&#105;&#110;&lt;/a>]:
+</span><span class='line'>Please enter the following 'extra' attributes to be sent with your certificate request
+</span><span class='line'>A challenge password []:
+</span><span class='line'>An optional company name []:
+</span><span class='line'>Using configuration from /etc/openvpn/easy-rsa/2.0/openssl-1.0.0.cnf
+</span><span class='line'>Check that the request matches the signature
+</span><span class='line'>Signature ok
+</span><span class='line'>The Subject's Distinguished Name is as follows
+</span><span class='line'>countryName           :PRINTABLE:'IN'
+</span><span class='line'>stateOrProvinceName   :PRINTABLE:'KA'
+</span><span class='line'>localityName          :PRINTABLE:'BLR'
+</span><span class='line'>organizationName      :PRINTABLE:'MyCompany'
+</span><span class='line'>organizationalUnitName:PRINTABLE:'MyOrg'
+</span><span class='line'>commonName            :PRINTABLE:'officelaptop'
+</span><span class='line'>name                  :PRINTABLE:'OfficeLappyKey'
+</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#109;&#97;&#x69;&#x6c;&#64;&#x68;&#111;&#x73;&#116;&#x2e;&#100;&#x6f;&#x6d;&#x61;&#105;&#x6e;">&#x6d;&#97;&#x69;&#x6c;&#x40;&#x68;&#x6f;&#x73;&#x74;&#46;&#100;&#111;&#109;&#97;&#x69;&#110;&lt;/a>'&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Certificate is to be certified until Mar 21 22:47:52 2025 GMT (3650 days)
+</span><span class='line'>Sign the certificate? [y/n]:y
+</span><span class='line'>1 out of 1 certificate requests certified, commit? [y/n]y
+</span><span class='line'>Write out database with 1 new entries
+</span><span class='line'>Data Base Updated</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This line adds an extra layer of encryption to make it harder for hackers to break in.
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# cd keys
+</span><span class='line'>/etc/openvpn/easy-rsa/2.0/keys# openssl rsa -in officelaptop.key -des3 -out officelaptop.3des.key
+</span><span class='line'>Enter pass phrase for officelaptop.key:
+</span><span class='line'>writing RSA key
+</span><span class='line'>Enter PEM pass phrase:
+</span><span class='line'>Verifying - Enter PEM pass phrase:</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Generate the Diffie-Hellman key exchange.</h2>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>This is the code that lets two entities with no prior knowledge of one another share secret keys over a public server.
+</span><span class='line'>/etc/openvpn/easy-rsa/2.0/keys# cd ..
+</span><span class='line'>/etc/openvpn/easy-rsa/2.0# ./build-dh
+</span><span class='line'>Generating DH parameters, 2048 bit long safe prime, generator 2
+</span><span class='line'>This is going to take a long time</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Denial of Service (DoS) attack protection</h2>
+
+<p>OpenVPN protects against this kind of attack by generating a static pre-shared hash-based message authentication code (HMAC) key.  <br/>
+This means the server will not try to authenticate an access request if it does not detect this key.  <br/>
+To generate the static HMAC key type:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# openvpn --genkey --secret keys/ta.key</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Update the sample configuration file, It should look like following in the most basic form:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /etc/openvpn
+</span><span class='line'>cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>Sample&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p>port 8443
+</span><span class='line'>proto udp
+</span><span class='line'>dev tun
+</span><span class='line'>user nobody
+</span><span class='line'>group nogroup
+</span><span class='line'>persist-key
+</span><span class='line'>persist-tun
+</span><span class='line'>keepalive 10 120
+</span><span class='line'>topology subnet
+</span><span class='line'>server 10.8.0.0 255.255.255.0
+</span><span class='line'>ifconfig-pool-persist ipp.txt
+</span><span class='line'>push "dhcp-option DNS 192.168.1.1"
+</span><span class='line'>push "dhcp-option DNS 8.8.8.8"
+</span><span class='line'>push "redirect-gateway def1 bypass-dhcp"
+</span><span class='line'>dh none
+</span><span class='line'>ecdh-curve prime256v1
+</span><span class='line'>tls-crypt tls-crypt.key 0
+</span><span class='line'>crl-verify crl.pem
+</span><span class='line'>ca ca.crt
+</span><span class='line'>cert server.crt
+</span><span class='line'>key server.key
+</span><span class='line'>auth SHA256
+</span><span class='line'>cipher AES-128-GCM
+</span><span class='line'>ncp-ciphers AES-128-GCM
+</span><span class='line'>tls-server
+</span><span class='line'>tls-version-min 1.2
+</span><span class='line'>tls-cipher TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256
+</span><span class='line'>status /var/log/openvpn/status.log
+</span><span class='line'>verb 3
+</span><span class='line'>management localhost 7213</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You will need to enable IP forwarding.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo 1 > /proc/sys/net/ipv4/ip_forward</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You can make this a permanent change by uncommenting the line:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>net.ipv4.ip_forward = 1</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>in the file /etc/sysctl.conf.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# sysctl -p
+</span><span class='line'>kernel.printk = 3 4 1 3
+</span><span class='line'>net.ipv4.ip_forward = 1
+</span><span class='line'>vm.swappiness = 1
+</span><span class='line'>vm.min_free_kbytes = 8192</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Change the permissions for the firewall script</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# chmod 700 /etc/firewall-openvpn-rules.sh  &lt;br/>
+</span><span class='line'>/etc/openvpn/easy-rsa/2.0# chown root  /etc/firewall-openvpn-rules.sh  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Find the line that is either iface eth0 inet dhcp or iface eth0 inet manual and enter this line below it:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/etc/openvpn/easy-rsa/2.0# vi /etc/network/interfaces&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>pre-up /etc/firewall-openvpn-rules.sh&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Keep those spaces at the front so it.s indented, it should end up looking like this:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>iface eth0 inet manual pre-up /etc/firewall-openvpn-rules.sh&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You'll also have to allow NAT forwarding through your firewall. This will most likely be accomplished with something like the following rule in iptables:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>or&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>ufw allow portnum&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This assumes you have set up your openvpn server with the IP 10.8.0.0 in the server.conf file as described above.</p>
+
+<p>I did not do this, I opened a port on my router. Let me know if thats not right.</p>
+
+<p>Now reboot.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;h1>sudo reboot&lt;/h1>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Configure the Client and connect to your VPN. No Spoofing..</p>
+
+<p>Enjoy...</p>
 ]]></content>
   </entry>
   
