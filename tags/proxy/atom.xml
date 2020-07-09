@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:proxy | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/proxy/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-09T23:24:40+01:00</updated>
+  <updated>2020-07-09T23:59:55+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -88,7 +88,7 @@ Let.s look at these two types in more detail</li>
    <a href="http://httpd.apache.org/docs/2.0/mod/mod_proxy.html#forwardreverse">Apache - mod_proxy.html#forwardreverse</a></p>
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x67;&#101;&#x6e;&#x65;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#x78;&#x78;&#x78;&#x40;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;">&#x67;&#x65;&#x6e;&#101;&#x77;&#97;&#108;&#122;&#46;&#120;&#x78;&#x78;&#x78;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#58;&#103;&#x65;&#110;&#x65;&#x77;&#97;&#108;&#x7a;&#46;&#120;&#120;&#x78;&#120;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#111;&#109;">&#103;&#101;&#110;&#x65;&#119;&#x61;&#x6c;&#122;&#x2e;&#120;&#x78;&#120;&#x78;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 ]]></content>
   </entry>
