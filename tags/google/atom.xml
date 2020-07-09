@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:Google | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/google/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2020-07-09T22:59:31+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Google 2FA with OpenVPN on AWS]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2020-04-02/google-2fa-with-openvpn-on-aws/"/>
+    <updated>2020-04-02T00:00:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2020-04-02/google-2fa-with-openvpn-on-aws</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>
