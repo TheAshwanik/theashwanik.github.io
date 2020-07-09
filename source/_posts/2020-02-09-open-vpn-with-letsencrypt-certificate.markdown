@@ -10,7 +10,7 @@ tags: OpenVpn, LetsEncrypt
 keywords: OpenVpn, LetsEncrypt, OpenVPN AS Certificate, SSL Certificate
 ---
 
-# LetsEncrypt HTTPS Certificates for OpenVPN AS (Access Server)
+LetsEncrypt HTTPS Certificates for OpenVPN AS (Access Server)
 
 So you want secure transport using ssl certificate for your openvpn Access server ( the admin GUI)
 To load a new HTTPS certificate for OpenVPN AS (Access Server), you.ll want to use the ./usr/local/openvpn_as/scripts/confdba command. This can be combined with a Lets Encrypt client to obtain free a HTTPs certificate for the AS web server.

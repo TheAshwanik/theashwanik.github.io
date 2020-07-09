@@ -10,12 +10,12 @@ tags: java,python
 keywords: Java, Python, Java vs Python, Java python comparison
 ---
 
-# Python vs. Java: Uses, Performance, Learning
+Python vs. Java: Uses, Performance, Learning   
 
-Python vs. Java: Uses, Performance, Learning
 In the world of computer science, there are many programming languages, and no single language is superior to another.   
 In other words, each language is best suited to solve certain problems, and in fact there is often no one best language to choose for a given programming project.    
 For this reason, it is important for students who wish to develop software or to solve interesting problems through code to have strong computer science fundamentals that will apply across any programming language.
+<!--more-->
 Programming languages tend to share certain characteristics in how they function, for example in the way they deal with memory usage or how heavily they use objects.    
 Students will start seeing these patterns as they are exposed to more languages. This article will focus primarily on Python versus Java, which are two of the most widely used programming languages in the world. While it is hard to measure exactly the rate at which each programming language is growing, these are two of the most popular programming languages used in industry today.
 One major difference between Python and Java is that Python is dynamically typed, while Java is statically typed. Loosely, this means that Java is much more strict about how variables are defined and used in code.    
@@ -25,7 +25,6 @@ For example, here is how you would create a variable named numbers that holds th
 {{ codeblock }}
 
 numbers = []
-
 for i in range(10):
 numbers.append(i)
 
@@ -33,11 +32,11 @@ Here's how you would do the same thing in Java:
 ArrayList numbers = new ArrayList();
 
 for (int i = 0; i < 10; i++) {
-numbers.add(i);
+	numbers.add(i);
 }
 
 {{ endcodeblock }}
-``` 
+
 Another major difference is that Java generally runs programs more quickly than Python, as it is a compiled language.   
 This means that before a program is actually run, the compiler translates the Java code into machine-level code.     
 By contrast, Python is an interpreted language, meaning there is no compile step.
