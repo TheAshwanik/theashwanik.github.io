@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:LetsEncrypt | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/letsencrypt/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-09T23:59:55+01:00</updated>
+  <updated>2020-07-10T00:22:49+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.ashwani.co.in/blog/2020-02-09/open-vpn-with-letsencrypt-certificate/"/>
     <updated>2020-02-09T00:00:00+00:00</updated>
     <id>http://blog.ashwani.co.in/blog/2020-02-09/open-vpn-with-letsencrypt-certificate</id>
-    <content type="html"><![CDATA[<h1>LetsEncrypt HTTPS Certificates for OpenVPN AS (Access Server)</h1>
+    <content type="html"><![CDATA[<p>LetsEncrypt HTTPS Certificates for OpenVPN AS (Access Server)</p>
 
 <p>So you want secure transport using ssl certificate for your openvpn Access server ( the admin GUI)
 To load a new HTTPS certificate for OpenVPN AS (Access Server), you.ll want to use the ./usr/local/openvpn_as/scripts/confdba command. This can be combined with a Lets Encrypt client to obtain free a HTTPs certificate for the AS web server.</p>
