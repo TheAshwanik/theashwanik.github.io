@@ -7,7 +7,8 @@ name: Ashwani's Tech World - Giving back to community
 title: Ashwani's Tech World - Giving back to community
 subtitle: Sharing Knowledge - Best way to keep your brain juicy.
 author: Ashwani Kumar
-simple_search: http://google.com/search
+blog_search: TRUE
+simple_searchxxx: http://google.com/search
 description: This is my personal blog I use for expressing my views, to document the issues I encountered and to help give something back to the world.
 keywords: TheAshwaniK, Ashwani Kumar Blog, Blog , Functional Blog, Technical Blog, Telecom Blog, KIS , Kabira, Kabira provisioning , KPSA, Development, provisioning
 #prof_website: www.ashwani.co.in
