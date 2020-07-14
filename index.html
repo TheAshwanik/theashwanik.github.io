@@ -286,8 +286,7 @@ Tagged as
   <div class="entry-content"><p>We want to discuss about one of growing secret service, which can be used with most of cloud services and DevOps tools.
 In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</p>
 
-<p>{codeblock}
-cat /etc/os-release
+<p>cat /etc/os-release
 PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
 NAME="Raspbian GNU/Linux"
 VERSION_ID="9"
@@ -298,8 +297,6 @@ ID_LIKE=debian
 HOME_URL="<a href="http://www.raspbian.org/">http://www.raspbian.org/</a>"
 SUPPORT_URL="<a href="http://www.raspbian.org/RaspbianForums">http://www.raspbian.org/RaspbianForums</a>"
 BUG_REPORT_URL="<a href="http://www.raspbian.org/RaspbianBugs">http://www.raspbian.org/RaspbianBugs</a>"</p>
-
-<p>{endcodeblock}</p>
 
 <p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
@@ -312,44 +309,37 @@ I am using this:</p>
 
 <p><a href="https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip">https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip</a></p>
 
-<p>Unzip the package
-{codeblock}
-unzip vault_1.4.3_linux_arm.zip
-{endcodeblock}</p>
+<p>Unzip the package</p>
 
-<p>Make the vault executable to /usr/bin
-{codeblock}
-sudo mv vault /usr/bin/
-{endcodeblock}</p>
+<p>unzip vault_1.4.3_linux_arm.zip</p>
 
-<p>Checking its version.
-{codeblock}
-vault -v
-{endcodeblock}</p>
+<p>Make the vault executable to /usr/bin</p>
+
+<p>sudo mv vault /usr/bin/</p>
+
+<p>Checking its version.</p>
+
+<p>vault -v</p>
 
 <p>Finally, set a Linux capability flag on the binary. This adds extra security by letting the binary perform memory locking without unnecessarily elevating its privileges.</p>
 
-<p>{codeblock}
-sudo setcap cap_ipc_lock=+ep /usr/bin/vault
-{endcodeblock}</p>
+<p>sudo setcap cap_ipc_lock=+ep /usr/bin/vault</p>
 
 <p>Create vault data folder.</p>
 
-<p>{codeblock}
-sudo mkdir ~/hashicorp/vault-data
-{endcodeblock}</p>
+<p>sudo mkdir ~/hashicorp/vault-data</p>
 
-<p>Creating the Vault startup file
-{codeblock}
-sudo useradd -r -d ~/hashicorp/vault-data -s /bin/nologin vault
-{endcodeblock}
-Set the ownership of /vault-data to the vault user and the vault group exclusively.
-{codeblock}
-sudo install -o vault -g vault -m 750 -d ~/hashicorp/vault-data
-{endcodeblock}
-Now let’s set up Vault’s configuration file, /etc/vault.hcl
-{codeblock}
-sudo vi /etc/vault.hcl
+<p>Creating the Vault startup file</p>
+
+<p>sudo useradd -r -d ~/hashicorp/vault-data -s /bin/nologin vault</p>
+
+<p>Set the ownership of /vault-data to the vault user and the vault group exclusively.</p>
+
+<p>sudo install -o vault -g vault -m 750 -d ~/hashicorp/vault-data</p>
+
+<p>Now let’s set up Vault’s configuration file, /etc/vault.hcl</p>
+
+<p>sudo vi /etc/vault.hcl
 ui = true
 storage "file" {
   path = "/home/theashwanik/hashicorp/vault-data""
@@ -357,18 +347,16 @@ storage "file" {
 listener "tcp" {
  address     = "0.0.0.0:8200"
  tls_disable = 1
-}
-{endcodeblock}</p>
+}</p>
 
-<p>Change ownership
-{codeblock}
-sudo chown vault:vault /etc/vault.hcl
-sudo chmod 640 /etc/vault.hcl
-{endcodeblock}</p>
+<p>Change ownership</p>
 
-<p>Startup script /etc/systemd/system/vault.service
-{codeblock}
-sudo vi /etc/systemd/system/vault.service</p>
+<p>sudo chown vault:vault /etc/vault.hcl
+sudo chmod 640 /etc/vault.hcl</p>
+
+<p>Startup script /etc/systemd/system/vault.service</p>
+
+<p>sudo vi /etc/systemd/system/vault.service</p>
 
 <p>[Unit]
 Description=HashiCorp Vault to manage secrets
@@ -390,15 +378,11 @@ KillSignal=SIGINT</p>
 <p>[Install]
 WantedBy=multi-user.target</p>
 
-<p>{endcodeblock}</p>
-
 <h1>Start the service using following command</h1>
 
-<p>{codeblock}
-systemctl deamon-reload<br/>
+<p>systemctl deamon-reload<br/>
 systemctl start vault.service<br/>
-systemctl status vault.service<br/>
-{endcodeblock}</p>
+systemctl status vault.service</p>
 
 <h2>Initialize Vault</h2>
 
@@ -409,9 +393,7 @@ systemctl status vault.service<br/>
 Unseal keys: These are used to unseal Vault when the daemon starts, which permits the Vault daemon to decrypt the backend secret stor
 </code></pre>
 
-<p>{codeblock}
-vim /etc/systemd/system/vault.service
-{endcodeblock}</p>
+<p>vim /etc/systemd/system/vault.service</p>
 
 <h4>Seal/Unseal</h4>
 
@@ -423,20 +405,18 @@ vim /etc/systemd/system/vault.service
 
 <h2>Initialize vault to get the keys.</h2>
 
-<p>{codeblock}
-vault operator init
+<p>vault operator init
 Unseal Key 1: UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
 Unseal Key 2: 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
 Unseal Key 3: /Jo+IW40WN7UQZXL6TxxxxxxxQAABhdlwth8IenTuduV
 Unseal Key 4: 8YkysMXH/rsS3GOdCfW1qEwBiBk4JaKSXPjv/B0StaSF
 Unseal Key 5: RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO</p>
 
-<p>Initial Root Token: s.VCVsxxxxxxxYMaxeYbMBUNPF0
-{endcodeblock}
-By default, vault will be sealed. It should be unsealed with minimum of three unseal keys as shown below.</p>
+<p>Initial Root Token: s.VCVsxxxxxxxYMaxeYbMBUNPF0</p>
 
-<p>{codeblock}
-vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
+<p>By default, vault will be sealed. It should be unsealed with minimum of three unseal keys as shown below.</p>
+
+<p>vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
 vault operator unseal 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
 vault operator unseal RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO</p>
 
@@ -483,11 +463,9 @@ Cluster Name    vault-cluster-7944b651
 Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
 HA Enabled      false</p>
 
-<p>{endcodeblock}</p>
+<p>Check the status</p>
 
-<p>Check the status
-{codeblock}
-Key             Value</p>
+<p>Key             Value</p>
 
 <hr />
 
@@ -501,79 +479,60 @@ Cluster Name    vault-cluster-7944b651
 Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
 HA Enabled      false</p>
 
-<p>{endcodeblock}</p>
-
 <p>Note: Every time you restart vault or if it gets restarted during server restarts, you need to perform the unseal operation using the same unseal key.</p>
 
 <p>You can also access the vault UI on port 8200 of your vault server.</p>
 
-<p>{codeblock}
-<a href="http://192.168.1.111:8200/ui/">http://192.168.1.111:8200/ui/</a>
-{endcodeblock}</p>
+<p><a href="http://192.168.1.111:8200/ui/">http://192.168.1.111:8200/ui/</a></p>
 
 <h1>Usage</h1>
 
 <h2>Create secrets at the kv/my-secret path.</h2>
 
-<p>{codeblock}</p>
-
 <p>$ vault kv put kv/my-secret value="s3c(eT"
-Success! Data written to: kv/my-secret
-{endcodeblock}</p>
+Success! Data written to: kv/my-secret</p>
 
 <h2>Read the secrets at kv/my-secret.</h2>
 
-<p>{codeblock}
-$ vault kv get kv/my-secret</p>
+<p>$ vault kv get kv/my-secret</p>
 
 <p>==== Data ====
 Key      Value</p>
 
 <hr />
 
-<p>value    s3c(eT
-{endcodeblock}</p>
+<p>value    s3c(eT</p>
 
 <h2>Delete the secrets at kv/my-secret.</h2>
 
-<p>{codeblock}
-$ vault kv delete kv/my-secret
-Success! Data deleted (if it existed) at: kv/my-secret
-{endcodeblock}</p>
+<p>$ vault kv delete kv/my-secret
+Success! Data deleted (if it existed) at: kv/my-secret</p>
 
 <h2>List existing keys at the kv path.</h2>
-
-<p>{codeblock}</p>
 
 <p>$ vault kv list kv/</p>
 
 <h2>Keys</h2>
 
-<p>hello
-{endcodeblock}</p>
+<p>hello</p>
 
 <h2>Disable a Secrets Engine</h2>
 
 <p>When a secrets engine is no longer needed, it can be disabled. When a secrets engine is disabled, all secrets are revoked and the corresponding Vault data and configuration is removed.</p>
 
-<p>{codeblock}
-$ vault secrets disable kv/
-Success! Disabled the secrets engine (if it existed) at: kv/
-{endcodeblock}</p>
+<p>$ vault secrets disable kv/
+Success! Disabled the secrets engine (if it existed) at: kv/</p>
 
 <p>Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
 
 <h2>Dynamic Secret Engines:</h2>
 
-<p>{codeblock}
-vault secrets enable -path=aws aws
-Success! Enabled the aws secrets engine at: aws/
-{endcodeblock}</p>
+<p>vault secrets enable -path=aws aws
+Success! Enabled the aws secrets engine at: aws/</p>
 
 <h2>Getting help</h2>
 
-<p>{codeblock}
-vault path-help aws</p>
+<p>vault path-help aws</p>
 
 <p>DESCRIPTION</p>
 
@@ -611,11 +570,7 @@ you may or may not be able to access certain paths.</p>
     List the existing roles in this backend
 </code></pre>
 
-<p>{endcodeblock}</p>
-
 <h2>Authentication</h2>
-
-<p>{codeblock}</p>
 
 <p>vault token create
 Key                  Value</p>
@@ -630,11 +585,9 @@ token_policies       ["root"]
 identity_policies    []
 policies             ["root"]</p>
 
-<p>{endcodeblock}
-The token is created and displayed here as s.7vM3kUTFSNxxxxxxxxxf4f8R9. Each token that Vault creates is unique.</p>
+<p>The token is created and displayed here as s.7vM3kUTFSNxxxxxxxxxf4f8R9. Each token that Vault creates is unique.</p>
 
-<p>{codeblock}
-vault login s.7vM3kUTFSNxxxxxxxxxf4f8R9
+<p>vault login s.7vM3kUTFSNxxxxxxxxxf4f8R9
 WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
 over the value set by this command. To use the value set by this command,
 unset the VAULT_TOKEN environment variable or set it to the token displayed
@@ -656,15 +609,12 @@ token_policies       ["root"]
 identity_policies    []
 policies             ["root"]</p>
 
-<p>{endcodeblock}</p>
-
 <p>When a token is no longer needed it can be revoked.</p>
 
-<p>Revoke the first token you created.
-{codeblock}
-$ vault token revoke s.7vM3kUTFSNxxxxxxxxxf4f8R9
-Success! Revoked token (if it existed)
-{endcodeblock}</p>
+<p>Revoke the first token you created.</p>
+
+<p>$ vault token revoke s.7vM3kUTFSNxxxxxxxxxf4f8R9
+Success! Revoked token (if it existed)</p>
 
 <p>The token has been revoked.</p>
 
