@@ -286,17 +286,29 @@ Tagged as
   <div class="entry-content"><p>We want to discuss about one of growing secret service, which can be used with most of cloud services and DevOps tools.
 In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</p>
 
-<p>cat /etc/os-release
-PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
-NAME="Raspbian GNU/Linux"
-VERSION_ID="9"
-VERSION="9 (stretch)"
-VERSION_CODENAME=stretch
-ID=raspbian
-ID_LIKE=debian
-HOME_URL="<a href="http://www.raspbian.org/">http://www.raspbian.org/</a>"
-SUPPORT_URL="<a href="http://www.raspbian.org/RaspbianForums">http://www.raspbian.org/RaspbianForums</a>"
-BUG_REPORT_URL="<a href="http://www.raspbian.org/RaspbianBugs">http://www.raspbian.org/RaspbianBugs</a>"</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/os-release
+</span><span class='line'>PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
+</span><span class='line'>NAME="Raspbian GNU/Linux"
+</span><span class='line'>VERSION_ID="9"
+</span><span class='line'>VERSION="9 (stretch)"
+</span><span class='line'>VERSION_CODENAME=stretch
+</span><span class='line'>ID=raspbian
+</span><span class='line'>ID_LIKE=debian
+</span><span class='line'>HOME_URL="http://www.raspbian.org/"
+</span><span class='line'>SUPPORT_URL="http://www.raspbian.org/RaspbianForums"
+</span><span class='line'>BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
@@ -311,78 +323,131 @@ I am using this:</p>
 
 <p>Unzip the package</p>
 
-<p>unzip vault_1.4.3_linux_arm.zip</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>unzip vault_1.4.3_linux_arm.zip</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Make the vault executable to /usr/bin</p>
 
-<p>sudo mv vault /usr/bin/</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo mv vault /usr/bin/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Checking its version.</p>
 
-<p>vault -v</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault -v</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Finally, set a Linux capability flag on the binary. This adds extra security by letting the binary perform memory locking without unnecessarily elevating its privileges.</p>
 
-<p>sudo setcap cap_ipc_lock=+ep /usr/bin/vault</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo setcap cap_ipc_lock=+ep /usr/bin/vault</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Create vault data folder.</p>
 
-<p>sudo mkdir ~/hashicorp/vault-data</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo mkdir ~/hashicorp/vault-data</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Creating the Vault startup file</p>
 
-<p>sudo useradd -r -d ~/hashicorp/vault-data -s /bin/nologin vault</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo useradd -r -d ~/hashicorp/vault-data -s /bin/nologin vault</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Set the ownership of /vault-data to the vault user and the vault group exclusively.</p>
 
-<p>sudo install -o vault -g vault -m 750 -d ~/hashicorp/vault-data</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo install -o vault -g vault -m 750 -d ~/hashicorp/vault-data</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Now let’s set up Vault’s configuration file, /etc/vault.hcl</p>
 
-<p>sudo vi /etc/vault.hcl
-ui = true
-storage "file" {
-  path = "/home/theashwanik/hashicorp/vault-data""
-}
-listener "tcp" {
- address     = "0.0.0.0:8200"
- tls_disable = 1
-}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vi /etc/vault.hcl
+</span><span class='line'>ui = true
+</span><span class='line'>storage "file" {
+</span><span class='line'>  path = "/home/theashwanik/hashicorp/vault-data""
+</span><span class='line'>}
+</span><span class='line'>listener "tcp" {
+</span><span class='line'> address     = "0.0.0.0:8200"
+</span><span class='line'> tls_disable = 1
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Change ownership</p>
 
-<p>sudo chown vault:vault /etc/vault.hcl
-sudo chmod 640 /etc/vault.hcl</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo chown vault:vault /etc/vault.hcl
+</span><span class='line'>sudo chmod 640 /etc/vault.hcl</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Startup script /etc/systemd/system/vault.service</p>
 
-<p>sudo vi /etc/systemd/system/vault.service</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vi /etc/systemd/system/vault.service
+</span><span class='line'>
+</span><span class='line'>[Unit]
+</span><span class='line'>Description=HashiCorp Vault to manage secrets
+</span><span class='line'>Documentation=https://vaultproject.io/docs/
+</span><span class='line'>After=network.target
+</span><span class='line'>ConditionFileNotEmpty=/etc/vault.hcl
+</span><span class='line'>
+</span><span class='line'>[Service]
+</span><span class='line'>User=vault
+</span><span class='line'>Group=vault
+</span><span class='line'>ExecStart=/usr/bin/vault server -config=/etc/vault.hcl
+</span><span class='line'>ExecReload=/usr/local/bin/kill --signal HUP $MAINPID
+</span><span class='line'>CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
+</span><span class='line'>AmbientCapabilities=CAP_IPC_LOCK
+</span><span class='line'>SecureBits=keep-caps
+</span><span class='line'>NoNewPrivileges=yes
+</span><span class='line'>KillSignal=SIGINT
+</span><span class='line'>
+</span><span class='line'>[Install]
+</span><span class='line'>WantedBy=multi-user.target</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>[Unit]
-Description=HashiCorp Vault to manage secrets
-Documentation=<a href="https://vaultproject.io/docs/">https://vaultproject.io/docs/</a>
-After=network.target
-ConditionFileNotEmpty=/etc/vault.hcl</p>
-
-<p>[Service]
-User=vault
-Group=vault
-ExecStart=/usr/bin/vault server -config=/etc/vault.hcl
-ExecReload=/usr/local/bin/kill --signal HUP $MAINPID
-CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
-AmbientCapabilities=CAP_IPC_LOCK
-SecureBits=keep-caps
-NoNewPrivileges=yes
-KillSignal=SIGINT</p>
-
-<p>[Install]
-WantedBy=multi-user.target</p>
 
 <h1>Start the service using following command</h1>
 
-<p>systemctl deamon-reload<br/>
-systemctl start vault.service<br/>
-systemctl status vault.service</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>systemctl deamon-reload  
+</span><span class='line'>systemctl start vault.service  
+</span><span class='line'>systemctl status vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h2>Initialize Vault</h2>
 
@@ -393,7 +458,9 @@ systemctl status vault.service</p>
 Unseal keys: These are used to unseal Vault when the daemon starts, which permits the Vault daemon to decrypt the backend secret stor
 </code></pre>
 
-<p>vim /etc/systemd/system/vault.service</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vim /etc/systemd/system/vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h4>Seal/Unseal</h4>
 
@@ -405,216 +472,363 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 <h2>Initialize vault to get the keys.</h2>
 
-<p>vault operator init
-Unseal Key 1: UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
-Unseal Key 2: 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
-Unseal Key 3: /Jo+IW40WN7UQZXL6TxxxxxxxQAABhdlwth8IenTuduV
-Unseal Key 4: 8YkysMXH/rsS3GOdCfW1qEwBiBk4JaKSXPjv/B0StaSF
-Unseal Key 5: RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault operator init
+</span><span class='line'>Unseal Key 1: UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
+</span><span class='line'>Unseal Key 2: 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
+</span><span class='line'>Unseal Key 3: /Jo+IW40WN7UQZXL6TxxxxxxxQAABhdlwth8IenTuduV
+</span><span class='line'>Unseal Key 4: 8YkysMXH/rsS3GOdCfW1qEwBiBk4JaKSXPjv/B0StaSF
+</span><span class='line'>Unseal Key 5: RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO
+</span><span class='line'>
+</span><span class='line'>Initial Root Token: s.VCVsxxxxxxxYMaxeYbMBUNPF0</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Initial Root Token: s.VCVsxxxxxxxYMaxeYbMBUNPF0</p>
 
 <p>By default, vault will be sealed. It should be unsealed with minimum of three unseal keys as shown below.</p>
 
-<p>vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
-vault operator unseal 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
-vault operator unseal RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
+</span><span class='line'>vault operator unseal 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
+</span><span class='line'>vault operator unseal RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO
+</span><span class='line'>
+</span><span class='line'>theashwanik@ashberrypi:~/hashicorp/vault $   vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
+</span><span class='line'>Key                Value
+</span><span class='line'>---                -----
+</span><span class='line'>Seal Type          shamir
+</span><span class='line'>Initialized        true
+</span><span class='line'>Sealed             true
+</span><span class='line'>Total Shares       5
+</span><span class='line'>Threshold          3
+</span><span class='line'>Unseal Progress    1/3
+</span><span class='line'>Unseal Nonce       634a8b1a-6d15-d4a3-740f-f6b8f01a4a37
+</span><span class='line'>Version            1.4.3+ent
+</span><span class='line'>HA Enabled         false
+</span><span class='line'>theashwanik@ashberrypi:~/hashicorp/vault $  vault operator unseal 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
+</span><span class='line'>Key                Value
+</span><span class='line'>---                -----
+</span><span class='line'>Seal Type          shamir
+</span><span class='line'>Initialized        true
+</span><span class='line'>Sealed             true
+</span><span class='line'>Total Shares       5
+</span><span class='line'>Threshold          3
+</span><span class='line'>Unseal Progress    2/3
+</span><span class='line'>Unseal Nonce       634a8b1a-6d15-d4a3-740f-f6b8f01a4a37
+</span><span class='line'>Version            1.4.3+ent
+</span><span class='line'>HA Enabled         false
+</span><span class='line'>theashwanik@ashberrypi:~/hashicorp/vault $  vault operator unseal RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO
+</span><span class='line'>Key             Value
+</span><span class='line'>---             -----
+</span><span class='line'>Seal Type       shamir
+</span><span class='line'>Initialized     true
+</span><span class='line'>Sealed          false
+</span><span class='line'>Total Shares    5
+</span><span class='line'>Threshold       3
+</span><span class='line'>Version         1.4.3+ent
+</span><span class='line'>Cluster Name    vault-cluster-7944b651
+</span><span class='line'>Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
+</span><span class='line'>HA Enabled      false</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>theashwanik@ashberrypi:~/hashicorp/vault $   vault operator unseal UBXbFKpvvytWeR3rUWi1k3xxxxxxxxxK8LIKtdMGvsjA
-Key                Value</p>
-
-<hr />
-
-<p>Seal Type          shamir
-Initialized        true
-Sealed             true
-Total Shares       5
-Threshold          3
-Unseal Progress    1/3
-Unseal Nonce       634a8b1a-6d15-d4a3-740f-f6b8f01a4a37
-Version            1.4.3+ent
-HA Enabled         false
-theashwanik@ashberrypi:~/hashicorp/vault $  vault operator unseal 13sjixnJMSvNyANqwdxxxxxxxxE3OPd/izsg8nezTv3F
-Key                Value</p>
-
-<hr />
-
-<p>Seal Type          shamir
-Initialized        true
-Sealed             true
-Total Shares       5
-Threshold          3
-Unseal Progress    2/3
-Unseal Nonce       634a8b1a-6d15-d4a3-740f-f6b8f01a4a37
-Version            1.4.3+ent
-HA Enabled         false
-theashwanik@ashberrypi:~/hashicorp/vault $  vault operator unseal RRqXVkJ7o0nSsYxxxxxxxFUvvONI2meiF+E+dhssnSdO
-Key             Value</p>
-
-<hr />
-
-<p>Seal Type       shamir
-Initialized     true
-Sealed          false
-Total Shares    5
-Threshold       3
-Version         1.4.3+ent
-Cluster Name    vault-cluster-7944b651
-Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
-HA Enabled      false</p>
 
 <p>Check the status</p>
 
-<p>Key             Value</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Key             Value
+</span><span class='line'>---             -----
+</span><span class='line'>Seal Type       shamir
+</span><span class='line'>Initialized     true
+</span><span class='line'>Sealed          false
+</span><span class='line'>Total Shares    5
+</span><span class='line'>Threshold       3
+</span><span class='line'>Version         1.4.3+ent
+</span><span class='line'>Cluster Name    vault-cluster-7944b651
+</span><span class='line'>Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
+</span><span class='line'>HA Enabled      false</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<hr />
-
-<p>Seal Type       shamir
-Initialized     true
-Sealed          false
-Total Shares    5
-Threshold       3
-Version         1.4.3+ent
-Cluster Name    vault-cluster-7944b651
-Cluster ID      2573fdfa-01a5-19e1-8a20-0cd5fcc89df8
-HA Enabled      false</p>
 
 <p>Note: Every time you restart vault or if it gets restarted during server restarts, you need to perform the unseal operation using the same unseal key.</p>
 
 <p>You can also access the vault UI on port 8200 of your vault server.</p>
 
-<p><a href="http://192.168.1.111:8200/ui/">http://192.168.1.111:8200/ui/</a></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://192.168.1.111:8200/ui/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h1>Usage</h1>
 
 <h2>Create secrets at the kv/my-secret path.</h2>
 
-<p>$ vault kv put kv/my-secret value="s3c(eT"
-Success! Data written to: kv/my-secret</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault kv put kv/my-secret value="s3c(eT"
+</span><span class='line'>Success! Data written to: kv/my-secret</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h2>Read the secrets at kv/my-secret.</h2>
 
-<p>$ vault kv get kv/my-secret</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault kv get kv/my-secret
+</span><span class='line'>
+</span><span class='line'>==== Data ====
+</span><span class='line'>Key      Value
+</span><span class='line'>---      -----
+</span><span class='line'>value    s3c(eT</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>==== Data ====
-Key      Value</p>
-
-<hr />
-
-<p>value    s3c(eT</p>
 
 <h2>Delete the secrets at kv/my-secret.</h2>
 
-<p>$ vault kv delete kv/my-secret
-Success! Data deleted (if it existed) at: kv/my-secret</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault kv delete kv/my-secret
+</span><span class='line'>Success! Data deleted (if it existed) at: kv/my-secret</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h2>List existing keys at the kv path.</h2>
 
-<p>$ vault kv list kv/</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault kv list kv/
+</span><span class='line'>
+</span><span class='line'>Keys
+</span><span class='line'>----
+</span><span class='line'>hello</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h2>Keys</h2>
-
-<p>hello</p>
 
 <h2>Disable a Secrets Engine</h2>
 
 <p>When a secrets engine is no longer needed, it can be disabled. When a secrets engine is disabled, all secrets are revoked and the corresponding Vault data and configuration is removed.</p>
 
-<p>$ vault secrets disable kv/
-Success! Disabled the secrets engine (if it existed) at: kv/</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault secrets disable kv/
+</span><span class='line'>Success! Disabled the secrets engine (if it existed) at: kv/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
 
 <h2>Dynamic Secret Engines:</h2>
 
-<p>vault secrets enable -path=aws aws
-Success! Enabled the aws secrets engine at: aws/</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault secrets enable -path=aws aws
+</span><span class='line'>Success! Enabled the aws secrets engine at: aws/</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <h2>Getting help</h2>
 
-<p>vault path-help aws</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault path-help aws
+</span><span class='line'>
+</span><span class='line'>DESCRIPTION
+</span><span class='line'>
+</span><span class='line'>The AWS backend dynamically generates AWS access keys for a set of
+</span><span class='line'>IAM policies. The AWS access keys have a configurable lease set and
+</span><span class='line'>are automatically revoked at the end of the lease.
+</span><span class='line'>
+</span><span class='line'>After mounting this backend, credentials to generate IAM keys must
+</span><span class='line'>be configured with the "root" path and policies must be written using
+</span><span class='line'>the "roles/" endpoints before any access keys can be generated.
+</span><span class='line'>
+</span><span class='line'>PATHS
+</span><span class='line'>
+</span><span class='line'>The following paths are supported by this backend. To view help for
+</span><span class='line'>any of the paths below, use the help command with any route matching
+</span><span class='line'>the path pattern. Note that depending on the policy of your auth token,
+</span><span class='line'>you may or may not be able to access certain paths.
+</span><span class='line'>
+</span><span class='line'>    ^(creds|sts)/(?P&lt;name>\w(([\w-.@]+)?\w)?)$
+</span><span class='line'>        Generate AWS credentials from a specific Vault role.
+</span><span class='line'>
+</span><span class='line'>    ^config/lease$
+</span><span class='line'>        Configure the default lease information for generated credentials.
+</span><span class='line'>
+</span><span class='line'>    ^config/root$
+</span><span class='line'>        Configure the root credentials that are used to manage IAM.
+</span><span class='line'>
+</span><span class='line'>    ^config/rotate-root$
+</span><span class='line'>        Request to rotate the AWS credentials used by Vault
+</span><span class='line'>
+</span><span class='line'>    ^roles/(?P&lt;name>\w(([\w-.@]+)?\w)?)$
+</span><span class='line'>        Read, write and reference IAM policies that access keys can be made for.
+</span><span class='line'>
+</span><span class='line'>    ^roles/?$
+</span><span class='line'>        List the existing roles in this backend</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>DESCRIPTION</p>
-
-<p>The AWS backend dynamically generates AWS access keys for a set of
-IAM policies. The AWS access keys have a configurable lease set and
-are automatically revoked at the end of the lease.</p>
-
-<p>After mounting this backend, credentials to generate IAM keys must
-be configured with the "root" path and policies must be written using
-the "roles/" endpoints before any access keys can be generated.</p>
-
-<p>PATHS</p>
-
-<p>The following paths are supported by this backend. To view help for
-any of the paths below, use the help command with any route matching
-the path pattern. Note that depending on the policy of your auth token,
-you may or may not be able to access certain paths.</p>
-
-<pre><code>^(creds|sts)/(?P&lt;name&gt;\w(([\w-.@]+)?\w)?)$
-    Generate AWS credentials from a specific Vault role.
-
-^config/lease$
-    Configure the default lease information for generated credentials.
-
-^config/root$
-    Configure the root credentials that are used to manage IAM.
-
-^config/rotate-root$
-    Request to rotate the AWS credentials used by Vault
-
-^roles/(?P&lt;name&gt;\w(([\w-.@]+)?\w)?)$
-    Read, write and reference IAM policies that access keys can be made for.
-
-^roles/?$
-    List the existing roles in this backend
-</code></pre>
 
 <h2>Authentication</h2>
 
-<p>vault token create
-Key                  Value</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault token create
+</span><span class='line'>Key                  Value
+</span><span class='line'>---                  -----
+</span><span class='line'>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
+</span><span class='line'>token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
+</span><span class='line'>token_duration       ∞
+</span><span class='line'>token_renewable      false
+</span><span class='line'>token_policies       ["root"]
+</span><span class='line'>identity_policies    []
+</span><span class='line'>policies             ["root"]</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<hr />
-
-<p>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
-token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
-token_duration       ∞
-token_renewable      false
-token_policies       ["root"]
-identity_policies    []
-policies             ["root"]</p>
 
 <p>The token is created and displayed here as s.7vM3kUTFSNxxxxxxxxxf4f8R9. Each token that Vault creates is unique.</p>
 
-<p>vault login s.7vM3kUTFSNxxxxxxxxxf4f8R9
-WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
-over the value set by this command. To use the value set by this command,
-unset the VAULT_TOKEN environment variable or set it to the token displayed
-below.</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vault login s.7vM3kUTFSNxxxxxxxxxf4f8R9
+</span><span class='line'>WARNING! The VAULT_TOKEN environment variable is set! This takes precedence
+</span><span class='line'>over the value set by this command. To use the value set by this command,
+</span><span class='line'>unset the VAULT_TOKEN environment variable or set it to the token displayed
+</span><span class='line'>below.
+</span><span class='line'>
+</span><span class='line'>Success! You are now authenticated. The token information displayed below
+</span><span class='line'>is already stored in the token helper. You do NOT need to run "vault login"
+</span><span class='line'>again. Future Vault requests will automatically use this token.
+</span><span class='line'>
+</span><span class='line'>Key                  Value
+</span><span class='line'>---                  -----
+</span><span class='line'>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
+</span><span class='line'>token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
+</span><span class='line'>token_duration       ∞
+</span><span class='line'>token_renewable      false
+</span><span class='line'>token_policies       ["root"]
+</span><span class='line'>identity_policies    []
+</span><span class='line'>policies             ["root"]</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>Success! You are now authenticated. The token information displayed below
-is already stored in the token helper. You do NOT need to run "vault login"
-again. Future Vault requests will automatically use this token.</p>
 
-<p>Key                  Value</p>
-
-<hr />
-
-<p>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
-token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
-token_duration       ∞
-token_renewable      false
-token_policies       ["root"]
-identity_policies    []
-policies             ["root"]</p>
+<p></p>
 
 <p>When a token is no longer needed it can be revoked.</p>
 
 <p>Revoke the first token you created.</p>
 
-<p>$ vault token revoke s.7vM3kUTFSNxxxxxxxxxf4f8R9
-Success! Revoked token (if it existed)</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vault token revoke s.7vM3kUTFSNxxxxxxxxxf4f8R9
+</span><span class='line'>Success! Revoked token (if it existed)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <p>The token has been revoked.</p>
 
