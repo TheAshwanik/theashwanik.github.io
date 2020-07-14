@@ -194,6 +194,14 @@ Tagged as
   <div class="entry-content"><p>We want to discuss about one of growing secret service, which can be used with most of cloud services and DevOps tools.
 In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</p>
 
+<p>In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. <br/>
+This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
+
+<!-- more -->
+
+
+
+
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -219,8 +227,6 @@ In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</
 
 
 <p><br/></p>
-
-<p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
 <p>Introduction</p>
 
@@ -1008,7 +1014,7 @@ Tagged as
 
 			<br />
 			<section>
-  <h4>Subscribe</h4>
+  <h2>Subscribe</h2>
   <!-- Begin MailChimp Signup Form -->
   <!-- <div id="mc_embed_signup">
 	<form action="http://ashwani.us7.list-manage.com/subscribe/post?u=060ebf66b0ed41ea7018607ff&amp;id=24f2832472" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -1019,8 +1025,8 @@ Tagged as
   <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="you@email.com">
       </div>
       <div id="mce-responses" class="clear">
-		  <div class="response" id="mce-error-response" style="display:none"></div>
-		  <div class="response" id="mce-success-response" style="display:none"></div>
+  <div class="response" id="mce-error-response" style="display:none"></div>
+  <div class="response" id="mce-success-response" style="display:none"></div>
       </div>
       <div class="clear">
   <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
@@ -1049,8 +1055,6 @@ Tagged as
 </div>
 
 <!--End mc_embed_signup-->
-
-
 </section>
 
 			<br />

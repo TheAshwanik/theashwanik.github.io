@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:security, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/security-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-14T11:22:32+01:00</updated>
+  <updated>2020-07-14T12:34:14+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -20,6 +20,12 @@
     <id>http://blog.ashwani.co.in/blog/2020-05-12/install-hashicorp-vault-on-a-credit-card-sized-computer-raspberrypi</id>
     <content type="html"><![CDATA[<p>We want to discuss about one of growing secret service, which can be used with most of cloud services and DevOps tools.
 In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</p>
+
+<p>In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. <br/>
+This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
+
+<!-- more -->
+
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -49,8 +55,6 @@ In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><br/></p>
-
-<p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
 <p>Introduction</p>
 
