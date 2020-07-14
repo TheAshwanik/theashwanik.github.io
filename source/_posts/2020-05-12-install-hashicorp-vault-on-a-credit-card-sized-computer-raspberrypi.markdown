@@ -418,13 +418,13 @@ That's it folks.
 ### Few screenshots
 
 #### Home page of Hashicorp UI once you login successfully. 
-<img src="https://paste.pics/10b1aa14ec9bc9625be539d05290736f" alt="Home page for Hashicorp UI" width="600" border="1" />
+<img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="600" border="1" />
 <br/>
 #### Secrets screen - where all your secret engines and secrets can be seen. 
-<img src="https://paste.pics/3ea230d1be49295493f1c6ea9e5f938c" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
 <br/>
 #### Secrets screen - configuration of KV secret engine 
-<img src="https://paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
 <br/>
 
 <hr/>
