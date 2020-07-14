@@ -43,6 +43,7 @@
   <meta name="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
   <meta name="og:description" content="{{ description | strip_html | condense_spaces | truncate:150 }}" />
   <meta name="og:url" content="{{ site.url }}{{ page.url }}"/>
+  <meta name="og:image" content="{{ site.disqusimage }} ">
   <meta name="url" content="{{ site.url }}{{ page.url }}">
   {% if page.categories %}
   <meta name="subject" content="{{ page.categories }}"/>

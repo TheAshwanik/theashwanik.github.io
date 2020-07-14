@@ -137,6 +137,32 @@ systemctl status vault.service
 {% endcodeblock %}
 <br/>
 
+#### Preparing to Administer Vault
+Add the Vault bin directory to your PATH environment variable.
+
+{% codeblock %}
+export PATH=$PATH:/opt/vault/bin
+echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+Set environment variables for Vault
+
+
+export VAULT_ADDRESS=http://192.168.1.111:8200
+echo "export VAULT_ADDR=http://192.168.1.111:8200" >> ~/.bashrc
+
+And Probably
+ export VAULT_TOKEN=<token value>
+
+**Start the command with a space. See Protip.
+
+{% endcodeblock %}
+
+{% blockquote %}
+Attention: Be careful when you export sensitive data as environment variable using a command. 
+ProTip: Start your command with a space, and it will not get recorded in the command history. 
+{% endblockquote %}
+
+<br/>
+
 #### Initialize Vault
 
 There are two pieces of information that Vault will expose at initialization time that will not be available at any other point, so make sure you noted some secure place,
@@ -418,13 +444,13 @@ That's it folks.
 ### Few screenshots
 
 #### Home page of Hashicorp UI once you login successfully. 
-<img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="600" border="1" />
+<img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="" border="1" />
 <br/>
 #### Secrets screen - where all your secret engines and secrets can be seen. 
-<img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="" border="1" />
 <br/>
 #### Secrets screen - configuration of KV secret engine 
-<img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="" border="1" />
 <br/>
 
 <hr/>
