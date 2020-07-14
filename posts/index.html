@@ -1880,6 +1880,11 @@ In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</
 
 
 
+<p><br/></p>
+
+
+
+
 <p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
 
@@ -1901,7 +1906,8 @@ I am using this:</p>
 
 
 
-<p><a href="https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip">https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip</a></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -2023,7 +2029,12 @@ I am using this:</p>
 
 
 
-<p>Startup script /etc/systemd/system/vault.service</p>
+<p><br/></p>
+
+
+
+
+<h4>Startup script /etc/systemd/system/vault.service</h4>
 
 
 
@@ -2074,7 +2085,12 @@ I am using this:</p>
 
 
 
-<h1>Start the service using following command</h1>
+<p><br/></p>
+
+
+
+
+<h4>Start the service using following command</h4>
 
 
 
@@ -2089,7 +2105,12 @@ I am using this:</p>
 
 
 
-<h2>Initialize Vault</h2>
+<p><br/></p>
+
+
+
+
+<h4>Initialize Vault</h4>
 
 
 
@@ -2109,6 +2130,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vim /etc/systemd/system/vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/></p>
 
 
 
@@ -2133,7 +2159,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Initialize vault to get the keys.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Initialize vault to get the keys.</h4>
 
 
 
@@ -2247,7 +2278,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>Check the status</p>
+<p><br/></p>
+
+
+
+
+<h4>Check the status</h4>
 
 
 
@@ -2278,6 +2314,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
+<p><br/></p>
+
+
+
+
 <p>Note: Every time you restart vault or if it gets restarted during server restarts, you need to perform the unseal operation using the same unseal key.</p>
 
 
@@ -2294,12 +2335,27 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h1>Usage</h1>
+<p><br/></p>
 
 
 
 
-<h2>Create secrets at the kv/my-secret path.</h2>
+<hr />
+
+
+
+
+<h3>Usage</h3>
+
+
+
+
+<p><br/></p>
+
+
+
+
+<h4>Create secrets at the kv/my-secret path.</h4>
 
 
 
@@ -2312,7 +2368,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Read the secrets at kv/my-secret.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Read the secrets at kv/my-secret.</h4>
 
 
 
@@ -2333,7 +2394,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Delete the secrets at kv/my-secret.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Delete the secrets at kv/my-secret.</h4>
 
 
 
@@ -2346,7 +2412,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>List existing keys at the kv path.</h2>
+<p><br/></p>
+
+
+
+
+<h4>List existing keys at the kv path.</h4>
 
 
 
@@ -2365,7 +2436,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Disable a Secrets Engine</h2>
+<p><br/></p>
+
+
+
+
+<h4>Disable a Secrets Engine</h4>
 
 
 
@@ -2383,12 +2459,13 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
+<p><br/>
+Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
 
 
 
 
-<h2>Dynamic Secret Engines:</h2>
+<h4>Dynamic Secret Engines:</h4>
 
 
 
@@ -2401,7 +2478,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Getting help</h2>
+<p><br/></p>
+
+
+
+
+<h4>Getting help</h4>
 
 
 
@@ -2482,7 +2564,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Authentication</h2>
+<p><br/></p>
+
+
+
+
+<h4>Authentication</h4>
 
 
 
@@ -2502,11 +2589,16 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 </span><span class='line'>---                  -----
 </span><span class='line'>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
 </span><span class='line'>token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
-</span><span class='line'>token_duration       ∞
+</span><span class='line'>token_duration       -
 </span><span class='line'>token_renewable      false
 </span><span class='line'>token_policies       ["root"]
 </span><span class='line'>identity_policies    []
 </span><span class='line'>policies             ["root"]</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/></p>
 
 
 
@@ -2563,6 +2655,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
+<p><br/></p>
+
+
+
+
 <p>When a token is no longer needed it can be revoked.</p>
 
 
@@ -2586,24 +2683,82 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>That's it folks.  <br/>
-        <a href="http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md">http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md</a>
-<a href="https://github-myreadme-stats-64u7ufgl7.vercel.app/api?username=theashwanik">https://github-myreadme-stats-64u7ufgl7.vercel.app/api?username=theashwanik</a></p>
+<p>That's it folks.</p>
 
 
 
 
-<p> <iframe frameborder=0 style="min-width: 200px; width: 60%; height: 460px;" scrolling="no" seamless="seamless" srcdoc='<html><body><style type="text/css">.gist .gist-data { height: 400px; }</style><script src="http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md"></script></body></html>'></iframe></p>
+<p><br/></p>
 
 
 
 
-<h2>More information here by <a href="https://learn.hashicorp.com/vault/getting-started/vault-intro">hashicorp</a></h2>
+<hr/>
 
 
 
 
-<p><a href="https://github.com/hashicorp/vault/issues/6616">Issue</a></p>
+<h3>Few screenshots</h3>
+
+
+
+
+<h4>Home page of Hashicorp UI once you login successfully.</h4>
+
+
+
+
+<p><img src="https://paste.pics/10b1aa14ec9bc9625be539d05290736f" alt="Home page for Hashicorp UI" width="600" border="1" />
+<br/></p>
+
+
+
+
+<h4>Secrets screen - where all your secret engines and secrets can be seen.</h4>
+
+
+
+
+<p><img src="https://paste.pics/3ea230d1be49295493f1c6ea9e5f938c" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<br/></p>
+
+
+
+
+<h4>Secrets screen - configuration of KV secret engine</h4>
+
+
+
+
+<p><img src="https://paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<br/></p>
+
+
+
+
+<hr/>
+
+
+
+
+<h3>References</h3>
+
+
+
+
+<h4>More information here by <a href="https://learn.hashicorp.com/vault/getting-started/vault-intro">hashicorp</a></h4>
+
+
+
+
+<h4><a href="https://github.com/hashicorp/vault/issues/6616">Issue</a></h4>
+
+
+
+
+<hr/>
+
+
 
 
   </p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-14T09:35:50+01:00</updated>
+  <updated>2020-07-14T10:19:25+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -144,7 +144,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#106;&#x61;&#115;&#x6d;&#105;&#110;&#x65;&#x2e;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#64;&#x6a;&#117;&#x6e;&#105;&#x6c;&#x65;&#x61;&#x72;&#110;&#x69;&#110;&#x67;&#x2e;&#x63;&#x6f;">&#106;&#x61;&#115;&#x6d;&#105;&#x6e;&#101;&#46;&#x78;&#x2e;&#120;&#120;&#x78;&#x78;&#120;&#x78;&#64;&#x6a;&#x75;&#110;&#105;&#108;&#x65;&#x61;&#114;&#110;&#x69;&#x6e;&#x67;&#x2e;&#x63;&#111;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#106;&#x61;&#115;&#x6d;&#x69;&#x6e;&#x65;&#x2e;&#x78;&#46;&#120;&#x78;&#120;&#x78;&#x78;&#x78;&#64;&#106;&#117;&#110;&#x69;&#x6c;&#101;&#x61;&#114;&#x6e;&#105;&#x6e;&#x67;&#x2e;&#99;&#111;">&#x6a;&#x61;&#x73;&#109;&#105;&#110;&#x65;&#x2e;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#106;&#x75;&#110;&#x69;&#x6c;&#x65;&#97;&#114;&#x6e;&#x69;&#110;&#x67;&#x2e;&#99;&#111;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -187,6 +187,11 @@ In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.</
 
 
 
+<p><br/></p>
+
+
+
+
 <p>Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.</p>
 
 
@@ -208,7 +213,8 @@ I am using this:</p>
 
 
 
-<p><a href="https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip">https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip</a></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -330,7 +336,12 @@ I am using this:</p>
 
 
 
-<p>Startup script /etc/systemd/system/vault.service</p>
+<p><br/></p>
+
+
+
+
+<h4>Startup script /etc/systemd/system/vault.service</h4>
 
 
 
@@ -381,7 +392,12 @@ I am using this:</p>
 
 
 
-<h1>Start the service using following command</h1>
+<p><br/></p>
+
+
+
+
+<h4>Start the service using following command</h4>
 
 
 
@@ -396,7 +412,12 @@ I am using this:</p>
 
 
 
-<h2>Initialize Vault</h2>
+<p><br/></p>
+
+
+
+
+<h4>Initialize Vault</h4>
 
 
 
@@ -416,6 +437,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>vim /etc/systemd/system/vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/></p>
 
 
 
@@ -440,7 +466,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Initialize vault to get the keys.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Initialize vault to get the keys.</h4>
 
 
 
@@ -554,7 +585,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>Check the status</p>
+<p><br/></p>
+
+
+
+
+<h4>Check the status</h4>
 
 
 
@@ -585,6 +621,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
+<p><br/></p>
+
+
+
+
 <p>Note: Every time you restart vault or if it gets restarted during server restarts, you need to perform the unseal operation using the same unseal key.</p>
 
 
@@ -601,12 +642,27 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h1>Usage</h1>
+<p><br/></p>
 
 
 
 
-<h2>Create secrets at the kv/my-secret path.</h2>
+<hr />
+
+
+
+
+<h3>Usage</h3>
+
+
+
+
+<p><br/></p>
+
+
+
+
+<h4>Create secrets at the kv/my-secret path.</h4>
 
 
 
@@ -619,7 +675,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Read the secrets at kv/my-secret.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Read the secrets at kv/my-secret.</h4>
 
 
 
@@ -640,7 +701,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Delete the secrets at kv/my-secret.</h2>
+<p><br/></p>
+
+
+
+
+<h4>Delete the secrets at kv/my-secret.</h4>
 
 
 
@@ -653,7 +719,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>List existing keys at the kv path.</h2>
+<p><br/></p>
+
+
+
+
+<h4>List existing keys at the kv path.</h4>
 
 
 
@@ -672,7 +743,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Disable a Secrets Engine</h2>
+<p><br/></p>
+
+
+
+
+<h4>Disable a Secrets Engine</h4>
 
 
 
@@ -690,12 +766,13 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
+<p><br/>
+Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.</p>
 
 
 
 
-<h2>Dynamic Secret Engines:</h2>
+<h4>Dynamic Secret Engines:</h4>
 
 
 
@@ -708,7 +785,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Getting help</h2>
+<p><br/></p>
+
+
+
+
+<h4>Getting help</h4>
 
 
 
@@ -789,7 +871,12 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<h2>Authentication</h2>
+<p><br/></p>
+
+
+
+
+<h4>Authentication</h4>
 
 
 
@@ -809,11 +896,16 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 </span><span class='line'>---                  -----
 </span><span class='line'>token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
 </span><span class='line'>token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
-</span><span class='line'>token_duration       ∞
+</span><span class='line'>token_duration       -
 </span><span class='line'>token_renewable      false
 </span><span class='line'>token_policies       ["root"]
 </span><span class='line'>identity_policies    []
 </span><span class='line'>policies             ["root"]</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/></p>
 
 
 
@@ -870,6 +962,11 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
+<p><br/></p>
+
+
+
+
 <p>When a token is no longer needed it can be revoked.</p>
 
 
@@ -893,24 +990,82 @@ Unseal keys: These are used to unseal Vault when the daemon starts, which permit
 
 
 
-<p>That's it folks.  <br/>
-        <a href="http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md">http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md</a>
-<a href="https://github-myreadme-stats-64u7ufgl7.vercel.app/api?username=theashwanik">https://github-myreadme-stats-64u7ufgl7.vercel.app/api?username=theashwanik</a></p>
+<p>That's it folks.</p>
 
 
 
 
-<p> <iframe frameborder=0 style="min-width: 200px; width: 60%; height: 460px;" scrolling="no" seamless="seamless" srcdoc='<html><body><style type="text/css">.gist .gist-data { height: 400px; }</style><script src="http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md"></script></body></html>'></iframe></p>
+<p><br/></p>
 
 
 
 
-<h2>More information here by <a href="https://learn.hashicorp.com/vault/getting-started/vault-intro">hashicorp</a></h2>
+<hr/>
 
 
 
 
-<p><a href="https://github.com/hashicorp/vault/issues/6616">Issue</a></p>
+<h3>Few screenshots</h3>
+
+
+
+
+<h4>Home page of Hashicorp UI once you login successfully.</h4>
+
+
+
+
+<p><img src="https://paste.pics/10b1aa14ec9bc9625be539d05290736f" alt="Home page for Hashicorp UI" width="600" border="1" />
+<br/></p>
+
+
+
+
+<h4>Secrets screen - where all your secret engines and secrets can be seen.</h4>
+
+
+
+
+<p><img src="https://paste.pics/3ea230d1be49295493f1c6ea9e5f938c" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<br/></p>
+
+
+
+
+<h4>Secrets screen - configuration of KV secret engine</h4>
+
+
+
+
+<p><img src="https://paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<br/></p>
+
+
+
+
+<hr/>
+
+
+
+
+<h3>References</h3>
+
+
+
+
+<h4>More information here by <a href="https://learn.hashicorp.com/vault/getting-started/vault-intro">hashicorp</a></h4>
+
+
+
+
+<h4><a href="https://github.com/hashicorp/vault/issues/6616">Issue</a></h4>
+
+
+
+
+<hr/>
+
+
 
 ]]></content>
   </entry>
@@ -1297,7 +1452,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#103;&#101;&#x6e;&#x65;&#119;&#97;&#108;&#x7a;&#x2e;&#120;&#120;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#x67;&#x65;&#x6e;&#x65;&#119;&#97;&#x6c;&#122;&#46;&#x78;&#x78;&#x78;&#x78;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#x67;&#101;&#110;&#x65;&#x77;&#97;&#108;&#x7a;&#46;&#x78;&#120;&#120;&#x78;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x65;&#x6e;&#x65;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#120;&#120;&#x78;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
