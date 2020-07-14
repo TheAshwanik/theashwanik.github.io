@@ -28,7 +28,7 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 
 {% endcodeblock %}
 
-
+<br/>
 
 Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.
 
@@ -39,7 +39,9 @@ Vault is an open-source tool that provides a secure, reliable way to store and d
 To download latest vault package, Go to Hashicorp vault downloads page and download the latest package. 
 I am using this:
 
+{% codeblock %}
 https://releases.hashicorp.com/vault/1.4.3/vault_1.4.3_linux_arm.zip
+{% endcodeblock %}
 
 Unzip the package
 {% codeblock %}
@@ -72,12 +74,15 @@ Creating the Vault startup file
 {% codeblock %}
 sudo useradd -r -d ~/hashicorp/vault-data -s /bin/nologin vault
 {% endcodeblock %}
+
 Set the ownership of /vault-data to the vault user and the vault group exclusively.
 {% codeblock %}
+
 sudo install -o vault -g vault -m 750 -d ~/hashicorp/vault-data
 {% endcodeblock %}
 Now let’s set up Vault’s configuration file, /etc/vault.hcl
 {% codeblock %}
+
 sudo vi /etc/vault.hcl
 ui = true
 storage "file" {
@@ -95,7 +100,9 @@ sudo chown vault:vault /etc/vault.hcl
 sudo chmod 640 /etc/vault.hcl
 {% endcodeblock %}
 
-Startup script /etc/systemd/system/vault.service
+<br/>
+
+#### Startup script /etc/systemd/system/vault.service
 {% codeblock %}
 sudo vi /etc/systemd/system/vault.service
 
@@ -120,15 +127,17 @@ KillSignal=SIGINT
 WantedBy=multi-user.target
 
 {% endcodeblock %}
+<br/>
 
-#Start the service using following command
+#### Start the service using following command
 {% codeblock %}
 systemctl deamon-reload  
 systemctl start vault.service  
 systemctl status vault.service  
 {% endcodeblock %}
+<br/>
 
-##Initialize Vault
+#### Initialize Vault
 
 There are two pieces of information that Vault will expose at initialization time that will not be available at any other point, so make sure you noted some secure place,
 
@@ -139,6 +148,7 @@ There are two pieces of information that Vault will expose at initialization tim
 {% codeblock %}
 vim /etc/systemd/system/vault.service
 {% endcodeblock %}
+<br/>
 
 #### Seal/Unseal
 Every initialized Vault server starts in the sealed state. From the configuration, Vault can access the physical storage, but it can't read any of it because it doesn't know how to decrypt it. The process of teaching Vault how to decrypt the data is known as unsealing the Vault.
@@ -147,7 +157,9 @@ Unsealing has to happen every time Vault starts. It can be done via the API and 
 
 Note: Vault does not store any of the unseal key shards. Vault uses an algorithm known as [Shamir's Secret](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing) Sharing to split the master key into shards. Only with the threshold number of keys can it be reconstructed and your data finally accessed.
 
-##Initialize vault to get the keys.
+<br/>
+
+#### Initialize vault to get the keys.
 
 {% codeblock %}
 vault operator init
@@ -205,9 +217,9 @@ HA Enabled      false
 
 
 {% endcodeblock %}
+<br/>
 
-
-Check the status
+#### Check the status
 {% codeblock %}
 Key             Value
 ---             -----
@@ -223,6 +235,7 @@ HA Enabled      false
 
 {% endcodeblock %}
 
+<br/>
 
 Note: Every time you restart vault or if it gets restarted during server restarts, you need to perform the unseal operation using the same unseal key.
 
@@ -232,17 +245,22 @@ You can also access the vault UI on port 8200 of your vault server.
 http://192.168.1.111:8200/ui/
 {% endcodeblock %}
 
+<br/>
 
-# Usage 
+<hr />
+
+### Usage 
  
-## Create secrets at the kv/my-secret path.
+<br/>
+#### Create secrets at the kv/my-secret path.
 {% codeblock %}
 
 $ vault kv put kv/my-secret value="s3c(eT"
 Success! Data written to: kv/my-secret
 {% endcodeblock %}
 
-##Read the secrets at kv/my-secret.
+<br/>
+#### Read the secrets at kv/my-secret.
 {% codeblock %}
 $ vault kv get kv/my-secret
 
@@ -252,14 +270,17 @@ Key      Value
 value    s3c(eT
 {% endcodeblock %}
 
+<br/>
 
-## Delete the secrets at kv/my-secret.
+#### Delete the secrets at kv/my-secret.
 {% codeblock %}
 $ vault kv delete kv/my-secret
 Success! Data deleted (if it existed) at: kv/my-secret
 {% endcodeblock %}
 
-## List existing keys at the kv path.
+<br/>
+
+#### List existing keys at the kv path.
 {% codeblock %}
 
 $ vault kv list kv/
@@ -269,7 +290,8 @@ Keys
 hello
 {% endcodeblock %}
 
-## Disable a Secrets Engine
+<br/>
+#### Disable a Secrets Engine
 When a secrets engine is no longer needed, it can be disabled. When a secrets engine is disabled, all secrets are revoked and the corresponding Vault data and configuration is removed.
 
 {% codeblock %}
@@ -277,16 +299,18 @@ $ vault secrets disable kv/
 Success! Disabled the secrets engine (if it existed) at: kv/
 {% endcodeblock %}
 
+<br/>
 Note that this command takes a PATH to the secrets engine as an argument, not the TYPE of the secrets engine.
 
 
-## Dynamic Secret Engines:
+#### Dynamic Secret Engines:
 {% codeblock %}
 vault secrets enable -path=aws aws
 Success! Enabled the aws secrets engine at: aws/
 {% endcodeblock %}
 
-## Getting help   
+<br/>
+#### Getting help   
 
 {% codeblock %}
 vault path-help aws
@@ -327,8 +351,9 @@ you may or may not be able to access certain paths.
         List the existing roles in this backend
 {% endcodeblock %}
 
+<br/>
 
-## Authentication
+#### Authentication
 
 {% codeblock %}
 
@@ -337,13 +362,15 @@ Key                  Value
 ---                  -----
 token                s.7vM3kUTFSNxxxxxxxxxf4f8R9
 token_accessor       Dtuk4LtxxxxxxxrEDNXiB5EZ
-token_duration       ∞
+token_duration       -
 token_renewable      false
 token_policies       ["root"]
 identity_policies    []
 policies             ["root"]
 
 {% endcodeblock %}
+<br/>
+
 The token is created and displayed here as s.7vM3kUTFSNxxxxxxxxxf4f8R9. Each token that Vault creates is unique.
 
 
@@ -370,24 +397,38 @@ policies             ["root"]
 
 {% endcodeblock %} 
 	
+<br/>
 
 When a token is no longer needed it can be revoked.
 
 Revoke the first token you created.
+
 {% codeblock %}
 $ vault token revoke s.7vM3kUTFSNxxxxxxxxxf4f8R9
 Success! Revoked token (if it existed)
 {% endcodeblock %}
 
+
 The token has been revoked.
 
 That's it folks.    
-        http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md
-https://github-myreadme-stats-64u7ufgl7.vercel.app/api?username=theashwanik
 
- <iframe frameborder=0 style="min-width: 200px; width: 60%; height: 460px;" scrolling="no" seamless="seamless" srcdoc='<html><body><style type="text/css">.gist .gist-data { height: 400px; }</style><script src="http://gist-it.appspot.com/http://github.com/theashwanik/theashwanik/readme.md"></script></body></html>'></iframe> 
+<br/>
+<hr/>
+### Few screenshots
 
+#### Home page of Hashicorp UI once you login successfully. 
+<img src="https://paste.pics/10b1aa14ec9bc9625be539d05290736f" alt="Home page for Hashicorp UI" width="600" border="1" />
+<br/>
+#### Secrets screen - where all your secret engines and secrets can be seen. 
+<img src="https://paste.pics/3ea230d1be49295493f1c6ea9e5f938c" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<br/>
+#### Secrets screen - configuration of KV secret engine 
+<img src="https://paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<br/>
 
-## More information here by [hashicorp](https://learn.hashicorp.com/vault/getting-started/vault-intro)   
-[Issue](https://github.com/hashicorp/vault/issues/6616)     
-
+<hr/>
+### References
+#### More information here by [hashicorp](https://learn.hashicorp.com/vault/getting-started/vault-intro)     
+####[Issue](https://github.com/hashicorp/vault/issues/6616)      
+<hr/>
