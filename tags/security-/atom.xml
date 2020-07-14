@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:security, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/security-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-14T10:43:33+01:00</updated>
+  <updated>2020-07-14T11:22:32+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -186,6 +186,41 @@ Now let’s set up Vault’s configuration file, /etc/vault.hcl
 </span><span class='line'>systemctl start vault.service&lt;br/>
 </span><span class='line'>systemctl status vault.service&lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
 <br/></p>
+
+<h4>Preparing to Administer Vault</h4>
+
+<p>Add the Vault bin directory to your PATH environment variable.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH=$PATH:/opt/vault/bin
+</span><span class='line'>echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+</span><span class='line'>Set environment variables for Vault&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>export VAULT_ADDRESS=&lt;a href="http://192.168.1.111:8200">http://192.168.1.111:8200&lt;/a>
+</span><span class='line'>echo "export VAULT_ADDR=&lt;a href="http://192.168.1.111:8200">http://192.168.1.111:8200&lt;/a>" >> ~/.bashrc&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>And Probably
+</span><span class='line'> export VAULT_TOKEN=&lt;token value>&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>**Start the command with a space. See Protip.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><blockquote><p>Attention: Be careful when you export sensitive data as environment variable using a command.<br/>ProTip: Start your command with a space, and it will not get recorded in the command history.</p></blockquote></p>
+
+<p><br/></p>
 
 <h4>Initialize Vault</h4>
 
@@ -654,17 +689,17 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 <h4>Home page of Hashicorp UI once you login successfully.</h4>
 
-<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="600" border="1" />
+<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="" border="1" />
 <br/></p>
 
 <h4>Secrets screen - where all your secret engines and secrets can be seen.</h4>
 
-<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="" border="1" />
 <br/></p>
 
 <h4>Secrets screen - configuration of KV secret engine</h4>
 
-<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="" border="1" />
 <br/></p>
 
 <hr/>

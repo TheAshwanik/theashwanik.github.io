@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-07-14T10:43:33+01:00</updated>
+  <updated>2020-07-14T11:22:32+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -144,7 +144,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#106;&#x61;&#115;&#109;&#105;&#110;&#101;&#x2e;&#x78;&#46;&#120;&#120;&#120;&#120;&#x78;&#120;&#64;&#106;&#117;&#x6e;&#x69;&#108;&#x65;&#97;&#114;&#110;&#105;&#x6e;&#103;&#46;&#99;&#111;">&#x6a;&#97;&#115;&#x6d;&#105;&#110;&#101;&#x2e;&#120;&#x2e;&#x78;&#120;&#x78;&#x78;&#120;&#x78;&#x40;&#106;&#x75;&#110;&#x69;&#108;&#101;&#x61;&#114;&#x6e;&#105;&#110;&#x67;&#46;&#99;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6a;&#x61;&#115;&#109;&#x69;&#x6e;&#101;&#46;&#x78;&#46;&#120;&#120;&#120;&#x78;&#120;&#x78;&#x40;&#x6a;&#x75;&#x6e;&#105;&#x6c;&#101;&#x61;&#114;&#110;&#x69;&#110;&#x67;&#x2e;&#x63;&#111;">&#106;&#x61;&#115;&#109;&#x69;&#110;&#101;&#46;&#120;&#46;&#x78;&#x78;&#x78;&#x78;&#120;&#x78;&#x40;&#x6a;&#117;&#x6e;&#x69;&#x6c;&#101;&#x61;&#x72;&#110;&#105;&#110;&#x67;&#x2e;&#99;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -408,6 +408,54 @@ I am using this:</p>
 </pre></td><td class='code'><pre><code class=''><span class='line'>systemctl deamon-reload  
 </span><span class='line'>systemctl start vault.service  
 </span><span class='line'>systemctl status vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/></p>
+
+
+
+
+<h4>Preparing to Administer Vault</h4>
+
+
+
+
+<p>Add the Vault bin directory to your PATH environment variable.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH=$PATH:/opt/vault/bin
+</span><span class='line'>echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+</span><span class='line'>Set environment variables for Vault
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>export VAULT_ADDRESS=http://192.168.1.111:8200
+</span><span class='line'>echo "export VAULT_ADDR=http://192.168.1.111:8200" >> ~/.bashrc
+</span><span class='line'>
+</span><span class='line'>And Probably
+</span><span class='line'> export VAULT_TOKEN=&lt;token value>
+</span><span class='line'>
+</span><span class='line'>**Start the command with a space. See Protip.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<blockquote><p>Attention: Be careful when you export sensitive data as environment variable using a command. <br/>ProTip: Start your command with a space, and it will not get recorded in the command history.</p></blockquote>
 
 
 
@@ -1015,7 +1063,7 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 
 
-<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="600" border="1" />
+<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="" border="1" />
 <br/></p>
 
 
@@ -1026,7 +1074,7 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 
 
-<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="" border="1" />
 <br/></p>
 
 
@@ -1037,7 +1085,7 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 
 
-<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="" border="1" />
 <br/></p>
 
 
@@ -1452,7 +1500,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#103;&#101;&#110;&#101;&#119;&#97;&#108;&#x7a;&#x2e;&#120;&#120;&#x78;&#x78;&#64;&#x67;&#109;&#x61;&#105;&#108;&#x2e;&#x63;&#111;&#109;">&#x67;&#x65;&#110;&#x65;&#119;&#97;&#x6c;&#122;&#46;&#x78;&#x78;&#120;&#x78;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#58;&#103;&#x65;&#x6e;&#101;&#x77;&#x61;&#108;&#122;&#x2e;&#120;&#120;&#120;&#x78;&#x40;&#x67;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x65;&#x6e;&#101;&#x77;&#x61;&#108;&#122;&#46;&#120;&#x78;&#120;&#x78;&#64;&#x67;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>

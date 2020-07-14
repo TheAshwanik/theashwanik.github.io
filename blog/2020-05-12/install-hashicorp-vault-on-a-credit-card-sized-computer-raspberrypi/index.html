@@ -30,6 +30,7 @@
   <meta name="og:title" content="Install Hashicorp Vault on a Credit card sized computer - RaspberryPi" />
   <meta name="og:description" content=" Install Hashicorp Vault on a Credit card sized computer - RaspberryPi " />
   <meta name="og:url" content="http://blog.ashwani.co.in/blog/2020-05-12/install-hashicorp-vault-on-a-credit-card-sized-computer-raspberrypi/"/>
+  <meta name="og:image" content="http://blog.ashwani.co.in/images/heroBack.jpg ">
   <meta name="url" content="http://blog.ashwani.co.in/blog/2020-05-12/install-hashicorp-vault-on-a-credit-card-sized-computer-raspberrypi/">
   
   <meta name="subject" content="Technical"/>
@@ -362,6 +363,43 @@ I am using this:</p>
 </pre></td><td class='code'><pre><code class=''><span class='line'>systemctl deamon-reload  
 </span><span class='line'>systemctl start vault.service  
 </span><span class='line'>systemctl status vault.service</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p><br/></p>
+
+<h4>Preparing to Administer Vault</h4>
+
+<p>Add the Vault bin directory to your PATH environment variable.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export PATH=$PATH:/opt/vault/bin
+</span><span class='line'>echo "export PATH=$PATH:/opt/vault/bin" >> ~/.bashrc
+</span><span class='line'>Set environment variables for Vault
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>export VAULT_ADDRESS=http://192.168.1.111:8200
+</span><span class='line'>echo "export VAULT_ADDR=http://192.168.1.111:8200" >> ~/.bashrc
+</span><span class='line'>
+</span><span class='line'>And Probably
+</span><span class='line'> export VAULT_TOKEN=&lt;token value>
+</span><span class='line'>
+</span><span class='line'>**Start the command with a space. See Protip.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<blockquote><p>Attention: Be careful when you export sensitive data as environment variable using a command. <br/>ProTip: Start your command with a space, and it will not get recorded in the command history.</p></blockquote>
 
 
 <p><br/></p>
@@ -792,17 +830,17 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 <h4>Home page of Hashicorp UI once you login successfully.</h4>
 
-<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="600" border="1" />
+<p><img src="https://i.paste.pics/10b1aa14ec9bc9625be539d05290736f.png" alt="Home page for Hashicorp UI" width="" border="1" />
 <br/></p>
 
 <h4>Secrets screen - where all your secret engines and secrets can be seen.</h4>
 
-<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="600" border="1" />
+<p><img src="https://i.paste.pics/3ea230d1be49295493f1c6ea9e5f938c.png" alt="Secrets screen - where all your secret engines and secrets can be seen" width="" border="1" />
 <br/></p>
 
 <h4>Secrets screen - configuration of KV secret engine</h4>
 
-<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="600" border="1" />
+<p><img src="https://i.paste.pics/05ab5e0d9654ea3cf636a99549fcb9d2.png" alt="Secrets screen - configuration of KV secret engine" width="" border="1" />
 <br/></p>
 
 <hr/>
