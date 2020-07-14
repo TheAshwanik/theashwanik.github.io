@@ -13,6 +13,10 @@ keywords: security, hashicorp vault, vault, token auth, HSM, raspberryPi
 We want to discuss about one of growing secret service, which can be used with most of cloud services and DevOps tools. 
 In this guide, will explain about How to Setup HashiCorp Vault on RaspberryPi.
 
+In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data.   
+This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.
+<!-- more -->
+
 {% codeblock %}
 cat /etc/os-release
 PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
@@ -29,8 +33,6 @@ BUG_REPORT_URL="http://www.raspbian.org/RaspbianBugs"
 {% endcodeblock %}
 
 <br/>
-
-Note: In this blog, we're using the filesystem backend to store encrypted secrets on the local filesystem at ~/Hashicorp/vault-data. This is suitable for local or single-server deployments that do not need to be replicated. This is not suitable for HA Setup.
 
 Introduction
 
