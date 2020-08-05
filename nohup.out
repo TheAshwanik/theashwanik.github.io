@@ -65,3 +65,8 @@ cd -
 ## Github Pages deploy complete
 
 ## Commit source to GitHub
+[source 0b588be] Updated source Wed Aug  5 01:30:38 BST 2020
+ 2 files changed, 69 insertions(+), 2 deletions(-)
+ create mode 100644 nohup.out
+To github.com:TheAshwanik/theashwanik.github.io.git
+   1379862..0b588be  source -> source
