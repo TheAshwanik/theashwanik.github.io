@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:2FA, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/2fa-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-05T01:02:20+01:00</updated>
+  <updated>2020-08-05T01:18:38+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,9 +18,9 @@
     <link href="http://blog.ashwani.co.in/blog/2020-04-02/google-2fa-with-openvpn-on-aws/"/>
     <updated>2020-04-02T00:00:00+01:00</updated>
     <id>http://blog.ashwani.co.in/blog/2020-04-02/google-2fa-with-openvpn-on-aws</id>
-    <content type="html"><![CDATA[<h1><strong>OpenVPN Google authenticator setup</strong></h1>
+    <content type="html"><![CDATA[<h5><strong>OpenVPN Google authenticator setup</strong></h5>
 
-<h3><strong>How to enable Google Authenticator</strong></h3>
+<h5>How to enable Google Authenticator**</h5>
 
 <p>The Access Server supports the Google Authenticator multi-factor authentication system, but it is not enabled by default. It can be enabled globally via the admin web service (AS 2.7.4 and older) or via the .Authentication" section (AS 2.7.5 and newer) <!-- more--> or via the command line with the command line examples given below. It is also possible to enable or disable the requirement for a Google Authenticator per user or per group on the command line. This can be important if for example for some reason a client device making a VPN connection is unable to provide the Google Authenticator key by itself.</p>
 

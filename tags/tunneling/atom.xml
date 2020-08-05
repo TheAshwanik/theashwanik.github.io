@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Tunneling | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/tunneling/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-05T01:02:20+01:00</updated>
+  <updated>2020-08-05T01:18:38+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -53,7 +53,7 @@ that local port to some remote server on a predefined port.</p>
 </span><span class='line'>echo "Looks like you get port ${Port}."  // Say you got 32003&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>//ssh -f userOfRemoteServer@remoteserverIP -L LocalhostIPaddress:localport:RemotehostIPaddress:remoteport -N
-</span><span class='line'>ssh -f &lt;a href="&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x75;&#x73;&#x65;&#x72;&#x40;&#49;&#48;&#x2e;&#x31;&#x34;&#x35;&#x2e;&#50;&#x2e;&#50;&#51;&#x33;">&#x75;&#x73;&#x65;&#114;&#x40;&#49;&#x30;&#x2e;&#x31;&#52;&#x35;&#46;&#50;&#x2e;&#x32;&#x33;&#51;&lt;/a> -L 10.115.13.108:${Port}:10.145.2.233:8000 -N&lt;/p>
+</span><span class='line'>ssh -f &lt;a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#117;&#115;&#x65;&#x72;&#64;&#49;&#x30;&#x2e;&#49;&#x34;&#53;&#46;&#x32;&#x2e;&#x32;&#x33;&#x33;">&#x75;&#x73;&#101;&#114;&#64;&#49;&#x30;&#x2e;&#49;&#x34;&#x35;&#46;&#x32;&#46;&#50;&#x33;&#x33;&lt;/a> -L 10.115.13.108:${Port}:10.145.2.233:8000 -N&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
