@@ -10,9 +10,9 @@ tags: Raspberry, PI, OpenVpn, AWS, 2FA, Google Authenticator
 keywords: OpenVPN, VPN, Raspberry, PI, OpenVpn, AWS, 2FA, Google Authenticator
 ---
 
-# **OpenVPN Google authenticator setup**
+#####**OpenVPN Google authenticator setup**
 
-### **How to enable Google Authenticator**
+#####How to enable Google Authenticator**
 
 The Access Server supports the Google Authenticator multi-factor authentication system, but it is not enabled by default. It can be enabled globally via the admin web service (AS 2.7.4 and older) or via the .Authentication" section (AS 2.7.5 and newer) <!-- more--> or via the command line with the command line examples given below. It is also possible to enable or disable the requirement for a Google Authenticator per user or per group on the command line. This can be important if for example for some reason a client device making a VPN connection is unable to provide the Google Authenticator key by itself.
 
