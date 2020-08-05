@@ -191,175 +191,275 @@ Tagged as
 
 <h3><strong>Command line configuration parameters</strong></h3>
 
-<p>Disable Google Authenticator globally for all users and groups (the default):
-```
-./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut</p>
+<p>Disable Google Authenticator globally for all users and groups (the default):</p>
 
-<p>./sacli start
-<code>
-Enable Google Authenticator globally for all users and groups:
-</code>
-./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
+</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>./sacli start
-<code>
-Disable Google Authenticator for a specific user or group:
-</code>
-./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut
-<code>
-Enable Google Authenticator for a specific user or group:
-</code>
-./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut
-```</p>
 
-<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead:
-<code>
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" UserPropDel
-</code></p>
+<p>Enable Google Authenticator globally for all users and groups:</p>
 
-<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again:
-<code>
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthLock
-</code></p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut
+</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself:
-<code>
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthLock
-</code></p>
 
-<p>To generate a new secret key and unlock it so the user can enroll anew:
-<code>
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthRegen
-</code>
-To generate a new secret key and lock it so the user must obtain the secret key from the server administrator:
-<code>
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthRegen
-</code>
-The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually:
-```
-./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
+<p>Disable Google Authenticator for a specific user or group:</p>
 
-<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED> UserPropPut
-```
-Where <GOOGLE_AUTH_SECRET> must be a 16 character alphanumerical value in capitals and must be known at the Google Authenticator device/application to generate the 6 digit codes, and the <SCANNED/LOCKED> value must be either 1 or 0, indicating that the code is scanned and must now be used by the user, or is awaiting enrollment by the user.</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3>A few useful commands:</h3>
 
-<pre><code class="shell ">cd /usr/local/openvpn_as/scripts
+<p>Enable Google Authenticator for a specific user or group:</p>
 
-sudo ./confdba -us -p joe _#display info about a user_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-{
 
-  "joe": {
+<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead:</p>
 
-  "access_to.0": "+NAT:10.0.0.0/8",
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  "pvt_google_auth_secret": "Z********B", _#this is GoogleAuth MFA secret_token that a user scans as QR code_
 
-  "pvt_google_auth_secret_locked": "false",
+<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again:</p>
 
-  "pvt_password_digest": "30******bb71",
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  "type": "user_compile"
 
- }
+<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself:</p>
 
-}
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe _#unlock locked out user_
 
-_#Disable/enable Google Authenticator for a specific user or group:_
+<p>To generate a new secret key and unlock it so the user can enroll anew:</p>
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" --value "false" UserPropPut _#disable_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" --value "true" UserPropPut _#enable_
 
-_#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead_
+<p>To generate a new secret key and lock it so the user must obtain the secret key from the server administrator:</p>
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" UserPropDel
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-_#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again_
 
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthLock
+<p>The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually:</p>
 
-_#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED> UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthLock
 
-_#To generate a new secret key and lock or leave it unlocked_
+<p>Where <GOOGLE_AUTH_SECRET> must be a 16 character alphanumerical value in capitals and must be known at the Google Authenticator device/application to generate the 6 digit codes, and the <SCANNED/LOCKED> value must be either 1 or 0, indicating that the code is scanned and must now be used by the user, or is awaiting enrollment by the user.</p>
 
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthRegen _#unlocked, user can scan_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /usr/local/openvpn_as/scripts
+</span><span class='line'>
+</span><span class='line'>sudo ./confdba -us -p joe _#display info about a user_
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>
+</span><span class='line'>  "joe": {
+</span><span class='line'>
+</span><span class='line'>  "access_to.0": "+NAT:10.0.0.0/8",
+</span><span class='line'>
+</span><span class='line'>  "pvt_google_auth_secret": "Z********B", _#this is GoogleAuth MFA secret_token that a user scans as QR code_
+</span><span class='line'>
+</span><span class='line'>  "pvt_google_auth_secret_locked": "false",
+</span><span class='line'>
+</span><span class='line'>  "pvt_password_digest": "30******bb71",
+</span><span class='line'>
+</span><span class='line'>  "type": "user_compile"
+</span><span class='line'>
+</span><span class='line'> }
+</span><span class='line'>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-./sacli -u  joe  GoogleAuthRegen _#regenerate Google token, so a user can scan QR code again_
 
-['Z*********B', 'otpauth://totp/OpenVPN:joe@ivpn.acme.com?secret=Z*******B&amp;issuer=OpenVPN']
 
-_#./sacli_ 
 
-_#-u, --user_
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe  _#unlock locked out user_</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>The GoogleAuthLock and GoogleAuthRegen functions that actually handle these two keys, which can also be edited manually
-```
-./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
 
-<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED>  UserPropPut
-<code>
-Logs
-</code>
-<em>#Logs</em></p>
 
-<p>tail -f /var/log/openvpnas.log
-```
-When new MFA/Google secret has been generated user need to login to Access Server, scann QR code, then download the Connection Client that the bundle contains the new user settings; this will enable VPN login.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#Disable/enable Google Authenticator for a specific user or group:   _
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut _#disable_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut _#enable_</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To generate a new secret key and lock or leave it unlocked_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen _#unlocked, user can scan_
+</span><span class='line'>
+</span><span class='line'>./sacli -u  joe  GoogleAuthRegen _#regenerate Google token, so a user can scan QR code again_</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>The GoogleAuthLock and GoogleAuthRegen functions that actually handle these two keys, which can also be edited manually</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED>  UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>Logs</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tail -f /var/log/openvpnas.log</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<p>When new MFA/Google secret has been generated user need to login to Access Server, scann QR code, then download the Connection Client that the bundle contains the new user settings; this will enable VPN login.</p>
 
 <h3>AWS SSM Document:</h3>
 
 <p>Handy AWS Sytems Manager Document that can be used to unlock Google Authenticator for a user. Simply add this Document to Systems Manager and Run it with an instance and the username of the user to unlock. This requires installation of the SSM agent on each OpenVPN instance. You'll probably need to read up on the AWS Systems Manager docs but it is well worth it for this and a whole host of other use cases.</p>
 
-<pre><code class="json">&lt;![endif]--&gt;
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>
+</span><span class='line'>      "schemaVersion": "2.2",
+</span><span class='line'>      "description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
+</span><span class='line'>      "parameters": { 
+</span><span class='line'>          "Username": {
+</span><span class='line'>          "description": "Username of the user to unlock",
+</span><span class='line'>          "minChars": 3,
+</span><span class='line'>          "type": "String"
+</span><span class='line'>          }
+</span><span class='line'>      },
+</span><span class='line'>      "mainSteps": [
+</span><span class='line'>          {
+</span><span class='line'>              "action": "aws:runShellScript",
+</span><span class='line'>              "name": "OpenVPNASUnlockGoogleAuthenticator",
+</span><span class='line'>              "inputs": {
+</span><span class='line'>                  "runCommand": [
+</span><span class='line'>                      "#!/bin/bash",
+</span><span class='line'>                      "cd /usr/local/openvpn_as/scripts",
+</span><span class='line'>                      "sudo ./sacli -u {REMOVE_THIS_TEXT% Username %} --lock 0 GoogleAuthLock"
+</span><span class='line'>                      ]
+</span><span class='line'>                  },
+</span><span class='line'>              "precondition":{
+</span><span class='line'>              "StringEquals":[
+</span><span class='line'>                      "platformType",
+</span><span class='line'>                      "Linux"
+</span><span class='line'>                      ]
+</span><span class='line'>
+</span><span class='line'>              }
+</span><span class='line'>
+</span><span class='line'>          }
+</span><span class='line'>      ]
+</span><span class='line'>
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-{
-
-"schemaVersion": "2.2",
-
-"description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
-
-"parameters": { 
-    "Username": {
-    "description": "Username of the user to unlock",
-    "minChars": 3,
-    "type": "String"
-    }
-},
-
-"mainSteps": [
-    {
-        "action": "aws:runShellScript",
-        "name": "OpenVPNASUnlockGoogleAuthenticator",
-        "inputs": {
-            "runCommand": [
-                "#!/bin/bash",
-                "cd /usr/local/openvpn_as/scripts",
-
-                "sudo ./sacli -u  --lock 0 GoogleAuthLock"
-                ]
-            },
-        "precondition":{
-        "StringEquals":[
-                "platformType",
-                "Linux"
-                ]
-
-        }
-
-    }
-
-]
-
-}
-</code></pre>
 
 <h3>Issues:</h3>
 
@@ -378,32 +478,48 @@ When new MFA/Google secret has been generated user need to login to Access Serve
 
 <p>Have connectivity to the instance metadata service</p>
 
-<p>Resolution</p>
+<h4>Resolution</h4>
 
 <ol>
 <li>SSM Agent is installed and running on the instance</li>
 </ol>
 
 
-<p>Latest Ubuntu 18.04 systems that use snap:
-```
-$ sudo snap services amazon-ssm-agent</p>
+<p>Latest Ubuntu 18.04 systems that use snap:</p>
 
-<p>Service  Startup  Current  Notes</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo snap services amazon-ssm-agent
+</span><span class='line'>
+</span><span class='line'>Service  Startup  Current  Notes
+</span><span class='line'>
+</span><span class='line'>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -
-```
-2. Verify connectivity to Systems Manager endpoints on port 443
-To test connectivity to endpoints from port 443, use the telnet command. The following example shows how to test connectivity to endpoints in the us-east-1 Region.</p>
 
-<pre><code>telnet ssm.us-east-1.amazonaws.com 443
-</code></pre>
+<ol>
+<li>Verify connectivity to Systems Manager endpoints on port 443
+To test connectivity to endpoints from port 443, use the telnet command. The following example shows how to test connectivity to endpoints in the us-east-1 Region.</li>
+</ol>
 
-<pre><code>telnet ec2messages.us-east-1.amazonaws.com 443
-</code></pre>
 
-<pre><code>telnet ssmmessages.us-east-1.amazonaws.com 443
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssm.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ec2messages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssmmessages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
+
 
 <ol>
 <li><p>Verify that the correct IAM role is attached to the instance
@@ -413,10 +529,11 @@ SSM Agent must be able to communicate with the instance metadata service in orde
 </ol>
 
 
-<pre><code>telnet 169.254.169.254 80
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet 169.254.169.254 80</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3>References</h3>
+
+<h4>References</h4>
 
 <p><a href="https://openvpn.net/vpn-server-resources/google-authenticator-multi-factor-authentication/">https://openvpn.net/vpn-server-resources/google-authenticator-multi-factor-authentication/</a></p>
 

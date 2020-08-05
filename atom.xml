@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-05T01:18:38+01:00</updated>
+  <updated>2020-08-05T10:00:30+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -144,7 +144,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#106;&#x61;&#x73;&#x6d;&#105;&#110;&#101;&#46;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#x78;&#x78;&#x40;&#x6a;&#x75;&#x6e;&#105;&#108;&#x65;&#x61;&#114;&#110;&#105;&#x6e;&#x67;&#46;&#99;&#x6f;">&#x6a;&#x61;&#115;&#x6d;&#105;&#x6e;&#x65;&#46;&#120;&#x2e;&#x78;&#x78;&#120;&#120;&#x78;&#x78;&#x40;&#106;&#x75;&#x6e;&#105;&#108;&#101;&#97;&#114;&#x6e;&#x69;&#x6e;&#x67;&#46;&#99;&#111;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#106;&#97;&#x73;&#x6d;&#105;&#110;&#x65;&#x2e;&#120;&#46;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#106;&#x75;&#110;&#105;&#x6c;&#101;&#97;&#114;&#x6e;&#105;&#110;&#103;&#46;&#x63;&#111;">&#106;&#97;&#115;&#109;&#x69;&#x6e;&#101;&#x2e;&#120;&#46;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#106;&#x75;&#110;&#x69;&#x6c;&#x65;&#x61;&#114;&#x6e;&#x69;&#x6e;&#x67;&#x2e;&#x63;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -1149,17 +1149,21 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 
 
-<p>Disable Google Authenticator globally for all users and groups (the default):
+<p>Disable Google Authenticator globally for all users and groups (the default):</p>
+
+
+
+
+<pre><code>./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
+
+./sacli start
+</code></pre>
+
+
+
+
+<p>Enable Google Authenticator globally for all users and groups: <br/>
 ```
-./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut</p>
-
-
-
-
-<p>./sacli start
-<code>
-Enable Google Authenticator globally for all users and groups:
-</code>
 ./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut</p>
 
 
@@ -1167,11 +1171,11 @@ Enable Google Authenticator globally for all users and groups:
 
 <p>./sacli start
 <code>
-Disable Google Authenticator for a specific user or group:
+Disable Google Authenticator for a specific user or group:   
 </code>
 ./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut
 <code>
-Enable Google Authenticator for a specific user or group:
+Enable Google Authenticator for a specific user or group:   
 </code>
 ./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut
 ```</p>
@@ -1179,7 +1183,7 @@ Enable Google Authenticator for a specific user or group:
 
 
 
-<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead:
+<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead: <br/>
 <code>
 ./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" UserPropDel
 </code></p>
@@ -1187,7 +1191,7 @@ Enable Google Authenticator for a specific user or group:
 
 
 
-<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again:
+<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again: <br/>
 <code>
 ./sacli --user &lt;USER&gt; --lock 0 GoogleAuthLock
 </code></p>
@@ -1195,7 +1199,7 @@ Enable Google Authenticator for a specific user or group:
 
 
 
-<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself:
+<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself: <br/>
 <code>
 ./sacli --user &lt;USER&gt; --lock 1 GoogleAuthLock
 </code></p>
@@ -1203,15 +1207,15 @@ Enable Google Authenticator for a specific user or group:
 
 
 
-<p>To generate a new secret key and unlock it so the user can enroll anew:
+<p>To generate a new secret key and unlock it so the user can enroll anew: <br/>
 <code>
 ./sacli --user &lt;USER&gt; --lock 0 GoogleAuthRegen
 </code>
-To generate a new secret key and lock it so the user must obtain the secret key from the server administrator:
+To generate a new secret key and lock it so the user must obtain the secret key from the server administrator: <br/>
 <code>
 ./sacli --user &lt;USER&gt; --lock 1 GoogleAuthRegen
 </code>
-The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually:
+The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually: <br/>
 ```
 ./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
 
@@ -1254,7 +1258,7 @@ sudo ./confdba -us -p joe _#display info about a user_
 
 sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe _#unlock locked out user_
 
-_#Disable/enable Google Authenticator for a specific user or group:_
+_#Disable/enable Google Authenticator for a specific user or group:   _
 
 ./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" --value "false" UserPropPut _#disable_
 
@@ -1413,7 +1417,7 @@ When new MFA/Google secret has been generated user need to login to Access Serve
 
 
 
-<p>Latest Ubuntu 18.04 systems that use snap:
+<p>Latest Ubuntu 18.04 systems that use snap: <br/>
 ```
 $ sudo snap services amazon-ssm-agent</p>
 
@@ -1864,7 +1868,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#103;&#101;&#x6e;&#101;&#119;&#x61;&#x6c;&#122;&#x2e;&#x78;&#x78;&#x78;&#120;&#x40;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#103;&#x65;&#x6e;&#101;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#x78;&#x78;&#120;&#64;&#103;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x67;&#x65;&#110;&#101;&#x77;&#x61;&#108;&#x7a;&#x2e;&#x78;&#120;&#120;&#x78;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x65;&#x6e;&#x65;&#x77;&#97;&#x6c;&#x7a;&#x2e;&#x78;&#x78;&#x78;&#120;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
