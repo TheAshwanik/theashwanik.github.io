@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-05T10:00:30+01:00</updated>
+  <updated>2020-08-06T19:23:22+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -12,6 +12,919 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Convert Swagger or OpenAPI Specs to Spring Boot REST API]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2020-08-06/convert-swagger-or-openapi-specs-to-spring-boot-rest-api/"/>
+    <updated>2020-08-06T00:00:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2020-08-06/convert-swagger-or-openapi-specs-to-spring-boot-rest-api</id>
+    <content type="html"><![CDATA[<p>In this post we are going to see how OpenAPI/Swagger Specification helps understand the API and agree on its attributes also how we  can generate code and documentation from the specification file.</p>
+
+
+
+
+<p>Let's generate the code create an empty maven project named "TMF-ApiSpec" <!--more--></p>
+
+
+
+
+<p>Now for the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
+You can choose one of <a href="https://raw.githubusercontent.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5/master/api/swagger.yaml">Yaml</a> or <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">Json format</a></p>
+
+
+
+
+<h4>Update the pom.xml File:</h4>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+</span><span class='line'>  &lt;modelVersion>4.0.0&lt;/modelVersion>
+</span><span class='line'>  &lt;groupId>com.ashwani&lt;/groupId>
+</span><span class='line'>  &lt;artifactId>TMF-ApiSpec&lt;/artifactId>
+</span><span class='line'>  &lt;version>0.0.1-SNAPSHOT&lt;/version>
+</span><span class='line'> 
+</span><span class='line'>    &lt;properties>
+</span><span class='line'>        &lt;swagger-annotations-version>1.5.22&lt;/swagger-annotations-version>
+</span><span class='line'>        &lt;jersey-version>2.27&lt;/jersey-version>
+</span><span class='line'>        &lt;jackson-version>2.8.9&lt;/jackson-version>
+</span><span class='line'>        &lt;jodatime-version>2.7&lt;/jodatime-version>
+</span><span class='line'>        &lt;maven-plugin-version>1.0.0&lt;/maven-plugin-version>
+</span><span class='line'>        &lt;junit-version>4.8.1&lt;/junit-version>
+</span><span class='line'>        &lt;springfox-version>2.9.2&lt;/springfox-version>
+</span><span class='line'>        &lt;threetenbp-version>1.3.8&lt;/threetenbp-version>
+</span><span class='line'>        &lt;datatype-threetenbp-version>2.6.4&lt;/datatype-threetenbp-version>
+</span><span class='line'>        &lt;spring-boot-starter-test-version>2.1.1.RELEASE&lt;/spring-boot-starter-test-version>
+</span><span class='line'>        &lt;spring-boot-starter-web-version>2.1.0.RELEASE&lt;/spring-boot-starter-web-version>
+</span><span class='line'>        &lt;junit-version>4.12&lt;/junit-version>
+</span><span class='line'>        &lt;migbase64-version>2.2&lt;/migbase64-version>
+</span><span class='line'>    &lt;/properties>
+</span><span class='line'> 
+</span><span class='line'>    &lt;dependencies>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>io.swagger&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>swagger-annotations&lt;/artifactId>
+</span><span class='line'>            &lt;version>${swagger-annotations-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.glassfish.jersey.core&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jersey-client&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jersey-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.glassfish.jersey.media&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jersey-media-multipart&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jersey-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.glassfish.jersey.media&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jersey-media-json-jackson&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jersey-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.jaxrs&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-jaxrs-base&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.core&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-core&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.core&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-annotations&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.core&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-databind&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.jaxrs&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-jaxrs-json-provider&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.fasterxml.jackson.datatype&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-datatype-joda&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jackson-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>joda-time&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>joda-time&lt;/artifactId>
+</span><span class='line'>            &lt;version>${jodatime-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.brsanthu&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>migbase64&lt;/artifactId>
+</span><span class='line'>            &lt;version>${migbase64-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>junit&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>junit&lt;/artifactId>
+</span><span class='line'>            &lt;version>${junit-version}&lt;/version>
+</span><span class='line'>            &lt;scope>test&lt;/scope>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.springframework.boot&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>spring-boot-starter-test&lt;/artifactId>
+</span><span class='line'>            &lt;version>${spring-boot-starter-test-version}&lt;/version>
+</span><span class='line'>            &lt;scope>test&lt;/scope>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.springframework.boot&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>spring-boot-starter-web&lt;/artifactId>
+</span><span class='line'>            &lt;version>${spring-boot-starter-web-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>io.springfox&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>springfox-swagger2&lt;/artifactId>
+</span><span class='line'>            &lt;version>${springfox-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>io.springfox&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>springfox-swagger-ui&lt;/artifactId>
+</span><span class='line'>            &lt;version>${springfox-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>org.threeten&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>threetenbp&lt;/artifactId>
+</span><span class='line'>            &lt;version>${threetenbp-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>        &lt;dependency>
+</span><span class='line'>            &lt;groupId>com.github.joschi.jackson&lt;/groupId>
+</span><span class='line'>            &lt;artifactId>jackson-datatype-threetenbp&lt;/artifactId>
+</span><span class='line'>            &lt;version>${datatype-threetenbp-version}&lt;/version>
+</span><span class='line'>        &lt;/dependency>
+</span><span class='line'>    &lt;/dependencies>
+</span><span class='line'> 
+</span><span class='line'>    &lt;build>
+</span><span class='line'>        &lt;plugins>
+</span><span class='line'>            &lt;plugin>
+</span><span class='line'>                &lt;groupId>org.openapitools&lt;/groupId>
+</span><span class='line'>                &lt;artifactId>openapi-generator-maven-plugin&lt;/artifactId>
+</span><span class='line'>                &lt;version>3.3.4&lt;/version>
+</span><span class='line'>                &lt;executions>
+</span><span class='line'>                    &lt;execution>
+</span><span class='line'>                        &lt;id>spring-boot-api&lt;/id>
+</span><span class='line'>                        &lt;goals>
+</span><span class='line'>                            &lt;goal>generate&lt;/goal>
+</span><span class='line'>                        &lt;/goals>
+</span><span class='line'>                        &lt;configuration>
+</span><span class='line'>                            &lt;inputSpec>${project.basedir}/src/main/resources/TMF641-Service_Ordering-v4.0.0.swagger.json&lt;/inputSpec>
+</span><span class='line'>                            &lt;generatorName>spring&lt;/generatorName>
+</span><span class='line'>                            &lt;configOptions>
+</span><span class='line'>                                &lt;dateLibrary>joda&lt;/dateLibrary>
+</span><span class='line'>                            &lt;/configOptions>
+</span><span class='line'>                            &lt;library>spring-boot&lt;/library>
+</span><span class='line'>                            &lt;apiPackage>com.ashwani.demo.api&lt;/apiPackage>
+</span><span class='line'>                            &lt;modelPackage>com.ashwani.demo.api.model&lt;/modelPackage>
+</span><span class='line'>                            &lt;invokerPackage>com.ashwani.demo.api.handler&lt;/invokerPackage>
+</span><span class='line'>                        &lt;/configuration>
+</span><span class='line'>                    &lt;/execution>
+</span><span class='line'>                &lt;/executions>
+</span><span class='line'>            &lt;/plugin>
+</span><span class='line'>            &lt;plugin>
+</span><span class='line'>                &lt;groupId>org.apache.maven.plugins&lt;/groupId>
+</span><span class='line'>                &lt;artifactId>maven-compiler-plugin&lt;/artifactId>
+</span><span class='line'>                &lt;version>3.6.1&lt;/version>
+</span><span class='line'>                &lt;configuration>
+</span><span class='line'>                    &lt;source>1.8&lt;/source>
+</span><span class='line'>                    &lt;target>1.8&lt;/target>
+</span><span class='line'>                &lt;/configuration>
+</span><span class='line'>            &lt;/plugin>
+</span><span class='line'>            &lt;plugin>
+</span><span class='line'>                &lt;artifactId>maven-deploy-plugin&lt;/artifactId>
+</span><span class='line'>                &lt;version>2.8.1&lt;/version>
+</span><span class='line'>                &lt;executions>
+</span><span class='line'>                    &lt;execution>
+</span><span class='line'>                        &lt;id>default-deploy&lt;/id>
+</span><span class='line'>                        &lt;phase>deploy&lt;/phase>
+</span><span class='line'>                        &lt;goals>
+</span><span class='line'>                            &lt;goal>deploy&lt;/goal>
+</span><span class='line'>                        &lt;/goals>
+</span><span class='line'>                    &lt;/execution>
+</span><span class='line'>                &lt;/executions>
+</span><span class='line'>            &lt;/plugin>
+</span><span class='line'>        &lt;/plugins>
+</span><span class='line'>    &lt;/build>
+</span><span class='line'>&lt;/project></span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>Execute MVN install in the root directory of the project.
+And the resulting code would be generated by openapi-generator-maven-plugin in target/generated-sources/. com.ashwani.demo.api.
+<a href="https://github.com/OpenAPITools/openapi-generator/tree/master/docs/generators">Various generators</a> based on your preference.</p>
+
+
+
+
+<p>Now let's create a new spring boot project demo-service from  <a href="https://start.spring.io/">https://start.spring.io/</a>.
+Once a bare spring boot project is created with Spring Web dependency.
+Now add the Maven dependency in this spring project.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;dependency>
+</span><span class='line'>          &lt;groupId>com.ashwani&lt;/groupId>
+</span><span class='line'>          &lt;artifactId>openapi-serviceorder-client&lt;/artifactId>
+</span><span class='line'>          &lt;version>0.0.1-SNAPSHOT&lt;/version>
+</span><span class='line'>          &lt;scope>system&lt;/scope>
+</span><span class='line'>          &lt;systemPath>${basedir}/lib/openapi-serviceorder-client-0.0.1-SNAPSHOT.jar&lt;/systemPath>
+</span><span class='line'>      &lt;/dependency></span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>Now create a class ServiceOrderApiController which will implement previously generated ServiceOrderApi from previous step. And make some implementation of the API:</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package com.ashwani.serviceorder.api;
+</span><span class='line'>
+</span><span class='line'>import java.security.Principal;
+</span><span class='line'>import java.util.Optional;
+</span><span class='line'>
+</span><span class='line'>import javax.servlet.http.HttpServletRequest;
+</span><span class='line'>import javax.validation.Valid;
+</span><span class='line'>
+</span><span class='line'>import org.joda.time.DateTime;
+</span><span class='line'>import org.slf4j.Logger;
+</span><span class='line'>import org.slf4j.LoggerFactory;
+</span><span class='line'>import org.springframework.beans.factory.annotation.Autowired;
+</span><span class='line'>import org.springframework.http.HttpStatus;
+</span><span class='line'>import org.springframework.http.MediaType;
+</span><span class='line'>import org.springframework.http.ResponseEntity;
+</span><span class='line'>import org.springframework.stereotype.Controller;
+</span><span class='line'>import org.springframework.web.bind.annotation.PathVariable;
+</span><span class='line'>import org.springframework.web.bind.annotation.RequestBody;
+</span><span class='line'>import org.springframework.web.bind.annotation.RequestMapping;
+</span><span class='line'>import org.springframework.web.bind.annotation.RequestMethod;
+</span><span class='line'>import org.springframework.web.bind.annotation.RequestParam;
+</span><span class='line'>import org.threeten.bp.OffsetDateTime;
+</span><span class='line'>
+</span><span class='line'>import com.ashwani.serviceorder.api.model.Error;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.RelatedParty;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrder;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderCreate;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderItem;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceRestriction;
+</span><span class='line'>import com.ashwani.serviceorder.api.ServiceOrderRepoService;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>import com.fasterxml.jackson.databind.ObjectMapper;
+</span><span class='line'>
+</span><span class='line'>import io.swagger.annotations.ApiOperation;
+</span><span class='line'>import io.swagger.annotations.ApiParam;
+</span><span class='line'>import io.swagger.annotations.ApiResponse;
+</span><span class='line'>import io.swagger.annotations.ApiResponses;
+</span><span class='line'>
+</span><span class='line'>@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-07-25T00:30:31.539259300+01:00[Europe/London]")
+</span><span class='line'>
+</span><span class='line'>@Controller
+</span><span class='line'>@RequestMapping("${openapi.aPIServiceOrdering.base-path:/tmf-api/serviceOrdering/v3}")
+</span><span class='line'>public class ServiceOrderApiController implements ServiceOrderApi {
+</span><span class='line'>
+</span><span class='line'>  private static final Logger logger = LoggerFactory.getLogger(ServiceOrderApiController.class);
+</span><span class='line'>
+</span><span class='line'>  private final ObjectMapper objectMapper;
+</span><span class='line'>
+</span><span class='line'>  private final HttpServletRequest request;
+</span><span class='line'>  
+</span><span class='line'>  @Autowired
+</span><span class='line'>  ServiceOrderRepoService serviceOrderRepoService;
+</span><span class='line'>
+</span><span class='line'>  
+</span><span class='line'>    @Autowired
+</span><span class='line'>  public ServiceOrderApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+</span><span class='line'>      this.objectMapper = objectMapper;
+</span><span class='line'>      this.request = request;
+</span><span class='line'>  }
+</span><span class='line'>
+</span><span class='line'>    @ApiOperation(value = "Creates a ServiceOrder", nickname = "createServiceOrder", notes = "This operation creates a ServiceOrder entity.", response = ServiceOrder.class, tags={ "serviceOrder", })
+</span><span class='line'>    @ApiResponses(value = { 
+</span><span class='line'>        @ApiResponse(code = 201, message = "Created", response = ServiceOrder.class),
+</span><span class='line'>        @ApiResponse(code = 400, message = "Bad Request", response = Error.class),
+</span><span class='line'>        @ApiResponse(code = 401, message = "Unauthorized", response = Error.class),
+</span><span class='line'>        @ApiResponse(code = 403, message = "Forbidden", response = Error.class),
+</span><span class='line'>        @ApiResponse(code = 405, message = "Method Not allowed", response = Error.class),
+</span><span class='line'>        @ApiResponse(code = 409, message = "Conflict", response = Error.class),
+</span><span class='line'>        @ApiResponse(code = 500, message = "Internal Server Error", response = Error.class) })
+</span><span class='line'>    @RequestMapping(value = "/serviceOrder",
+</span><span class='line'>        produces = { "application/json;charset=utf-8" }, 
+</span><span class='line'>        consumes = { "application/json;charset=utf-8" },
+</span><span class='line'>        method = RequestMethod.POST)
+</span><span class='line'>    public ResponseEntity&lt;ServiceOrder> createServiceOrder(@ApiParam(value = "The ServiceOrder to be created" ,required=true )  @Valid @RequestBody ServiceOrderCreate serviceOrderCreate) {
+</span><span class='line'>        ServiceOrderCreate soc = serviceOrderCreate;
+</span><span class='line'>        
+</span><span class='line'>            try {
+</span><span class='line'>                  System.out.println(serviceOrderCreate.toString());
+</span><span class='line'>                  ServiceOrder c = serviceOrderRepoService.addServiceOrder(soc);
+</span><span class='line'>                  return new ResponseEntity&lt;ServiceOrder>(c, HttpStatus.OK);               
+</span><span class='line'>
+</span><span class='line'>          }catch (Exception e) {
+</span><span class='line'>              e.printStackTrace();
+</span><span class='line'>              return new ResponseEntity&lt;ServiceOrder>(HttpStatus.INTERNAL_SERVER_ERROR);
+</span><span class='line'>          }
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>package com.ashwani.serviceorder.api;
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>import java.util.Date;
+</span><span class='line'>import java.util.Set;
+</span><span class='line'>
+</span><span class='line'>import javax.validation.Valid;
+</span><span class='line'>
+</span><span class='line'>import org.joda.time.DateTime;
+</span><span class='line'>import org.springframework.stereotype.Service;
+</span><span class='line'>import org.threeten.bp.OffsetDateTime;
+</span><span class='line'>import org.threeten.bp.ZoneOffset;
+</span><span class='line'>
+</span><span class='line'>import com.ashwani.serviceorder.api.model.Any;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.Characteristic;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrder;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderAttributeValueChangeEvent;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderAttributeValueChangeNotification;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderCreate;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderItem;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderStateChangeEvent;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderStateChangeNotification;
+</span><span class='line'>import com.ashwani.serviceorder.api.model.ServiceOrderStateType;
+</span><span class='line'>
+</span><span class='line'>@Service
+</span><span class='line'>public class ServiceOrderRepoService {
+</span><span class='line'>
+</span><span class='line'>  public ServiceOrder addServiceOrder(@Valid ServiceOrderCreate serviceOrderCreate) {
+</span><span class='line'>      ServiceOrder so = new ServiceOrder();
+</span><span class='line'>      DateTime d = DateTime.now();
+</span><span class='line'>      so.setOrderDate(d);
+</span><span class='line'>      so.setCategory(serviceOrderCreate.getCategory());
+</span><span class='line'>      so.setDescription(serviceOrderCreate.getDescription());
+</span><span class='line'>      so.setExternalId(serviceOrderCreate.getExternalId());
+</span><span class='line'>      so.setNotificationContact(serviceOrderCreate.getNotificationContact());
+</span><span class='line'>      so.priority(serviceOrderCreate.getPriority());
+</span><span class='line'>      so.requestedCompletionDate(serviceOrderCreate.getRequestedCompletionDate());
+</span><span class='line'>      so.requestedStartDate(serviceOrderCreate.getRequestedStartDate());
+</span><span class='line'>      so.setExpectedCompletionDate(serviceOrderCreate.getRequestedCompletionDate()); // this is by default
+</span><span class='line'>      if (serviceOrderCreate.getNote() != null) {
+</span><span class='line'>          so.getNote().addAll(serviceOrderCreate.getNote());
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>      boolean allAcknowledged = true;
+</span><span class='line'>      if (serviceOrderCreate.getOrderItem() != null) {
+</span><span class='line'>          so.getOrderItem().addAll(serviceOrderCreate.getOrderItem());
+</span><span class='line'>          for (ServiceOrderItem soi : so.getOrderItem()) {
+</span><span class='line'>//                copySpecCharacteristicsToServiceCharacteristic(soi.getService().getServiceSpecification().getId(),
+</span><span class='line'>//                        soi.getService().getServiceCharacteristic());
+</span><span class='line'>//                
+</span><span class='line'>              System.out.println("SOI --> " + soi.toString());
+</span><span class='line'>              
+</span><span class='line'>              if (soi.getState()!= null && !soi.getState().equals(ServiceOrderStateType.ACKNOWLEDGED)) {
+</span><span class='line'>                  allAcknowledged = false;
+</span><span class='line'>              }
+</span><span class='line'>          }
+</span><span class='line'>
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>      if (serviceOrderCreate.getRelatedParty() != null) {
+</span><span class='line'>          so.getRelatedParty().addAll(serviceOrderCreate.getRelatedParty());
+</span><span class='line'>      }
+</span><span class='line'>      if (serviceOrderCreate.getOrderRelationship() != null) {
+</span><span class='line'>          so.getOrderRelationship().addAll(serviceOrderCreate.getOrderRelationship());
+</span><span class='line'>
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>      // so = this.serviceOrderRepo.save(so);  You can save this in DB.
+</span><span class='line'>
+</span><span class='line'>      if (allAcknowledged) { // in the case were order items are automatically acknowledged
+</span><span class='line'>          so.setState(ServiceOrderStateType.ACKNOWLEDGED);
+</span><span class='line'>          d = DateTime.now();
+</span><span class='line'>          so.setOrderDate(d);
+</span><span class='line'>          //so = this.serviceOrderRepo.save(so);
+</span><span class='line'>      }
+</span><span class='line'>
+</span><span class='line'>      //raiseSOCreateNotification(so);
+</span><span class='line'>
+</span><span class='line'>      return so;
+</span><span class='line'>  }
+</span><span class='line'>  
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>Now we can test the server.
+Send a request from postman on following end point.
+<a href="http://localhost:8080/tmf-api/serviceOrdering/v3/serviceOrder">http://localhost:8080/tmf-api/serviceOrdering/v3/serviceOrder</a></p>
+
+
+
+
+<p>If all goes well you will get the following response:</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>    "id": null,
+</span><span class='line'>    "href": null,
+</span><span class='line'>    "category": "TMF resource illustration",
+</span><span class='line'>    "completionDate": null,
+</span><span class='line'>    "description": "Service order description",
+</span><span class='line'>    "expectedCompletionDate": "2018-01-15T09:37:40.508Z",
+</span><span class='line'>    "externalId": "OrangeBSS748",
+</span><span class='line'>    "notificationContact": null,
+</span><span class='line'>    "orderDate": "2020-08-06T15:51:02.131Z",
+</span><span class='line'>    "priority": "1",
+</span><span class='line'>    "requestedCompletionDate": "2018-01-15T09:37:40.508Z",
+</span><span class='line'>    "requestedStartDate": "2018-01-15T09:37:40.508Z",
+</span><span class='line'>    "startDate": null,
+</span><span class='line'>    "note": null,
+</span><span class='line'>    "orderItem": [
+</span><span class='line'>        {
+</span><span class='line'>            "id": "1",
+</span><span class='line'>            "action": "add",
+</span><span class='line'>            "appointment": null,
+</span><span class='line'>            "orderItemRelationship": null,
+</span><span class='line'>            "service": {
+</span><span class='line'>                "id": null,
+</span><span class='line'>                "href": null,
+</span><span class='line'>                "category": null,
+</span><span class='line'>                "name": null,
+</span><span class='line'>                "serviceType": null,
+</span><span class='line'>                "place": null,
+</span><span class='line'>                "relatedParty": null,
+</span><span class='line'>                "serviceCharacteristic": null,
+</span><span class='line'>                "serviceRelationship": null,
+</span><span class='line'>                "serviceSpecification": {
+</span><span class='line'>                    "id": "12",
+</span><span class='line'>                    "href": "http://...:serviceSpecification/12",
+</span><span class='line'>                    "name": "vCPE",
+</span><span class='line'>                    "version": "1",
+</span><span class='line'>                    "targetServiceSchema": null,
+</span><span class='line'>                    "@baseType": null,
+</span><span class='line'>                    "@schemaLocation": "http...",
+</span><span class='line'>                    "@type": "vCPE",
+</span><span class='line'>                    "@referredType": null
+</span><span class='line'>                },
+</span><span class='line'>                "state": null,
+</span><span class='line'>                "supportingResource": null,
+</span><span class='line'>                "supportingService": null,
+</span><span class='line'>                "@baseType": null,
+</span><span class='line'>                "@schemaLocation": null,
+</span><span class='line'>                "@type": null
+</span><span class='line'>            },
+</span><span class='line'>            "state": null,
+</span><span class='line'>            "@baseType": null,
+</span><span class='line'>            "@schemaLocation": null,
+</span><span class='line'>            "@type": "ServiceOrder"
+</span><span class='line'>        }
+</span><span class='line'>    ],
+</span><span class='line'>    "orderRelationship": null,
+</span><span class='line'>    "relatedParty": null,
+</span><span class='line'>    "state": "acknowledged",
+</span><span class='line'>    "@baseType": null,
+</span><span class='line'>    "@schemaLocation": null,
+</span><span class='line'>    "@type": null
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<h4>Next steps:</h4>
+
+
+
+
+<p>To add persistent to the order creation etc. Something similar to <a href="https://github.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5">this</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Vs Java - Uses, Performance, Learning]]></title>
@@ -144,7 +1057,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#108;&#x74;&#111;&#x3a;&#106;&#97;&#x73;&#x6d;&#105;&#110;&#x65;&#x2e;&#120;&#46;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#106;&#x75;&#110;&#105;&#x6c;&#101;&#97;&#114;&#x6e;&#105;&#110;&#103;&#46;&#x63;&#111;">&#106;&#97;&#115;&#109;&#x69;&#x6e;&#101;&#x2e;&#120;&#46;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#64;&#106;&#x75;&#110;&#x69;&#x6c;&#x65;&#x61;&#114;&#x6e;&#x69;&#x6e;&#x67;&#x2e;&#x63;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x6a;&#97;&#115;&#109;&#105;&#x6e;&#x65;&#46;&#120;&#46;&#120;&#x78;&#120;&#x78;&#120;&#120;&#64;&#106;&#x75;&#110;&#105;&#x6c;&#x65;&#x61;&#114;&#x6e;&#105;&#x6e;&#103;&#x2e;&#x63;&#x6f;">&#x6a;&#x61;&#x73;&#x6d;&#x69;&#110;&#101;&#x2e;&#x78;&#46;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#x40;&#106;&#117;&#x6e;&#x69;&#x6c;&#101;&#x61;&#x72;&#110;&#105;&#x6e;&#103;&#x2e;&#99;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -1154,163 +2067,261 @@ Note that this command takes a PATH to the secrets engine as an argument, not th
 
 
 
-<pre><code>./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
+</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-./sacli start
-</code></pre>
 
 
 
+<p>Enable Google Authenticator globally for all users and groups:</p>
 
-<p>Enable Google Authenticator globally for all users and groups: <br/>
-```
-./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut</p>
 
 
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut
+</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>./sacli start
-<code>
-Disable Google Authenticator for a specific user or group:   
-</code>
-./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut
-<code>
-Enable Google Authenticator for a specific user or group:   
-</code>
-./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut
-```</p>
 
 
 
+<p>Disable Google Authenticator for a specific user or group:</p>
 
-<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead: <br/>
-<code>
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" UserPropDel
-</code></p>
 
 
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again: <br/>
-<code>
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthLock
-</code></p>
 
 
 
+<p>Enable Google Authenticator for a specific user or group:</p>
 
-<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself: <br/>
-<code>
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthLock
-</code></p>
 
 
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>To generate a new secret key and unlock it so the user can enroll anew: <br/>
-<code>
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthRegen
-</code>
-To generate a new secret key and lock it so the user must obtain the secret key from the server administrator: <br/>
-<code>
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthRegen
-</code>
-The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually: <br/>
-```
-./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
 
 
 
+<p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead:</p>
 
-<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED> UserPropPut
-```
-Where <GOOGLE_AUTH_SECRET> must be a 16 character alphanumerical value in capitals and must be known at the Google Authenticator device/application to generate the 6 digit codes, and the <SCANNED/LOCKED> value must be either 1 or 0, indicating that the code is scanned and must now be used by the user, or is awaiting enrollment by the user.</p>
 
 
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<h3>A few useful commands:</h3>
 
 
 
+<p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again:</p>
 
-<pre><code class="shell ">cd /usr/local/openvpn_as/scripts
 
-sudo ./confdba -us -p joe _#display info about a user_
 
-{
 
-  "joe": {
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-  "access_to.0": "+NAT:10.0.0.0/8",
 
-  "pvt_google_auth_secret": "Z********B", _#this is GoogleAuth MFA secret_token that a user scans as QR code_
 
-  "pvt_google_auth_secret_locked": "false",
 
-  "pvt_password_digest": "30******bb71",
+<p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself:</p>
 
-  "type": "user_compile"
 
- }
 
-}
 
-sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe _#unlock locked out user_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-_#Disable/enable Google Authenticator for a specific user or group:   _
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" --value "false" UserPropPut _#disable_
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" --value "true" UserPropPut _#enable_
 
-_#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead_
+<p>To generate a new secret key and unlock it so the user can enroll anew:</p>
 
-./sacli --user &lt;USER_OR_GROUP&gt; --key "prop_google_auth" UserPropDel
 
-_#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again_
 
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthLock
 
-_#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself_
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-./sacli --user &lt;USER&gt; --lock 1 GoogleAuthLock
 
-_#To generate a new secret key and lock or leave it unlocked_
 
-./sacli --user &lt;USER&gt; --lock 0 GoogleAuthRegen _#unlocked, user can scan_
 
-./sacli -u  joe  GoogleAuthRegen _#regenerate Google token, so a user can scan QR code again_
+<p>To generate a new secret key and lock it so the user must obtain the secret key from the server administrator:</p>
 
-['Z*********B', 'otpauth://totp/OpenVPN:joe@ivpn.acme.com?secret=Z*******B&amp;issuer=OpenVPN']
 
-_#./sacli_ 
 
-_#-u, --user_
-</code></pre>
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
-<p>The GoogleAuthLock and GoogleAuthRegen functions that actually handle these two keys, which can also be edited manually
-```
-./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
 
+<p>The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually:</p>
 
 
 
-<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED>  UserPropPut
-<code>
-Logs
-</code>
-<em>#Logs</em></p>
 
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED> UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
-<p>tail -f /var/log/openvpnas.log
-```
-When new MFA/Google secret has been generated user need to login to Access Server, scann QR code, then download the Connection Client that the bundle contains the new user settings; this will enable VPN login.</p>
+
+<p>Where <GOOGLE_AUTH_SECRET> must be a 16 character alphanumerical value in capitals and must be known at the Google Authenticator device/application to generate the 6 digit codes, and the <SCANNED/LOCKED> value must be either 1 or 0, indicating that the code is scanned and must now be used by the user, or is awaiting enrollment by the user.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /usr/local/openvpn_as/scripts
+</span><span class='line'>
+</span><span class='line'>sudo ./confdba -us -p joe _#display info about a user_
+</span><span class='line'>
+</span><span class='line'>{
+</span><span class='line'>
+</span><span class='line'>  "joe": {
+</span><span class='line'>
+</span><span class='line'>  "access_to.0": "+NAT:10.0.0.0/8",
+</span><span class='line'>
+</span><span class='line'>  "pvt_google_auth_secret": "Z********B", _#this is GoogleAuth MFA secret_token that a user scans as QR code_
+</span><span class='line'>
+</span><span class='line'>  "pvt_google_auth_secret_locked": "false",
+</span><span class='line'>
+</span><span class='line'>  "pvt_password_digest": "30******bb71",
+</span><span class='line'>
+</span><span class='line'>  "type": "user_compile"
+</span><span class='line'>
+</span><span class='line'> }
+</span><span class='line'>
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe  _#unlock locked out user_</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#Disable/enable Google Authenticator for a specific user or group:   _
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut _#disable_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut _#enable_</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>_#To generate a new secret key and lock or leave it unlocked_
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen _#unlocked, user can scan_
+</span><span class='line'>
+</span><span class='line'>./sacli -u  joe  GoogleAuthRegen _#regenerate Google token, so a user can scan QR code again_</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>The GoogleAuthLock and GoogleAuthRegen functions that actually handle these two keys, which can also be edited manually</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut
+</span><span class='line'>
+</span><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED>  UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>Logs</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tail -f /var/log/openvpnas.log</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>When new MFA/Google secret has been generated user need to login to Access Server, scann QR code, then download the Connection Client that the bundle contains the new user settings; this will enable VPN login.</p>
 
 
 
@@ -1325,48 +2336,74 @@ When new MFA/Google secret has been generated user need to login to Access Serve
 
 
 
-<pre><code class="json">&lt;![endif]--&gt;
-
-{
-
-"schemaVersion": "2.2",
-
-"description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
-
-"parameters": { 
-    "Username": {
-    "description": "Username of the user to unlock",
-    "minChars": 3,
-    "type": "String"
-    }
-},
-
-"mainSteps": [
-    {
-        "action": "aws:runShellScript",
-        "name": "OpenVPNASUnlockGoogleAuthenticator",
-        "inputs": {
-            "runCommand": [
-                "#!/bin/bash",
-                "cd /usr/local/openvpn_as/scripts",
-
-                "sudo ./sacli -u  --lock 0 GoogleAuthLock"
-                ]
-            },
-        "precondition":{
-        "StringEquals":[
-                "platformType",
-                "Linux"
-                ]
-
-        }
-
-    }
-
-]
-
-}
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>{
+</span><span class='line'>
+</span><span class='line'>      "schemaVersion": "2.2",
+</span><span class='line'>      "description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
+</span><span class='line'>      "parameters": { 
+</span><span class='line'>          "Username": {
+</span><span class='line'>          "description": "Username of the user to unlock",
+</span><span class='line'>          "minChars": 3,
+</span><span class='line'>          "type": "String"
+</span><span class='line'>          }
+</span><span class='line'>      },
+</span><span class='line'>      "mainSteps": [
+</span><span class='line'>          {
+</span><span class='line'>              "action": "aws:runShellScript",
+</span><span class='line'>              "name": "OpenVPNASUnlockGoogleAuthenticator",
+</span><span class='line'>              "inputs": {
+</span><span class='line'>                  "runCommand": [
+</span><span class='line'>                      "#!/bin/bash",
+</span><span class='line'>                      "cd /usr/local/openvpn_as/scripts",
+</span><span class='line'>                      "sudo ./sacli -u {REMOVE_THIS_TEXT% Username %} --lock 0 GoogleAuthLock"
+</span><span class='line'>                      ]
+</span><span class='line'>                  },
+</span><span class='line'>              "precondition":{
+</span><span class='line'>              "StringEquals":[
+</span><span class='line'>                      "platformType",
+</span><span class='line'>                      "Linux"
+</span><span class='line'>                      ]
+</span><span class='line'>
+</span><span class='line'>              }
+</span><span class='line'>
+</span><span class='line'>          }
+</span><span class='line'>      ]
+</span><span class='line'>
+</span><span class='line'>  }</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -1405,7 +2442,7 @@ When new MFA/Google secret has been generated user need to login to Access Serve
 
 
 
-<p>Resolution</p>
+<h4>Resolution</h4>
 
 
 
@@ -1417,40 +2454,47 @@ When new MFA/Google secret has been generated user need to login to Access Serve
 
 
 
-<p>Latest Ubuntu 18.04 systems that use snap: <br/>
-```
-$ sudo snap services amazon-ssm-agent</p>
+<p>Latest Ubuntu 18.04 systems that use snap:</p>
 
 
 
 
-<p>Service  Startup  Current  Notes</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo snap services amazon-ssm-agent
+</span><span class='line'>
+</span><span class='line'>Service  Startup  Current  Notes
+</span><span class='line'>
+</span><span class='line'>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<p>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -
-```
-2. Verify connectivity to Systems Manager endpoints on port 443
-To test connectivity to endpoints from port 443, use the telnet command. The following example shows how to test connectivity to endpoints in the us-east-1 Region.</p>
+<ol>
+<li>Verify connectivity to Systems Manager endpoints on port 443
+To test connectivity to endpoints from port 443, use the telnet command. The following example shows how to test connectivity to endpoints in the us-east-1 Region.</li>
+</ol>
 
 
 
 
-<pre><code>telnet ssm.us-east-1.amazonaws.com 443
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssm.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<pre><code>telnet ec2messages.us-east-1.amazonaws.com 443
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ec2messages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<pre><code>telnet ssmmessages.us-east-1.amazonaws.com 443
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssmmessages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
@@ -1465,13 +2509,13 @@ SSM Agent must be able to communicate with the instance metadata service in orde
 
 
 
-<pre><code>telnet 169.254.169.254 80
-</code></pre>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>telnet 169.254.169.254 80</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 
 
-<h3>References</h3>
+<h4>References</h4>
 
 
 
@@ -1868,7 +2912,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#58;&#x67;&#x65;&#110;&#101;&#x77;&#x61;&#108;&#x7a;&#x2e;&#x78;&#120;&#120;&#x78;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x65;&#x6e;&#x65;&#x77;&#97;&#x6c;&#x7a;&#x2e;&#x78;&#x78;&#x78;&#120;&#64;&#x67;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x67;&#x65;&#110;&#101;&#119;&#x61;&#108;&#x7a;&#x2e;&#x78;&#120;&#120;&#x78;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#103;&#101;&#x6e;&#101;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#x78;&#x78;&#120;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
@@ -5383,118 +6427,6 @@ An (incomplete) list of commonly used software which include or link to OpenSSL 
 <a href="https://hackerone.com/reports/6626">Neel Mehta donates Heartbleed bounty to Freedom of the Press Foundation</a>  <br/>
 <a href="https://news.ycombinator.com/item?id=7548991">Hacker News Thread</a>  <br/>
 <a href="http://www.cnet.com/uk/news/which-sites-have-patched-the-heartbleed-bug">Sites which have patched the Bug</a></p>
-
-
-
-
-<p><br/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Long Live WindowsXp/Run XP in a Virtual Box for free]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp/"/>
-    <updated>2014-03-07T23:25:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2014-03-07/long-live-windowsxp</id>
-    <content type="html"><![CDATA[<p>The long loved , super user friendly Operating System's Life is going to see the last light in few days. <br/>
-Windows XP, the cornerstone of most PC users for the past 10+ years, is being officially phased out.</p>
-
-
-
-
-<!--more-->
-
-
-
-
-<iframe class="restricted" scrolling="no" src="http://support.microsoft.com/lifecycle/?LN=en-ie&c2=1173#tableContainer" width=105% height="370" frameborder="1"></iframe>
-
-
-
-
-<p>We all loved Windows XP. Although you can still run XP on your PCs , laptops but at your own risks.
-Microsoft has publicly stated that no new patches will be released for the OS after April 2014 (outside of very critical security flaws found.)</p>
-
-
-
-
-<p>If in case you love Windows-7 more , but wanna use Windows-XP as well , then read on..</p>
-
-
-
-
-<h4>Running Windows XP in a Virtual Box for free</h4>
-
-
-
-
-<h5>Follow the steps:</h5>
-
-
-
-
-<ol>
-<li>Download <a href="http://www.microsoft.com/windows/virtual-pc/download.aspx">Windows XP Mode</a> (WindowsXPMode_en-us.exe | MD5: bf3726d684d3acb98185665123c9efcf)</li>
-<li>Extract xpm from WindowsXPMode_en-us.exe with a file archiver 7-Zip etc.</li>
-<li>Add .rar extension to xpm</li>
-<li>Extract VirtualXPVHD from xpm.rar</li>
-<li>Add .vdi extension to VirtualXPVHD</li>
-<li>Create new machine in VirtualBox, specifying VirtualXPVHD.vdi as the hard disk</li>
-<li>Once initial setup is complete, uninstall Virtual PC Integration Components from Add/Remove Control Panel</li>
-<li>Install Guest Additions (Devices > Install Guest Additions...)</li>
-</ol>
-
-
-
-
-<p>Once you start the Virtual Box, you will be asked to activate windows-xp. But wait, I do not have activation code, I thought this process was for free.
-Hold on, don't jump your horses..Follow the next steps.</p>
-
-
-
-
-<ol>
-<li>Shut down virtual machine</li>
-<li>Download pcbios.bin (MD5: 12ccdc652b30c6d1e307c6f7deff5d24) from <a href="http://www.vmlite.com/index.php?option=com_kunena&amp;Itemid=158&amp;func=view&amp;catid=9&amp;id=6706&amp;limit=6&amp;limitstart=12#8420">VMLite</a> and copy to a directory on host computer (e.g., C:\vm)</li>
-<li>Run the command: "C:\Program Files\Oracle\VirtualBox\VBoxMange.exe" setextradata vm-name "VBoxInternal/Devices/pcbios/0/Config/BiosRom" "c:\vm\pcbios.bin"</li>
-</ol>
-
-
-
-
-<p><br/></p>
-
-
-
-
-<h4>Notes:</h4>
-
-
-
-
-<p class="mynotice">While a virtual machine created in this manner should run under any OS X, Linux, or Windows host, running under anything but Windows 7 Professional, Enterprise, 
-or Ultimate would apparently violate the Windows XP Mode EULA:
-You may install, use, access, display and run one copy of the Software in a single virtual machine on a single computer, such as a workstation, terminal or other device ("Workstation Computer"), 
-that contains a licensed copy of Windows 7 Professional, Enterprise or Ultimate edition. Virtualization software is required to use the Software on the Workstation Computer ... 
-If you are using the Software with a properly licensed copy of Windows 7 Professional, Enterprise or Ultimate, activation of the Software is not required.
-</p>
-
-
-
-
-<p>More Info on this can be found <a href="http://social.technet.microsoft.com/Forums/windows/en-US/8b1bfa74-15e0-4ce2-8612-f6eaf2cf25ab/is-it-ok-to-use-xp-mode-vhd-in-virtualbox-without-a-license-using-vmlite-xp-mode-plugin?forum=w7itprovirt">here</a></p>
-
-
-
-
-<h5>Sources:</h5>
-
-
-
-
-<p><a href="http://www.technibble.com/windows-xp-support-ends-in-april-2014-what-technicians-need-to-know/">www.technibble.com</a>  <br/>
-<a href="http://tinyapps.org/blog/windows/201210210700_xp_mode_virtualbox.html">tinyapps</a></p>
 
 
 
