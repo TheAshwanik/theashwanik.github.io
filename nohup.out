@@ -159,3 +159,80 @@ cd -
 ## Github Pages deploy complete
 
 ## Commit source to GitHub
+[source 41ec85a] Updated source Thu Aug  6 19:36:39 BST 2020
+ 4 files changed, 563 insertions(+), 1 deletion(-)
+ delete mode 100644 source/.jekyll-metadata
+ create mode 100644 source/_posts/2020-08-06-convert-swagger-or-openapi-specs-to-spring-boot-rest-api.markdown
+To github.com:TheAshwanik/theashwanik.github.io.git
+   b09d5ad..41ec85a  source -> source
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 735.548 seconds.
+ Auto-regeneration: disabled. Use --watch to enable.
+cd _deploy
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+From github.com:TheAshwanik/theashwanik.github.io
+   b09d5ad..41ec85a  source     -> origin/source
+Auto packing the repository in background for optimum performance.
+See "git help gc" for manual housekeeping.
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+cd -
+rm -rf _deploy/8c84d900546f7.txt
+rm -rf _deploy/attributions.txt
+rm -rf _deploy/README.markdown
+rm -rf _deploy/crossdomain.xml
+rm -rf _deploy/javascripts
+rm -rf _deploy/js
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/robots.txt
+rm -rf _deploy/humans.txt
+rm -rf _deploy/favicon.png
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/fonts
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/google07b1a0e98e151fd3.html
+rm -rf _deploy/atom.xml
+rm -rf _deploy/tags
+rm -rf _deploy/stylesheets
+rm -rf _deploy/tldr-Jquery-client
+rm -rf _deploy/keybase.txt
+rm -rf _deploy/assets
+rm -rf _deploy/posts
+rm -rf _deploy/data
+cp -r public/. _deploy
+cd _deploy
+
+## Copying public to _deploy
+
+## Committing: Site updated at 2020-08-06 22:19:33 UTC
+[master e4d5f72] Site updated at 2020-08-06 22:19:33 UTC
+ 96 files changed, 316 insertions(+), 132 deletions(-)
+
+## Pushing generated _deploy website
+To github.com:TheAshwanik/theashwanik.github.io.git
+   a762468..e4d5f72  master -> master
+cd -
+
+## Github Pages deploy complete
+
+## Commit source to GitHub

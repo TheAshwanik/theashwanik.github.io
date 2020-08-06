@@ -10,9 +10,27 @@ tags: swagger, openapi, springboot, spring
 keywords: swagger, openapi, springboot, spring
 ---
 
-In this post we are going to see how OpenAPI/Swagger Specification helps understand the API and agree on its attributes also how we  can generate code and documentation from the specification file.
+What is Swagger?
+Swagger allows you to describe the structure of your APIs so that machines can read them. The ability of APIs to describe their own structure is the root of all awesomeness in Swagger.
 
-Let's generate the code create an empty maven project named "TMF-ApiSpec" <!--more-->
+ 1. Open https://editor.swagger.io/
+ 2. Select File -> Import URL
+ 3. Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.
+
+API ServiceOrdering 4.0.0  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
+https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json
+ 
+Federated ID 4.0 [ Base URL: serverRoot/tmf-api/openid/v4 ]
+https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json
+
+Communication Management API 4.0.0 [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]
+https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json
+
+
+You would notice how OpenAPI/Swagger Specification helps understand the API and agree on its attributes. 
+In this post I am going to show how we can generate code and documentation from the specification file.
+
+Let's generate the code create an empty maven project named "TMF-ApiSpec"  
 
 Now for the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
 You can choose one of [Yaml](https://raw.githubusercontent.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5/master/api/swagger.yaml) or [Json format](https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json)
@@ -465,6 +483,12 @@ If all goes well you will get the following response:
 
 #### Next steps:
 To add persistent to the order creation etc. Something similar to [this](https://github.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5)
+
+#### Few References:
+
+[Swagger-codegen/](https://swagger.io/docs/open-source-tools/swagger-codegen/)
+[Swagger Editor online](https://editor.swagger.io/)
+[TMForum OpenAPI Table](https://projects.tmforum.org/wiki/display/API/Open+API+Table)
 
 
 
