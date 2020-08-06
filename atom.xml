@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-06T19:23:22+01:00</updated>
+  <updated>2020-08-06T23:06:35+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,12 +18,46 @@
     <link href="http://blog.ashwani.co.in/blog/2020-08-06/convert-swagger-or-openapi-specs-to-spring-boot-rest-api/"/>
     <updated>2020-08-06T00:00:00+01:00</updated>
     <id>http://blog.ashwani.co.in/blog/2020-08-06/convert-swagger-or-openapi-specs-to-spring-boot-rest-api</id>
-    <content type="html"><![CDATA[<p>In this post we are going to see how OpenAPI/Swagger Specification helps understand the API and agree on its attributes also how we  can generate code and documentation from the specification file.</p>
+    <content type="html"><![CDATA[<p>What is Swagger?
+Swagger allows you to describe the structure of your APIs so that machines can read them. The ability of APIs to describe their own structure is the root of all awesomeness in Swagger.</p>
 
 
 
 
-<p>Let's generate the code create an empty maven project named "TMF-ApiSpec" <!--more--></p>
+<ol>
+<li>Open <a href="https://editor.swagger.io/">https://editor.swagger.io/</a></li>
+<li>Select File -> Import URL</li>
+<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.</li>
+</ol>
+
+
+
+
+<p>API ServiceOrdering 4.0.0  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json</a></p>
+
+
+
+
+<p>Federated ID 4.0 [ Base URL: serverRoot/tmf-api/openid/v4 ]
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json</a></p>
+
+
+
+
+<p>Communication Management API 4.0.0 [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json</a></p>
+
+
+
+
+<p>You would notice how OpenAPI/Swagger Specification helps understand the API and agree on its attributes.
+In this post I am going to show how we can generate code and documentation from the specification file.</p>
+
+
+
+
+<p>Let's generate the code create an empty maven project named "TMF-ApiSpec"</p>
 
 
 
@@ -923,6 +957,18 @@ Send a request from postman on following end point.
 
 <p>To add persistent to the order creation etc. Something similar to <a href="https://github.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5">this</a></p>
 
+
+
+
+<h4>Few References:</h4>
+
+
+
+
+<p><a href="https://swagger.io/docs/open-source-tools/swagger-codegen/">Swagger-codegen/</a>
+<a href="https://editor.swagger.io/">Swagger Editor online</a>
+<a href="https://projects.tmforum.org/wiki/display/API/Open+API+Table">TMForum OpenAPI Table</a></p>
+
 ]]></content>
   </entry>
   
@@ -1057,7 +1103,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x6a;&#97;&#115;&#109;&#105;&#x6e;&#x65;&#46;&#120;&#46;&#120;&#x78;&#120;&#x78;&#120;&#120;&#64;&#106;&#x75;&#110;&#105;&#x6c;&#x65;&#x61;&#114;&#x6e;&#105;&#x6e;&#103;&#x2e;&#x63;&#x6f;">&#x6a;&#x61;&#x73;&#x6d;&#x69;&#110;&#101;&#x2e;&#x78;&#46;&#x78;&#x78;&#x78;&#x78;&#x78;&#120;&#x40;&#106;&#117;&#x6e;&#x69;&#x6c;&#101;&#x61;&#x72;&#110;&#105;&#x6e;&#103;&#x2e;&#99;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#106;&#97;&#115;&#109;&#105;&#110;&#x65;&#x2e;&#x78;&#x2e;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x40;&#x6a;&#x75;&#110;&#105;&#x6c;&#101;&#x61;&#114;&#x6e;&#105;&#x6e;&#x67;&#x2e;&#99;&#x6f;">&#106;&#97;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#46;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#106;&#x75;&#110;&#x69;&#x6c;&#x65;&#x61;&#114;&#110;&#105;&#x6e;&#x67;&#46;&#99;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2912,7 +2958,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#x67;&#x65;&#110;&#101;&#119;&#x61;&#108;&#x7a;&#x2e;&#x78;&#120;&#120;&#x78;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#x6f;&#109;">&#103;&#101;&#x6e;&#101;&#x77;&#x61;&#108;&#x7a;&#x2e;&#120;&#x78;&#x78;&#120;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#103;&#101;&#110;&#101;&#x77;&#x61;&#x6c;&#x7a;&#46;&#120;&#x78;&#x78;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#x67;&#x65;&#110;&#101;&#119;&#97;&#x6c;&#x7a;&#46;&#x78;&#x78;&#x78;&#120;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
