@@ -5,7 +5,7 @@
 [[ -s "/home/theashwanik/.rvm/scripts/rvm" ]] && source "/home/theashwanik/.rvm/scripts/rvm"  
 
 # Create static site
-#bundle exec rake generate
+bundle exec rake generate
 
 # Publish site to GitHub
 bundle exec rake deploy
