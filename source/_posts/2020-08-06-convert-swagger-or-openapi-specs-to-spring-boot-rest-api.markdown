@@ -13,12 +13,12 @@ keywords: swagger, openapi, springboot, spring
 What is Swagger?
 Swagger allows you to describe the structure of your APIs so that machines can read them. The ability of APIs to describe their own structure is the root of all awesomeness in Swagger.
 
-1. Open https://editor.swagger.io/
-2. Select File -> Import URL
-3. Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.
-	[API ServiceOrdering 4.0.0](https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json)  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
-	[Federated ID 4.0](https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json) [ Base URL: serverRoot/tmf-api/openid/v4 ]
-	[Communication Management API 4.0.0](https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json) [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]
+1.  Open https://editor.swagger.io/
+2.  Select File -> Import URL
+3.  Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.    
+	[API ServiceOrdering 4.0.0](https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json)  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]    
+	[Federated ID 4.0](https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json) [ Base URL: serverRoot/tmf-api/openid/v4 ]     
+	[Communication Management API 4.0.0](https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json) [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]   
 
 
 You would notice how OpenAPI/Swagger Specification helps understand the API and agree on its attributes. 
