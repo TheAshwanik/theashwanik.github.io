@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-06T23:06:35+01:00</updated>
+  <updated>2020-08-07T09:54:13+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -27,26 +27,11 @@ Swagger allows you to describe the structure of your APIs so that machines can r
 <ol>
 <li>Open <a href="https://editor.swagger.io/">https://editor.swagger.io/</a></li>
 <li>Select File -> Import URL</li>
-<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.</li>
+<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.
+ <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">API ServiceOrdering 4.0.0</a>  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
+ <a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">Federated ID 4.0</a> [ Base URL: serverRoot/tmf-api/openid/v4 ]
+ <a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">Communication Management API 4.0.0</a> [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]</li>
 </ol>
-
-
-
-
-<p>API ServiceOrdering 4.0.0  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
-<a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json</a></p>
-
-
-
-
-<p>Federated ID 4.0 [ Base URL: serverRoot/tmf-api/openid/v4 ]
-<a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json</a></p>
-
-
-
-
-<p>Communication Management API 4.0.0 [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]
-<a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json</a></p>
 
 
 
@@ -1103,7 +1088,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#106;&#97;&#115;&#109;&#105;&#110;&#x65;&#x2e;&#x78;&#x2e;&#120;&#x78;&#120;&#x78;&#120;&#120;&#x40;&#x6a;&#x75;&#110;&#105;&#x6c;&#101;&#x61;&#114;&#x6e;&#105;&#x6e;&#x67;&#x2e;&#99;&#x6f;">&#106;&#97;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#46;&#x78;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#106;&#x75;&#110;&#x69;&#x6c;&#x65;&#x61;&#114;&#110;&#105;&#x6e;&#x67;&#46;&#99;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#106;&#97;&#x73;&#x6d;&#105;&#x6e;&#x65;&#46;&#120;&#46;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#x6a;&#117;&#110;&#105;&#x6c;&#x65;&#97;&#114;&#x6e;&#x69;&#110;&#103;&#x2e;&#x63;&#111;">&#x6a;&#x61;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#46;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x6a;&#117;&#x6e;&#x69;&#x6c;&#x65;&#x61;&#x72;&#110;&#105;&#x6e;&#x67;&#x2e;&#x63;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2958,7 +2943,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#103;&#101;&#110;&#101;&#x77;&#x61;&#x6c;&#x7a;&#46;&#120;&#x78;&#x78;&#120;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;">&#x67;&#x65;&#110;&#101;&#119;&#97;&#x6c;&#x7a;&#46;&#x78;&#x78;&#x78;&#120;&#x40;&#103;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#103;&#x65;&#x6e;&#101;&#x77;&#x61;&#x6c;&#x7a;&#x2e;&#x78;&#x78;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#103;&#101;&#x6e;&#101;&#x77;&#97;&#108;&#x7a;&#46;&#x78;&#x78;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
@@ -4116,6 +4101,39 @@ Review the information and choose Install. When the feature installation is fini
 
 
 <p>Hope this will help someone.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Get More Out Of Google]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2018-08-12/get-more-out-of-google/"/>
+    <updated>2018-08-12T21:34:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2018-08-12/get-more-out-of-google</id>
+    <content type="html"><![CDATA[<p>Recently I stumbled upon an infographics from <a href="http://www.HackCollege.com/">HackCollege</a>      <br/>
+So sharing it here.  <br/>
+Learn the tricks and Enjoy.
+If you need a printable pdf version, head over <a href="http://blog.ashwani.co.in/assets/GetMoreOutOfGoogle.pdf">here</a>
+-- Thanks to <a href="http://www.flickr.com/photos/x1brett/6707250233/">Brett</a></p>
+
+
+
+
+<!--more-->
+
+
+
+
+<!-- <object data="/assets/GetMoreOutOfGoogle.pdf" width="1000" height="1000" type='application/pdf'/> -->
+
+
+
+
+<p><br />
+<br />
+<a href="http://www.hackcollege.com/blog/2011/11/23/infographic-get-more-out-of-google.html">
+<img src="http://www.hackcollege.com/wp-content/uploads/2011/11/google.gif " alt="Get  More Out Of Google" width="600" border="1" />
+</a></p>
 
 ]]></content>
   </entry>
@@ -6316,163 +6334,6 @@ After that, install some modules using the Node Package Manager:</p>
 
 <p><br/>
 That's all folks.  Have Fun.</p>
-
-
-
-
-<p><br/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HeartBleed Bug]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2014-04-11/openssl-heartbleed/"/>
-    <updated>2014-04-11T08:13:00+01:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2014-04-11/openssl-heartbleed</id>
-    <content type="html"><![CDATA[<p>Hey Guys,</p>
-
-
-
-
-<p>Few days ago, A mother of all bugs in internet world was discovered, a new vulnerability <a href="http://blog.cloudflare.com/staying-ahead-of-openssl-vulnerabilities">CVE-2014-0160</a> was announced in OpenSSL 1.0.1.</p>
-
-
-
-
-<p>An encryption flaw called the <a href="http://heartbleed.com/">Heartbleed bug</a> is already being called one of the biggest security threats the Internet has ever seen.</p>
-
-
-
-
-<!--more-->
-
-
-
-
-<p><img class="left_aligned_image" src="http://blog.ashwani.co.in/assets/heartbleed.svg" width="350" height="350" title="Heartbleed SVG" alt="HeartBleed SVG image"></p>
-
-
-
-
-<p>As Bruce Schneier, a renowned security expert, said in a <a href="https://www.schneier.com/blog/archives/2014/04/heartbleed.html">blog post</a> on Wednesday:</p>
-
-
-
-
-<h4>"Heartbleed is a catastrophic bug . . . on a scale of one to 10, it is an 11."</h4>
-
-
-
-
-<p>According the <a href="http://heartbleed.com/">Heartbleed website</a> dedicated for this bug:</p>
-
-
-
-
-<p>The Heartbleed bug allows anyone on the Internet to read the memory of the systems protected by the vulnerable versions of the OpenSSL software.
-This compromises the secret keys used to identify the service providers and to encrypt the traffic, the names and passwords of the users and the actual content. This allows attackers to eavesdrop on communications, steal data directly from the services and users and to impersonate services and users.</p>
-
-
-
-
-<p><br/>
-<br/>
-<br/>
-When an attacker can reach a vulnerable service he can abuse the TLS heartbeat extension to retrieve arbitrary chunks of memory by exploiting a
-missing bounds check. This can lead to disclosure of your private keys, resident session keys and other key material as well as all volatile
-memory contents of the server process like passwords, transmitted user data (e.g. web content) as well as other potentially confidential information.</p>
-
-
-
-
-<p>An attacker can grab 64K of memory from a server. The attack leaves no trace, multiple times to grab a different random 64K of memory.  <br/>
-This means that anything in memory , like SSL private keys, user keys,passwords , anything is vulnerable. <br/>
-And you have to assume that it is all compromised. All of it.</p>
-
-
-
-
-<p><br/>
-<br/>
-<img src="http://imgs.xkcd.com/comics/heartbleed_explanation.png" title="xkcd Heartbleed cartoon explanation" alt="HeartBleed xkcd cartoon"></p>
-
-
-
-
-<p><br/>
-<br/>
-After being out there in wild for almost around 2 years, The heartbleed bug was <a href="https://www.openssl.org/news/secadv_20140407.txt">fixed</a> by openssl community on 7th April 2014.</p>
-
-
-
-
-<p>Users are encouraged who are running a server that uses OpenSSL to upgrade to version 1.0.1g to be protected from this vulnerability.
-For previous versions of OpenSSL, re-compiling with the OPENSSL_NO_HEARTBEATS flag enabled will protect against this vulnerability.
-OpenSSL 1.0.2 will be fixed in 1.0.2-beta2.</p>
-
-
-
-
-<p>You must also assume that at least your used server keys are compromised and therefore must be replaced by newly generated ones. Simply renewing
-existing certificates is not sufficient! - Please generate NEW keys with at least 2048 bit RSA or stronger!</p>
-
-
-
-
-<p><br/>
-<br/></p>
-
-
-
-
-<h4>Here are a few tips and resources you may find helpful:</h4>
-
-
-
-
-<ul>
-<li>Ensure that you upgrade your system to a fixed OpenSSL version (1.0.1g or above).</li>
-<li>You can also test your website to see if it’s vulnerable to attack – <a href="http://filippo.io/Heartbleed/">http://filippo.io/Heartbleed/</a>  and  <a href="http://possible.lv/tools/hb/">http://possible.lv/tools/hb/</a></li>
-<li>Only then create new keys for your certificates.</li>
-<li>Revoke all certificates, which may be affected.</li>
-<li>Check what services you have used that may have been affected within the last two years.</li>
-<li>Wait until you think that those environments got fixed.</li>
-<li>Then (and only then) change your credentials for those services. If you do it too early, i.e. before the sites got fixed, your data may be leaked, again. So be careful when you do this.</li>
-<li>Mashable have compiled <a href="http://mashable.com/2014/04/09/heartbleed-bug-websites-affected/">list</a> of which websites and organizations are vulnerable – from banks to social media sites.</li>
-</ul>
-
-
-
-
-<p><br/>
-An (incomplete) list of commonly used software which include or link to OpenSSL can be found <a href="https://www.openssl.org/related/apps.html">here</a>.</p>
-
-
-
-
-<p><br/></p>
-
-
-
-
-<h4>Sources:</h4>
-
-
-
-
-<p><a href="http://heartbleed.com/">heartbleed.com</a> <br/>
-<a href="http://filippo.io/Heartbleed/">Test for vulverabilty</a> and  <a href="http://possible.lv/tools/hb/">Test for vulverabilty - 2</a> <br/>
-<a href="http://www.cnet.com/uk/news/heartbleed-bug-what-you-need-to-know-faq/">What you need to know - FAQ</a>
-<a href="http://blog.cryptographyengineering.com/2014/04/attack-of-week-openssl-heartbleed.html">attack-of-week-openssl-heartbleed</a>  <br/>
-<a href="http://blog.existentialize.com/diagnosis-of-the-openssl-heartbleed-bug.html">diagnosis-of-the-openssl-heartbleed-bug</a>  <br/>
-<a href="http://security.stackexchange.com/questions/55116/how-exactly-does-the-openssl-tls-heartbeat-heartbleed-exploit-work">A simple explanation at security.stackexchange.com, on how-exactly-does-the-openssl-tls-heartbeat-heartbleed-exploit-work</a>  <br/>
-<a href="http://news.netcraft.com/archives/2014/04/08/half-a-million-widely-trusted-websites-vulnerable-to-heartbleed-bug.html">half-a-million-widely-trusted-websites-vulnerable-to-heartbleed-bug</a>  <br/>
-<a href="http://arstechnica.com/security/2014/04/critical-crypto-bug-exposes-yahoo-mail-passwords-russian-roulette-style/">critical-crypto-bug-exposes-yahoo-mail-passwords-russian-roulette-style</a>  <br/>
-<a href="https://www.schneier.com/blog/archives/2014/04/heartbleed.html">A renowned security expert, schneier Blog</a> <br/>
-<a href="https://hackerone.com/reports/6626">Neel Mehta donates Heartbleed bounty to Freedom of the Press Foundation</a>  <br/>
-<a href="https://news.ycombinator.com/item?id=7548991">Hacker News Thread</a>  <br/>
-<a href="http://www.cnet.com/uk/news/which-sites-have-patched-the-heartbleed-bug">Sites which have patched the Bug</a></p>
 
 
 
