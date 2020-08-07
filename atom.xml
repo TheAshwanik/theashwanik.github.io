@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T14:02:13+01:00</updated>
+  <updated>2020-08-07T15:04:32+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -1088,7 +1088,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x6a;&#x61;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#x40;&#x6a;&#117;&#110;&#105;&#108;&#x65;&#x61;&#114;&#x6e;&#x69;&#x6e;&#x67;&#x2e;&#x63;&#111;">&#x6a;&#97;&#115;&#x6d;&#105;&#110;&#101;&#x2e;&#120;&#46;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#106;&#117;&#110;&#105;&#x6c;&#x65;&#97;&#114;&#110;&#x69;&#110;&#x67;&#46;&#99;&#111;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#106;&#97;&#115;&#109;&#105;&#110;&#x65;&#46;&#x78;&#x2e;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x6a;&#117;&#110;&#x69;&#108;&#101;&#97;&#114;&#110;&#105;&#110;&#103;&#46;&#x63;&#111;">&#x6a;&#x61;&#x73;&#x6d;&#105;&#110;&#x65;&#x2e;&#120;&#x2e;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x6a;&#117;&#x6e;&#x69;&#108;&#x65;&#x61;&#114;&#x6e;&#x69;&#110;&#103;&#x2e;&#99;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2943,8 +2943,202 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x67;&#x65;&#110;&#101;&#x77;&#x61;&#x6c;&#122;&#46;&#x78;&#x78;&#120;&#x78;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x65;&#x6e;&#x65;&#119;&#97;&#108;&#122;&#x2e;&#x78;&#x78;&#120;&#120;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x67;&#101;&#x6e;&#x65;&#x77;&#97;&#x6c;&#x7a;&#46;&#x78;&#x78;&#120;&#x78;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#103;&#101;&#110;&#x65;&#119;&#x61;&#108;&#122;&#46;&#120;&#120;&#x78;&#x78;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Few Tweaks in Diaspora installation]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-07-15/few-tweaks-in-diaspora-installation/"/>
+    <updated>2019-07-15T19:41:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-07-15/few-tweaks-in-diaspora-installation</id>
+    <content type="html"><![CDATA[<p>Recently I wanted to checkout the <a href="https://joindiaspora.com/">Diaspora</a> project, and to my despair I faced lot of problems
+installing it in Windows OS.<br/>
+I could not install it on Windows, and I did'nt want to invest lot of time , as it was not important and I was trying
+this only for killing my time.  However, I installed it on a VM (Ubuntu) and faced a few problems.</p>
+
+
+
+
+<!--more-->
+
+
+
+
+<p>This post is about keeping a note of what I faced and use it in future (if needed).</p>
+
+
+
+
+<h4>1. Issue with installing <strong>rmagick</strong>:</h4>
+
+
+
+
+<p><small></p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rmagick installation issue </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ERROR:  Error installing rmagick:
+</span><span class='line'>    ERROR: Failed to build gem native extension.
+</span><span class='line'>
+</span><span class='line'>/usr/local/bin/ruby extconf.rb
+</span><span class='line'>checking for Ruby version >= 1.8.5... yes
+</span><span class='line'>checking for gcc... yes
+</span><span class='line'>checking for Magick-config... no
+</span><span class='line'>Can't install RMagick 2.13.1. Can't find Magick-config in /usr/local/bin:/bin:
+</span><span class='line'>/sbin:/usr/bin:/usr/sbin:/usr/libexec
+</span><span class='line'>.
+</span><span class='line'>.
+</span><span class='line'>.
+</span><span class='line'>Gem files will remain installed in /usr/local/lib/ruby/gems/1.8/gems/rmagick-2.13.1 for inspection.
+</span><span class='line'>Results logged to /usr/local/lib/ruby/gems/1.8/gems/rmagick-2.13.1/ext/RMagick/gem_make.out
+</span><span class='line'>Building native extensions.  This could take a while....</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p></small></p>
+
+
+
+
+<p>I found a solution <a href="https://gist.github.com/4012713">here</a>  but it did not work for me.</p>
+
+
+
+
+<p>To solve the rmagick issue, run the following commands:</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Run the following commands to fix issues with rmagick </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libmagickcore-dev libmagickwand-dev  
+</span><span class='line'>sudo gem install rmagick</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/>
+<br/></p>
+
+
+
+
+<h4>2. Issue with installing <strong>typhoeus</strong>:</h4>
+
+
+
+
+<p><small></p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>rmagick installation issue </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you get this:
+</span><span class='line'>
+</span><span class='line'>Installing typhoeus (0.3.3) with native extensions
+</span><span class='line'>/usr/local/lib/site_ruby/1.8/rubygems/installer.rb:483:in `build_extensions': 
+</span><span class='line'>ERROR: Failed to build gem native extension. (Gem::Installer::ExtensionBuildError)
+</span><span class='line'>
+</span><span class='line'>/usr/bin/ruby1.8 extconf.rb 
+</span><span class='line'>checking for curl/curl.h in /opt/local/include,/opt/local/include/curl,/usr/include/curl,
+</span><span class='line'>/usr/include,/usr/include/curl,/usr/local/include/curl... no
+</span><span class='line'>need libcurl</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p></small></p>
+
+
+
+
+<p>You can fix it by installing the libcurl3-dev package:</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>commands to fix issues with typhoeus </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install libcurl3-dev
+</span><span class='line'>sudo apt-get install typhoeus</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p><br/>
+<br/></p>
+
+
+
+
+<p>I did not want to use mysql2 adapter for diaspora
+so I had to install postgreSQL (Since sqlite had problems with some length of index names)</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>installing postgresql in linux </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install postgresql-9.1</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p></p>
+
+
+
+
+<p>If you find issue in some gem which depends on curl, then you must install curl first.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>installing curl </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install curl</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>That's all folks.  <br/>
+<strong>au revoir</strong></p>
 
 ]]></content>
   </entry>
@@ -5898,356 +6092,6 @@ Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
 
 
 <p><br/></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting up octopress blog once you lost the working env]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env/"/>
-    <updated>2016-01-17T10:01:28+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2016-01-17/setting-up-octopress-blog-once-you-lost-the-working-env</id>
-    <content type="html"><![CDATA[<p>Hi Guys,</p>
-
-
-
-
-<p>So recently I wanted to revisit my blog after a long long break, and I realized that my working blogging environment broke and I wanted to setup again to be able to blog from both my personal laptop and any other laptop. But to my dismay, it was not that stright forward. Luckily, I had the source folder of my blog with me. It was quite a feat, Hence I thought of documenting it through this post.</p>
-
-
-
-
-<!--more--> 
-
-
-
-
-<h3>How Octopress works</h3>
-
-
-
-
-<p>Octopress repositories have two branches, source and master. The <code>source</code> branch contains the files that are used to generate the blog and the <code>master</code> contains the blog itself.</p>
-
-
-
-
-<p>When the local folders are initially configured according to the <a href="http://octopress.org/docs/setup/">Octopress Setup Guide</a>, the master branch is stored in a subfolder named ‘_deploy’. Since the folder name begins with an underscore, it is ignored when you git push origin source. Instead, the master branch (which contains your blog posts) gets updated when you rake deploy.</p>
-
-
-
-
-<h3>Clone your blog to the new machine</h3>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
-</span><span class='line'>$ cd Local_octopress
-</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy 
-</span><span class='line'>$ gem install bundler
-</span><span class='line'>$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command
-</span><span class='line'>
-</span><span class='line'>$ bundle install
-</span><span class='line'>
-</span><span class='line'>$ rake setup_github_pages
-</span><span class='line'>
-</span><span class='line'>It will prompt you for your repository URL.
-</span><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com)
-</span><span class='line'>That’s you setup with a new local copy of your Octopress blog.</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<h3>Pushing changes from two different machines</h3>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers. 
-</span><span class='line'>From the first machine do the following whenever you’ve made changes:
-</span><span class='line'>
-</span><span class='line'>$ rake generate
-</span><span class='line'>$ git add .
-</span><span class='line'>$ git commit -am "Some comment here." 
-</span><span class='line'>$ git push origin source  # update the remote source branch 
-</span><span class='line'>$ rake deploy             # update the remote master branch
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Then on the other machine, you need to pull those changes.
-</span><span class='line'>
-</span><span class='line'>$ cd octopress
-</span><span class='line'>$ git pull origin source  # update the local source branch
-</span><span class='line'>$ cd ./_deploy
-</span><span class='line'>$ git pull origin master  # update the local master branch</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<h3>Octopress 2.0</h3>
-
-
-
-
-<p>If you were returning to blogging after so long, chances are that there were many things <a href="https://github.com/imathis/octopress/blob/master/CHANGELOG.markdown">changed</a>.</p>
-
-
-
-
-<ol>
-<li>Rubypants is removed.</li>
-<li>Include Code Tag lets you embed external code snippets from your file system and adds a download link</li>
-<li>Pullquote Tag Generate beautiful semantic pullquotes (no double data) based on Maykel Loomans's technique</li>
-<li>Category Generator gives you archive pages for each category</li>
-<li>Sitemap.xml Generator for search engines</li>
-</ol>
-
-
-
-
-<p>etc. etc.</p>
-
-
-
-
-<p>I got so many errors once I checked out a new version of Octopress. It was not supporting many of my old plugins, So I got rid of some, and I updated some.</p>
-
-
-
-
-<h3>Errors</h3>
-
-
-
-
-<p>One error I got was in date.rb of <a href="http://feedjira.com/">feedjira(formerly feedzira)</a> plugin.
-The error message said:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>jekyll 2.1.1 undefined method `deep_merge'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>so I replaced deep_merge</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
-</span><span class='line'>          date_format = self.site.config['date_format']
-</span><span class='line'>      self.data.deep_merge({
-</span><span class='line'>          "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
-</span><span class='line'>          "url"               => self.url,
-</span><span class='line'>          "date"              => self.date,
-</span><span class='line'>          # Monkey patch
-</span><span class='line'>          "date_formatted"    => format_date(self.date, date_format),
-</span><span class='line'>          "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
-</span><span class='line'>          "id"                => self.id,
-</span><span class='line'>          "categories"        => self.categories,
-</span><span class='line'>          "next"              => self.next,
-</span><span class='line'>          "previous"          => self.previous,
-</span><span class='line'>          "tags"              => self.tags,
-</span><span class='line'>          "content"           => self.content })
-</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>with the following:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
-</span><span class='line'>      date_format = self.site.config['date_format']
-</span><span class='line'>      new_datas = {
-</span><span class='line'>        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
-</span><span class='line'>        "url"               => self.url,
-</span><span class='line'>        "date"              => self.date,
-</span><span class='line'>        # Monkey patch
-</span><span class='line'>        "date_formatted"    => format_date(self.date, date_format),
-</span><span class='line'>        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
-</span><span class='line'>        "id"                => self.id,
-</span><span class='line'>        "categories"        => self.categories,
-</span><span class='line'>        "next"              => self.next,
-</span><span class='line'>        "previous"          => self.previous,
-</span><span class='line'>        "tags"              => self.tags,
-</span><span class='line'>        "content"           => self.content }
-</span><span class='line'>     
-</span><span class='line'>      Utils.deep_merge_hashes(self.data, new_datas)
-</span><span class='line'>    end</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Notice the use of deep_merge_hashes above.</p>
-
-
-
-
-<p>Another error was <code>Updates were rejected because the tip of your current branch is behind</code> when I executed "bundle exec rake gen_deploy"</p>
-
-
-
-
-<p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$$ cd _deploy
-</span><span class='line'>$$ git push origin master -f   # hope this solves the problem, move to next command
-</span><span class='line'>$$ cd ..
-</span><span class='line'>$$ bundle exec rake gen_deploy</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Another error was in installing curl on windows. So I had to refer <a href="https://github.com/taf2/curb/issues/37">this</a>
-And install curb manually.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
-</span><span class='line'>Temporarily enhancing PATH to include DevKit...
-</span><span class='line'>Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
-</span><span class='line'>This could take a while...
-</span><span class='line'>Successfully installed curb-0.7.18
-</span><span class='line'>Installing ri documentation for curb-0.7.18
-</span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Reference Commands:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
-</span><span class='line'>bundle exec rake new_post["title"]
-</span><span class='line'>bundle exec rake preview
-</span><span class='line'>bundle exec rake generate
-</span><span class='line'>
-</span><span class='line'>bundle exec rake deploy
-</span><span class='line'>
-</span><span class='line'>git add .
-</span><span class='line'>git commit -m 'site updated'
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>There were other errors which I somehow resolved.</p>
-
-
-
-
-<p>Hope this helps someone.  I might need this again, So I am keeping a refrence.</p>
-
-
-
-
-<p>Thats all folks. Chow.</p>
-
-
-
-
-<p>Credits to: <br/>
-1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
-2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
-3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
 
 ]]></content>
   </entry>
