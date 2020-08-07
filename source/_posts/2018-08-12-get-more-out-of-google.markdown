@@ -22,9 +22,11 @@ If you need a printable pdf version, head over [here](/assets/GetMoreOutOfGoogle
 
  
 <br />
-<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://blog.ashwani.co.in/assets/GetMoreOutOfGoogle.pdf" width="600"  border="1">
+<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://blog.ashwani.co.in/assets/GetMoreOutOfGoogle.pdf" width="100%" height="400"  border="1">
 <br />
-<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://static.googleusercontent.com/media/www.google.com/en//educators/downloads/Tips_Tricks_17x22.pdf" width="600"  border="1">
+<br />
+<br />
+<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://static.googleusercontent.com/media/www.google.com/en//educators/downloads/Tips_Tricks_17x22.pdf" width="100%"  height="400" border="1">
 
 <!-- <img src="" alt="Get  More Out Of Google" width="600" border="1" /> -->
 </a>
