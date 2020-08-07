@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Google,Search | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/google-search/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T10:26:41+01:00</updated>
+  <updated>2020-08-07T10:47:45+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -18,25 +18,27 @@
     <link href="http://blog.ashwani.co.in/blog/2018-08-12/get-more-out-of-google/"/>
     <updated>2018-08-12T21:34:00+01:00</updated>
     <id>http://blog.ashwani.co.in/blog/2018-08-12/get-more-out-of-google</id>
-    <content type="html"><![CDATA[<p>Recently I stumbled upon an infographics from <a href="http://www.HackCollege.com/">HackCollege</a>      <br/>
+    <content type="html"><![CDATA[<p>Updated the links.</p>
+
+<p>Once I stumbled upon an infographics from <a href="http://www.HackCollege.com/">HackCollege</a>      <br/>
 So sharing it here.  <br/>
 Learn the tricks and Enjoy.
 If you need a printable pdf version, head over <a href="/assets/GetMoreOutOfGoogle.pdf">here</a>
--- Thanks to <a href="http://www.flickr.com/photos/x1brett/6707250233/">Brett</a></p>
+-- Thanks to <a href="http://www.flickr.com/photos/x1brett/6707250233/">Brett</a>
+-- Thanks to <a href="https://static.googleusercontent.com/media/www.google.com/en//educators/downloads/Tips_Tricks_17x22.pdf">Google</a></p>
 
 <!--more-->
 
 
-
-
-<!-- <object data="/assets/GetMoreOutOfGoogle.pdf" width="1000" height="1000" type='application/pdf'/> -->
-
-
 <p><br />
+<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=http://blog.ashwani.co.in/assets/GetMoreOutOfGoogle.pdf" width="500" height="375">
 <br />
-<a href="http://www.hackcollege.com/blog/2011/11/23/infographic-get-more-out-of-google.html">
-<img src="http://www.hackcollege.com/wp-content/uploads/2011/11/google.gif " alt="Get  More Out Of Google" width="600" border="1" />
-</a></p>
+<embed src="https://drive.google.com/viewerng/viewer?embedded=true&url=https://static.googleusercontent.com/media/www.google.com/en//educators/downloads/Tips_Tricks_17x22.pdf" width="500" height="375"></p>
+
+<!-- <img src="" alt="Get  More Out Of Google" width="600" border="1" /> -->
+
+
+<p></a></p>
 ]]></content>
   </entry>
   

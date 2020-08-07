@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:swagger, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/swagger-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T10:26:41+01:00</updated>
+  <updated>2020-08-07T10:47:45+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -24,7 +24,7 @@ Swagger allows you to describe the structure of your APIs so that machines can r
 <ol>
 <li>Open <a href="https://editor.swagger.io/">https://editor.swagger.io/</a></li>
 <li>Select File -> Import URL</li>
-<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.  <br/>
+<li>Enter any of these URL and you would be able to see compelete spec in a clearly understandable format.<!--more-->  <br/>
 <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">API ServiceOrdering 4.0.0</a>  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]  <br/>
 <a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">Federated ID 4.0</a> [ Base URL: serverRoot/tmf-api/openid/v4 ]   <br/>
 <a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">Communication Management API 4.0.0</a> [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]</li>
