@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T09:54:13+01:00</updated>
+  <updated>2020-08-07T10:26:41+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -27,10 +27,10 @@ Swagger allows you to describe the structure of your APIs so that machines can r
 <ol>
 <li>Open <a href="https://editor.swagger.io/">https://editor.swagger.io/</a></li>
 <li>Select File -> Import URL</li>
-<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.
- <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">API ServiceOrdering 4.0.0</a>  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]
- <a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">Federated ID 4.0</a> [ Base URL: serverRoot/tmf-api/openid/v4 ]
- <a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">Communication Management API 4.0.0</a> [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]</li>
+<li>Enter any of these URL and you would be able to see <!--more--> compelete spec in a clearly understandable format.  <br/>
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">API ServiceOrdering 4.0.0</a>  [ Base URL: serverRoot/tmf-api/serviceOrdering/v4 ]  <br/>
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF691_FederatedIdentity/master/TMF691-FederatedIdentity-v4.0.0.swagger.json">Federated ID 4.0</a> [ Base URL: serverRoot/tmf-api/openid/v4 ]   <br/>
+<a href="https://raw.githubusercontent.com/tmforum-apis/TMF681_Communication/master/TMF681-Communication-v4.0.0.swagger.json">Communication Management API 4.0.0</a> [ Base URL: serverRoot/tmf-api/communicationManagement/v4/ ]</li>
 </ol>
 
 
@@ -1088,7 +1088,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#106;&#97;&#x73;&#x6d;&#105;&#x6e;&#x65;&#46;&#120;&#46;&#x78;&#x78;&#120;&#x78;&#x78;&#120;&#x40;&#x6a;&#117;&#110;&#105;&#x6c;&#x65;&#97;&#114;&#x6e;&#x69;&#110;&#103;&#x2e;&#x63;&#111;">&#x6a;&#x61;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#46;&#120;&#x78;&#x78;&#x78;&#x78;&#120;&#64;&#x6a;&#117;&#x6e;&#x69;&#x6c;&#x65;&#x61;&#x72;&#110;&#105;&#x6e;&#x67;&#x2e;&#x63;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#106;&#x61;&#x73;&#109;&#105;&#x6e;&#101;&#x2e;&#x78;&#46;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x40;&#106;&#x75;&#110;&#105;&#x6c;&#101;&#x61;&#x72;&#x6e;&#105;&#110;&#x67;&#46;&#99;&#x6f;">&#x6a;&#97;&#115;&#109;&#x69;&#110;&#x65;&#x2e;&#120;&#x2e;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#64;&#106;&#x75;&#110;&#x69;&#108;&#x65;&#97;&#x72;&#110;&#105;&#110;&#103;&#x2e;&#99;&#111;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2943,7 +2943,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#103;&#x65;&#x6e;&#101;&#x77;&#x61;&#x6c;&#x7a;&#x2e;&#x78;&#x78;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#103;&#101;&#x6e;&#101;&#x77;&#97;&#108;&#x7a;&#46;&#x78;&#x78;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x67;&#x65;&#110;&#101;&#x77;&#97;&#108;&#x7a;&#46;&#120;&#x78;&#x78;&#x78;&#x40;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x65;&#110;&#x65;&#119;&#x61;&#x6c;&#122;&#46;&#120;&#120;&#120;&#120;&#x40;&#x67;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
