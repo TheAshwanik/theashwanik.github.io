@@ -2,8 +2,8 @@
 layout: post
 title: "Few Tweaks in Diaspora installation"
 description: 
-date: 2013-01-26 19:41
-date_formatted: 2013-01-26 19:41
+date: 2019-07-15 19:41
+date_formatted: 2019-07-15 19:41
 comments: true
 categories: Technical
 tags: diaspora
