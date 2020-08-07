@@ -5,10 +5,11 @@ description: SOAPUI MockServiceRunner on Linux/Unix OS without X configuration
 category: Technical
 tags: Soapui, XServer, Xming
 comments: true
-date: 2013-01-10 16:17
-date_formatted: 2013-01-10 16:17
+date: 2019-01-10 16:17
+date_formatted: 2019-01-10 16:17
 keywords: soapui, mockservicerunner, mock service, mock service in linux, X configuration, X server, mockservicerunner.sh, mockservicerunner.bat
 ---
+Updated   
 
 After I struggled for this problem, I am going to keep it for my refrence.
 As the title says, We will see in the post how to run a SoapUI MockService on a (X)nix 
