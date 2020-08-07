@@ -2,8 +2,8 @@
 layout: post
 title: "Get More Out Of Google"
 description: How To Get More Out Of Google and How To Search What you Want
-date: 2013-08-12 21:34
-date_formatted: 2013-08-12 21:34
+date: 2018-08-12 21:34
+date_formatted: 2018-08-12 21:34
 comments: true
 categories: Technical
 tags: Google,Search
