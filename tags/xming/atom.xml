@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Xming | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/xming/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T12:43:42+01:00</updated>
+  <updated>2020-08-07T14:02:13+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -15,10 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[SOAPUI MockServiceRunner on Linux without X Config]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2013-01-10/soapui-mockservicerunner-on-linux-without-x-config/"/>
-    <updated>2013-01-10T16:17:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2013-01-10/soapui-mockservicerunner-on-linux-without-x-config</id>
-    <content type="html"><![CDATA[<p>After I struggled for this problem, I am going to keep it for my refrence.
+    <link href="http://blog.ashwani.co.in/blog/2019-01-10/soapui-mockservicerunner-on-linux-without-x-config/"/>
+    <updated>2019-01-10T16:17:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-01-10/soapui-mockservicerunner-on-linux-without-x-config</id>
+    <content type="html"><![CDATA[<p>Updated</p>
+
+<p>After I struggled for this problem, I am going to keep it for my refrence.
 As the title says, We will see in the post how to run a SoapUI MockService on a (X)nix
 box without needing to start the X Server Configuration .</p>
 

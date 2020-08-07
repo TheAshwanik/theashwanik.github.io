@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T12:43:42+01:00</updated>
+  <updated>2020-08-07T14:02:13+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -1088,7 +1088,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x6a;&#97;&#115;&#109;&#x69;&#x6e;&#101;&#x2e;&#120;&#46;&#x78;&#x78;&#120;&#x78;&#120;&#120;&#64;&#106;&#x75;&#x6e;&#x69;&#x6c;&#x65;&#97;&#x72;&#110;&#x69;&#110;&#x67;&#46;&#99;&#111;">&#106;&#97;&#115;&#x6d;&#x69;&#x6e;&#101;&#x2e;&#x78;&#46;&#120;&#x78;&#x78;&#120;&#x78;&#120;&#x40;&#106;&#x75;&#110;&#x69;&#108;&#101;&#x61;&#114;&#x6e;&#x69;&#x6e;&#x67;&#x2e;&#99;&#111;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#x6a;&#x61;&#x73;&#109;&#105;&#110;&#101;&#46;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#x40;&#x6a;&#117;&#110;&#105;&#108;&#x65;&#x61;&#114;&#x6e;&#x69;&#x6e;&#x67;&#x2e;&#x63;&#111;">&#x6a;&#97;&#115;&#x6d;&#105;&#110;&#101;&#x2e;&#120;&#46;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x40;&#106;&#117;&#110;&#105;&#x6c;&#x65;&#97;&#114;&#110;&#x69;&#110;&#x67;&#46;&#99;&#111;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2943,7 +2943,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#x67;&#101;&#110;&#101;&#x77;&#97;&#108;&#x7a;&#46;&#120;&#x78;&#120;&#x78;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#111;&#x6d;">&#103;&#101;&#110;&#x65;&#x77;&#97;&#108;&#x7a;&#x2e;&#120;&#x78;&#120;&#120;&#x40;&#103;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#x6d;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x67;&#x65;&#110;&#101;&#x77;&#x61;&#x6c;&#122;&#46;&#x78;&#x78;&#120;&#x78;&#x40;&#x67;&#109;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x65;&#x6e;&#x65;&#119;&#97;&#108;&#122;&#x2e;&#x78;&#x78;&#120;&#120;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
@@ -3922,6 +3922,246 @@ There is not enough space on the disk.
 
 
 <p>Thank You..</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SOAPUI MockServiceRunner on Linux without X Config]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2019-01-10/soapui-mockservicerunner-on-linux-without-x-config/"/>
+    <updated>2019-01-10T16:17:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2019-01-10/soapui-mockservicerunner-on-linux-without-x-config</id>
+    <content type="html"><![CDATA[<p>Updated</p>
+
+
+
+
+<p>After I struggled for this problem, I am going to keep it for my refrence.
+As the title says, We will see in the post how to run a SoapUI MockService on a (X)nix
+box without needing to start the X Server Configuration .</p>
+
+
+
+
+<h4>SOAPUI - Installing on Linux/Unix</h4>
+
+
+
+
+<p>Source:<a href="http://www.soapui.org/Getting-Started/installing-on-linuxunix.html">http://www.soapui.org/Getting-Started/installing-on-linuxunix.html</a></p>
+
+
+
+
+<!--more-->
+
+
+
+
+<h4>64-bit systems - prerequisite</h4>
+
+
+
+
+<p>Make sure that you have Java (JRE) installed on your system</p>
+
+
+
+
+<h4>Installation</h4>
+
+
+
+
+<ol>
+<li>Download the Linux binary zip (no JRE) from <a href="http://www.soapui.org/">http://www.soapui.org/</a></li>
+<li>Unzip it into a preferable directory such as your home folder or /opt</li>
+<li>Make sure that you have proper permissions on the unziped soapUI folder</li>
+<li>Go into the folder and run $bin/soapui.sh (open source) or $bin/soapui-pro.sh (Pro)</li>
+</ol>
+
+
+
+
+<h4>Mock Services</h4>
+
+
+
+
+<p>Source: <a href="http://www.soapui.org/Test-Automation/mock-services.html">http://www.soapui.org/Test-Automation/mock-services.html</a></p>
+
+
+
+
+<p>Running your MockServices from the command-line is equally simple; use the bundled mockrunner.bat/.sh file with the following arguments:</p>
+
+
+
+
+<div style="font-size:11px">
+<pre id="mypre_noborder">
+   m : The name of the MockService to run  
+   p : The local port to listen on, overrides the port configured for the MockService  
+   a : The local path to listen on, overrides the path configured for the MockService  
+   b : Turns off blocking when mockRunner has been started, which is required when wanting to run the MockServiceRunner with (for example) nohup or as a Windows Service  
+   s : The soapui-settings.xml file to use  
+   x : Sets project password for decryption if project is encrypted  
+   v : Sets password for soapui-settings.xml file   
+   D : Sets system property with name=value  
+   G : Sets global property with name=value  
+   P : Sets project property with name=value  
+   S : Saves the project after running the mockService(s)  
+   f : Sets the output folder to export results to ( soapUI Pro only )  
+   o : Opens the Coverage Report in a browser (with the -g option) ( soapUI Pro only )  
+   g : Sets the output to include Coverage HTML reports ( soapUI Pro only )  
+</pre>
+</div>
+
+
+
+
+<p>The distribution contains a mockservicerunner.bat script for running MockServices in the bin directory, for example;</p>
+
+
+
+
+<pre><code>mockservicerunner.bat -m"IOrderService MockService" "C:\demo2-soapui-project.xml"
+</code></pre>
+
+
+
+
+<p>Runs the specified MockService as follows:
+<img src="http://blog.ashwani.co.in/images/soapui.org-mockservice-starting.jpg" title="soapui.org mockservice starting traces" alt="alt http://www.soapui.org/Test-Automation/mock-services.html" /></p>
+
+
+
+
+<p>Which can now be invoked from soapUI or any other client. Terminate the runner by pressing the return key in the console, which will shutdown as follows:</p>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/images/soapui.org-mockservice-stoping.jpg" title="soapui.org mockservice stoping traces" alt="alt http://www.soapui.org/Test-Automation/mock-services.html" /></p>
+
+
+
+
+<h4>MockServiceRunner without X configuration</h4>
+
+
+
+
+<p>Source:<a href="http://www.soapui.org/forum/viewtopic.php?t=1023">http://www.soapui.org/forum/viewtopic.php?t=1023</a></p>
+
+
+
+
+<p>When trying to use mockservicerunner.sh in Linux/Solaris, you may get an error because of the X windows configuration.</p>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/images/XServer-DisplayError-1.jpg" title="Can't connect to X11 window server" alt="alt Can\'t connect to X11 window server using \'\' as the value of the DISPLAY variable. " /></p>
+
+
+
+
+<p>OR</p>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/images/XServer-DisplayError-2.jpg" title="X connection to localhost:10.0 broken ." alt="alt X connection to localhost:10.0 broken(explicit kill or server shutdown) " /></p>
+
+
+
+
+<p>If you want to know is how to use the mockservicerunner.sh in a manner that it does not need an X configuration.
+After all, why does mockservicerunner.sh need an X configuration ? The main reason for executing it in a command line is to avoid that.</p>
+
+
+
+
+<p>If you find any of the errors above adding the java.awt.headless</p>
+
+
+
+
+<p>i.e</p>
+
+
+
+
+<pre><code>mockservicerunner.sh ../soapui-project.xml -Djava.awt.headless=true   
+</code></pre>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/images/mockservice-sucess.jpg" title="mockservice sucessfull after java.awt.headless option" alt="alt mockservice-sucess" /></p>
+
+
+
+
+<h4>Use xming, xshell to display linux gui to windows desktop (x11 forwarding)</h4>
+
+
+
+
+<p>Source: <a href="http://www.doxer.org/learn-linux/use-xming-xshell-to-display-linux-gui-to-windows-desktop-x11-forwarding/">http://www.doxer.org/learn-linux/use-xming-xshell-to-display-linux-gui-to-windows-desktop-x11-forwarding/</a></p>
+
+
+
+
+<p>Download xming, install it on your windows pc system. You can go to <a href="http://sourceforge.net/projects/xming/files/">http://sourceforge.net/projects/xming/files/</a> to download.</p>
+
+
+
+
+<p>After installation xming on your windows, log in linux/solaris server 192.168.0.3. Set environment variable DISPLAY to the ip address of your windows, and append a :0 to it:</p>
+
+
+
+
+<pre><code>export DISPLAY=192.168.0.4:0
+</code></pre>
+
+
+
+
+<p>Then you must allow X11 forwarding in sshd configuration file. That is, set X11Forwarding to yes in /etc/ssh/sshd_config and restart your sshd daemon.</p>
+
+
+
+
+<p>After this, you need set 192.168.0.3(linux/solaris) to the allowed server list on your windows. Edit X0.hosts which locates at the installation directory of xming(For example, C:\Program Files\Xming\X0.hosts), add a new entry in it:192.168.0.3, the ip address of linux/solaris that you want to run x11 utility from.</p>
+
+
+
+
+<p>Then, restart xming on your windows. And on solaris/linux server(192.168.0.3), run a X11 programe, like</p>
+
+
+
+
+<pre><code>/usr/openwin/bin/xclock &amp;
+</code></pre>
+
+
+
+
+<p>You will then see a clock gui pop up in your windows pc.</p>
+
+
+
+
+<p>Voila, You are done.</p>
+
+
+
+
+<h4>"All credits &amp; kudos to the concerned websites and the users who have documented these resolutions."</h4>
 
 ]]></content>
   </entry>
@@ -6008,349 +6248,6 @@ And install curb manually.</p>
 1.  <a href="http://stackoverflow.com/questions/15864872/trouble-with-cloning-octopress-blog-on-other-laptops-computers-conflict-isseue">Trouble-with-cloning-octopress-blog-on-other-laptops</a>   <br/>
 2.  <a href="http://blog.zerosharp.com/clone-your-octopress-to-blog-from-two-places/">Clone Your Octopress to Blog From Two Places.</a>   <br/>
 3.  <a href="http://blog.mohitkanwal.com/blog/2014/03/26/blogging-with-octopress-from-2-computers/">Blogging-with-octopress-from-2-computers/</a></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MQTT, All you need to get started]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started/"/>
-    <updated>2015-03-10T08:00:00+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2015-03-10/mqtt-all-you-need-to-get-started</id>
-    <content type="html"><![CDATA[<p>So there are numerous post out there for MQTT implementation. I recently did a POC at work, and I wanted to keep a list of things I need to know if I wanted to return or do more with MQTT.
-Hence this post.</p>
-
-
-
-
-<h3><a href="http://mqtt.org/">MQTT</a></h3>
-
-
-
-
-<p>MQTT is a machine-to-machine (M2M)/"Internet of Things" connectivity protocol. It was designed as an extremely</p>
-
-
-
-
-<!--more-->  
-
-
-
-
-<p>lightweight publish/subscribe messaging transport. It is useful for connections with remote locations where a small code footprint is required and/or network bandwidth is at a premium.</p>
-
-
-
-
-<h4>Demo Architecture</h4>
-
-
-
-
-<p><img src="http://blog.ashwani.co.in/assets/MQTT_Arch.jpg" title="MQTT Architecture" alt="Cannot Display Architecture diagram, open this link /assets/MQTT_Arch.jpg" /></p>
-
-
-
-
-<h2>Installing software</h2>
-
-
-
-
-<h4>Installing Node.JS</h4>
-
-
-
-
-<hr />
-
-
-
-
-<p>Please follow the <a href="http://joshondesign.com/2013/10/23/noderpi">instructions</a> to install nodejs.
-After that, install some modules using the Node Package Manager:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for node modules </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g mqtt url request</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>If you want to debug or auto-reload of the script, also install nodemon:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for nodemon </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g nodemon</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p><br/><br/>
-<br/></p>
-
-
-
-
-<h4>Installing MQTT Broker - Mosquitto (or Checkout <a href="http://www.hivemq.com/how-to-get-started-with-mqtt/">HiveMQ</a>)</h4>
-
-
-
-
-<hr />
-
-
-
-
-<p>Source: <a href="http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/">http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/</a></p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -O http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key     
-</span><span class='line'>sudo apt-key add mosquitto-repo.gpg.key   
-</span><span class='line'>rm mosquitto-repo.gpg.key 
-</span><span class='line'>cd /etc/apt/sources.list.d/   
-</span><span class='line'>sudo curl -O http://repo.mosquitto.org/debian/mosquitto-repo.list 
-</span><span class='line'>sudo apt-get update</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Now go ahead and install Mosquitto proper. There are three packages:</p>
-
-
-
-
-<p>-Mosquitto is the MQTT broker (i.e. server)   <br/>
--mosquitto-clients are the command-line clients, which I recommend you install  <br/>
--python-mosquitto are the Python bindings, which I also think you should install all three packages together require about 665Kb of space, which we can easily afford even on the tiny Pi.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto and client installations </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Mosquitto/'s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t "#" -v</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>will dump all new messages to the broker. Remember the quotes around the topic, especially with the "#" wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>'mosquitto_pub -t "mosquittodemo/test" -m "Hi"'</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>then you should see the mosquitto_sub session list the message.</p>
-
-
-
-
-<p><br />
-<br /></p>
-
-
-
-
-<h4>Installing MQTT Client - MQTTWarn</h4>
-
-
-
-
-<hr />
-
-
-
-
-<p>This program subscribes to any number of MQTT topics (which may include wildcards) and publishes received payloads to one or more notification services, including support for notifying more than one distinct service for the same message.</p>
-
-
-
-
-<p>For example, you may wish to notify via e-mail and to Pushover of an alarm published as text to the MQTT topic <code>home/monitoring/+</code>.</p>
-
-
-
-
-<p>Full Info <a href="http://jpmens.net/2014/02/17/introducing-mqttwarn-a-pluggable-mqtt-notifier/">here</a></p>
-
-
-
-
-<h4>Requirements</h4>
-
-
-
-
-<p>You'll need at least the following components:</p>
-
-
-
-
-<p>-Python 2.x (tested with 2.6 and 2.7)  <br/>
--An MQTT broker (e.g. Mosquitto)   <br/>
--The Paho Python module: pip install paho-mqtt</p>
-
-
-
-
-<h4>Installation</h4>
-
-
-
-
-<p>-Clone <a href="https://github.com/jpmens/mqttwarn.git">this</a> repository into a fresh directory.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Clone the repo </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git clone https://github.com/jpmens/mqttwarn.git</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>
--Copy mqttwarn.ini.sample to mqttwarn.ini and edit to your taste   <br/>
--Install the prerequisite Python modules for the services you want to use   <br/>
--Launch mqttwarn.py</p>
-
-
-
-
-<p><br /></p>
-
-
-
-
-<h3>MQTT Android Client</h3>
-
-
-
-
-<hr />
-
-
-
-
-<h4>Android Service</h4>
-
-
-
-
-<p>The Paho Android Service is an interface to the Paho Java MQTT client library that provides a long running service for handling sending and receiving messages on behalf of Android client applications when the applications main Activity may not be running.</p>
-
-
-
-
-<p>The Paho Android Service provides an asynchronous API</p>
-
-
-
-
-<h4>Source:</h4>
-
-
-
-
-<p><a href="http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/">http://git.eclipse.org/c/paho/org.eclipse.paho.mqtt.java.git/</a></p>
-
-
-
-
-<p>Check out Paho project <a href="https://eclipse.org/paho/clients/android/">here</a></p>
-
-
-
-
-<p>All you need to get started is:</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for creating client and publishing a message </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient("tcp://ipAddressofBroker:1883", "pahomqttpublish1");    
-</span><span class='line'>client.connect();    
-</span><span class='line'>MqttMessage message = new MqttMessage();     
-</span><span class='line'>message.setPayload("A single message".getBytes());    
-</span><span class='line'>client.publish("home/monitoring/+", message);    
-</span><span class='line'>client.disconnect();</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p><br /></p>
-
-
-
-
-<h4>Test Broker Setup</h4>
-
-
-
-
-<hr />
-
-
-
-
-<p>To test your Broker setup you can install <a href="https://play.google.com/store/apps/details?id=at.tripwire.mqtt.client">MyMQTT</a> from google play.</p>
-
-
-
-
-<p>In few days I am gonna write myself a post about Google Cloud Notification service (GCM). The easiet notification service for Android notifications.</p>
-
-
-
-
-<p><br/>
-That's all folks.  Have Fun.</p>
-
-
-
-
-<p><br/></p>
 
 ]]></content>
   </entry>
