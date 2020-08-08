@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:springboot, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/springboot-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T15:04:32+01:00</updated>
+  <updated>2020-08-08T12:09:10+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -36,7 +36,22 @@ In this post I am going to show how we can generate code and documentation from 
 
 <p>Let's generate the code create an empty maven project named "TMF-ApiSpec"</p>
 
-<p>Now for the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
+<p>There are several ways to generate the code from a swagger json/yaml spec.  <br/>
+For e.g. You can download <a href="https://openapi-generator.tech/docs/installation/#jar">openapi-generator-cli-4.2.3.jar</a> and use the generate command.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -cp . -jar openapi-generator-cli-4.2.3.jar generate -i TMF641-ServiceOrdering-3.0.0.swagger.json --api-package com.cts.serviceorder.client.api --model-package com.cts.serviceorder.client.model --invoker-package com.cts.serviceorder.client.invoker --group-id com.cts --artifact-id spring-openapi-generator-api-client --artifact-version 0.0.1-SNAPSHOT -g java -p java8=true --library resttemplate -o openapi-serviceorder</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>See more about <a href="https://openapi-generator.tech/docs/usage#generate">generate</a> and  <a href="https://openapi-generator.tech/docs/usage#help">help</a></p>
+
+<p>You can also use online service to generate the code:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -X POST -H "content-type:application/json" -d '{"openAPIUrl":"&lt;a href="https://github.com/tmforum-apis/TMF641_ServiceOrder/releases/download/v3.0.0/TMF641-ServiceOrdering-3.0.0.swagger.json">https://github.com/tmforum-apis/TMF641_ServiceOrder/releases/download/v3.0.0/TMF641-ServiceOrdering-3.0.0.swagger.json&lt;/a>"}' &lt;a href="http://api.openapi-generator.tech/api/gen/clients/java">http://api.openapi-generator.tech/api/gen/clients/java&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I am using the <a href="https://openapi-generator.tech/docs/plugins">plugin</a></p>
+
+<p>For the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
 You can choose one of <a href="https://raw.githubusercontent.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5/master/api/swagger.yaml">Yaml</a> or <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">Json format</a></p>
 
 <h4>Update the pom.xml File:</h4>
@@ -916,7 +931,11 @@ Send a request from postman on following end point.
 
 <p><a href="https://swagger.io/docs/open-source-tools/swagger-codegen/">Swagger-codegen/</a>
 <a href="https://editor.swagger.io/">Swagger Editor online</a>
-<a href="https://projects.tmforum.org/wiki/display/API/Open+API+Table">TMForum OpenAPI Table</a></p>
+<a href="https://projects.tmforum.org/wiki/display/API/Open+API+Table">TMForum OpenAPI Table</a>
+<a href="https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md">openapi-generator-maven-plugin</a>
+<a href="http://localhost:8080/swagger-ui.html/serviceOrder/createServiceOrder">Swagger UI-Once you generate the code, it also generates a swagger UI</a>
+<a href="https://github.com/openslice/io.openslice.tmf.web">openslice</a>
+<a href="http://datamodel.tmforum.org/en/latest/">TMForum Datamodel</a></p>
 ]]></content>
   </entry>
   

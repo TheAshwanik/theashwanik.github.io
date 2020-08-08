@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-07T15:04:32+01:00</updated>
+  <updated>2020-08-08T12:09:10+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -47,7 +47,40 @@ In this post I am going to show how we can generate code and documentation from 
 
 
 
-<p>Now for the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
+<p>There are several ways to generate the code from a swagger json/yaml spec.  <br/>
+For e.g. You can download <a href="https://openapi-generator.tech/docs/installation/#jar">openapi-generator-cli-4.2.3.jar</a> and use the generate command.</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java -cp . -jar openapi-generator-cli-4.2.3.jar generate -i TMF641-ServiceOrdering-3.0.0.swagger.json --api-package com.cts.serviceorder.client.api --model-package com.cts.serviceorder.client.model --invoker-package com.cts.serviceorder.client.invoker --group-id com.cts --artifact-id spring-openapi-generator-api-client --artifact-version 0.0.1-SNAPSHOT -g java -p java8=true --library resttemplate -o openapi-serviceorder</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>See more about <a href="https://openapi-generator.tech/docs/usage#generate">generate</a> and  <a href="https://openapi-generator.tech/docs/usage#help">help</a></p>
+
+
+
+
+<p>You can also use online service to generate the code:</p>
+
+
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -X POST -H "content-type:application/json" -d '{"openAPIUrl":"https://github.com/tmforum-apis/TMF641_ServiceOrder/releases/download/v3.0.0/TMF641-ServiceOrdering-3.0.0.swagger.json"}' http://api.openapi-generator.tech/api/gen/clients/java</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+
+<p>I am using the <a href="https://openapi-generator.tech/docs/plugins">plugin</a></p>
+
+
+
+
+<p>For the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
 You can choose one of <a href="https://raw.githubusercontent.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5/master/api/swagger.yaml">Yaml</a> or <a href="https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json">Json format</a></p>
 
 
@@ -952,7 +985,11 @@ Send a request from postman on following end point.
 
 <p><a href="https://swagger.io/docs/open-source-tools/swagger-codegen/">Swagger-codegen/</a>
 <a href="https://editor.swagger.io/">Swagger Editor online</a>
-<a href="https://projects.tmforum.org/wiki/display/API/Open+API+Table">TMForum OpenAPI Table</a></p>
+<a href="https://projects.tmforum.org/wiki/display/API/Open+API+Table">TMForum OpenAPI Table</a>
+<a href="https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md">openapi-generator-maven-plugin</a>
+<a href="http://localhost:8080/swagger-ui.html/serviceOrder/createServiceOrder">Swagger UI-Once you generate the code, it also generates a swagger UI</a>
+<a href="https://github.com/openslice/io.openslice.tmf.web">openslice</a>
+<a href="http://datamodel.tmforum.org/en/latest/">TMForum Datamodel</a></p>
 
 ]]></content>
   </entry>
@@ -1088,7 +1125,7 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#x3a;&#106;&#97;&#115;&#109;&#105;&#110;&#x65;&#46;&#x78;&#x2e;&#120;&#x78;&#120;&#120;&#x78;&#120;&#64;&#x6a;&#117;&#110;&#x69;&#108;&#101;&#97;&#114;&#110;&#105;&#110;&#103;&#46;&#x63;&#111;">&#x6a;&#x61;&#x73;&#x6d;&#105;&#110;&#x65;&#x2e;&#120;&#x2e;&#120;&#120;&#x78;&#x78;&#x78;&#120;&#64;&#x6a;&#117;&#x6e;&#x69;&#108;&#x65;&#x61;&#114;&#x6e;&#x69;&#110;&#103;&#x2e;&#99;&#x6f;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#108;&#116;&#111;&#x3a;&#106;&#97;&#115;&#x6d;&#x69;&#x6e;&#101;&#46;&#120;&#46;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x6a;&#x75;&#110;&#x69;&#x6c;&#101;&#97;&#114;&#x6e;&#105;&#110;&#103;&#x2e;&#99;&#111;">&#x6a;&#97;&#115;&#109;&#105;&#110;&#101;&#46;&#120;&#x2e;&#120;&#x78;&#x78;&#120;&#120;&#x78;&#x40;&#x6a;&#x75;&#110;&#105;&#108;&#101;&#97;&#x72;&#x6e;&#x69;&#x6e;&#103;&#x2e;&#99;&#x6f;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
 
 ]]></content>
@@ -2943,7 +2980,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x67;&#101;&#x6e;&#x65;&#x77;&#97;&#x6c;&#x7a;&#46;&#x78;&#x78;&#120;&#x78;&#64;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;">&#103;&#101;&#110;&#x65;&#119;&#x61;&#108;&#122;&#46;&#120;&#120;&#x78;&#x78;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#99;&#111;&#109;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#x69;&#108;&#116;&#111;&#58;&#103;&#101;&#110;&#x65;&#119;&#x61;&#108;&#x7a;&#46;&#x78;&#120;&#x78;&#120;&#x40;&#103;&#109;&#97;&#105;&#108;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x65;&#x6e;&#x65;&#x77;&#x61;&#x6c;&#x7a;&#x2e;&#x78;&#x78;&#120;&#120;&#64;&#103;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
