@@ -14,7 +14,7 @@ Idan Kamara has came up with a very intriguing and useful tool [Explain Shell](h
 You give a shell command and it will tell you what the each option does.  This makes understanding the complex looking commands very easier.
 <!--more-->
 
-{% img  /assets/ExplainShell-1.JPG 800 600 "Explain Shell" "Explain Shell Image" %}
+{% img  /assets/ExplainShell-1.jpg 800 600 "Explain Shell" "Explain Shell Image" %}
 
 
 <br />
@@ -23,9 +23,9 @@ It becomes a bit tedious for a very long complex command like [this](http://expl
 But I would overlook that given the awesomeness of this tool and the fact that you can click on the commands to get the MAN pages helps.  
 
 For e.g. If you click on tar as in the following screenshot, you will get the MAN pages of tar.
-{% img /assets/ExplainShell-2.JPG 800 600 "Explain Shell" "Explain Shell tar command Image" %}
+{% img /assets/ExplainShell-2.jpg 800 600 "Explain Shell" "Explain Shell tar command Image" %}
 <hr />
-{% img /assets/ExplainShell-3.JPG 800 600 "Explain Shell" "Explain Shell Man Page Image" %}
+{% img /assets/ExplainShell-3.jpg 800 600 "Explain Shell" "Explain Shell Man Page Image" %}
 <hr />
 **Positives**
 <hr />
