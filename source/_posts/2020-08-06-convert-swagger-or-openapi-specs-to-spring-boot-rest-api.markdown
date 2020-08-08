@@ -24,9 +24,26 @@ Swagger allows you to describe the structure of your APIs so that machines can r
 You would notice how OpenAPI/Swagger Specification helps understand the API and agree on its attributes. 
 In this post I am going to show how we can generate code and documentation from the specification file.
 
-Let's generate the code create an empty maven project named "TMF-ApiSpec"  
+Let's generate the code create an empty maven project named "TMF-ApiSpec"   
 
-Now for the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
+There are several ways to generate the code from a swagger json/yaml spec.    
+For e.g. You can download [openapi-generator-cli-4.2.3.jar](https://openapi-generator.tech/docs/installation/#jar) and use the generate command.    
+
+{% codeblock %}
+java -cp . -jar openapi-generator-cli-4.2.3.jar generate -i TMF641-ServiceOrdering-3.0.0.swagger.json --api-package com.cts.serviceorder.client.api --model-package com.cts.serviceorder.client.model --invoker-package com.cts.serviceorder.client.invoker --group-id com.cts --artifact-id spring-openapi-generator-api-client --artifact-version 0.0.1-SNAPSHOT -g java -p java8=true --library resttemplate -o openapi-serviceorder
+{% endcodeblock %}
+
+See more about [generate](https://openapi-generator.tech/docs/usage#generate) and  [help](https://openapi-generator.tech/docs/usage#help)    
+
+You can also use online service to generate the code:    
+
+{% codeblock %}
+curl -X POST -H "content-type:application/json" -d '{"openAPIUrl":"https://github.com/tmforum-apis/TMF641_ServiceOrder/releases/download/v3.0.0/TMF641-ServiceOrdering-3.0.0.swagger.json"}' http://api.openapi-generator.tech/api/gen/clients/java
+{% endcodeblock %}
+
+I am using the [plugin](https://openapi-generator.tech/docs/plugins)       
+
+For the API spec I am using TMForum's ServiceOrderingManagement OpenAPI specification.
 You can choose one of [Yaml](https://raw.githubusercontent.com/tmforum-rand/RI-TMF641-ServiceOrderingManagement-R18-5/master/api/swagger.yaml) or [Json format](https://raw.githubusercontent.com/tmforum-apis/TMF641_ServiceOrder/master/TMF641-Service_Ordering-v4.0.0.swagger.json)
 
 #### Update the pom.xml File:
@@ -483,9 +500,8 @@ To add persistent to the order creation etc. Something similar to [this](https:/
 [Swagger-codegen/](https://swagger.io/docs/open-source-tools/swagger-codegen/)
 [Swagger Editor online](https://editor.swagger.io/)
 [TMForum OpenAPI Table](https://projects.tmforum.org/wiki/display/API/Open+API+Table)
-
-
-
-
-
+[openapi-generator-maven-plugin](https://github.com/OpenAPITools/openapi-generator/blob/master/modules/openapi-generator-maven-plugin/README.md)
+[Swagger UI-Once you generate the code, it also generates a swagger UI](http://localhost:8080/swagger-ui.html/serviceOrder/createServiceOrder)
+[openslice](https://github.com/openslice/io.openslice.tmf.web)
+[TMForum Datamodel](http://datamodel.tmforum.org/en/latest/)
 

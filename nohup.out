@@ -752,3 +752,77 @@ cd -
 ## Github Pages deploy complete
 
 ## Commit source to GitHub
+[source 662582a] Updated source Fri Aug  7 15:18:25 BST 2020
+ 2 files changed, 77 insertions(+), 2 deletions(-)
+ rename source/_posts/{2013-01-26-few-tweaks-in-diaspora-installation.markdown => 2019-07-15-few-tweaks-in-diaspora-installation.markdown} (98%)
+To github.com:TheAshwanik/theashwanik.github.io.git
+   57e87c6..662582a  source -> source
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 750.019 seconds.
+ Auto-regeneration: disabled. Use --watch to enable.
+cd _deploy
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+From github.com:TheAshwanik/theashwanik.github.io
+   57e87c6..662582a  source     -> origin/source
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+cd -
+rm -rf _deploy/8c84d900546f7.txt
+rm -rf _deploy/attributions.txt
+rm -rf _deploy/README.markdown
+rm -rf _deploy/crossdomain.xml
+rm -rf _deploy/javascripts
+rm -rf _deploy/js
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/robots.txt
+rm -rf _deploy/humans.txt
+rm -rf _deploy/favicon.png
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/fonts
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/google07b1a0e98e151fd3.html
+rm -rf _deploy/atom.xml
+rm -rf _deploy/tags
+rm -rf _deploy/stylesheets
+rm -rf _deploy/tldr-Jquery-client
+rm -rf _deploy/keybase.txt
+rm -rf _deploy/assets
+rm -rf _deploy/posts
+rm -rf _deploy/data
+cp -r public/. _deploy
+cd _deploy
+
+## Copying public to _deploy
+
+## Committing: Site updated at 2020-08-08 11:22:19 UTC
+[master 9e42b26] Site updated at 2020-08-08 11:22:19 UTC
+ 94 files changed, 262 insertions(+), 128 deletions(-)
+
+## Pushing generated _deploy website
+To github.com:TheAshwanik/theashwanik.github.io.git
+   47f8ef0..9e42b26  master -> master
+cd -
+
+## Github Pages deploy complete
+
+## Commit source to GitHub
