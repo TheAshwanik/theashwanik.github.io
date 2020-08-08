@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Shell,Commands | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/shell-commands/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-08T14:02:18+01:00</updated>
+  <updated>2020-08-09T00:37:20+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -88,7 +88,7 @@ You give a shell command and it will tell you what the each option does.  This m
 <!--more-->
 
 
-<p><img src="/assets/ExplainShell-1.JPG" width="800" height="600" title="Explain Shell" alt="Explain Shell Image"></p>
+<p><img src="/assets/ExplainShell-1.jpg" width="800" height="600" title="Explain Shell" alt="Explain Shell Image"></p>
 
 <p><br /></p>
 
@@ -99,12 +99,12 @@ You give a shell command and it will tell you what the each option does.  This m
 But I would overlook that given the awesomeness of this tool and the fact that you can click on the commands to get the MAN pages helps.</p>
 
 <p>For e.g. If you click on tar as in the following screenshot, you will get the MAN pages of tar.
-<img src="/assets/ExplainShell-2.JPG" width="800" height="600" title="Explain Shell" alt="Explain Shell tar command Image"></p>
+<img src="/assets/ExplainShell-2.jpg" width="800" height="600" title="Explain Shell" alt="Explain Shell tar command Image"></p>
 
 <hr />
 
 
-<p><img src="/assets/ExplainShell-3.JPG" width="800" height="600" title="Explain Shell" alt="Explain Shell Man Page Image"></p>
+<p><img src="/assets/ExplainShell-3.jpg" width="800" height="600" title="Explain Shell" alt="Explain Shell Man Page Image"></p>
 
 <hr />
 
