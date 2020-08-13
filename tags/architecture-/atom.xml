@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:architecture, | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/architecture-/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2020-08-13T22:24:02+01:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Symbols Used in Architecture Diagrams]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2020-07-03/symbols-used-in-architecture-diagrams/"/>
+    <updated>2020-07-03T00:00:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2020-07-03/symbols-used-in-architecture-diagrams</id>
+    <content type="html"><![CDATA[<p>Sometime back I was looking for these standard #symbols to demonstrate level of change for each system and interface.  <br/>
+The key to the symbols used in attached to each of the overall #technical #architecture #diagrams and a full definition is given in this article.</p>
+
+<!-- more -->
+
+
+<p>Some of the following symbols are used in the architecture diagrams (there can be more).</p>
+
+<p><img src="/assets/ArchitectureSymbol_Part1.png" width="800" height="600" title="ArchitectureSymbol Part1" alt="ArchitectureSymbol Part1"></p>
+
+<p>The Architecture diagrams show the level of change for each system and interface. The key to the symbols used in attached to each of the overall architecture diagrams and a full definition is given below.</p>
+
+<p>This application of these symbols applies to the particular diagram. For example, a system that is removed from the provisioning interface but still exists for Billing will be shown as functionally changed at the project level, removed for provisioning and unchanged for Billing.</p>
+
+<p>Marking of text only applies to new or removed parameters within a message in the flow diagrams for a changed message.</p>
+
+<p><img src="/assets/ArchitectureSymbol_Part2.png" width="800" height="600" title="ArchitectureSymbol Part2" alt="ArchitectureSymbol Part2"></p>
+
+<p>Some references:</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Architectural_pattern#Examples">https://en.wikipedia.org/wiki/Architectural_pattern#Examples</a></p>
+
+<p><a href="https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns">https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns</a></p>
+
+<p><a href="https://www.visual-paradigm.com/features/aws-architecture-diagram-tool/">https://www.visual-paradigm.com/features/aws-architecture-diagram-tool/</a></p>
+]]></content>
+  </entry>
+  
+</feed>

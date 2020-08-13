@@ -4,7 +4,7 @@
   <title><![CDATA[Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-08-09T00:37:20+01:00</updated>
+  <updated>2020-08-13T22:24:02+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -2483,8 +2483,74 @@ You should go check it out.</p>
 
 
 
-<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#106;&#97;&#x73;&#109;&#x69;&#x6e;&#x65;&#46;&#x78;&#x2e;&#120;&#120;&#x78;&#120;&#x78;&#120;&#x40;&#x6a;&#x75;&#110;&#x69;&#108;&#101;&#97;&#114;&#x6e;&#105;&#x6e;&#x67;&#x2e;&#99;&#x6f;">&#x6a;&#x61;&#x73;&#x6d;&#x69;&#110;&#x65;&#46;&#x78;&#x2e;&#x78;&#x78;&#x78;&#120;&#x78;&#x78;&#x40;&#106;&#x75;&#110;&#105;&#x6c;&#x65;&#97;&#x72;&#x6e;&#x69;&#110;&#x67;&#x2e;&#x63;&#111;</a>
+<p>This is Collaboration post with junilearning.com and this post is directly published on collaboration request from Jasmine Gordon <a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#106;&#97;&#115;&#x6d;&#x69;&#110;&#x65;&#x2e;&#120;&#x2e;&#x78;&#x78;&#120;&#120;&#x78;&#120;&#x40;&#106;&#x75;&#110;&#x69;&#108;&#101;&#x61;&#114;&#x6e;&#105;&#110;&#103;&#46;&#x63;&#111;">&#106;&#x61;&#x73;&#x6d;&#x69;&#110;&#101;&#46;&#x78;&#46;&#x78;&#x78;&#120;&#x78;&#120;&#x78;&#x40;&#x6a;&#x75;&#110;&#x69;&#x6c;&#x65;&#x61;&#114;&#110;&#105;&#110;&#103;&#x2e;&#99;&#111;</a>
 This <a href="https://junilearning.com/blog/guide/python-vs-java/">article</a> originally appeared on <a href="https://junilearning.com/">junilearning.com</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Symbols Used in Architecture Diagrams]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2020-07-03/symbols-used-in-architecture-diagrams/"/>
+    <updated>2020-07-03T00:00:00+01:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2020-07-03/symbols-used-in-architecture-diagrams</id>
+    <content type="html"><![CDATA[<p>Sometime back I was looking for these standard #symbols to demonstrate level of change for each system and interface.  <br/>
+The key to the symbols used in attached to each of the overall #technical #architecture #diagrams and a full definition is given in this article.</p>
+
+
+
+
+<!-- more -->
+
+
+
+
+<p>Some of the following symbols are used in the architecture diagrams (there can be more).</p>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/assets/ArchitectureSymbol_Part1.png" width="800" height="600" title="ArchitectureSymbol Part1" alt="ArchitectureSymbol Part1"></p>
+
+
+
+
+<p>The Architecture diagrams show the level of change for each system and interface. The key to the symbols used in attached to each of the overall architecture diagrams and a full definition is given below.</p>
+
+
+
+
+<p>This application of these symbols applies to the particular diagram. For example, a system that is removed from the provisioning interface but still exists for Billing will be shown as functionally changed at the project level, removed for provisioning and unchanged for Billing.</p>
+
+
+
+
+<p>Marking of text only applies to new or removed parameters within a message in the flow diagrams for a changed message.</p>
+
+
+
+
+<p><img src="http://blog.ashwani.co.in/assets/ArchitectureSymbol_Part2.png" width="800" height="600" title="ArchitectureSymbol Part2" alt="ArchitectureSymbol Part2"></p>
+
+
+
+
+<p>Some references:</p>
+
+
+
+
+<p><a href="https://en.wikipedia.org/wiki/Architectural_pattern#Examples">https://en.wikipedia.org/wiki/Architectural_pattern#Examples</a></p>
+
+
+
+
+<p><a href="https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns">https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns</a></p>
+
+
+
+
+<p><a href="https://www.visual-paradigm.com/features/aws-architecture-diagram-tool/">https://www.visual-paradigm.com/features/aws-architecture-diagram-tool/</a></p>
 
 ]]></content>
   </entry>
@@ -4338,7 +4404,7 @@ Let.s look at these two types in more detail</li>
 
 
 <p>Disclaimer:
-**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x67;&#101;&#x6e;&#x65;&#119;&#97;&#108;&#x7a;&#46;&#x78;&#x78;&#120;&#x78;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x67;&#101;&#110;&#x65;&#119;&#x61;&#x6c;&#122;&#46;&#x78;&#x78;&#120;&#120;&#x40;&#103;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#x6d;</a>   <br/>
+**This is Collaboration post with verygoodsecurity.com and this post is directly published on collaboration request from Eugene - <a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x67;&#101;&#x6e;&#x65;&#119;&#x61;&#x6c;&#122;&#46;&#120;&#120;&#120;&#x78;&#64;&#x67;&#x6d;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;">&#x67;&#x65;&#x6e;&#101;&#119;&#97;&#108;&#122;&#x2e;&#120;&#x78;&#x78;&#120;&#64;&#103;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>   <br/>
 <a href="https://blog.verygoodsecurity.com/posts/proxies-demystified/">Original article</a></p>
 
 ]]></content>
@@ -7267,226 +7333,6 @@ To generate the static HMAC key type:</p>
 
 
 <p>Enjoy...</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IP Address GeoCoding and Plotting on map]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map/"/>
-    <updated>2016-01-23T21:49:37+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2016-01-23/ip-address-geocoding-and-plotting-on-map</id>
-    <content type="html"><![CDATA[<p>Sometimes back I had setup ssh on raspberry pi and allowed to login from internet, obviously using the public key encyption.
-After few days I noticed that lot of people/systems were trying to login and failing from various different IPs.
-So I block them using Fail2ban. I am Not gonna talk about Fail2ban, as its completely vast topic on its own.</p>
-
-
-
-
-<!--more-->
-
-
-
-
-<p><a href="http://www.fail2ban.org/wiki/index.php/Main_Page">Fail2ban</a> : It provides a way to automatically protect virtual servers from malicious behavior.
-The program works by scanning through log files and reacting to offending actions such as repeated failed login attempts.</p>
-
-
-
-
-<p>Once blocked I wanted to see from where I was getting attacked the most. So I plotted them on map using some free apis.
-Here is my fail2ban config for creating a file of all blocked IP addresses.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/pathToFail2ban/action.d/iptables-multiport.conf
-</span><span class='line'>
-</span><span class='line'>[Definition]
-</span><span class='line'>
-</span><span class='line'># Option:  actionstart
-</span><span class='line'># Notes.:  command executed once at the start of Fail2Ban.
-</span><span class='line'># Values:  CMD
-</span><span class='line'>#
-</span><span class='line'>
-</span><span class='line'>actionstart = iptables -N fail2ban-&lt;name>
-</span><span class='line'>              iptables -A fail2ban-&lt;name> -j RETURN
-</span><span class='line'>              iptables -I &lt;chain> -p &lt;protocol> -m multiport --dports &lt;port> -j fail2ban-&lt;name>
-</span><span class='line'>              cat /etc/fail2ban/ip.blacklist.persistban.&lt;name> | while read IP; do iptables -I fail2ban-&lt;name> 1 -s $IP -j DROP; done
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'># Option:  actionban
-</span><span class='line'># Notes.:  command executed when banning an IP. Take care that the
-</span><span class='line'>#          command is executed with Fail2Ban user rights.
-</span><span class='line'># Tags:    &lt;ip>  IP address
-</span><span class='line'>#          &lt;failures>  number of failures
-</span><span class='line'>#          &lt;time>  unix timestamp of the ban time
-</span><span class='line'># Values:  CMD
-</span><span class='line'>#
-</span><span class='line'>actionban = iptables -I fail2ban-&lt;name> 1 -s &lt;ip> -j DROP
-</span><span class='line'>            echo &lt;ip> >> /etc/fail2ban/ip.blacklist.persistban.&lt;name>
-</span><span class='line'>            echo &lt;ip> >> /pathToMysite/blocked_ipaddresses.txt</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>I used <a href="http://lab.abhinayrathore.com/ipmapper/">ipmapper</a> which uses google maps api for geocoding.</p>
-
-
-
-
-<p>Here is my html code to plot those blocked IPs.</p>
-
-
-
-
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;html>
-</span><span class='line'>&lt;head>
-</span><span class='line'>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">&lt;/script>
-</span><span class='line'>    &lt;script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false">&lt;/script>
-</span><span class='line'>    &lt;script type="text/javascript" src="ipmapper.js">&lt;/script>
-</span><span class='line'>    &lt;meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-</span><span class='line'>    &lt;style>
-</span><span class='line'>      html, body, #map {
-</span><span class='line'>        height: 100%;
-</span><span class='line'>        margin: 0px;
-</span><span class='line'>        padding: 0px;
-</span><span class='line'>      }
-</span><span class='line'>    &lt;/style>
-</span><span class='line'>    &lt;script type="text/javascript">
-</span><span class='line'>    $(function(){
-</span><span class='line'>        try{
-</span><span class='line'>                var useragent = navigator.userAgent;
-</span><span class='line'>                var mapdiv = document.getElementById("map");
-</span><span class='line'>                console.log(useragent.indexOf('iPhone'));
-</span><span class='line'>                if (useragent.indexOf('iPhone') == -1 || useragent.indexOf('Android') == -1 ) {
-</span><span class='line'>                        mapdiv.style.width = '100%';
-</span><span class='line'>                        mapdiv.style.height = '100%';
-</span><span class='line'>                } else {
-</span><span class='line'>                        mapdiv.style.width = '600px';
-</span><span class='line'>                        mapdiv.style.height = '800px';
-</span><span class='line'>                }
-</span><span class='line'>
-</span><span class='line'>                IPMapper.initializeMap("map");
-</span><span class='line'>
-</span><span class='line'>                var file = "../data/blocked_ipaddresses.txt";
-</span><span class='line'>                var ipArray = new Array();
-</span><span class='line'>                $.get(file, function(data){
-</span><span class='line'>                        ipArray = data.split('\n');
-</span><span class='line'>                        //console.log("Raw array length is -" + ipArray.length);
-</span><span class='line'>                        IPMapper.addIPArray(ipArray);
-</span><span class='line'>                });
-</span><span class='line'>
-</span><span class='line'>        } catch(e){
-</span><span class='line'>            //handle error
-</span><span class='line'>        }
-</span><span class='line'>    });
-</span><span class='line'>    &lt;/script>
-</span><span class='line'>&lt;/head>
-</span><span class='line'>&lt;body>
-</span><span class='line'>    &lt;div id="map" style="height: 800px;">&lt;/div>
-</span><span class='line'>&lt;/body>
-</span><span class='line'>&lt;/html></span></code></pre></td></tr></table></div></figure></notextile></div>
-
-
-
-
-<p>Here is the output plotted on the map... :)</p>
-
-
-
-
-<p><img src="http://blog.ashwani.co.in/images/bot_attacks_on_pi.jpg" title="Bot attack image - not able to load pic." alt="alt " /></p>
-
-
-
-
-<p>hmm.. lot of friendly visits from China and Russia... :)</p>
-
-
-
-
-<p>Chow...</p>
-
-
-
-
-<p><br/></p>
 
 ]]></content>
   </entry>
