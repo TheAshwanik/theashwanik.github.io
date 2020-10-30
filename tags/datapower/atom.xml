@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:datapower | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/datapower/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2020-10-30T23:00:49+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Run IBM Datapower Gateway IDG-10.0.0 on Docker]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2020-10-30/run-ibm-datapower-gateway-idg10-on-docker/"/>
+    <updated>2020-10-30T00:00:00+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2020-10-30/run-ibm-datapower-gateway-idg10-on-docker</id>
+    <content type="html"><![CDATA[<p>To build your IBM DataPower Docker image, you must develop the application's configuration. The easiest method is in the Docker containers on your workstation.</p>
+
+<h3>Before you begin</h3>
+
+<p>Before you can build and deploy a DataPower Docker application you must create an export package that <!--more--> contains the DataPower configuration for the DataPower Docker image. You create and export the DataPower configuration on a DataPower appliance or virtual DataPower offering.</p>
+
+<p>You can create the DataPower configuration using the DataPower GUI, CLI, or other management interface, which can be importing an existing export package from a secure server and using a deployment policy with deployment policy variables to modify the configuration in the export package during import. The resultant and exported configuration should be the explicit configuration for your DataPower Docker application.</p>
+
+<p>The defined and imported configuration is restricted to features supported by DataPower for Docker. If you create an export package from another DataPower offering with features not supported by DataPower Gateway for Docker, these feature will be unavailable. For more information, see Managing add-on features for a DataPower Docker image.</p>
+
+<p>The easiest way to export and import packages is through the DataPower GUI, but you can use the DataPower backup command to do an export.</p>
+
+<h3>Procedure</h3>
+
+<p>Download the version-specific DataPower firmware image from the read-only IBM Entitled Registry.  <br/>
+Create a clean working directory with the config, local, and certs subdirectories. These subdirectories will be mounted inside the container to extract the application's configuration. For more information, see Directories in a DataPower Docker image.  <br/>
+Grant full permission to ensure that everyone can access these subdirectories.   <br/>
+
+chmod -R 777 config local certsCopy code
+</p>
+
+<p>Start the container. The following snippet is the minimum required set of parameters. For more information, see Environment variables and drouter arguments and a DataPower Docker image.  <br/>
+
+docker run -it --name name \
+-v $(pwd)/config:/opt/ibm/datapower/drouter/config \
+-v $(pwd)/local:/opt/ibm/datapower/drouter/local \
+-v $(pwd)/certs:/opt/ibm/datapower/root/secure/usrcerts \
+-e DATAPOWER_ACCEPT_LICENSE="true" \
+-e DATAPOWER_INTERACTIVE="true" \
+-p 9090:9090 \
+tag
+</p>
+
+<p>Where name is the name of the container, and tag is generally in the registry-path:version.build-edition format.</p>
+
+<h3>Configure access to the DataPower GUI.</h3>
+
+<p>
+$$ configure terminal
+$$ web-mgmt
+$$ admin-state "enabled"
+$$ exit
+</p>
+
+<p>Access the DataPower Gateway to import the export package that contains your DataPower configuration. <br/>
+- To start a GUI session, enter <a href="https://localhost:9090">https://localhost:9090</a> as the URL in your browser.  <br/>
+- To start a CLI session, use the docker attach command.</p>
+
+<p>After you write and test your configuration, save everything to your mounted volumes. <br/>
+In the GUI, click Save Configuration.   <br/>
+In the CLI, issue the write memory command.</p>
+
+<p>Stop the DataPower container, where name is the name of the container.   <br/>
+
+docker stop -t 300 name
+</p>
+
+<p>Change ownership of files owned by root.  <br/>
+
+chown -R $USER:$USER config local certs
+</p>
+
+<p>Create the Dockerfile for the DataPower Docker image. The following snippet is the most basic Dockerfile that you should require.  <br/>
+
+FROM tag
+COPY config /opt/ibm/datapower/drouter/config
+COPY local /opt/ibm/datapower/drouter/local
+COPY certs /opt/ibm/datapower/root/secure/usrcerts
+USER root
+RUN chown -R drouter:drouter /opt/ibm/datapower/drouter/config \
+                             /opt/ibm/datapower/drouter/local \
+                             /opt/ibm/datapower/root/secure/usrcerts
+RUN set-user drouter
+USER drouter
+</p>
+
+<p>With your Dockerfile, build your DataPower Docker image, where my-image is the name that differentiates various DataPower Docker images in your repository.  <br/>
+
+docker build . -f Dockerfile -t my-imageCopy code
+</p>
+
+<p>Use the docker push command to upload the DataPower Docker image to your repository.</p>
+
+<h3>References:</h3>
+
+<p>
+<a href="https://docs.docker.com/docker-for-windows/">https://docs.docker.com/docker-for-windows/</a>  <br/>
+<a href="https://linuxconfig.org/docker-container-backup-and-recovery">https://linuxconfig.org/docker-container-backup-and-recovery</a>  <br/>
+<a href="https://hub.docker.com/r/ibmcom/datapower/">https://hub.docker.com/r/ibmcom/datapower/</a>   <br/>
+<a href="https://logixbubble.wordpress.com/2017/10/30/virtual-datapower-setup/">https://logixbubble.wordpress.com/2017/10/30/virtual-datapower-setup/</a>   <br/>
+<a href="https://docs.docker.com/engine/reference/commandline/port/">https://docs.docker.com/engine/reference/commandline/port/</a>  <br/>
+<a href="https://hub.docker.com/r/middlewareaman/datapower_av">https://hub.docker.com/r/middlewareaman/datapower_av</a>   <br/>
+<a href="https://www.ibm.com/support/knowledgecenter/en/SS9H2Y_7.7.0/com.ibm.dp.doc/request-header_metadatafunction.html">https://www.ibm.com/support/knowledgecenter/en/SS9H2Y_7.7.0/com.ibm.dp.doc/request-header_metadatafunction.html</a>   <br/>
+<a href="http://index-of.co.uk/Tutorials/XML%20for%20Dummies%204th%20Ed.pdf">http://index-of.co.uk/Tutorials/XML%20for%20Dummies%204th%20Ed.pdf</a>   <br/>
+DataPower MPGW Simple Exercise - <a href="https://www.youtube.com/watch?v=mz7VBIbyjnI">https://www.youtube.com/watch?v=mz7VBIbyjnI</a>  <br/>
+<a href="https://www.ibm.com/support/knowledgecenter/en/SS9H2Y_10.0/com.ibm.dp.doc/welcome.html">https://www.ibm.com/support/knowledgecenter/en/SS9H2Y_10.0/com.ibm.dp.doc/welcome.html</a>   <br/>
+<a href="https://github.com/amanverma-18/datapower_publiccerts">https://github.com/amanverma-18/datapower_publiccerts</a>   <br/>
+<a href="https://github.com/dan-orangespecs/practical-datapower">https://github.com/dan-orangespecs/practical-datapower</a>
+<a href="http://www.orangespecs.com/category/datapower/">http://www.orangespecs.com/category/datapower/</a>  <br/>
+<a href="https://www.ibm.com/support/pages/migration-ssl-proxy-profile">https://www.ibm.com/support/pages/migration-ssl-proxy-profile</a>   <br/>
+<a href="https://www.youtube.com/watch?v=i0xaZ-iaEbU&amp;list=PLw_7CPUqcdrFMnBmRVQENC_AlcaCCmVtd&amp;index=3">https://www.youtube.com/watch?v=i0xaZ-iaEbU&amp;list=PLw_7CPUqcdrFMnBmRVQENC_AlcaCCmVtd&amp;index=3</a>   <br/>
+<a href="https://www.ibm.com/support/knowledgecenter/SS9H2Y_10.0/com.ibm.dp.doc/apigw_overview.html">https://www.ibm.com/support/knowledgecenter/SS9H2Y_10.0/com.ibm.dp.doc/apigw_overview.html</a>    <br/>
+<a href="https://integrationtechies.wordpress.com/topics/">https://integrationtechies.wordpress.com/topics/</a>     <br/>
+<a href="https://www.ibm.com/support/knowledgecenter/SS9H2Y_10.0/com.ibm.dp.doc/docker_dpapp.html">https://www.ibm.com/support/knowledgecenter/SS9H2Y_10.0/com.ibm.dp.doc/docker_dpapp.html</a>  <br/>
+</p>
+
+<h3>Commands:</h3>
+
+<p>
+docker run -it --name dpcontainer02  -v /e/development_work/datapower/datapowerconfig:/drouter/config -v /e/development_work/datapower/datapowerlocal:/drouter/local -e DATAPOWER_ACCEPT_LICENSE=true -e DATAPOWER_INTERACTIVE=true -e DATAPOWER_WORKER_THREADS=4 -p 9090:9090 -p 9022:22  -p 5554:5554  -p 8000-8100:8000-8100 middlewareaman/datapower_av:version10.0
+</p>
+]]></content>
+  </entry>
+  
+</feed>
