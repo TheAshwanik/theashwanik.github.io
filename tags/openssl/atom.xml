@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:openssl | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/openssl/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T22:50:03+00:00</updated>
+  <updated>2020-10-30T22:37:35+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -27,7 +27,7 @@
 <!--more-->
 
 
-<p>{% img left_aligned_image  /assets/heartbleed.svg 350 350 "Heartbleed SVG" "HeartBleed SVG image" %}</p>
+<p><img class="left_aligned_image" src="/assets/heartbleed.svg" width="350" height="350" title="Heartbleed SVG" alt="HeartBleed SVG image"></p>
 
 <p>As Bruce Schneier, a renowned security expert, said in a <a href="https://www.schneier.com/blog/archives/2014/04/heartbleed.html">blog post</a> on Wednesday:</p>
 
@@ -51,7 +51,7 @@ And you have to assume that it is all compromised. All of it.</p>
 
 <p><br/>
 <br/>
-{% img  <a href="http://imgs.xkcd.com/comics/heartbleed_explanation.png">http://imgs.xkcd.com/comics/heartbleed_explanation.png</a> "xkcd Heartbleed cartoon explanation" "HeartBleed xkcd cartoon" %}</p>
+<img class="<a" src="href="http://imgs.xkcd.com/comics/heartbleed_explanation.png">http://imgs.xkcd.com/comics/heartbleed_explanation.png</a>" title="xkcd Heartbleed cartoon explanation" alt="HeartBleed xkcd cartoon"></p>
 
 <p><br/>
 <br/>

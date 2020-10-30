@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:OpenVpn, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/openvpn-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T22:29:43+00:00</updated>
+  <updated>2020-10-30T23:00:49+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -28,176 +28,140 @@
 
 <p>Disable Google Authenticator globally for all users and groups (the default):</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
-</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+./sacli --key "vpn.server.google_auth.enable" --value "false" ConfigPut
+./sacli start
+{% endcodeblock %}</p>
 
 <p>Enable Google Authenticator globally for all users and groups: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut
-</span><span class='line'>./sacli start</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --key "vpn.server.google_auth.enable" --value "true" ConfigPut
+./sacli start
+{% endcodeblock %}</p>
 
 <p>Disable Google Authenticator for a specific user or group: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut
+{% endcodeblock %}</p>
 
 <p>Enable Google Authenticator for a specific user or group: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut
+{% endcodeblock %}</p>
 
 <p>Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER_OR_GROUP> --key "prop_google_auth" UserPropDel
+{% endcodeblock %}</p>
 
 <p>To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER> --lock 0 GoogleAuthLock
+{% endcodeblock %}</p>
 
 <p>To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER> --lock 1 GoogleAuthLock
+{% endcodeblock %}</p>
 
 <p>To generate a new secret key and unlock it so the user can enroll anew: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER> --lock 0 GoogleAuthRegen
+{% endcodeblock %}</p>
 
 <p>To generate a new secret key and lock it so the user must obtain the secret key from the server administrator: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --lock 1 GoogleAuthRegen</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER> --lock 1 GoogleAuthRegen
+{% endcodeblock %}</p>
 
 <p>The <strong>GoogleAuthLock</strong> and <strong>GoogleAuthRegen</strong> functions that actually handle these two keys, which can also be edited manually: <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED> UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
+
+<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED> UserPropPut
+{% endcodeblock %}</p>
 
 <p>Where <GOOGLE_AUTH_SECRET> must be a 16 character alphanumerical value in capitals and must be known at the Google Authenticator device/application to generate the 6 digit codes, and the <SCANNED/LOCKED> value must be either 1 or 0, indicating that the code is scanned and must now be used by the user, or is awaiting enrollment by the user.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd /usr/local/openvpn_as/scripts&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>sudo ./confdba -us -p joe &lt;em>#display info about a user&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>{&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "joe": {&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "access_to.0": "+NAT:10.0.0.0/8",&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "pvt_google_auth_secret": "Z********B", &lt;em>#this is GoogleAuth MFA secret_token that a user scans as QR code&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "pvt_google_auth_secret_locked": "false",&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "pvt_password_digest": "30******bb71",&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>  "type": "user_compile"&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p> }&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>}&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+cd /usr/local/openvpn_as/scripts</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe  &lt;em>#unlock locked out user&lt;/em></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>sudo ./confdba -us -p joe <em>#display info about a user</em></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>_#Disable/enable Google Authenticator for a specific user or group:   _&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut &lt;em>#disable&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut &lt;em>#enable&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;em>#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER_OR_GROUP> --key "prop_google_auth" UserPropDel</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>  "joe": {</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>&lt;em>#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER> --lock 0 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>  "access_to.0": "+NAT:10.0.0.0/8",</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>&lt;em>#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER> --lock 1 GoogleAuthLock</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>  "pvt_google_auth_secret": "Z********B", <em>#this is GoogleAuth MFA secret_token that a user scans as QR code</em></p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;em>#To generate a new secret key and lock or leave it unlocked&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER> --lock 0 GoogleAuthRegen &lt;em>#unlocked, user can scan&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli -u  joe  GoogleAuthRegen &lt;em>#regenerate Google token, so a user can scan QR code again&lt;/em>&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>  "pvt_google_auth_secret_locked": "false",</p>
+
+<p>  "pvt_password_digest": "30******bb71",</p>
+
+<p>  "type": "user_compile"</p>
+
+<p> }</p>
+
+<p>}</p>
+
+<p>{% endcodeblock %}</p>
+
+<p>{% codeblock %}
+sudo ./confdba -u -m -k pvt_google_auth_secret_locked -v false -p joe  <em>#unlock locked out user</em>
+{% endcodeblock %}</p>
+
+<p>{% codeblock %}
+_#Disable/enable Google Authenticator for a specific user or group:   _</p>
+
+<p>./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "false" UserPropPut <em>#disable</em></p>
+
+<p>./sacli --user <USER_OR_GROUP> --key "prop_google_auth" --value "true" UserPropPut <em>#enable</em></p>
+
+<p>{% endcodeblock %}</p>
+
+<p>{% codeblock %}
+<em>#Undo an enable/disable override for Google Authenticator on a group or user, so that it inherits the setting instead</em></p>
+
+<p>./sacli --user <USER_OR_GROUP> --key "prop_google_auth" UserPropDel
+{% endcodeblock %}</p>
+
+<p>{% codeblock %}</p>
+
+<p><em>#To unlock an already scanned and locked secret for a user, so the user can obtain/scan it again</em></p>
+
+<p>./sacli --user <USER> --lock 0 GoogleAuthLock
+{% endcodeblock %}</p>
+
+<p>{% codeblock %}</p>
+
+<p><em>#To manually lock a secret key, for example when you as administrator have already set up the user.s device yourself</em></p>
+
+<p>./sacli --user <USER> --lock 1 GoogleAuthLock
+{% endcodeblock %}</p>
+
+<p>{% codeblock %}
+<em>#To generate a new secret key and lock or leave it unlocked</em></p>
+
+<p>./sacli --user <USER> --lock 0 GoogleAuthRegen <em>#unlocked, user can scan</em></p>
+
+<p>./sacli -u  joe  GoogleAuthRegen <em>#regenerate Google token, so a user can scan QR code again</em></p>
+
+<p>{% endcodeblock %}</p>
 
 <p>The GoogleAuthLock and GoogleAuthRegen functions that actually handle these two keys, which can also be edited manually</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>./sacli --user &lt;USER> --key "pvt_google_auth_secret" --value &lt;GOOGLE_AUTH_SECRET> UserPropPut&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>./sacli --user &lt;USER> --key "pvt_google_auth_secret_locked" --value &lt;SCANNED/LOCKED>  UserPropPut</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+./sacli --user <USER> --key "pvt_google_auth_secret" --value <GOOGLE_AUTH_SECRET> UserPropPut</p>
+
+<p>./sacli --user <USER> --key "pvt_google_auth_secret_locked" --value <SCANNED/LOCKED>  UserPropPut
+{% endcodeblock %}</p>
 
 <p>Logs <br/>
-<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>tail -f /var/log/openvpnas.log</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+{% codeblock %}
+tail -f /var/log/openvpnas.log
+{% endcodeblock %}</p>
 
 <p>When new MFA/Google secret has been generated user need to login to Access Server, scann QR code, then download the Connection Client that the bundle contains the new user settings; this will enable VPN login.</p>
 
@@ -205,80 +169,44 @@
 
 <p>Handy AWS Sytems Manager Document that can be used to unlock Google Authenticator for a user. Simply add this Document to Systems Manager and Run it with an instance and the username of the user to unlock. This requires installation of the SSM agent on each OpenVPN instance. You'll probably need to read up on the AWS Systems Manager docs but it is well worth it for this and a whole host of other use cases.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>{&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;pre>&lt;code>    "schemaVersion": "2.2",
-</span><span class='line'>    "description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
-</span><span class='line'>    "parameters": { 
-</span><span class='line'>        "Username": {
-</span><span class='line'>        "description": "Username of the user to unlock",
-</span><span class='line'>        "minChars": 3,
-</span><span class='line'>        "type": "String"
-</span><span class='line'>        }
-</span><span class='line'>    },
-</span><span class='line'>    "mainSteps": [
-</span><span class='line'>        {
-</span><span class='line'>            "action": "aws:runShellScript",
-</span><span class='line'>            "name": "OpenVPNASUnlockGoogleAuthenticator",
-</span><span class='line'>            "inputs": {
-</span><span class='line'>                "runCommand": [
-</span><span class='line'>                    "#!/bin/bash",
-</span><span class='line'>                    "cd /usr/local/openvpn_as/scripts",
-</span><span class='line'>                    "sudo ./sacli -u {REMOVE_THIS_TEXT% Username %} --lock 0 GoogleAuthLock"
-</span><span class='line'>                    ]
-</span><span class='line'>                },
-</span><span class='line'>            "precondition":{
-</span><span class='line'>            "StringEquals":[
-</span><span class='line'>                    "platformType",
-</span><span class='line'>                    "Linux"
-</span><span class='line'>                    ]
-</span><span class='line'>
-</span><span class='line'>            }
-</span><span class='line'>
-</span><span class='line'>        }
-</span><span class='line'>    ]
-</span><span class='line'>
-</span><span class='line'>}
-</span><span class='line'>&lt;/code>&lt;/pre>
-</span><span class='line'>
-</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+    {</p>
+
+<pre><code>    "schemaVersion": "2.2",
+    "description": "Unlock the Google Authenticator for a given Username. After doing this, the user must login to the OpenVPN server with their browser and scan the barcode.",
+    "parameters": { 
+        "Username": {
+        "description": "Username of the user to unlock",
+        "minChars": 3,
+        "type": "String"
+        }
+    },
+    "mainSteps": [
+        {
+            "action": "aws:runShellScript",
+            "name": "OpenVPNASUnlockGoogleAuthenticator",
+            "inputs": {
+                "runCommand": [
+                    "#!/bin/bash",
+                    "cd /usr/local/openvpn_as/scripts",
+                    "sudo ./sacli -u {REMOVE_THIS_TEXT% Username %} --lock 0 GoogleAuthLock"
+                    ]
+                },
+            "precondition":{
+            "StringEquals":[
+                    "platformType",
+                    "Linux"
+                    ]
+
+            }
+
+        }
+    ]
+
+}
+</code></pre>
+
+<p>{% endcodeblock %}</p>
 
 <h3>Issues:</h3>
 
@@ -306,16 +234,13 @@
 
 <p>Latest Ubuntu 18.04 systems that use snap:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo snap services amazon-ssm-agent&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>Service  Startup  Current  Notes&lt;/p>
-</span><span class='line'>
-</span><span class='line'>&lt;p>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+$ sudo snap services amazon-ssm-agent</p>
+
+<p>Service  Startup  Current  Notes</p>
+
+<p>amazon-ssm-agent.amazon-ssm-agent  enabled  active  -
+{% endcodeblock %}</p>
 
 <ol>
 <li>Verify connectivity to Systems Manager endpoints on port 443
@@ -323,14 +248,17 @@ To test connectivity to endpoints from port 443, use the telnet command. The fol
 </ol>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssm.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+telnet ssm.us-east-1.amazonaws.com 443
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ec2messages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+telnet ec2messages.us-east-1.amazonaws.com 443
+{% endcodeblock %}</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>telnet ssmmessages.us-east-1.amazonaws.com 443</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+telnet ssmmessages.us-east-1.amazonaws.com 443
+{% endcodeblock %}</p>
 
 <ol>
 <li><p>Verify that the correct IAM role is attached to the instance
@@ -340,8 +268,9 @@ SSM Agent must be able to communicate with the instance metadata service in orde
 </ol>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>telnet 169.254.169.254 80</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+telnet 169.254.169.254 80
+{% endcodeblock %}</p>
 
 <h4>References</h4>
 
@@ -373,20 +302,20 @@ To load a new HTTPS certificate for OpenVPN AS (Access Server), you.ll want to u
 <p>The first step to using LetsEncrypt to obtain an SSL certificate is to install the certbot software on your server.</p>
 
 <p>First, add the repository:
-
+{{ codeblock }}
 sudo add-apt-repository ppa:certbot/certbot ````
-</p>
+{{ endcodeblock }}</p>
 
 <p>You'll need to press ENTER to accept. Afterwards, update the package list to pick up the new repository.s package information:
-
+{{ codeblock }}
 sudo apt-get update
-</p>
+{{ endcodeblock }}</p>
 
 <p>And finally, install Certbot with apt-get:</p>
 
-<p>
+<p>{{ codeblock }}
 sudo apt-get install python-certbot-nginx
-</p>
+{{ endcodeblock }}</p>
 
 <p>The certbot LetsEncrypt client is now ready to use.</p>
 
@@ -394,7 +323,7 @@ sudo apt-get install python-certbot-nginx
 
 <p>Certbot can automatically configure SSL for Nginx, but it needs to be able to find the correct server block in your config. It does this by looking for a server_name directive that matches the domain you.re requesting a certificate for. If you.re starting out with a fresh Nginx install, you can update the default config file:</p>
 
-<p>
+<p>{{ codeblock }}
 sudo nano /etc/nginx/sites-available/default
 Find the existing server_name line:</p>
 
@@ -412,13 +341,13 @@ If that runs with no errors, reload Nginx to load the new configuration:</p>
 <p>sudo service nginx reload
 Certbot will now be able to find the correct server block and update it. Now we.ll update our firewall to allow HTTPS traffic.</p>
 
-<p></p>
+<p>{{ endcodeblock }}</p>
 
 <h1>Step 3 . Obtaining an SSL Certificate</h1>
 
 <p>Certbot provides a variety of ways to obtain SSL certificates, through various plugins. The Nginx plugin will take care of reconfiguring Nginx and reloading the config whenever necessary:</p>
 
-<p>
+<p>{{ codeblock }}
 sudo certbot --nginx -d example.com -d www.example.com
 This runs certbot with the --nginx plugin, using -d to specify the names we.d like the certificate to be valid for.</p>
 
@@ -458,7 +387,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    <a href="https://eff.org/donate-le">https://eff.org/donate-le</a>
 Your certificates are now downloaded, installed, and configured. Try reloading your website using <a href="https://">https://</a> and notice your browser.s security indicator. It should represent that the site is properly secured, usually with a green lock icon. If you test your server using the SSL Labs Server Test, it will get an A grade.</p>
 
-<p></p>
+<p>{{ endcodeblock }}</p>
 
 <h1>Step 4 . Verifying Certbot Auto-Renewal</h1>
 
@@ -466,9 +395,9 @@ Your certificates are now downloaded, installed, and configured. Try reloading y
 
 <p>To test the renewal process, you can do a dry run with certbot:</p>
 
-<p>
+<p>{{ codeblock }}
 sudo certbot renew --dry-run
-</p>
+{{ endcodeblock }}</p>
 
 <h1>Commands Used</h1>
 

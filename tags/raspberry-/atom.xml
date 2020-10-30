@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Raspberry, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/raspberry-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T22:29:43+00:00</updated>
+  <updated>2020-10-30T22:37:35+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -467,7 +467,7 @@ root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/u
 </span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
 </span><span class='line'>Common Name (eg, your name or your server's hostname) [changeme]:MyserverName
 </span><span class='line'>Name [changeme]:NoName
-</span><span class='line'>Email Address [&lt;a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#109;&#x61;&#x69;&#108;&#x40;&#104;&#111;&#x73;&#116;&#46;&#100;&#111;&#x6d;&#97;&#x69;&#x6e;">&#x6d;&#97;&#x69;&#x6c;&#64;&#x68;&#111;&#x73;&#116;&#46;&#100;&#x6f;&#x6d;&#x61;&#x69;&#x6e;&lt;/a>]:</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+</span><span class='line'>Email Address [&lt;a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#x6d;&#97;&#x69;&#108;&#x40;&#104;&#x6f;&#x73;&#116;&#x2e;&#x64;&#x6f;&#109;&#97;&#105;&#x6e;">&#x6d;&#x61;&#x69;&#x6c;&#x40;&#104;&#111;&#x73;&#116;&#x2e;&#100;&#111;&#109;&#x61;&#x69;&#110;&lt;/a>]:</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Build the Server Key</h2>
 
@@ -535,7 +535,7 @@ root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/u
 </span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
 </span><span class='line'>Common Name (eg, your name or your server's hostname) [MyserverName]:
 </span><span class='line'>Name [changeme]:NoName
-</span><span class='line'>Email Address [&lt;a href="&#x6d;&#97;&#105;&#108;&#116;&#111;&#58;&#x6d;&#x61;&#105;&#x6c;&#64;&#104;&#x6f;&#115;&#116;&#x2e;&#x64;&#x6f;&#109;&#x61;&#x69;&#x6e;">&#x6d;&#x61;&#105;&#108;&#64;&#x68;&#x6f;&#115;&#116;&#46;&#100;&#x6f;&#109;&#97;&#x69;&#x6e;&lt;/a>]:&lt;/p>
+</span><span class='line'>Email Address [&lt;a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#109;&#x61;&#x69;&#108;&#x40;&#x68;&#111;&#x73;&#116;&#x2e;&#100;&#111;&#x6d;&#x61;&#105;&#110;">&#x6d;&#x61;&#105;&#x6c;&#64;&#104;&#111;&#115;&#116;&#46;&#100;&#x6f;&#x6d;&#x61;&#105;&#x6e;&lt;/a>]:&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>Please enter the following 'extra' attributes to be sent with your certificate request&lt;/p>
 </span><span class='line'>
@@ -552,7 +552,7 @@ root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/u
 </span><span class='line'>organizationalUnitName:PRINTABLE:'MyOrg'
 </span><span class='line'>commonName            :PRINTABLE:'MyserverName'
 </span><span class='line'>name                  :PRINTABLE:'NoName'
-</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#x6d;&#x61;&#x69;&#108;&#x40;&#104;&#x6f;&#x73;&#x74;&#46;&#x64;&#111;&#x6d;&#97;&#x69;&#x6e;">&#x6d;&#x61;&#x69;&#108;&#64;&#x68;&#x6f;&#x73;&#x74;&#46;&#100;&#x6f;&#x6d;&#97;&#x69;&#x6e;&lt;/a>'
+</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#x3a;&#x6d;&#x61;&#x69;&#x6c;&#64;&#104;&#x6f;&#115;&#x74;&#x2e;&#x64;&#111;&#x6d;&#x61;&#105;&#x6e;">&#x6d;&#x61;&#x69;&#108;&#64;&#104;&#111;&#x73;&#x74;&#46;&#x64;&#x6f;&#x6d;&#97;&#105;&#110;&lt;/a>'
 </span><span class='line'>Certificate is to be certified until Mar 21 22:44:06 2025 GMT (3650 days)&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>Sign the certificate? [y/n]:y
@@ -628,7 +628,7 @@ root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/u
 </span><span class='line'>Organizational Unit Name (eg, section) [changeme]:MyOrg
 </span><span class='line'>Common Name (eg, your name or your server's hostname) [officelaptop]:
 </span><span class='line'>Name [changeme]:OfficeLappyKey
-</span><span class='line'>Email Address [&lt;a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#109;&#x61;&#x69;&#108;&#64;&#104;&#111;&#x73;&#x74;&#x2e;&#100;&#x6f;&#x6d;&#97;&#105;&#x6e;">&#x6d;&#97;&#x69;&#108;&#x40;&#104;&#x6f;&#115;&#116;&#x2e;&#100;&#x6f;&#109;&#x61;&#105;&#x6e;&lt;/a>]:
+</span><span class='line'>Email Address [&lt;a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x6d;&#97;&#x69;&#108;&#x40;&#104;&#111;&#115;&#x74;&#x2e;&#x64;&#x6f;&#x6d;&#97;&#105;&#x6e;">&#x6d;&#97;&#105;&#108;&#x40;&#104;&#111;&#x73;&#116;&#x2e;&#x64;&#x6f;&#x6d;&#x61;&#x69;&#x6e;&lt;/a>]:
 </span><span class='line'>Please enter the following 'extra' attributes to be sent with your certificate request
 </span><span class='line'>A challenge password []:
 </span><span class='line'>An optional company name []:
@@ -643,7 +643,7 @@ root@XXXX/VPN# cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/u
 </span><span class='line'>organizationalUnitName:PRINTABLE:'MyOrg'
 </span><span class='line'>commonName            :PRINTABLE:'officelaptop'
 </span><span class='line'>name                  :PRINTABLE:'OfficeLappyKey'
-</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#109;&#x61;&#x69;&#x6c;&#64;&#x68;&#x6f;&#x73;&#116;&#x2e;&#x64;&#111;&#x6d;&#x61;&#x69;&#x6e;">&#x6d;&#97;&#x69;&#108;&#x40;&#104;&#111;&#115;&#x74;&#46;&#x64;&#111;&#x6d;&#x61;&#105;&#110;&lt;/a>'&lt;/p>
+</span><span class='line'>emailAddress          :IA5STRING:'&lt;a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#x6d;&#x61;&#x69;&#x6c;&#64;&#x68;&#x6f;&#x73;&#116;&#x2e;&#x64;&#111;&#109;&#97;&#105;&#x6e;">&#109;&#x61;&#x69;&#x6c;&#x40;&#104;&#x6f;&#115;&#x74;&#x2e;&#x64;&#111;&#109;&#97;&#105;&#x6e;&lt;/a>'&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>Certificate is to be certified until Mar 21 22:47:52 2025 GMT (3650 days)
 </span><span class='line'>Sign the certificate? [y/n]:y

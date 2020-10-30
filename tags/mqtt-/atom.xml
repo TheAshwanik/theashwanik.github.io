@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:MQTT, | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/mqtt-/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T22:50:03+00:00</updated>
+  <updated>2020-10-30T22:37:35+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -42,13 +42,13 @@ Hence this post.</p>
 
 <p>Please follow the <a href="http://joshondesign.com/2013/10/23/noderpi">instructions</a> to install nodejs.
 After that, install some modules using the Node Package Manager:
-{% codeblock Command for node modules %}
-npm install -g mqtt url request
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for node modules </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g mqtt url request</span></code></pre></td></tr></table></div></figure></notextile></div>
 If you want to debug or auto-reload of the script, also install nodemon:
-{% codeblock Command for nodemon %}
-npm install -g nodemon
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for nodemon </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g nodemon</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><br/><br/>
 <br/></p>
@@ -58,14 +58,19 @@ npm install -g nodemon
 <hr />
 
 <p>Source: <a href="http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/">http://jpmens.net/2013/09/01/installing-mosquitto-on-a-raspberry-pi/</a>
-{% codeblock Commands for mosquitto %}
-curl -O <a href="http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key">http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key</a>   <br/>
-sudo apt-key add mosquitto-repo.gpg.key <br/>
-rm mosquitto-repo.gpg.key
-cd /etc/apt/sources.list.d/ <br/>
-sudo curl -O <a href="http://repo.mosquitto.org/debian/mosquitto-repo.list">http://repo.mosquitto.org/debian/mosquitto-repo.list</a>
-sudo apt-get update
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key">http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key&lt;/a>   &lt;br/>
+</span><span class='line'>sudo apt-key add mosquitto-repo.gpg.key &lt;br/>
+</span><span class='line'>rm mosquitto-repo.gpg.key
+</span><span class='line'>cd /etc/apt/sources.list.d/ &lt;br/>
+</span><span class='line'>sudo curl -O &lt;a href="http://repo.mosquitto.org/debian/mosquitto-repo.list">http://repo.mosquitto.org/debian/mosquitto-repo.list&lt;/a>
+</span><span class='line'>sudo apt-get update</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Now go ahead and install Mosquitto proper. There are three packages:</p>
 
@@ -73,18 +78,18 @@ sudo apt-get update
 -mosquitto-clients are the command-line clients, which I recommend you install  <br/>
 -python-mosquitto are the Python bindings, which I also think you should install all three packages together require about 665Kb of space, which we can easily afford even on the tiny Pi.</p>
 
-<p>{% codeblock Commands for mosquitto and client installations %}
-sudo apt-get install mosquitto mosquitto-clients python-mosquitto
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Commands for mosquitto and client installations </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install mosquitto mosquitto-clients python-mosquitto</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Mosquitto/'s default configuration means it is set up to not use username/password authentication and accepts all connections on port 1883. It also comes with two clients, mosquitto_pub and mosquitto_sub, the latter of which will be useful when you are debugging your applications. Running:
-{% codeblock Command for subscribing %}
-mosquitto_sub -t "#" -v   <br/>
-{% endcodeblock %}
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for subscribing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mosquitto_sub -t "#" -v   &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div>
 will dump all new messages to the broker. Remember the quotes around the topic, especially with the "#" wildcard on Unix as, unquoted or unescaped, that marks the start of a comment and would see the rest of the command discarded. If you leave that command running and, in another window, run
-{% codeblock Command for publishing %}
-'mosquitto_pub -t "mosquittodemo/test" -m "Hi"' <br/>
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Command for publishing </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>'mosquitto_pub -t "mosquittodemo/test" -m "Hi"' &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>then you should see the mosquitto_sub session list the message.</p>
 
@@ -112,9 +117,9 @@ will dump all new messages to the broker. Remember the quotes around the topic, 
 <h4>Installation</h4>
 
 <p>-Clone <a href="https://github.com/jpmens/mqttwarn.git">this</a> repository into a fresh directory.  <br/>
-{% codeblock Clone the repo %}
-git clone <a href="https://github.com/jpmens/mqttwarn.git">https://github.com/jpmens/mqttwarn.git</a>
-{% endcodeblock %}<br/>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Clone the repo </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git clone &lt;a href="https://github.com/jpmens/mqttwarn.git">https://github.com/jpmens/mqttwarn.git&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div><br/>
 -Copy mqttwarn.ini.sample to mqttwarn.ini and edit to your taste   <br/>
 -Install the prerequisite Python modules for the services you want to use   <br/>
 -Launch mqttwarn.py</p>
@@ -139,14 +144,19 @@ git clone <a href="https://github.com/jpmens/mqttwarn.git">https://github.com/jp
 
 <p>All you need to get started is:</p>
 
-<p>{% codeblock Code for creating client and publishing a message %}
-client = new MqttClient("tcp://ipAddressofBroker:1883", "pahomqttpublish1");  <br/>
-client.connect();  <br/>
-MqttMessage message = new MqttMessage();   <br/>
-message.setPayload("A single message".getBytes());  <br/>
-client.publish("home/monitoring/+", message);  <br/>
-client.disconnect();  <br/>
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Code for creating client and publishing a message </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>client = new MqttClient("tcp://ipAddressofBroker:1883", "pahomqttpublish1");  &lt;br/>
+</span><span class='line'>client.connect();  &lt;br/>
+</span><span class='line'>MqttMessage message = new MqttMessage();   &lt;br/>
+</span><span class='line'>message.setPayload("A single message".getBytes());  &lt;br/>
+</span><span class='line'>client.publish("home/monitoring/+", message);  &lt;br/>
+</span><span class='line'>client.disconnect();  &lt;br/></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><br /></p>
 

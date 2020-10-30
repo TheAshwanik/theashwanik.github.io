@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:octopress-migration | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/octopress-migration/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T22:50:03+00:00</updated>
+  <updated>2020-10-30T22:37:35+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -33,44 +33,75 @@
 
 <h3>Clone your blog to the new machine</h3>
 
-<p>{% codeblock %}
-$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
-$ cd Local_octopress
-$ git clone git@github.com:username/username.github.com.git _deploy
-$ gem install bundler
-$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command</p>
-
-<p>$ bundle install</p>
-
-<p>$ rake setup_github_pages</p>
-
-<p>It will prompt you for your repository URL.
-Enter the read/write url for your repository
-(For example, 'git@github.com:your_username/your_username.github.com)
-That’s you setup with a new local copy of your Octopress blog.</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ git clone -b source git@github.com:username/username.github.com.git Local_octopress
+</span><span class='line'>$ cd Local_octopress
+</span><span class='line'>$ git clone git@github.com:username/username.github.com.git _deploy
+</span><span class='line'>$ gem install bundler
+</span><span class='line'>$ rbenv rehash    # If you use rbenv, rehash to be able to run the bundle command&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ bundle install&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake setup_github_pages&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>It will prompt you for your repository URL.
+</span><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.com)
+</span><span class='line'>That’s you setup with a new local copy of your Octopress blog.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Pushing changes from two different machines</h3>
 
-<p>{% codeblock %}
-If you want to blog from more than one computer, you need to make sure that you push everything before switching computers.
-From the first machine do the following whenever you’ve made changes:</p>
-
-<p>$ rake generate
-$ git add .
-$ git commit -am "Some comment here."
-$ git push origin source  # update the remote source branch
-$ rake deploy             # update the remote master branch</p>
-
-<p>Then on the other machine, you need to pull those changes.</p>
-
-<p>$ cd octopress
-$ git pull origin source  # update the local source branch
-$ cd ./_deploy
-$ git pull origin master  # update the local master branch</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>If you want to blog from more than one computer, you need to make sure that you push everything before switching computers.
+</span><span class='line'>From the first machine do the following whenever you’ve made changes:&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ rake generate
+</span><span class='line'>$ git add .
+</span><span class='line'>$ git commit -am "Some comment here."
+</span><span class='line'>$ git push origin source  # update the remote source branch
+</span><span class='line'>$ rake deploy             # update the remote master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>Then on the other machine, you need to pull those changes.&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>$ cd octopress
+</span><span class='line'>$ git pull origin source  # update the local source branch
+</span><span class='line'>$ cd ./_deploy
+</span><span class='line'>$ git pull origin master  # update the local master branch&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h3>Octopress 2.0</h3>
 
@@ -94,56 +125,92 @@ $ git pull origin master  # update the local master branch</p>
 <p>One error I got was in date.rb of <a href="http://feedjira.com/">feedjira(formerly feedzira)</a> plugin.
 The error message said:</p>
 
-<p>{% codeblock %}
-jekyll 2.1.1 undefined method `deep_merge'
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>jekyll 2.1.1 undefined method `deep_merge'</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>so I replaced deep_merge</p>
 
-<p>{% codeblock %}
-    def to_liquid
-        date_format = self.site.config['date_format']
-        self.data.deep_merge({
-            "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
-            "url"               => self.url,
-            "date"              => self.date,
-            # Monkey patch
-            "date_formatted"    => format_date(self.date, date_format),
-            "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
-            "id"                => self.id,
-            "categories"        => self.categories,
-            "next"              => self.next,
-            "previous"          => self.previous,
-            "tags"              => self.tags,
-            "content"           => self.content })
-    end</p>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid
+</span><span class='line'>        date_format = self.site.config['date_format']
+</span><span class='line'>        self.data.deep_merge({
+</span><span class='line'>            "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>            "url"               => self.url,
+</span><span class='line'>            "date"              => self.date,
+</span><span class='line'>            # Monkey patch
+</span><span class='line'>            "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>            "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>            "id"                => self.id,
+</span><span class='line'>            "categories"        => self.categories,
+</span><span class='line'>            "next"              => self.next,
+</span><span class='line'>            "previous"          => self.previous,
+</span><span class='line'>            "tags"              => self.tags,
+</span><span class='line'>            "content"           => self.content })
+</span><span class='line'>    end&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>with the following:</p>
 
-<p>{% codeblock %}
-    def to_liquid(attrs = nil)
-      date_format = self.site.config['date_format']
-      new_datas = {
-        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
-        "url"               => self.url,
-        "date"              => self.date,
-        # Monkey patch
-        "date_formatted"    => format_date(self.date, date_format),
-        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
-        "id"                => self.id,
-        "categories"        => self.categories,
-        "next"              => self.next,
-        "previous"          => self.previous,
-        "tags"              => self.tags,
-        "content"           => self.content }</p>
-
-<pre><code>  Utils.deep_merge_hashes(self.data, new_datas)
-end
-</code></pre>
-
-<p>{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def to_liquid(attrs = nil)
+</span><span class='line'>      date_format = self.site.config['date_format']
+</span><span class='line'>      new_datas = {
+</span><span class='line'>        "title"             => self.data['title'] || self.slug.split('-').select {|w| w.capitalize! || w }.join(' '),
+</span><span class='line'>        "url"               => self.url,
+</span><span class='line'>        "date"              => self.date,
+</span><span class='line'>        # Monkey patch
+</span><span class='line'>        "date_formatted"    => format_date(self.date, date_format),
+</span><span class='line'>        "updated_formatted" => self.data.has_key?('updated') ? format_date(self.data['updated'], date_format) : nil,
+</span><span class='line'>        "id"                => self.id,
+</span><span class='line'>        "categories"        => self.categories,
+</span><span class='line'>        "next"              => self.next,
+</span><span class='line'>        "previous"          => self.previous,
+</span><span class='line'>        "tags"              => self.tags,
+</span><span class='line'>        "content"           => self.content }&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;pre>&lt;code>  Utils.deep_merge_hashes(self.data, new_datas)
+</span><span class='line'>end
+</span><span class='line'>&lt;/code>&lt;/pre>
+</span><span class='line'>
+</span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Notice the use of deep_merge_hashes above.</p>
 
@@ -151,39 +218,54 @@ end
 
 <p>The reason is that Octopress only does a push to the <code>master</code> branch and not a pull. To resolve this, do this:</p>
 
-<p>{% codeblock %}
-$$ cd _deploy
-$$ git push origin master -f   # hope this solves the problem, move to next command
-$$ cd ..
-$$ bundle exec rake gen_deploy
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$$ cd _deploy
+</span><span class='line'>$$ git push origin master -f   # hope this solves the problem, move to next command
+</span><span class='line'>$$ cd ..
+</span><span class='line'>$$ bundle exec rake gen_deploy</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Another error was in installing curl on windows. So I had to refer <a href="https://github.com/taf2/curb/issues/37">this</a>
 And install curb manually.</p>
 
-<p>{% codeblock %}
-C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
-Temporarily enhancing PATH to include DevKit...
-Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
-This could take a while...
-Successfully installed curb-0.7.18
-Installing ri documentation for curb-0.7.18
-1 gem installed
-{% endcodeblock %}</p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>C:\Users\AshwaniK> gem install curb  -v '0.7.18' -- --with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include
+</span><span class='line'>Temporarily enhancing PATH to include DevKit...
+</span><span class='line'>Building native extensions with: '--with-curl-lib=C:\libcurl\bin --with-curl-include=C:\libcurl\include'
+</span><span class='line'>This could take a while...
+</span><span class='line'>Successfully installed curb-0.7.18
+</span><span class='line'>Installing ri documentation for curb-0.7.18
+</span><span class='line'>1 gem installed</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>Reference Commands:
-{% codeblock %}
-cd octopress
-bundle exec rake new_post["title"]
-bundle exec rake preview
-bundle exec rake generate</p>
-
-<p>bundle exec rake deploy</p>
-
-<p>git add .
-git commit -m 'site updated'
-git push origin source
-{% endcodeblock %}</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd octopress
+</span><span class='line'>bundle exec rake new_post["title"]
+</span><span class='line'>bundle exec rake preview
+</span><span class='line'>bundle exec rake generate&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>bundle exec rake deploy&lt;/p>
+</span><span class='line'>
+</span><span class='line'>&lt;p>git add .
+</span><span class='line'>git commit -m 'site updated'
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>There were other errors which I somehow resolved.</p>
 
