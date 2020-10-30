@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:LetsEncrypt | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/letsencrypt/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2020-10-30T23:00:49+00:00</updated>
+  <updated>2020-10-30T22:50:03+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -31,20 +31,20 @@ To load a new HTTPS certificate for OpenVPN AS (Access Server), you.ll want to u
 <p>The first step to using LetsEncrypt to obtain an SSL certificate is to install the certbot software on your server.</p>
 
 <p>First, add the repository:
-{{ codeblock }}
+
 sudo add-apt-repository ppa:certbot/certbot ````
-{{ endcodeblock }}</p>
+</p>
 
 <p>You'll need to press ENTER to accept. Afterwards, update the package list to pick up the new repository.s package information:
-{{ codeblock }}
+
 sudo apt-get update
-{{ endcodeblock }}</p>
+</p>
 
 <p>And finally, install Certbot with apt-get:</p>
 
-<p>{{ codeblock }}
+<p>
 sudo apt-get install python-certbot-nginx
-{{ endcodeblock }}</p>
+</p>
 
 <p>The certbot LetsEncrypt client is now ready to use.</p>
 
@@ -52,7 +52,7 @@ sudo apt-get install python-certbot-nginx
 
 <p>Certbot can automatically configure SSL for Nginx, but it needs to be able to find the correct server block in your config. It does this by looking for a server_name directive that matches the domain you.re requesting a certificate for. If you.re starting out with a fresh Nginx install, you can update the default config file:</p>
 
-<p>{{ codeblock }}
+<p>
 sudo nano /etc/nginx/sites-available/default
 Find the existing server_name line:</p>
 
@@ -70,13 +70,13 @@ If that runs with no errors, reload Nginx to load the new configuration:</p>
 <p>sudo service nginx reload
 Certbot will now be able to find the correct server block and update it. Now we.ll update our firewall to allow HTTPS traffic.</p>
 
-<p>{{ endcodeblock }}</p>
+<p></p>
 
 <h1>Step 3 . Obtaining an SSL Certificate</h1>
 
 <p>Certbot provides a variety of ways to obtain SSL certificates, through various plugins. The Nginx plugin will take care of reconfiguring Nginx and reloading the config whenever necessary:</p>
 
-<p>{{ codeblock }}
+<p>
 sudo certbot --nginx -d example.com -d www.example.com
 This runs certbot with the --nginx plugin, using -d to specify the names we.d like the certificate to be valid for.</p>
 
@@ -116,7 +116,7 @@ IMPORTANT NOTES:
    Donating to EFF:                    <a href="https://eff.org/donate-le">https://eff.org/donate-le</a>
 Your certificates are now downloaded, installed, and configured. Try reloading your website using <a href="https://">https://</a> and notice your browser.s security indicator. It should represent that the site is properly secured, usually with a green lock icon. If you test your server using the SSL Labs Server Test, it will get an A grade.</p>
 
-<p>{{ endcodeblock }}</p>
+<p></p>
 
 <h1>Step 4 . Verifying Certbot Auto-Renewal</h1>
 
@@ -124,9 +124,9 @@ Your certificates are now downloaded, installed, and configured. Try reloading y
 
 <p>To test the renewal process, you can do a dry run with certbot:</p>
 
-<p>{{ codeblock }}
+<p>
 sudo certbot renew --dry-run
-{{ endcodeblock }}</p>
+</p>
 
 <h1>Commands Used</h1>
 
