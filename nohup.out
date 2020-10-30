@@ -1475,3 +1475,83 @@ cd -
 ## Commit source to GitHub
 warning: CRLF will be replaced by LF in nohup.out.
 The file will have its original line endings in your working directory.
+warning: CRLF will be replaced by LF in nohup.out.
+The file will have its original line endings in your working directory.
+[source 7c4d012] Updated source Fri Oct 30 22:59:17 GMT 2020
+ 2 files changed, 320 insertions(+)
+ create mode 100644 source/_posts/2020-10-30-run-ibm-datapower-gateway-idg10-on-docker.markdown
+To github.com:TheAshwanik/theashwanik.github.io.git
+   8aa7df7..7c4d012  source -> source
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+                    done in 2195.64 seconds.
+ Auto-regeneration: disabled. Use --watch to enable.
+cd _deploy
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+From github.com:TheAshwanik/theashwanik.github.io
+   8aa7df7..7c4d012  source     -> origin/source
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+cd -
+rm -rf _deploy/8c84d900546f7.txt
+rm -rf _deploy/attributions.txt
+rm -rf _deploy/README.markdown
+rm -rf _deploy/crossdomain.xml
+rm -rf _deploy/javascripts
+rm -rf _deploy/js
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/robots.txt
+rm -rf _deploy/humans.txt
+rm -rf _deploy/favicon.png
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/fonts
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/google07b1a0e98e151fd3.html
+rm -rf _deploy/atom.xml
+rm -rf _deploy/tags
+rm -rf _deploy/stylesheets
+rm -rf _deploy/tldr-Jquery-client
+rm -rf _deploy/keybase.txt
+rm -rf _deploy/assets
+rm -rf _deploy/posts
+rm -rf _deploy/data
+cp -r public/. _deploy
+cd _deploy
+
+## Copying public to _deploy
+
+## Committing: Site updated at 2020-10-30 23:16:01 UTC
+[master 7291f76] Site updated at 2020-10-30 23:16:01 UTC
+ 107 files changed, 4441 insertions(+), 4310 deletions(-)
+ rewrite tags/2fa-/atom.xml (72%)
+ rewrite tags/authenticator/atom.xml (72%)
+ rewrite tags/diaspora/atom.xml (71%)
+ rewrite tags/google/atom.xml (72%)
+ rewrite tags/hashicorp-/atom.xml (81%)
+ copy tags/{hashicorp- => security-}/atom.xml (84%)
+ rewrite tags/vault/atom.xml (82%)
+
+## Pushing generated _deploy website
+To github.com:TheAshwanik/theashwanik.github.io.git
+   c805d66..7291f76  master -> master
+cd -
+
+## Github Pages deploy complete
+
+## Commit source to GitHub
+warning: CRLF will be replaced by LF in nohup.out.
+The file will have its original line endings in your working directory.
