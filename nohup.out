@@ -1278,3 +1278,200 @@ cd -
 ## Github Pages deploy complete
 
 ## Commit source to GitHub
+[source 8aa7df7] Updated source Fri Aug 14 00:02:36 BST 2020
+ 3 files changed, 77 insertions(+)
+ create mode 100644 source/assets/ArchitectureSymbol_Part1.png
+ create mode 100644 source/assets/ArchitectureSymbol_Part2.png
+To github.com:TheAshwanik/theashwanik.github.io.git
+   104e590..8aa7df7  source -> source
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[31m             Error: could not read file /home/theashwanik/myblog/octopress5/source/_posts/2020-10-30-run-ibm-datapower-gateway-idg-10-dot-0-0-on-docker.markdown: invalid byte sequence in UTF-8[0m
+rake aborted!
+Interrupt: 
+/home/theashwanik/myblog/octopress5/Rakefile:62:in `system'
+/home/theashwanik/myblog/octopress5/Rakefile:62:in `block in <top (required)>'
+/home/theashwanik/.rvm/gems/ruby-2.6.0/bin/ruby_executable_hooks:24:in `eval'
+/home/theashwanik/.rvm/gems/ruby-2.6.0/bin/ruby_executable_hooks:24:in `<main>'
+Tasks: TOP => generate
+(See full trace by running task with --trace)
+[31m  Liquid Exception:  in /_layouts/page.html[0m
+/home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization.rb:39:in `translate': Interrupt
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:125:in `translate'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:110:in `block in vulgar_fractions'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:109:in `each'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:109:in `vulgar_fractions'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:58:in `block in translate!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:57:in `each'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization/converter.rb:57:in `translate!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/string_extensions.rb:92:in `block in convert_vulgar_fractions'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization.rb:86:in `instance_exec'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/localization.rb:86:in `convert'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/string_extensions.rb:206:in `stringex_convert'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/string_extensions.rb:91:in `convert_vulgar_fractions'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/string_extensions.rb:134:in `remove_formatting'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/stringex-2.8.5/lib/stringex/string_extensions.rb:195:in `to_url'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_cloud.rb:116:in `block in render'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_cloud.rb:112:in `each'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_cloud.rb:112:in `each_with_index'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_cloud.rb:112:in `render'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/block_body.rb:103:in `render_node_to_output'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/block_body.rb:91:in `render'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/template.rb:208:in `block in render'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/template.rb:242:in `with_profiling'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/template.rb:207:in `render'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/liquid-4.0.3/lib/liquid/template.rb:220:in `render!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/liquid_renderer/file.rb:30:in `block (2 levels) in render!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/liquid_renderer/file.rb:42:in `measure_bytes'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/liquid_renderer/file.rb:29:in `block in render!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/liquid_renderer/file.rb:49:in `measure_time'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/liquid_renderer/file.rb:28:in `render!'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/renderer.rb:123:in `render_liquid'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/octopress-hooks-2.6.2/lib/octopress-hooks.rb:311:in `render_liquid'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/renderer.rb:188:in `render_layout'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/renderer.rb:155:in `place_in_layouts'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/renderer.rb:85:in `render_document'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/renderer.rb:62:in `run'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/octopress-hooks-2.6.2/lib/octopress-hooks.rb:306:in `run'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/convertible.rb:214:in `do_layout'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/octopress-hooks-2.6.2/lib/octopress-hooks.rb:350:in `do_layout'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/page.rb:137:in `render'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_generator.rb:87:in `write_tag_index'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_generator.rb:105:in `block in write_tag_indexes'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_generator.rb:104:in `each'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_generator.rb:104:in `write_tag_indexes'
+	from /home/theashwanik/myblog/octopress5/plugins/tag_generator.rb:123:in `generate'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/site.rb:174:in `block in generate'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/site.rb:172:in `each'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/site.rb:172:in `generate'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/site.rb:72:in `process'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/command.rb:28:in `process_site'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/commands/build.rb:65:in `build'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/commands/build.rb:36:in `process'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/lib/jekyll/commands/build.rb:18:in `block (2 levels) in init_with_program'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `block in execute'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `each'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `execute'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/mercenary-0.3.6/lib/mercenary/program.rb:42:in `go'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/mercenary-0.3.6/lib/mercenary.rb:19:in `program'
+	from /home/theashwanik/.rvm/rubies/ruby-2.6.0/lib/ruby/gems/2.6.0/gems/jekyll-3.7.2/exe/jekyll:15:in `<top (required)>'
+	from /home/theashwanik/.rvm/gems/ruby-2.6.0/bin/jekyll:23:in `load'
+	from /home/theashwanik/.rvm/gems/ruby-2.6.0/bin/jekyll:23:in `<main>'
+	from /home/theashwanik/.rvm/gems/ruby-2.6.0/bin/ruby_executable_hooks:24:in `eval'
+	from /home/theashwanik/.rvm/gems/ruby-2.6.0/bin/ruby_executable_hooks:24:in `<main>'
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[31m             Error: could not read file /home/theashwanik/myblog/octopress5/source/_posts/2020-10-30-run-ibm-datapower-gateway-idg10-on-docker.markdown: invalid byte sequence in UTF-8[0m
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[31m             Error: could not read file /home/theashwanik/myblog/octopress5/source/_posts/2020-10-30-run-ibm-datapower-gateway-idg10-on-docker.markdown: invalid byte sequence in UTF-8[0m
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+Configuration file: /home/theashwanik/myblog/octopress5/_config.yml
+            Source: source
+       Destination: public
+ Incremental build: disabled. Enable with --incremental
+      Generating... 
+[31m             Error: could not read file /home/theashwanik/myblog/octopress5/source/_posts/2020-10-30-run-ibm-datapower-gateway-idg10-on-docker.markdown: invalid byte sequence in UTF-8[0m
+
+Warning: PATH set to RVM ruby but GEM_HOME and/or GEM_PATH not set, see:
+    https://github.com/rvm/rvm/issues/3212
+
+## Generating Site with Jekyll
+                    done in 1587.776 seconds.
+ Auto-regeneration: disabled. Use --watch to enable.
+cd _deploy
+## Deploying branch to Github Pages 
+## Pulling any updates from Github Pages 
+Warning: Permanently added the RSA host key for IP address '140.82.121.3' to the list of known hosts.
+From github.com:TheAshwanik/theashwanik.github.io
+   104e590..8aa7df7  source     -> origin/source
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> master
+
+cd -
+rm -rf _deploy/8c84d900546f7.txt
+rm -rf _deploy/attributions.txt
+rm -rf _deploy/README.markdown
+rm -rf _deploy/crossdomain.xml
+rm -rf _deploy/javascripts
+rm -rf _deploy/js
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/robots.txt
+rm -rf _deploy/humans.txt
+rm -rf _deploy/favicon.png
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/fonts
+rm -rf _deploy/blog
+rm -rf _deploy/CNAME
+rm -rf _deploy/google07b1a0e98e151fd3.html
+rm -rf _deploy/atom.xml
+rm -rf _deploy/tags
+rm -rf _deploy/stylesheets
+rm -rf _deploy/tldr-Jquery-client
+rm -rf _deploy/keybase.txt
+rm -rf _deploy/assets
+rm -rf _deploy/posts
+rm -rf _deploy/data
+cp -r public/. _deploy
+cd _deploy
+
+## Copying public to _deploy
+
+## Committing: Site updated at 2020-10-30 22:58:55 UTC
+[master c805d66] Site updated at 2020-10-30 22:58:55 UTC
+ 95 files changed, 2601 insertions(+), 3597 deletions(-)
+ rewrite tags/-/atom.xml (73%)
+ rewrite tags/ipaddress-/atom.xml (79%)
+ rewrite tags/octopress-/atom.xml (72%)
+ rewrite tags/octopress-migration/atom.xml (72%)
+ rewrite tags/octopress-plugin/atom.xml (72%)
+ rewrite tags/repo/atom.xml (72%)
+ rewrite tags/security-/atom.xml (70%)
+
+## Pushing generated _deploy website
+Warning: Permanently added the RSA host key for IP address '140.82.121.4' to the list of known hosts.
+To github.com:TheAshwanik/theashwanik.github.io.git
+   9fa5a02..c805d66  master -> master
+cd -
+
+## Github Pages deploy complete
+
+## Commit source to GitHub
+warning: CRLF will be replaced by LF in nohup.out.
+The file will have its original line endings in your working directory.
