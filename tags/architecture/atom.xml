@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:architecture | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/architecture/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2021-04-04T12:16:27+01:00</updated>
+  <updated>2021-04-04T13:27:23+01:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -24,7 +24,7 @@
 
 <h2>Azure Design Visio VSSX</h2>
 
-<p>David Summers started an "Azure Icon Design project" to collect icons in Visio format (VSSX). You'll find the icon set from his GitHub repo:<br/>
+<p>David Summers started an "Azure Icon Design project" to collect icons in Visio format (VSSX). <!-- more --> You'll find the icon set from his GitHub repo:<br/>
 <a href="https://github.com/David-Summers/Azure-Design">https://github.com/David-Summers/Azure-Design</a></p>
 
 <h2>Azure-Stencils (VSSX und SVG)</h2>
@@ -122,6 +122,9 @@ All your design documentations should follow a common schema.</li>
 <li><strong>Design vs. implementation/operation guide</strong>: Move details about implementation or specification to the appendix or splitting the documentation between architecture (design) document and implementation guide.</li>
 </ol>
 
+
+<p><br/>
+<br/>`</p>
 
 <p><em>If you want to learn more about architecture and design patterns in Azure this study collection might be interesting for you.</em></p>
 
