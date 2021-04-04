@@ -12,7 +12,7 @@ _In this article I like to give you an overview about resources that helps you t
 
 # Shapes and icon sets
 ## Azure Design Visio VSSX
-David Summers started an "Azure Icon Design project" to collect icons in Visio format (VSSX). You'll find the icon set from his GitHub repo:  
+David Summers started an "Azure Icon Design project" to collect icons in Visio format (VSSX). <!-- more --> You'll find the icon set from his GitHub repo:  
 [https://github.com/David-Summers/Azure-Design](https://github.com/David-Summers/Azure-Design)
  
 ## Azure-Stencils (VSSX und SVG)
@@ -93,7 +93,8 @@ All your design documentations should follow a common schema.
 4. **Capture the decisions (including pros and cons):** What were the reasons for the planned solutions? Review your design decision and the reasons to having cut off other variants?
 5. **Design vs. implementation/operation guide**: Move details about implementation or specification to the appendix or splitting the documentation between architecture (design) document and implementation guide.
 
-
+<br/>
+<br/>`
 
 _If you want to learn more about architecture and design patterns in Azure this study collection might be interesting for you._
 
