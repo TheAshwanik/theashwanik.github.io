@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:Port | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/port/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2021-04-04T13:27:23+01:00</updated>
+  <updated>2023-02-26T19:20:18+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -53,7 +53,7 @@ that local port to some remote server on a predefined port.</p>
 </span><span class='line'>echo "Looks like you get port ${Port}."  // Say you got 32003&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p>//ssh -f userOfRemoteServer@remoteserverIP -L LocalhostIPaddress:localport:RemotehostIPaddress:remoteport -N
-</span><span class='line'>ssh -f &lt;a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#117;&#115;&#x65;&#x72;&#x40;&#49;&#48;&#46;&#49;&#52;&#x35;&#x2e;&#x32;&#46;&#x32;&#x33;&#x33;">&#117;&#115;&#x65;&#114;&#64;&#x31;&#x30;&#x2e;&#49;&#x34;&#x35;&#x2e;&#x32;&#x2e;&#x32;&#x33;&#x33;&lt;/a> -L 10.115.13.108:${Port}:10.145.2.233:8000 -N&lt;/p>
+</span><span class='line'>ssh -f &lt;a href="&#109;&#97;&#x69;&#108;&#x74;&#x6f;&#58;&#x75;&#x73;&#101;&#114;&#64;&#x31;&#48;&#x2e;&#49;&#52;&#53;&#46;&#x32;&#46;&#x32;&#x33;&#51;">&#x75;&#x73;&#101;&#x72;&#64;&#49;&#x30;&#46;&#49;&#52;&#53;&#x2e;&#x32;&#46;&#x32;&#51;&#x33;&lt;/a> -L 10.115.13.108:${Port}:10.145.2.233:8000 -N&lt;/p>
 </span><span class='line'>
 </span><span class='line'>&lt;p></span></code></pre></td></tr></table></div></figure></notextile></div></p>
 

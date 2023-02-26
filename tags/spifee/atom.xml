@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag:spifee | Ashwani's Tech World - Giving back to community]]></title>
+  <link href="http://blog.ashwani.co.in/tags/spifee/atom.xml" rel="self"/>
+  <link href="http://blog.ashwani.co.in/"/>
+  <updated>2023-02-26T19:20:18+00:00</updated>
+  <id>http://blog.ashwani.co.in/</id>
+  <author>
+    <name><![CDATA[Ashwani Kumar]]></name>
+    <email><![CDATA[aryan.ashwani@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SPIFE Implementation with SPIRE And OIDC Setup]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2023-02-26/spife-implementation-with-spire-and-oidc-setup/"/>
+    <updated>2023-02-26T18:32:22+00:00</updated>
+    <id>http://blog.ashwani.co.in/blog/2023-02-26/spife-implementation-with-spire-and-oidc-setup</id>
+    <content type="html"><![CDATA[<p>As a solution architect, I'm excited to share my thoughts on two important frameworks in the world of technology - SPIFEE and SPIRE. These frameworks have been gaining popularity in last few years, and they play a crucial role in zero trust and ensuring the security and privacy of data in various industries.</p>
+
+<!-- more -->
+
+
+<p>In this blog, I'll not explore the concepts behind SPIFEE and SPIRE and their benefits for businesses. I'll also not discuss how these frameworks work together to provide a comprehensive security solution.
+Please Read more about SPIFEE and SPIRE seperately.
+This article is a note to myself how to quickstart a demo for SPIRE and implementation of SPIFEE.</p>
+
+<h2>Configure SPIRE Server on Kubernetes</h2>
+
+<p>Clone <a href="https://github.com/spiffe/spire-tutorials">https://github.com/spiffe/spire-tutorials</a> and obtain the .yaml files from the spire-tutorials/k8s/quickstart subdirectory.</p>
+
+<p>Remember to run all kubectl commands in the directory in which those files reside.</p>
+
+<h2>Configure Kubernetes Namespace for SPIRE Components</h2>
+
+<p>Follow these steps to configure the spire namespace in which SPIRE Server and SPIRE Agent are deployed.</p>
+
+<p>Change to the directory containing the .yaml files.</p>
+
+<h4>Create the namespace:</h4>
+
+<pre><code>$ kubectl apply -f spire-namespace.yaml
+</code></pre>
+
+<p>Run the following command and verify that spire is listed in the output:
+<code>
+$ kubectl get namespaces
+</code></p>
+
+<h4>Create Server Bundle Configmap, Role &amp; ClusterRoleBinding</h4>
+
+<p>For the server to function, it is necessary for it to provide agents with certificates that they can use to verify the identity of the server when establishing a connection.</p>
+
+<p>In a deployment such as this, where the agent and server share the same cluster, SPIRE can be configured to automatically generate these certificates on a periodic basis and update a configmap with contents of the certificate. To do that, the server needs the ability to get and patch a configmap object in the spire namespace.</p>
+
+<p>To allow the server to read and write to this configmap, a ClusterRole must be created that confers the appropriate entitlements to Kubernetes RBAC, and that ClusterRoleBinding must be associated with the service account created in the previous step.</p>
+
+<p>Create the server’s service account, configmap and associated role bindings as follows:
+<code>
+$ kubectl apply \
+    -f server-account.yaml \
+    -f spire-bundle-configmap.yaml \
+    -f server-cluster-role.yaml
+</code></p>
+
+<h2>Create Server Configmap</h2>
+
+<p>The server is configured in the Kubernetes configmap specified in server-configmap.yaml, which specifies a number of important directories, notably /run/spire/data and /run/spire/config. These volumes are bound in when the server container is deployed.</p>
+
+<p>Change service type to LoadBalancer instead of NodePort in the server-service.yaml
+Add NodeAttestor join_token in server-configmap.yaml</p>
+
+<pre><code>    NodeAttestor "join_token" {
+        plugin_data {}
+      } 
+</code></pre>
+
+<p>Deploy the server configmap and statefulset by applying the following files via kubectl:</p>
+
+<pre><code>$ kubectl apply \
+    -f server-configmap.yaml \
+    -f server-statefulset.yaml \
+    -f server-service.yaml
+</code></pre>
+
+<p>This creates a statefulset called spire-server in the spire namespace and starts up a spire-server pod, as demonstrated in the output of the following commands:</p>
+
+<pre><code>$ kubectl get statefulset --namespace spire
+
+NAME           READY   AGE
+spire-server   1/1     86m
+
+$ kubectl get pods --namespace spire
+
+NAME                           READY   STATUS    RESTARTS   AGE
+spire-server-0                 1/1     Running   0          86m
+
+$ kubectl get services --namespace spire
+
+NAME           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+spire-server   NodePort   10.107.205.29   &lt;none&gt;        8081:30337/TCP   88m
+</code></pre>
+
+<h2>Create Join Token</h2>
+
+<h4>Generate a one-time-use token to use to attest the agent:</h4>
+
+<h4>On Server</h4>
+
+<p>Creating a join token to attest the agent to the server
+A join token is one of the many available agent attestor methods. It is a one-time-use, pre-shared key that attests (authenticates) the SPIRE agent to the SPIRE server. Other agent attestation methods include AWS/GCP instance identity tokens and X.509 certificates. To see a complete list of available attestors, click <a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/spire/using/registering/#1-defining-the-spiffe-id-of-the-agent.">https://deploy-preview-272--spiffe.netlify.app/docs/latest/spire/using/registering/#1-defining-the-spiffe-id-of-the-agent.</a></p>
+
+<pre><code>kubectl -n spire exec -it $(kubectl -n spire get pods -o=jsonpath='{.items[0].metadata.name}' -l app=spire-server) -- /opt/spire/bin/spire-server token generate  -spiffeID spiffe://example.org/myagent
+
+Token: db2exxxxx-61d6-428e-8297-1efc0xxxxxx
+</code></pre>
+
+<p>Make a note of the token, you will need it in the next step to attest the agent on initial startup.</p>
+
+<blockquote><p>A Join Token is just one of the many available agent attestation methods. To see a complete list of available attestors, click <a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/spire/using/registering/#1-defining-the-spiffe-id-of-the-agent.">https://deploy-preview-272--spiffe.netlify.app/docs/latest/spire/using/registering/#1-defining-the-spiffe-id-of-the-agent.</a></p></blockquote>
+
+<h2>Configure Agent on client side (on-prem)</h2>
+
+<h4>Install agent</h4>
+
+<p>Read this: <a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-linux-macos-x/#downloading-spire-for-linux">https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-linux-macos-x/#downloading-spire-for-linux</a>
+<code>
+$ curl -s -N -L https://github.com/spiffe/spire/releases/download/v1.4.7/spire-1.4.7-linux-x86_64-glibc.tar.gz | tar xz
+</code>
+Create, and move the SPIRE executables into, a bin directory as expected by the rest of this document:
+<code>
+$ mkdir bin
+$ mv spire-server spire-agent bin
+</code></p>
+
+<h4>Starting the SPIRE Agent</h4>
+
+<p>SPIRE agents query the SPIRE server to attest (authenticate) nodes and workloads.</p>
+
+<p>Use the token created in the previous step to start and attest the agent:</p>
+
+<pre><code>$ spire-agent run -config /opt/spire/conf/agent/agent.conf -joinToken xxxxxc5-4336-456f-8140-05850xxxxxxxx
+
+WARN[0000] Current umask 0022 is too permissive; setting umask 0027
+INFO[0000] Starting agent with data directory: "./data/agent"
+INFO[0000] Plugin loaded                                 external=false plugin_name=disk plugin_type=KeyManager subsystem_name=catalog
+INFO[0000] Plugin loaded                                 external=false plugin_name=join_token plugin_type=NodeAttestor subsystem_name=catalog
+INFO[0000] Plugin loaded                                 external=false plugin_name=unix plugin_type=WorkloadAttestor subsystem_name=catalog
+INFO[0000] Bundle is not found                           subsystem_name=attestor
+DEBU[0000] No pre-existing agent SVID found. Will perform node attestation  subsystem_name=attestor
+WARN[0000] Keys recovered, but no SVID found. Generating new keypair  subsystem_name=attestor
+INFO[0000] SVID is not found. Starting node attestation  subsystem_name=attestor
+WARN[0000] Insecure bootstrap enabled; skipping server certificate verification  subsystem_name=attestor
+INFO[0000] Node attestation was successful               rettestable=false spiffe_id="spiffe://example.org/spire/agent/join_token/b4ef1fc5-4336-456f-8140-05xxxxxxx335e" subsystem_name=attestor
+DEBU[0001] Entry created                                 entry=9638xxxx-a983-499a-89ea-a6cxxxxxx385b selectors_added=1 spiffe_id="spiffe://example.org/myagent" subsystem_name=cache_manager
+DEBU[0001] Renewing stale entries                        cache_type=workload count=1 limit=500 subsystem_name=manager
+INFO[0001] Renewing X509-SVID                            spiffe_id="spiffe://example.org/myagent" subsystem_name=manager
+DEBU[0001] SVID updated                                  entry=963846e0-a983-499a-89ea-a6c78f3f385b spiffe_id="spiffe://example.org/myagent" subsystem_name=cache_manager
+DEBU[0001] Bundle added                                  subsystem_name=svid_store_cache trust_domain_id=example.org
+INFO[0001] Starting Workload and SDS APIs                address=/tmp/spire-agent/public/api.sock network=unix subsystem_name=endpoints
+DEBU[0002] Starting checker                              name=agent subsystem_name=health
+</code></pre>
+
+<h4>Check logs on server</h4>
+
+<pre><code>kubectl logs -n spire $(kubectl -n spire get pods -o=jsonpath='{.items[0].metadata.name}' -l app=spire-server) -f 
+....
+....
+time="2023-02-26T14:48:10Z" level=debug msg="Initializing health checkers" subsystem_name=health
+time="2023-02-26T14:48:10Z" level=info msg="Serving health checks" address="0.0.0.0:8080" subsystem_name=health
+time="2023-02-26T15:08:16Z" level=error msg="Invalid argument: join token expired" authorized_as=nobody authorized_via= caller_addr="10.56.1.1:27045" method=AttestAgent node_attestor_type=join_token request_id=3c3c4446-89aa-41f5-9f2b-77e86faeceba service=agent.v1.Agent subsystem_name=api
+time="2023-02-26T15:08:56Z" level=info msg="Agent attestation request completed" address="10.128.0.5:41034" agent_id="spiffe://example.org/spire/agent/join_token/b4xxxxx5-4336-456f-8140-xxxxe9335e" authorized_as=nobody authorized_via= caller_addr="10.128.0.5:41034" method=AttestAgent node_attestor_type=join_token request_id=2f2e41bb-1f9d-4ddc-95c5-xxxxxxdd95 service=agent.v1.Agent subsystem_name=api
+time="2023-02-26T15:08:57Z" level=debug msg="Signed X509 SVID" authorized_as=agent authorized_via=datastore caller_addr="10.56.1.1:49076" caller_id="spiffe://example.org/spire/agent/join_token/b4ef1fc5-4336-456f-8140-05xxxxxx9335e" entry_id=9638xxxx-a983-499a-89ea-a6c78xxxxx85b expiration="2023-02-26T16:08:57Z" method=BatchNewX509SVID request_id=bec5f734-70b3-4e1a-8562-c5ffefce7c1a service=svid.v1.SVID spiffe_id="spiffe://example.org/myagent" subsystem_name=api
+</code></pre>
+
+<h2>Register Workload</h2>
+
+<h4>On Server</h4>
+
+<p>Create a registration policy for your workload
+In order for SPIRE to identify a workload, you must register the workload with the SPIRE Server, via registration entries. Workload registration tells SPIRE how to identify the workload and which SPIFFE ID to give it.</p>
+
+<blockquote><p>This command is creating a registration entry based on the current user’s UID ($(id -u)) - feel free to adjust this as necessary</p></blockquote>
+
+<pre><code>$ kubectl -n spire exec -it $(kubectl -n spire get pods -o=jsonpath='{.items[0].metadata.name}' -l app=spire-server) -- bin/spire-server entry create -parentID spiffe://example.org/myagent  -spiffeID spiffe://example.org/myservice -selector unix:uid:$(id -u)
+
+Entry ID      : ac5e2354-596a-4059-85f7-5b7xxxxxxxxx
+SPIFFE ID     : spiffe://example.org/myservice
+Parent ID     : spiffe://example.org/myagent
+TTL           : 3600
+Selector      : unix:uid:501
+</code></pre>
+
+<h4>On Agent</h4>
+
+<p>Retrieve and view a x509-SVID
+This command replicates the process that a workload would take to get an x509-SVID from the agent. The x509-SVID could be used to authenticate the workload to another workload. To fetch and write an x509-SVID to /tmp/:</p>
+
+<pre><code>$ spire-agent api fetch x509 -write /tmp/
+
+Received 1 svid after 2.2703ms
+
+SPIFFE ID:              spiffe://example.org/myservice
+SVID Valid After:       2023-02-26 15:18:53 +0000 UTC
+SVID Valid Until:       2023-02-26 16:19:03 +0000 UTC
+CA #1 Valid After:      2023-02-26 14:47:58 +0000 UTC
+CA #1 Valid Until:      2023-02-27 14:48:08 +0000 UTC
+
+Writing SVID #0 to file /tmp/svid.0.pem.
+Writing key #0 to file /tmp/svid.0.key.
+Writing bundle #0 to file /tmp/bundle.0.pem.
+</code></pre>
+
+<h4>Check logs on Server</h4>
+
+<p>Logs:
+kubectl logs -n spire $(kubectl -n spire get pods -o=jsonpath='{.items[0].metadata.name}' -l app=spire-server) -f</p>
+
+<p>time="2023-02-26T15:19:03Z" level=debug msg="Signed X509 SVID" authorized_as=agent authorized_via=datastore caller_addr="10.56.1.1:28674" caller_id="spiffe://example.org/spire/agent/join_token/xxxx336-456f-8140-05850ae9335e" entry_id=e1d7a74d-56b9-4fc2-b5de-0ff48xxx629 expiration="2023-02-26T16:19:03Z" method=BatchNewX509SVID request_id=d36dxxx4bb-466b-afe7-b0f047156317 service=svid.v1.SVID spiffe_id="spiffe://example.org/myservice" subsystem_name=api</p>
+
+<p>You can use the openssl command to view the contents of the SVID:</p>
+
+<pre><code class="">openssl x509 -in /tmp/svid.0.pem -text -noout
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            92:23:22:2c:6b:15:84:f7:30:xx:xx:xx:xx:3e:b9:08
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C = US, O = SPIFFE
+        Validity
+            Not Before: Feb 26 15:18:53 2023 GMT
+            Not After : Feb 26 16:19:03 2023 GMT
+        Subject: C = US, O = SPIRE, x500UniqueIdentifier = f7fa051b660xxxx34e54056a8c4e281a
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:44:33:2a:c1:af:c0:5c:77:58:7f:a9:fb:3b:41:
+                    d0:bc:xy:xx:21:4e:d8:13:65:25:30:24:48:6f:b6:
+                    0b:84:73:5a:xx:xx:72:52:c0:6a:48:11:a1:72:94:
+                    f4:31:87:cf:6d:9f:xx:91:83:0b:e3:d1:0f:88:1b:
+                    46:e4:49:1c:b7
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment, Key Agreement
+            X509v3 Extended Key Usage:
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier:
+                51:FD:A9:DA:35:51:10:65:xx:xx:xx:01:F6:28:C9:34:CF:07:C5:11
+            X509v3 Authority Key Identifier:
+                keyid:E1:61:D6:62:08:54:xx:xx:xx:C9:D9:50:2D:0F:13:EA:72:95:C1:34
+
+            X509v3 Subject Alternative Name:
+                URI:spiffe://example.org/myservice
+    Signature Algorithm: sha256WithRSAEncryption
+         1a:35:d6:47:ce:64:d0:85:2b:e4:76:b3:4e:0d:c5:db:f7:6b:
+         32:fd:ac:a2:b4:f0:e7:77:bf:9c:3b:f8:b6:06:77:c3:9b:68:
+         55:0b:5b:0b:72:55:ef:8c:dc:84:e0:b4:5a:78:79:7d:a3:db:
+         b4:05:b3:c3:b6:c4:0c:46:f0:e0:eb:c9:64:df:75:2a:0c:9d:
+         4c:dc:4c:25:58:ab:84:75:a9:49:cc:52:2f:04:72:46:8c:a1:
+         e9:84:3c:7a:f4:a8:cd:4c:76:52:5f:34:13:28:xx:xx:xx:xx:
+         18:f0:3a:b1:de:27:7c:7f:3a:97:9c:64:d8:6b:cf:ea:e6:d9:
+         67:b6:1f:9c:54:7e:28:31:0b:bf:6c:e3:5d:3f:xx:xx:xx:xx:
+         a4:a4:36:60:c1:87:60:39:3e:79:3a:5b:40:54:3c:12:48:fb:
+         7a:5e:e1:9d:5a:c6:34:b4:e4:d0:1a:32:bc:10:7c:27:xx:xx:
+         4d:8e:ae:b1:ee:de:3d:d3:bd:4c:ad:5d:cd:90:e9:be:c3:60:
+         68:56:91:50:e4:ee:dd:8d:4e:e6:b8:cc:f3:2c:b5:c9:a7:7a:
+         25:d3:9b:3e:ce:43:5f:93:57:3c:9a:59:d0:61:87:5e:1d:9d:
+         c5:4c:42:c6:a2:7c:28:3a:a8:99:85:3c:84:05:c2:c9:1e:e3:
+         22:b5:85:17
+</code></pre>
+
+<h3>SETUP OIDC</h3>
+
+<p><a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/keyless/vault/readme/">https://deploy-preview-272--spiffe.netlify.app/docs/latest/keyless/vault/readme/</a></p>
+
+<p>Make changes to files mentioned below under directory spire-tutorials/k8s/oidc-vault/k8s</p>
+
+<h4>oidc-dp-configmap.yaml</h4>
+
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oidc-discovery-provider
+  namespace: spire
+data:
+  oidc-discovery-provider.conf: |
+    log_level = "INFO"
+    # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
+    domains = ["spire-oidc.myddns.me"] 
+    acme {
+        directory_url = "https://acme-v02.api.letsencrypt.org/directory"
+        cache_dir = "/run/spire"
+        tos_accepted = true
+        # TODO: Change MY_EMAIL_ADDRESS with your email
+        email = "xxxx@gmail.com"
+    }
+    server_api {
+      address = "unix:///tmp/spire-server/private/api.sock"
+    }
+    health_checks {}
+</code></pre>
+
+<h4>ingress.yaml</h4>
+
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: spire-ingress
+  namespace: spire
+spec:
+  tls:
+    - hosts:
+        # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
+        - spire-oidc.myddns.me
+      secretName: oidc-secret
+  rules:
+    # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
+    - host: spire-oidc.myddns.me
+      http:
+        paths:
+          - path: /.well-known/openid-configuration
+            pathType: Prefix
+            backend:
+              service:
+                name: spire-oidc
+                port:
+                  number: 443
+          - path: /keys
+            pathType: Prefix
+            backend:
+              service:
+                name: spire-oidc
+                port:
+                  number: 443
+</code></pre>
+
+<h4>server-configmap.yaml</h4>
+
+<pre><code>apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: spire-server
+  namespace: spire
+data:
+  server.conf: |
+    server {
+      bind_address = "0.0.0.0"
+      bind_port = "8081"
+      socket_path = "/tmp/spire-server/private/api.sock"
+      trust_domain = "example.org"
+      data_dir = "/run/spire/data"
+      log_level = "DEBUG"
+      federation {
+        bundle_endpoint {
+          address = "0.0.0.0"
+          port = 8443
+        }
+      }
+      ca_key_type = "rsa-2048"
+
+      # Creates the iss claim in JWT-SVIDs.
+      # TODO: Replace MY_DISCOVERY_DOMAIN with the FQDN of the Discovery Provider that you will configure in DNS
+      jwt_issuer = "spire-oidc.myddns.me"
+
+      ca_subject = {
+        country = ["US"],
+        organization = ["SPIFFE"],
+        common_name = "",
+      }
+    }
+
+    plugins {
+      DataStore "sql" {
+        plugin_data {
+          database_type = "sqlite3"
+          connection_string = "/run/spire/data/datastore.sqlite3"
+        }
+      }
+
+      NodeAttestor "k8s_sat" {
+        plugin_data {
+          clusters = {
+            # TODO: Change this to your cluster name
+            "spire-server" = {
+              use_token_review_api_validation = true
+              service_account_allow_list = ["spire:spire-agent"]
+              service_account_allow_list = ["spire:spire-oidc"]
+            }
+          }
+        }
+      }
+
+      KeyManager "disk" {
+        plugin_data {
+          keys_path = "/run/spire/data/keys.json"
+        }
+      }
+
+      Notifier "k8sbundle" {
+        plugin_data {
+        }
+      }
+    }
+
+    health_checks {
+      listener_enabled = true
+      bind_address = "0.0.0.0"
+      bind_port = "8080"
+      live_path = "/live"
+      ready_path = "/ready"
+    }
+</code></pre>
+
+<h4>server-statefulset.yaml</h4>
+
+<p>Change image version to 1.5.4 and readinessProbe to /ready in server-statefulset.yaml</p>
+
+<pre><code> - name: spire-oidc
+          image: ghcr.io/spiffe/oidc-discovery-provider:1.5.4
+          args:
+          .
+          .
+          .
+          readinessProbe:
+            httpGet:
+              path: /ready # TODO: Change this to /ready when using 1.5.2+
+              port: 8008
+</code></pre>
+
+<h4>Deploy the OIDC Discovery Provider Configmap</h4>
+
+<p>The SPIRE OIDC Discovery Provider provides a URL to the location of the Discovery Document specified by the OIDC protocol. The oidc-dp-configmap.yaml file specifies the URL to the OIDC Discovery Provider.</p>
+
+<p>Before running the command below, ensure that you have replaced the MY_DISCOVERY_DOMAIN placeholder with the FQDN of the Discovery Provider as described in Replace Placeholder Strings in YAML Files.</p>
+
+<p>Change to the directory k8s/oidc-vault/k8s containing the YAML files that describe the Kubernetes deployment and use the following command to apply the updated server ConfigMap, the ConfigMap for the OIDC Discovery Provider, and deploy the updated spire-server StatefulSet:</p>
+
+<pre><code>$ kubectl apply \
+    -f server-configmap.yaml \
+    -f oidc-dp-configmap.yaml \
+    -f server-statefulset.yaml
+
+To verify that the spire-server pod has spire-server and spire-oidc containers, run:
+
+$ kubectl get pods -n spire -l app=spire-server -o \
+    jsonpath='{.items[*].spec.containers[*].name}{"\n"}'
+
+
+This should output:
+
+spire-server spire-oidc
+</code></pre>
+
+<h4>Configure the OIDC Discovery Provider Service and Ingress</h4>
+
+<p>Use the following command to set up a Service definition for the OIDC Discovery Provider and to configure an Ingress for that Service:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kubectl apply \
+</span><span class='line'>    -f server-oidc-service.yaml \
+</span><span class='line'>    -f ingress.yaml&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code class=""&gt;
+</span><span class='line'>
+</span><span class='line'>### Part 2: Configure DNS for the OIDC Discovery IP Address
+</span><span class='line'>
+</span><span class='line'>https://deploy-preview-272--spiffe.netlify.app/docs/latest/keyless/vault/readme/#part-2-configure-dns-for-the-oidc-discovery-ip-address
+</span><span class='line'>
+</span><span class='line'>you will need to register a public DNS record that will resolve to the public IP address of your Kubernetes cluster.
+</span><span class='line'>
+</span><span class='line'>#### Retrieve the IP Address of the SPIRE OIDC Discovery Provider
+</span><span class='line'>Run the following command to retrieve the external IP address of the spire-oidc service. The spire-oidc Discovery Provider service must provide an external IP address for Vault to access the OIDC Discovery document provided by spire-oidc.
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;$ kubectl get service -n spire spire-oidc&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;NAME           TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)          AGE
+</span><span class='line'>spire-oidc     LoadBalancer   10.12.0.18    34.82.139.13   443:30198/TCP    108s</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Create a hostname A record in <a href="https://my.noip.com/dynamic-dns">https://my.noip.com/dynamic-dns</a>  , point it to public IP address of service in previous step</p>
+
+<h4>Verify the DNS A Record</h4>
+
+<pre><code>$ nslookup oidc-discovery.example.org
+Server:        203.0.113.0
+Address:          203.0.113.0#53
+
+Non-authoritative answer:
+Name:   oidc-discovery.example.org
+Address: 93.184.216.34
+
+The Address: field at the bottom should correspond to the IP address in the A record.
+</code></pre>
+
+<p>In your browser, navigate to <a href="https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.">https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.</a> You should see JSON output similar to the following:
+<code>
+{
+  "issuer": "https://oidc-discovery.example.org",
+  "jwks_uri": "https://oidc-discovery.example.org/keys",
+  "authorization_endpoint": "",
+  "response_types_supported": [
+    "id_token"
+  ],
+  "subject_types_supported": [],
+  "id_token_signing_alg_values_supported": [
+    "RS256",
+    "ES256",
+    "ES384"
+  ]
+}
+</code></p>
+
+<h4>References:</h4>
+
+<ul>
+<li><a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-linux-macos-x/#downloading-spire-for-linux">https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-linux-macos-x/#downloading-spire-for-linux</a></li>
+<li><a href="https://github.com/spiffe/spire-tutorials">https://github.com/spiffe/spire-tutorials</a></li>
+<li><a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-k8s/">https://deploy-preview-272--spiffe.netlify.app/docs/latest/try/getting-started-k8s/</a></li>
+<li><p><a href="https://deploy-preview-272--spiffe.netlify.app/docs/latest/keyless/vault/readme/">https://deploy-preview-272--spiffe.netlify.app/docs/latest/keyless/vault/readme/</a></p></li>
+<li><p><a href="https://spiffe.io/pdf/Solving-the-bottom-turtle-SPIFFE-SPIRE-Book.pdf">https://spiffe.io/pdf/Solving-the-bottom-turtle-SPIFFE-SPIRE-Book.pdf</a></p></li>
+<li><p><a href="https://www.zerotohero.dev/spire-rocks/">https://www.zerotohero.dev/spire-rocks/</a></p></li>
+<li><a href="https://johnharris.io/2020/03/aws-iam-with-spiffe-spire/">https://johnharris.io/2020/03/aws-iam-with-spiffe-spire/</a></li>
+<li><a href="https://medium.com/google-cloud/workload-identity-federation-for-on-premise-workloads-with-spiffe-24a861b3cf6c">https://medium.com/google-cloud/workload-identity-federation-for-on-premise-workloads-with-spiffe-24a861b3cf6c</a></li>
+<li><a href="https://github.com/GoogleCloudPlatform/professional-services/tree/main/tools/spiffe-gcp-proxy">https://github.com/GoogleCloudPlatform/professional-services/tree/main/tools/spiffe-gcp-proxy</a></li>
+<li><p><a href="https://medium.com/google-cloud/workload-identity-federation-for-on-premise-workloads-with-spiffe-24a861b3cf6c">https://medium.com/google-cloud/workload-identity-federation-for-on-premise-workloads-with-spiffe-24a861b3cf6c</a></p></li>
+<li><p><a href="https://github.com/kubernetes/dashboard">https://github.com/kubernetes/dashboard</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
