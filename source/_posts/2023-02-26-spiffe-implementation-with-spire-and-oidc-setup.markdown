@@ -46,7 +46,8 @@ In a deployment such as this, where the agent and server share the same cluster,
 
 To allow the server to read and write to this configmap, a ClusterRole must be created that confers the appropriate entitlements to Kubernetes RBAC, and that ClusterRoleBinding must be associated with the service account created in the previous step.
 
-Create the server’s service account, configmap and associated role bindings as follows:
+Create the server's  service account, configmap and associated role bindings as follows:
+
 ```
 $ kubectl apply \
     -f server-account.yaml \
@@ -514,13 +515,12 @@ Name:	oidc-discovery.example.org
 Address: 93.184.216.34
 
 The Address: field at the bottom should correspond to the IP address in the A record.
-
-
-
 ```
 
 
-In your browser, navigate to https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration. You should see JSON output similar to the following:
+In your browser, navigate to https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration. You should see JSON output similar to the following:   
+
+
 ```
 {
   "issuer": "https://oidc-discovery.example.org",
