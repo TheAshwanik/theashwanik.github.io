@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:oidc | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/oidc/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2023-02-26T19:20:18+00:00</updated>
+  <updated>2023-02-26T20:10:24+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -14,18 +14,18 @@
 
   
   <entry>
-    <title type="html"><![CDATA[SPIFE Implementation with SPIRE And OIDC Setup]]></title>
-    <link href="http://blog.ashwani.co.in/blog/2023-02-26/spife-implementation-with-spire-and-oidc-setup/"/>
+    <title type="html"><![CDATA[SPIFFE Implementation with SPIRE And OIDC Setup]]></title>
+    <link href="http://blog.ashwani.co.in/blog/2023-02-26/spiffe-implementation-with-spire-and-oidc-setup/"/>
     <updated>2023-02-26T18:32:22+00:00</updated>
-    <id>http://blog.ashwani.co.in/blog/2023-02-26/spife-implementation-with-spire-and-oidc-setup</id>
-    <content type="html"><![CDATA[<p>As a solution architect, I'm excited to share my thoughts on two important frameworks in the world of technology - SPIFEE and SPIRE. These frameworks have been gaining popularity in last few years, and they play a crucial role in zero trust and ensuring the security and privacy of data in various industries.</p>
+    <id>http://blog.ashwani.co.in/blog/2023-02-26/spiffe-implementation-with-spire-and-oidc-setup</id>
+    <content type="html"><![CDATA[<p>As a solution architect, I'm excited to share my thoughts on two important frameworks in the world of technology - SPIFFE and SPIRE. These frameworks have been gaining popularity in last few years, and they play a crucial role in zero trust and ensuring the security and privacy of data in various industries.</p>
 
 <!-- more -->
 
 
-<p>In this blog, I'll not explore the concepts behind SPIFEE and SPIRE and their benefits for businesses. I'll also not discuss how these frameworks work together to provide a comprehensive security solution.
-Please Read more about SPIFEE and SPIRE seperately.
-This article is a note to myself how to quickstart a demo for SPIRE and implementation of SPIFEE.</p>
+<p>In this blog, I'll not explore the concepts behind SPIFFE and SPIRE and their benefits for businesses. I'll also not discuss how these frameworks work together to provide a comprehensive security solution.
+Please Read more about SPIFFE and SPIRE seperately.
+This article is a note to myself how to quickstart a demo for SPIRE and implementation of SPIFFE.</p>
 
 <h2>Configure SPIRE Server on Kubernetes</h2>
 
