@@ -4,7 +4,7 @@
   <title><![CDATA[Tag:workload identity | Ashwani's Tech World - Giving back to community]]></title>
   <link href="http://blog.ashwani.co.in/tags/workload-identity/atom.xml" rel="self"/>
   <link href="http://blog.ashwani.co.in/"/>
-  <updated>2023-02-26T20:10:24+00:00</updated>
+  <updated>2023-02-26T20:58:09+00:00</updated>
   <id>http://blog.ashwani.co.in/</id>
   <author>
     <name><![CDATA[Ashwani Kumar]]></name>
@@ -57,13 +57,13 @@ $ kubectl get namespaces
 
 <p>To allow the server to read and write to this configmap, a ClusterRole must be created that confers the appropriate entitlements to Kubernetes RBAC, and that ClusterRoleBinding must be associated with the service account created in the previous step.</p>
 
-<p>Create the server’s service account, configmap and associated role bindings as follows:
-<code>
-$ kubectl apply \
+<p>Create the server's  service account, configmap and associated role bindings as follows:</p>
+
+<pre><code>$ kubectl apply \
     -f server-account.yaml \
     -f spire-bundle-configmap.yaml \
     -f server-cluster-role.yaml
-</code></p>
+</code></pre>
 
 <h2>Create Server Configmap</h2>
 
@@ -518,9 +518,9 @@ Address: 93.184.216.34
 The Address: field at the bottom should correspond to the IP address in the A record.
 </code></pre>
 
-<p>In your browser, navigate to <a href="https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.">https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.</a> You should see JSON output similar to the following:
-<code>
-{
+<p>In your browser, navigate to <a href="https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.">https://MY_DISCOVERY_DOMAIN/.well-known/openid-configuration.</a> You should see JSON output similar to the following:</p>
+
+<pre><code>{
   "issuer": "https://oidc-discovery.example.org",
   "jwks_uri": "https://oidc-discovery.example.org/keys",
   "authorization_endpoint": "",
@@ -534,7 +534,7 @@ The Address: field at the bottom should correspond to the IP address in the A re
     "ES384"
   ]
 }
-</code></p>
+</code></pre>
 
 <h4>References:</h4>
 
